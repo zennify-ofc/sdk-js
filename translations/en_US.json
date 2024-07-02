@@ -173,7 +173,7 @@
     },
     "YOU_INSERTED_AN_INVALID_ADDITIONAL": {
         "name": "You inserted an invalid additional",
-        "message": "Check and correct the additional items."
+        "message": "Remove the additional \"{addon}\"."
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "This seller has not yet configured receipt via PIX",
@@ -216,8 +216,8 @@
         "message": "Perhaps this store no longer exists."
     },
     "UNKNOWN_BANK": {
-        "name": "Unknown bank",
-        "message": ""
+        "name": "Unsupported bank",
+        "message": "We do not yet support the bank \"{bank}\""
     },
     "INVALID_STORE_NAME": {
         "name": "Invalid store name",
@@ -239,7 +239,7 @@
         "name": "You reached the product limit of 100",
         "message": "Try removing products you no longer use."
     },
-    "THIS_PRODUCT_NAME_ALREADY_EXIST": {
+    "PRODUCT_NAME_ALREADY_EXIST": {
         "name": "There is already a product with this name",
         "message": "Choose a different name."
     },
@@ -291,7 +291,7 @@
         "name": "You already have this image saved in Zennify",
         "message": "We blocked the submission to prevent duplicate images"
     },
-    "YOU_ALREADY_HAVE_ANOTHER_IMAGE_WITH_THIS_NAME": {
+    "MEDIA_NAME_ALREADY_EXIST": {
         "name": "You already have another image with this same name",
         "message": "Try changing the name"
     },
@@ -315,11 +315,11 @@
         "name": "You reached the panel limit of 30",
         "message": "Try removing panels you no longer use."
     },
-    "YOU_ALREADY_HAVE_ANOTHER_PANEL_WITH_THIS_NAME": {
+    "PANEL_NAME_ALREADY_EXIST": {
         "name": "You already have another panel with this name",
         "message": "Try to change the name"
     },
-    "YOU_REACHED_THE_PRODUCTS_LIMIT_ON_PANEL": {
+    "YOU_REACHED_THE_PRODUCT_LIMIT_ON_PANEL": {
         "name": "You've reached the products limit on the panel",
         "message": "Due to Discord limitations, only up to 25 products are allowed."
     }

@@ -173,7 +173,7 @@
     },
     "YOU_INSERTED_AN_INVALID_ADDITIONAL": {
         "name": "Adicional inválido",
-        "message": "Verifique e corrija os adicionais."
+        "message": "Remova o adicional \"{addon}\"."
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "Pix não configurado",
@@ -216,8 +216,8 @@
         "message": "Talvez essa loja não exista mais."
     },
     "UNKNOWN_BANK": {
-        "name": "Banco desconhecido",
-        "message": ""
+        "name": "Banco não suportado",
+        "message": "Ainda não suportamos o banco \"{bank}\""
     },
     "INVALID_STORE_NAME": {
         "name": "Nome de loja inválido",
@@ -239,7 +239,7 @@
         "name": "Limite de 100 produtos atingido",
         "message": "Tente remover os produtos que você não usa mais."
     },
-    "THIS_PRODUCT_NAME_ALREADY_EXIST": {
+    "PRODUCT_NAME_ALREADY_EXIST": {
         "name": "Já existe um produto com esse nome",
         "message": "Escolha um nome diferente."
     },
@@ -291,7 +291,7 @@
         "name": "Você já tem essa imagem salva no Zennify",
         "message": "Bloqueamos o envio pra evitar imagens duplicadas"
     },
-    "YOU_ALREADY_HAVE_ANOTHER_IMAGE_WITH_THIS_NAME": {
+    "MEDIA_NAME_ALREADY_EXIST": {
         "name": "Você já tem outra imagem com esse mesmo nome",
         "message": "Tente alterar o nome"
     },
@@ -315,11 +315,11 @@
         "name": "Limite de 30 painéis atingido",
         "message": "Tente remover os painéis que você não usa mais."
     },
-    "YOU_ALREADY_HAVE_ANOTHER_PANEL_WITH_THIS_NAME": {
+    "PANEL_NAME_ALREADY_EXIST": {
         "name": "Você já possui outro painel com este nome",
         "message": "Tente alterar o nome"
     },
-    "YOU_REACHED_THE_PRODUCTS_LIMIT_ON_PANEL": {
+    "YOU_REACHED_THE_PRODUCT_LIMIT_ON_PANEL": {
         "name": "Você atingiu o limite de produtos no painel",
         "message": "Por limitações do Discord, só são permitidos até 25 produtos."
     }
