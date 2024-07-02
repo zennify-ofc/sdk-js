@@ -6,5 +6,321 @@
     "UNKNOWN_TRANSLATION": {
         "name": "{code} não traduzido ainda",
         "message": "Entre em contato com o suporte."
+    },
+    "METHOD_NOT_ALLOWED": {
+        "name": "Método não permitido",
+        "message": "Consulte nossa documentação."
+    },
+    "EXPECTED_AN_OBJECT_ARRAY": {
+        "name": "Era esperado um array de objetos",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "EXPECTED_A_STRING_ARRAY": {
+        "name": "Era esperado um array de strings",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "EXPECTED_A_NUMBER_ARRAY": {
+        "name": "Era esperado um array de números",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "EXPECTED_AN_OBJECT": {
+        "name": "Era esperado um objeto",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "EXPECTED_A_NON_EMPTY_OBJECT": {
+        "name": "Era esperado um objeto não vazio",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "EXPECTED_A_STRING": {
+        "name": "Era esperado uma string",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "EXPECTED_A_NUMBER": {
+        "name": "Era esperado um número",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "EXPECTED_A_VALID_ID": {
+        "name": "Era esperado um ID válido",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\". IDs devem ser inteiros entre 0 e 2.147.483.647"
+    },
+    "DUPLICATED_VALUES_ISNT_ALLOWED": {
+        "name": "Valores duplicados não são permitidos",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
+    "GRANT_CODE_MISSING_IN_QUERY": {
+        "name": "Código de autorização ausente",
+        "message": "Tente autenticar novamente"
+    },
+    "INVALID_SCOPE": {
+        "name": "Escopo inválido",
+        "message": "Você enviou escopos inválidos."
+    },
+    "VERIFY_YOUR_EMAIL": {
+        "name": "Verifique o seu e-mail",
+        "message": "Você precisa ter um email válido."
+    },
+    "PLEASE_REVERIFY": {
+        "name": "Por favor, re-verifique",
+        "message": "Um erro ocorreu durante a autenticação"
+    },
+    "USER_NOT_FOUND": {
+        "name": "Usuário não encontrado",
+        "message": "Tente novamente."
+    },
+    "INVALID_PASSWORD": {
+        "name": "Senha inválida",
+        "message": "Tente novamente."
+    },
+    "YOU_MUST_INSERT_THE_ACTUAL_PASSWORD": {
+        "name": "Você precisa inserir a sua senha atual",
+        "message": ""
+    },
+    "THE_PASSWORD_DOES_NOT_MATCH": {
+        "name": "A senha inserida não bate com a atual",
+        "message": ""
+    },
+    "THE_PASSWORD_MUST_HAVE_AT_LEAST_8_CHARACTERS": {
+        "name": "A sua senha deve ter no mínimo 8 caracteres",
+        "message": ""
+    },
+    "THE_PASSWORD_MUST_HAVE_AT_LEAST_ONE_NUMBER": {
+        "name": "A senha precisa ter pelo menos 1 número",
+        "message": ""
+    },
+    "THE_PASSWORD_MUST_HAVE_AT_LEAST_ONE_LETTER": {
+        "name": "A senha precisa ter pelo menos 1 letra",
+        "message": ""
+    },
+    "THE_PASSWORD_MUST_HAVE_AT_LEAST_ONE_SPECIAL_CHARACTER": {
+        "name": "A senha precisa ter pelo menos 1 caractere especial",
+        "message": ""
+    },
+    "THE_EMAIL_SENDED_ISNT_VALID": {
+        "name": "O email enviado não é válido",
+        "message": "Verifique o e-mail enviado."
+    },
+    "CELLPHONE_NUMBERS_MUST_HAVE_THE_9_DIGIT": {
+        "name": "Números de telefone devem ter o dígito 9",
+        "message": "Modelo: DDD + 9 + telefone (Ex: 21940028922)"
+    },
+    "THE_CELLPHONE_NUMBER_MUST_HAVE_ONLY_DIGITS": {
+        "name": "O número de telefone deve ter apenas dígitos",
+        "message": ""
+    },
+    "THE_PIX_KEY_INSERTED_ISNT_VALID": {
+        "name": "A chave pix inserida não é válida",
+        "message": "Aceitamos CPF, email, telefone e chave aletória"
+    },
+    "INSERT_A_VALID_URL": {
+        "name": "Insira uma URL válida",
+        "message": ""
+    },
+    "THE_ONLY_ACCEPTED_PROTOCOL_IS_HTTPS": {
+        "name": "O único protocolo aceito é HTTPS",
+        "message": ""
+    },
+    "THIS_DOMAIN_IS_BLACKLISTED": {
+        "name": "Este domínio está na lista negra",
+        "message": "Tente selecionar outro domínio"
+    },
+    "THE_URL_EXTENSION_ISNT_ACCEPTED_YET": {
+        "name": "Esta extensão de URL ainda não é aceita",
+        "message": "Você pode recomendar a adição desta extensão ao nosso servidor de suporte."
+    },
+    "THE_URL_IS_INACCESSIBLE_BY_THE_WEBHOOK_SERVER": {
+        "name": "A URL é inacessível pelo servidor de webhook",
+        "message": "Não recebemos nenhuma resposta da URL"
+    },
+    "THE_URL_WOULD_NOT_HAVE_REDIRECTS": {
+        "name": "A URL não pode ter redirecionamentos",
+        "message": ""
+    },
+    "THE_URL_HAS_TIMEOUT_5S": {
+        "name": "A URL excedeu o timeout (5s)",
+        "message": "É essencial que o servidor responda em menos de 5 segundps"
+    },
+    "INVALID_PAYMENT_METHOD": {
+        "name": "Método de pagamento inválido",
+        "message": "Tente novamente com outro método."
+    },
+    "YOU_NEED_TO_INSERT_AT_LEAST_1_ITEM": {
+        "name": "Insira pelo menos 1 item",
+        "message": "Adicione um item ao pedido."
+    },
+    "ONE_PROVIDED_PRODUCT_IS_OUT_OF_STOCK": {
+        "name": "Produto fora de estoque",
+        "message": "Remova ou substitua o produto."
+    },
+    "WE_DONT_HAVE_THIS_AMOUNT_IN_STOCK": {
+        "name": "Quantidade indisponível em estoque",
+        "message": "Reduza a quantidade ou tente mais tarde."
+    },
+    "THIS_SELLER_WAS_BANNED_FROM_ZENNIFY": {
+        "name": "Vendedor banido do Zennify",
+        "message": "Escolha outro vendedor."
+    },
+    "WE_DO_NOT_YET_SUPPORT_MULTIPLE_USER_PRODUCTS": {
+        "name": "Múltiplos produtos de usuário não são suportados",
+        "message": "Adicione itens de um vendedor por vez."
+    },
+    "WE_DO_NOT_YET_SUPPORT_MULTIPLE_STORE_PRODUCTS": {
+        "name": "Múltiplas lojas não são suportadas",
+        "message": "Adicione itens de uma loja por vez."
+    },
+    "YOU_ALREADY_HAVE_ANOTHER_ORDER_WAITING_PAYMENT": {
+        "name": "Pedido pendente de pagamento",
+        "message": "Complete o outro pedido antes de fazer um novo pedido."
+    },
+    "YOU_INSERTED_AN_INVALID_ADDITIONAL": {
+        "name": "Adicional inválido",
+        "message": "Verifique e corrija os adicionais."
+    },
+    "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
+        "name": "Pix não configurado",
+        "message": "Escolha outro método ou aguarde a configuração do vendedor."
+    },
+    "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_BOLETO": {
+        "name": "Boleto não configurado",
+        "message": "Escolha outro método ou aguarde a configuração do vendedor."
+    },
+    "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_CRYPTO": {
+        "name": "Cripto não configurado",
+        "message": "Escolha outro método ou aguarde a configuração do vendedor."
+    },
+    "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_VISA": {
+        "name": "Visa não configurado",
+        "message": "Escolha outro método ou aguarde a configuração do vendedor."
+    },
+    "THIS_COUPON_DOES_NOT_EXISTS": {
+        "name": "Cupom não existe",
+        "message": "Verifique o código do cupom."
+    },
+    "THIS_COUPON_HAS_EXPIRED": {
+        "name": "Cupom expirado",
+        "message": "Use um cupom válido."
+    },
+    "THIS_COUPON_REACHED_THE_USE_LIMIT": {
+        "name": "O cupom atingiu o limite de usos",
+        "message": "Tente novamente depois."
+    },
+    "YOU_NEED_TO_SELECT_MORE_ITENS_DO_REACH_THE_MINIMUM_VALUE_OF_THE_COUPON": {
+        "name": "Você não atingiu o valor mínimo do cupom",
+        "message": "Adicione mais itens ao carrinho."
+    },
+    "THIS_COUPON_IS_VALID_ONLY_FOR_THE_FIRST_BUY": {
+        "name": "Cupom válido apenas para a primeira compra",
+        "message": "Cupom válido apenas na primeira compra."
+    },
+    "UNKNOWN_STORE": {
+        "name": "Loja desconhecida",
+        "message": "Talvez essa loja não exista mais."
+    },
+    "UNKNOWN_BANK": {
+        "name": "Banco desconhecido",
+        "message": ""
+    },
+    "INVALID_STORE_NAME": {
+        "name": "Nome de loja inválido",
+        "message": "O nome deve ter até 50 caracteres"
+    },
+    "UNKNOWN_PRODUCT": {
+        "name": "Produto desconhecido",
+        "message": "Talvez esse produto não exista mais."
+    },
+    "INVALID_PRODUCT_NAME": {
+        "name": "Nome do produto inválido",
+        "message": "Corrija o nome do produto."
+    },
+    "INVALID_PRODUCT_VALUE": {
+        "name": "Valor do produto inválido",
+        "message": "Corrija o valor do produto."
+    },
+    "YOU_REACHED_THE_PRODUCT_LIMIT": {
+        "name": "Limite de 100 produtos atingido",
+        "message": "Tente remover os produtos que você não usa mais."
+    },
+    "THIS_PRODUCT_NAME_ALREADY_EXIST": {
+        "name": "Já existe um produto com esse nome",
+        "message": "Escolha um nome diferente."
+    },
+    "INVALID_PRODUCT_DESCRIPTION_FOR_DISCORD": {
+        "name": "Descrição de produto para o Discord inválida",
+        "message": "Tente enviar uma descrição com menos de 1024 caracteres"
+    },
+    "UNKNOWN_STOCK": {
+        "name": "Item inexistente no estoque",
+        "message": "Talvez ele já tenha sido vendido"
+    },
+    "INVALID_STOCK_CONTENT": {
+        "name": "O conteúdo do estoque é inválido",
+        "message": "Deve ter até 1000 caracteres"
+    },
+    "INVALID_STOCK_COST": {
+        "name": "O custo do item é inválido",
+        "message": "Deve ser entre R$ 0.00 e R$ 999.999,00"
+    },
+    "UNKNOWN_FILE": {
+        "name": "Imagem desconhecida",
+        "message": "Talvez ela já tenha sido apagada"
+    },
+    "NO_FILES_FOUND": {
+        "name": "Nenhum arquivo enviado",
+        "message": "Envie um arquivo válido."
+    },
+    "INVALID_FILE_TYPE": {
+        "name": "Tipo de arquivo inválido",
+        "message": "Os tipos aceitos são PNG, WEBP, JPEG e GIF"
+    },
+    "INVALID_FILE_NAME": {
+        "name": "Nome do arquivo inválido",
+        "message": "O tamanho máximo é de 50 caracteres"
+    },
+    "INVALID_FILE_SIZE": {
+        "name": "Arquivo pesado demais",
+        "message": "O tamanho máximo é de 5MB"
+    },
+    "YOU_REACHED_STORAGE_LIMIT": {
+        "name": "Você atingiu o limite de armazenamento",
+        "message": "Tente apagar imagens que você não usa mais"
+    },
+    "YOU_REACHED_MEDIA_LIMIT": {
+        "name": "Você atingiu o limite de imagens",
+        "message": "Tente apagar imagens que você não usa mais"
+    },
+    "YOU_ALREADY_HAVE_THIS_MEDIA": {
+        "name": "Você já tem essa imagem salva no Zennify",
+        "message": "Bloqueamos o envio pra evitar imagens duplicadas"
+    },
+    "YOU_ALREADY_HAVE_ANOTHER_IMAGE_WITH_THIS_NAME": {
+        "name": "Você já tem outra imagem com esse mesmo nome",
+        "message": "Tente alterar o nome"
+    },
+    "UNKNOWN_PANEL": {
+        "name": "Painel desconhecido",
+        "message": "Talvez esse painel não exista mais."
+    },
+    "INVALID_PANEL_NAME": {
+        "name": "Nome do painel inválido",
+        "message": "Corrija o nome do painel."
+    },
+    "INVALID_PANEL_DESCRIPTION": {
+        "name": "Descrição do painel inválida",
+        "message": "Corrija a descrição do painel."
+    },
+    "INVALID_PANEL_PLACEHOLDER": {
+        "name": "Placeholder de painel inválido",
+        "message": "Ele deve ter até 150 caracteres"
+    },
+    "YOU_REACHED_PANEL_LIMIT": {
+        "name": "Limite de 30 painéis atingido",
+        "message": "Tente remover os painéis que você não usa mais."
+    },
+    "YOU_ALREADY_HAVE_ANOTHER_PANEL_WITH_THIS_NAME": {
+        "name": "Você já possui outro painel com este nome",
+        "message": "Tente alterar o nome"
+    },
+    "YOU_REACHED_THE_PRODUCTS_LIMIT_ON_PANEL": {
+        "name": "Você atingiu o limite de produtos no painel",
+        "message": "Por limitações do Discord, só são permitidos até 25 produtos."
     }
 }
