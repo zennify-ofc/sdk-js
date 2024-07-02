@@ -65,6 +65,10 @@ export type APIErrors =
     | 'UNKNOWN_STORE'
     | 'UNKNOWN_BANK'
     | 'INVALID_STORE_NAME'
+    /// bot errors
+    | 'WAIT_OR_TRY_AGAIN_WITH_ANOTHER_DISCORD_BOT'
+    | 'INVALID_DISCORD_BOT_TOKEN'
+    | 'DISABLE_REQUIRE_CODE_GRANT'
     // product errors
     | 'UNKNOWN_PRODUCT'
     | 'INVALID_PRODUCT_NAME'

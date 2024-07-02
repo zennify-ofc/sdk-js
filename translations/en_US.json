@@ -223,6 +223,18 @@
         "name": "Invalid store name",
         "message": "The name must be up to 50 characters"
     },
+    "WAIT_OR_TRY_AGAIN_WITH_ANOTHER_DISCORD_BOT": {
+        "name": "Wait or try again with another BOT",
+        "message": "Your actions are being limited"
+    },
+    "INVALID_DISCORD_BOT_TOKEN": {
+        "name": "The inserted token is invalid.",
+        "message": "Try entering a valid token."
+    },
+    "DISABLE_REQUIRE_CODE_GRANT": {
+        "name": "Disable \"Require code grant\"",
+        "message": "With it enabled, you won't be able to invite the bot."
+    },
     "UNKNOWN_PRODUCT": {
         "name": "Unknown product",
         "message": "Perhaps this product no longer exists."

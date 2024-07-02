@@ -223,6 +223,18 @@
         "name": "Nome de loja inválido",
         "message": "O nome deve ter até 50 caracteres"
     },
+    "WAIT_OR_TRY_AGAIN_WITH_ANOTHER_DISCORD_BOT": {
+        "name": "Aguarde ou tente novamente com outro BOT",
+        "message": "Sua ações estão sendo limitadas"
+    },
+    "INVALID_DISCORD_BOT_TOKEN": {
+        "name": "O token inserido é inválido.",
+        "message": "Tente inserir um token válido"
+    },
+    "DISABLE_REQUIRE_CODE_GRANT": {
+        "name": "Desabilite o \"Require code grant\"",
+        "message": "Com ele ativado você não conseguirá convidar o bot"
+    },
     "UNKNOWN_PRODUCT": {
         "name": "Produto desconhecido",
         "message": "Talvez esse produto não exista mais."
