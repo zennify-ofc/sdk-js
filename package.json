@@ -6,6 +6,9 @@
   "keywords": [],
   "author": "josejooj",
   "license": "ISC",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "url": "git+https://github.com/zennify-ofc/sdk-js.git"
   },
