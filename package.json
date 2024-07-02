@@ -4,7 +4,7 @@
   "description": "A simple package to work with https://api.zennify.app",
   "main": "src/main.ts",
   "keywords": [],
-  "author": "zennify-ofc",
+  "author": "josejooj",
   "license": "ISC",
   "repository": {
     "url": "git+https://github.com/zennify-ofc/sdk-js.git"
