@@ -1,6 +1,6 @@
 {
   "name": "@zennify/sdk-js",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "A simple package to work with https://api.zennify.app",
   "main": "dist/main.js",
   "keywords": [],
@@ -12,6 +12,7 @@
   "repository": {
     "url": "git+https://github.com/zennify-ofc/sdk-js.git"
   },
+  "types": "./types/main.d.ts",
   "devDependencies": {
     "@types/node": "^20.12.12",
     "typescript": "^5.5.3"
