@@ -7,12 +7,10 @@
   "author": "zennify-ofc",
   "license": "ISC",
   "repository": {
-    "url": "https://github.com/zennify-ofc/sdk-js"
+    "url": "git+https://github.com/zennify-ofc/sdk-js.git"
   },
   "devDependencies": {
     "@types/node": "^20.12.12"
   },
-  "scripts": {
-    
-  }
+  "scripts": {}
 }
