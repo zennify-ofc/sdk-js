@@ -1,8 +1,8 @@
 {
   "name": "@josejooj/zennify-sdk",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "A simple package to work with https://api.zennify.app",
-  "main": "src/main.ts",
+  "main": "dist/main.js",
   "keywords": [],
   "author": "josejooj",
   "license": "ISC",
@@ -10,9 +10,12 @@
     "url": "git+https://github.com/zennify-ofc/sdk-js.git"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12"
+    "@types/node": "^20.12.12",
+    "typescript": "^5.5.3"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "undici-types": "^5.26.5"
   },

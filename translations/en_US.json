@@ -1,6 +1,10 @@
 {
     "0": {
-        "error": "Um erro deconhecido ocorreu.",
-        "description": "Contate o suporte com o ID {{body.id}}"
+        "name": "An unknown error happened.",
+        "message": "Contact the support with id {id}"
+    },
+    "1": {
+        "name": "{code} not translated yet",
+        "message": "Contact the support."
     }
 }

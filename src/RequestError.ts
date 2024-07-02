@@ -8,7 +8,7 @@ const replacer = (body: any, value: string) => {
     return body[value.slice(1, -1)]
 }
 
-interface Body extends Record<string, any> {
+type Body = Record<string, any> & {
     code: number
 }
 
@@ -41,8 +41,8 @@ export class ZennifyAPIRequestError extends Error {
         }
 
         const error: { name: string, message: string } =
-            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code] ||
-            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][1];
+            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code as 0] ||
+            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE]["1"];
 
         this.name = error.name
             .replace(match_regex, (value) => replacer(body, value));

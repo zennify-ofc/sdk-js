@@ -2,7 +2,7 @@ import { ZennifyAPIRequestError } from './RequestError';
 import { APIErrors } from './errors';
 
 export function GetResponseError(
-    error: keyof APIErrors,
+    error: keyof typeof APIErrors,
     additional: any = {}
 ): { error: keyof APIErrors | string, code: number } & Record<string, any> {
 
