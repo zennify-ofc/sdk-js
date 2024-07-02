@@ -149,11 +149,11 @@
     },
     "ONE_PROVIDED_PRODUCT_IS_OUT_OF_STOCK": {
         "name": "One provided product is out of stock",
-        "message": "Remove or replace the product."
+        "message": "Remove or replace the product \"{name}\"."
     },
     "WE_DONT_HAVE_THIS_AMOUNT_IN_STOCK": {
-        "name": "We don't have this amount in stock",
-        "message": "Reduce the quantity or try again later."
+        "name": "The product \"{name}\" don't have {received} products in stock anymore",
+        "message": "Reduce the quantity to {available} items, please."
     },
     "THIS_SELLER_WAS_BANNED_FROM_ZENNIFY": {
         "name": "This seller was banned from Zennify",
@@ -161,15 +161,15 @@
     },
     "WE_DO_NOT_YET_SUPPORT_MULTIPLE_USER_PRODUCTS": {
         "name": "We do not yet support multiple user products",
-        "message": "Add items from one seller at a time."
+        "message": "Remove the product \"{name}\" and buy later."
     },
     "WE_DO_NOT_YET_SUPPORT_MULTIPLE_STORE_PRODUCTS": {
         "name": "We do not yet support multiple store products",
-        "message": "Add items from one store at a time."
+        "message": "Remove the product \"{name}\" and buy later."
     },
     "YOU_ALREADY_HAVE_ANOTHER_ORDER_WAITING_PAYMENT": {
         "name": "You already have another order waiting for payment",
-        "message": "Complete the other order before placing a new one."
+        "message": "Complete the other order ID {id} before placing a new one."
     },
     "YOU_INSERTED_AN_INVALID_ADDITIONAL": {
         "name": "You inserted an invalid additional",
@@ -192,8 +192,8 @@
         "message": "Choose another method or wait for seller configuration."
     },
     "THIS_COUPON_DOES_NOT_EXISTS": {
-        "name": "This coupon does not exist",
-        "message": "Check the coupon code."
+        "name": "The coupon \"{name}\" does not exist",
+        "message": "Check the coupon name."
     },
     "THIS_COUPON_HAS_EXPIRED": {
         "name": "This coupon has expired",
@@ -203,9 +203,9 @@
         "name": "This coupon reached the use limit",
         "message": "Try again later."
     },
-    "YOU_NEED_TO_SELECT_MORE_ITENS_DO_REACH_THE_MINIMUM_VALUE_OF_THE_COUPON": {
+    "SELECT_MORE_ITENS_TO_REACH_MINIMUM_COUPON_VALUE": {
         "name": "You need to select more items to reach the minimum value of the coupon",
-        "message": "Add more items to the cart."
+        "message": "O valor mínimo desse cupom é de {value}."
     },
     "THIS_COUPON_IS_VALID_ONLY_FOR_THE_FIRST_BUY": {
         "name": "This coupon is valid only for the first purchase",

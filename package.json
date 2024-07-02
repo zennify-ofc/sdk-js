@@ -1,6 +1,6 @@
 {
   "name": "@zennify/sdk-js",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "A simple package to work with https://api.zennify.app",
   "main": "dist/main.js",
   "keywords": [],

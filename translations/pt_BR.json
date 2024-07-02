@@ -149,11 +149,11 @@
     },
     "ONE_PROVIDED_PRODUCT_IS_OUT_OF_STOCK": {
         "name": "Produto fora de estoque",
-        "message": "Remova ou substitua o produto."
+        "message": "Remova ou substitua o produto \"{name}\"."
     },
     "WE_DONT_HAVE_THIS_AMOUNT_IN_STOCK": {
-        "name": "Quantidade indisponível em estoque",
-        "message": "Reduza a quantidade ou tente mais tarde."
+        "name": "O produto \"{name}\" não possui mais {received} unidades em estoque",
+        "message": "Reduza a quantidade para {available} itens, por favor."
     },
     "THIS_SELLER_WAS_BANNED_FROM_ZENNIFY": {
         "name": "Vendedor banido do Zennify",
@@ -161,15 +161,15 @@
     },
     "WE_DO_NOT_YET_SUPPORT_MULTIPLE_USER_PRODUCTS": {
         "name": "Múltiplos produtos de usuário não são suportados",
-        "message": "Adicione itens de um vendedor por vez."
+        "message": "Remova o produto \"{name}\" e compre-o depois."
     },
     "WE_DO_NOT_YET_SUPPORT_MULTIPLE_STORE_PRODUCTS": {
         "name": "Múltiplas lojas não são suportadas",
-        "message": "Adicione itens de uma loja por vez."
+        "message": "Remova o produto \"{name}\" e compre-o depois."
     },
     "YOU_ALREADY_HAVE_ANOTHER_ORDER_WAITING_PAYMENT": {
         "name": "Pedido pendente de pagamento",
-        "message": "Complete o outro pedido antes de fazer um novo pedido."
+        "message": "Complete o outro pedido de ID {id} antes de fazer um novo pedido."
     },
     "YOU_INSERTED_AN_INVALID_ADDITIONAL": {
         "name": "Adicional inválido",
@@ -192,7 +192,7 @@
         "message": "Escolha outro método ou aguarde a configuração do vendedor."
     },
     "THIS_COUPON_DOES_NOT_EXISTS": {
-        "name": "Cupom não existe",
+        "name": "O cupom \"{name}\" não existe",
         "message": "Verifique o código do cupom."
     },
     "THIS_COUPON_HAS_EXPIRED": {
@@ -203,9 +203,9 @@
         "name": "O cupom atingiu o limite de usos",
         "message": "Tente novamente depois."
     },
-    "YOU_NEED_TO_SELECT_MORE_ITENS_DO_REACH_THE_MINIMUM_VALUE_OF_THE_COUPON": {
-        "name": "Você não atingiu o valor mínimo do cupom",
-        "message": "Adicione mais itens ao carrinho."
+    "SELECT_MORE_ITENS_TO_REACH_MINIMUM_COUPON_VALUE": {
+        "name": "Adicione mais itens pra atingir o valor mínimo do cupom",
+        "message": "O valor mínimo para usar esse cupom é de {value}."
     },
     "THIS_COUPON_IS_VALID_ONLY_FOR_THE_FIRST_BUY": {
         "name": "Cupom válido apenas para a primeira compra",
