@@ -1,9 +1,9 @@
 {
-    "0": {
+    "UNKNOWN_ERROR": {
         "name": "An unknown error happened.",
         "message": "Contact the support with id {id}"
     },
-    "1": {
+    "UNKNOWN_TRANSLATION": {
         "name": "{code} not translated yet",
         "message": "Contact the support."
     }

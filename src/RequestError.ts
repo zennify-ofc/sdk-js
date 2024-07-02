@@ -1,6 +1,7 @@
 import pt_BR from '../translations/pt_BR.json';
 import en_US from '../translations/en_US.json';
 import { ZENNIFY_API_RESPONSE_LANGUAGE } from './var';
+import { APIErrors } from './errors';
 
 const errors_translations = { pt_BR, en_US };
 const match_regex = /{[\w.]+}/g;
@@ -9,7 +10,7 @@ const replacer = (body: any, value: string) => {
 }
 
 type Body = Record<string, any> & {
-    code: number
+    code: APIErrors
 }
 
 export class ZennifyAPIRequestError extends Error {
@@ -41,8 +42,8 @@ export class ZennifyAPIRequestError extends Error {
         }
 
         const error: { name: string, message: string } =
-            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code as 0] ||
-            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE]["1"];
+            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code] ||
+            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE]["UNKNOWN_TRANSLATION"];
 
         this.name = error.name
             .replace(match_regex, (value) => replacer(body, value));

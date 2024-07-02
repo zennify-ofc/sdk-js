@@ -1,9 +1,9 @@
 {
-    "0": {
+    "UNKNOWN_ERROR": {
         "name": "Um erro deconhecido ocorreu.",
         "message": "Contate o suporte com o ID {id}"
     },
-    "1": {
+    "UNKNOWN_TRANSLATION": {
         "name": "{code} não traduzido ainda",
         "message": "Entre em contato com o suporte."
     }
