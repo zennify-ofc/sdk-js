@@ -1,0 +1,6 @@
+{
+    "0": {
+        "error": "Um erro deconhecido ocorreu.",
+        "description": "Contate o suporte com o ID {{body.id}}"
+    }
+}
