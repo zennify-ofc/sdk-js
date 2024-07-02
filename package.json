@@ -1,6 +1,6 @@
 {
-  "name": "@josejooj/zennify-sdk-js",
-  "version": "1.0.0-beta.1",
+  "name": "@josejooj/zennify-sdk",
+  "version": "1.0.0-beta.2",
   "description": "A simple package to work with https://api.zennify.app",
   "main": "src/main.ts",
   "keywords": [],
@@ -12,5 +12,12 @@
   "devDependencies": {
     "@types/node": "^20.12.12"
   },
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "undici-types": "^5.26.5"
+  },
+  "bugs": {
+    "url": "https://github.com/zennify-ofc/sdk-js/issues"
+  },
+  "homepage": "https://github.com/zennify-ofc/sdk-js#readme"
 }
