@@ -25,7 +25,7 @@ export function GetResponseError(code: APIErrors, additional: any = {}) {
 
 export async function TreatZennifyResponse<T extends any>(response: Response): Promise<T> {
 
-    const body = await response.json();
+    const body = await response.json().catch(() => ({}));
 
     if (response.ok) {
         return body as T;
