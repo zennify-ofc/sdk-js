@@ -7,3 +7,4 @@ export * from './interfaces/Media';
 export * from './interfaces/Panels';
 export * from './interfaces/Products';
 export * from './interfaces/Guild';
+export * from './interfaces/Stores';
