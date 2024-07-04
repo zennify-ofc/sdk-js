@@ -25,5 +25,11 @@ export interface Product {
     stock: {
         size: number,
         locked: boolean
+    },
+    statistics: {
+        revenue_total: number,
+        revenue_daily: number,
+        revenue_weekly: number,
+        revenue_monthly: number
     }
 }
