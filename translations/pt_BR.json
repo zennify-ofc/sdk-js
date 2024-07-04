@@ -235,6 +235,10 @@
         "name": "Desabilite o \"Require code grant\"",
         "message": "Com ele ativado você não conseguirá convidar o bot"
     },
+    "UNKNOWN_DISCORD_CHANNEL": {
+        "name": "Canal do Discord desconhecido",
+        "message": "Talvez esse canal não exista mais."
+    },
     "UNKNOWN_PRODUCT": {
         "name": "Produto desconhecido",
         "message": "Talvez esse produto não exista mais."
