@@ -10,7 +10,7 @@ const replacer = (body: any, value: string) => {
 }
 
 type Body = Record<string, any> & {
-    code: APIErrors
+    code: keyof APIErrors
 }
 
 export class ZennifyAPIRequestError extends Error {
