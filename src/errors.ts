@@ -1,7 +1,11 @@
 export interface APIErrors {
     // = general errors
-    'UNKNOWN_ERROR': {};
-    'UNKNOWN_TRANSLATION': {};
+    'UNKNOWN_ERROR': {
+        id: string | number
+    };
+    'UNKNOWN_TRANSLATION': {
+        code: keyof APIErrors | string
+    };
     'METHOD_NOT_ALLOWED': {};
     'EXPECTED_AN_OBJECT_ARRAY': ExpectedAdditionalData;
     'EXPECTED_A_STRING_ARRAY': ExpectedAdditionalData;
@@ -44,26 +48,49 @@ export interface APIErrors {
     'INVALID_PAYMENT_METHOD': {};
     // Order Errors
     'YOU_NEED_TO_INSERT_AT_LEAST_1_ITEM': {};
-    'ONE_PROVIDED_PRODUCT_IS_OUT_OF_STOCK': {};
-    'WE_DONT_HAVE_THIS_AMOUNT_IN_STOCK': {};
+    'ONE_PROVIDED_PRODUCT_IS_OUT_OF_STOCK': {
+        name: string
+    };
+    'WE_DONT_HAVE_THIS_AMOUNT_IN_STOCK': {
+        name: string,
+        received: string | number,
+        available: string | number
+    };
     'THIS_SELLER_WAS_BANNED_FROM_ZENNIFY': {};
-    'WE_DO_NOT_YET_SUPPORT_MULTIPLE_USER_PRODUCTS': {};
-    'WE_DO_NOT_YET_SUPPORT_MULTIPLE_STORE_PRODUCTS': {};
-    'YOU_ALREADY_HAVE_ANOTHER_ORDER_WAITING_PAYMENT': {};
-    'YOU_INSERTED_AN_INVALID_ADDITIONAL': {};
+    'WE_DO_NOT_YET_SUPPORT_MULTIPLE_USER_PRODUCTS': {
+        name: string,
+        id: string | number
+    };
+    'WE_DO_NOT_YET_SUPPORT_MULTIPLE_STORE_PRODUCTS': {
+        name: string
+        id: string | number
+    };
+    'YOU_ALREADY_HAVE_ANOTHER_ORDER_WAITING_PAYMENT': {
+        id: string | number
+    };
+    'YOU_INSERTED_AN_INVALID_ADDITIONAL': {
+        addon: string
+    };
     /// bad preference configuration
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX': {};
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_BOLETO': {};
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_CRYPTO': {};
     /// coupons
-    'THIS_COUPON_DOES_NOT_EXISTS': {};
+    'THIS_COUPON_DOES_NOT_EXISTS': {
+        received: string
+    };
     'THIS_COUPON_HAS_EXPIRED': {};
     'THIS_COUPON_REACHED_THE_USE_LIMIT': {};
-    'SELECT_MORE_ITENS_TO_REACH_MINIMUM_COUPON_VALUE': {};
+    'SELECT_MORE_ITENS_TO_REACH_MINIMUM_COUPON_VALUE': {
+        formated_value: string,
+        value: number
+    };
     'THIS_COUPON_IS_VALID_ONLY_FOR_THE_FIRST_BUY': {};
     // store errors
     'UNKNOWN_STORE': {};
-    'UNKNOWN_BANK': {};
+    'UNKNOWN_BANK': {
+        received: string
+    };
     'INVALID_STORE_NAME': {};
     /// bot errors
     'WAIT_OR_TRY_AGAIN_WITH_ANOTHER_DISCORD_BOT': {};
