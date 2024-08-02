@@ -176,19 +176,19 @@
         "message": "Remova o adicional \"{addon}\"."
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
-        "name": "Pix não configurado",
+        "name": "O vendedor não configurou o recebimento via Pix",
         "message": "Escolha outro método ou aguarde a configuração do vendedor."
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_BOLETO": {
-        "name": "Boleto não configurado",
+        "name": "O vendedor não configurou o recebimento via Boleto",
         "message": "Escolha outro método ou aguarde a configuração do vendedor."
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_CRYPTO": {
-        "name": "Cripto não configurado",
+        "name": "O vendedor não configurou o recebimento via Cripto",
         "message": "Escolha outro método ou aguarde a configuração do vendedor."
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_VISA": {
-        "name": "Visa não configurado",
+        "name": "O vendedor não configurou o recebimento via Visa",
         "message": "Escolha outro método ou aguarde a configuração do vendedor."
     },
     "THIS_COUPON_DOES_NOT_EXISTS": {
