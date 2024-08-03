@@ -19,7 +19,7 @@ export function GetImageURL<Source extends keyof ImageSources>(
     source: Source,
     store_id?: number | null,
     id?: number | null
-) {
+): ImageSources[Source] | string {
     if (!store_id || !id) return sources[source] as ImageSources[Source];
     else return template
         .replace("{store_id}", store_id.toString())
