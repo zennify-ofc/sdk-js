@@ -3,6 +3,10 @@
         "name": "Um erro deconhecido ocorreu.",
         "message": "Contate o suporte com o ID {id}"
     },
+    "MISSING_PERMISSIONS": {
+        "name": "Você não tem permissão para realizar essa operação.",
+        "message": "Verifique as suas permissões."
+    },
     "UNKNOWN_TRANSLATION": {
         "name": "{code} não traduzido ainda",
         "message": "Entre em contato com o suporte."
@@ -174,6 +178,18 @@
     "YOU_INSERTED_AN_INVALID_ADDITIONAL": {
         "name": "Adicional inválido",
         "message": "Remova o adicional \"{addon}\"."
+    },
+    "UNKNOWN_ORDER": {
+        "name": "Pedido não encontrado.",
+        "message": "Verifique o ID enviado."
+    },
+    "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
+        "name": "Operação inválida para essa transação.",
+        "message": "O estado atual não permite que a operação seja realizada."
+    },
+    "INVALID_OPERATION_FOR_PAYMENT_ENTITY": {
+        "name": "Essa entidade de pagamento não suporta essa operação",
+        "message": "Tente usando uma outra entidade de pagamento"
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "O vendedor não configurou o recebimento via Pix",

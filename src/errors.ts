@@ -6,6 +6,7 @@ export interface APIErrors {
     'UNKNOWN_TRANSLATION': {
         code: keyof APIErrors | string
     };
+    'MISSING_PERMISSIONS': {};
     'METHOD_NOT_ALLOWED': {};
     'EXPECTED_AN_OBJECT_ARRAY': ExpectedAdditionalData;
     'EXPECTED_A_STRING_ARRAY': ExpectedAdditionalData;
@@ -71,6 +72,9 @@ export interface APIErrors {
     'YOU_INSERTED_AN_INVALID_ADDITIONAL': {
         addon: string
     };
+    'UNKNOWN_ORDER': {}
+    'INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS': {}
+    'INVALID_OPERATION_FOR_PAYMENT_ENTITY': {}
     /// bad preference configuration
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX': {};
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_BOLETO': {};

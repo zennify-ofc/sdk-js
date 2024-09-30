@@ -3,6 +3,10 @@
         "name": "An unknown error occurred.",
         "message": "Contact support with ID {id}"
     },
+    "MISSING_PERMISSIONS": {
+        "name": "You don't have permission to do this operation",
+        "message": "Verify your permissions"
+    },
     "UNKNOWN_TRANSLATION": {
         "name": "{code} not yet translated",
         "message": "Contact support."
@@ -174,6 +178,18 @@
     "YOU_INSERTED_AN_INVALID_ADDITIONAL": {
         "name": "You inserted an invalid additional",
         "message": "Remove the additional \"{addon}\"."
+    },
+    "UNKNOWN_ORDER": {
+        "name": "Order not found.",
+        "message": "Check if the ID is correct."
+    },
+    "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
+        "name": "Invalid operation for this transaction.",
+        "message": "The current status doesn't allow this operation."
+    },
+    "INVALID_OPERATION_FOR_PAYMENT_ENTITY": {
+        "name": "This payment entity doesn't support this operation",
+        "message": "Try using another payment entity or check the request"
     },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "This seller has not yet configured receipt via PIX",
