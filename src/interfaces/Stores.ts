@@ -40,5 +40,5 @@ export interface FullStore {
         app_id: string | null,
         token: string | null
     },
-    discord_bot_guilds: DiscordGuild[]
+    discord_bot_guilds: Record<string, DiscordGuild>
 }
