@@ -255,6 +255,10 @@
         "name": "Unknown Discord channel",
         "message": "Perhaps this channel no longer exists."
     },
+    "INVALID_DISCORD_CHANNEL_FOR_MESSAGE": {
+        "name": "Invalid channel for messages",
+        "message": "The selected channel doesn't support messages"
+    },
     "UNKNOWN_PRODUCT": {
         "name": "Unknown product",
         "message": "Perhaps this product no longer exists."

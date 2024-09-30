@@ -6,6 +6,7 @@ export interface APIErrors {
     'UNKNOWN_TRANSLATION': {
         code: keyof APIErrors | string
     };
+    'INVALID_DISCORD_CHANNEL_FOR_MESSAGE': {}
     'MISSING_PERMISSIONS': {};
     'METHOD_NOT_ALLOWED': {};
     'EXPECTED_AN_OBJECT_ARRAY': ExpectedAdditionalData;
