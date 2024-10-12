@@ -114,6 +114,17 @@ export interface APIErrors {
     'UNKNOWN_STOCK': {};
     'INVALID_STOCK_CONTENT': {};
     'INVALID_STOCK_COST': {};
+    // coupon errors
+    'INVALID_COUPON_NAME': {},
+    'INVALID_COUPON_TYPE': {},
+    'INVALID_COUPON_VALUE': {},
+    'INVALID_COUPON_AMOUNT': {},
+    'INVALID_COUPON_MIN_VALUE': {},
+    'INVALID_COUPON_EXPIRATION': {},
+    'INVALID_COUPON_MAX_USES_PER_USER': {}
+    'INVALID_COUPON_ONLY_FIRST_BUY': {},
+    'YOU_REACHED_THE_COUPON_LIMIT': {},
+    'COUPON_NAME_ALREADY_EXIST': {}
     // Media Errors
     'UNKNOWN_FILE': {};
     'NO_FILES_FOUND': {};
