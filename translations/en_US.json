@@ -239,6 +239,14 @@
         "name": "Invalid store name",
         "message": "The name must be up to 50 characters"
     },
+    "AUTOROLE_RULE_ALREADY_EXISTS": {
+        "name": "An automatic role rule already exists for this role!",
+        "message": "Use the update route."
+    },
+    "YOU_REACHED_THE_AUTOROLE_RULE_LIMIT": {
+        "name": "You have reached the limit of automatic roles!",
+        "message": "Try deleting the ones you no longer use."
+    },
     "WAIT_OR_TRY_AGAIN_WITH_ANOTHER_DISCORD_BOT": {
         "name": "Wait or try again with another BOT",
         "message": "Your actions are being limited"

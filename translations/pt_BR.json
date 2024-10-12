@@ -239,6 +239,14 @@
         "name": "Nome de loja inválido",
         "message": "O nome deve ter até 50 caracteres"
     },
+    "AUTOROLE_RULE_ALREADY_EXISTS": {
+        "name": "Já existe uma regra de cargo automático pra esse cargo!",
+        "message": "Use a rota de alteração."
+    },
+    "YOU_REACHED_THE_AUTOROLE_RULE_LIMIT": {
+        "name": "Você já atingiu o limite de cargos automáticos!",
+        "message": "Tente apagar os que você não usa mais"
+    },
     "WAIT_OR_TRY_AGAIN_WITH_ANOTHER_DISCORD_BOT": {
         "name": "Aguarde ou tente novamente com outro BOT",
         "message": "Sua ações estão sendo limitadas"

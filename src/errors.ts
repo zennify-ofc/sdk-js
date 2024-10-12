@@ -97,6 +97,10 @@ export interface APIErrors {
         received: string
     };
     'INVALID_STORE_NAME': {};
+    /// AUTOROLE
+    'UNKNOWN_AUTOROLE_RULE': {},
+    'AUTOROLE_RULE_ALREADY_EXISTS': {};
+    'YOU_REACHED_THE_AUTOROLE_RULE_LIMIT': {}
     /// bot errors
     'WAIT_OR_TRY_AGAIN_WITH_ANOTHER_DISCORD_BOT': {};
     'INVALID_DISCORD_BOT_TOKEN': {};
