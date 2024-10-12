@@ -239,6 +239,10 @@
         "name": "Invalid store name",
         "message": "The name must be up to 50 characters"
     },
+    "UNKNOWN_AUTOROLE_RULE": {
+        "name": "Unknown Discord autorole rule",
+        "message": "Try to create a new rule"
+    },
     "AUTOROLE_RULE_ALREADY_EXISTS": {
         "name": "An automatic role rule already exists for this role!",
         "message": "Use the update route."

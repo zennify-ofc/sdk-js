@@ -239,6 +239,10 @@
         "name": "Nome de loja inválido",
         "message": "O nome deve ter até 50 caracteres"
     },
+    "UNKNOWN_AUTOROLE_RULE": {
+        "name": "Regra de cargo automático desconhecida",
+        "message": "Tente criar uma nova regra"
+    },
     "AUTOROLE_RULE_ALREADY_EXISTS": {
         "name": "Já existe uma regra de cargo automático pra esse cargo!",
         "message": "Use a rota de alteração."
