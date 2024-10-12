@@ -295,7 +295,10 @@
         "name": "O custo do item é inválido",
         "message": "Deve ser entre R$ 0.00 e R$ 999.999,00"
     },
-    
+    "UNKNOWN_COUPON": {
+        "name": "Cupom desconhecido",
+        "message": "Talvez esse cupom não exista mais."
+    },
     "INVALID_COUPON_NAME": {
         "name": "Nome do cupom inválido",
         "message": "Deve ser composto apenas de letras e números"

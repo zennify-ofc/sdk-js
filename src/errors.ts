@@ -115,6 +115,7 @@ export interface APIErrors {
     'INVALID_STOCK_CONTENT': {};
     'INVALID_STOCK_COST': {};
     // coupon errors
+    'UNKNOWN_COUPON': {},
     'INVALID_COUPON_NAME': {},
     'INVALID_COUPON_TYPE': {},
     'INVALID_COUPON_VALUE': {},

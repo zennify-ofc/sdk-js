@@ -295,6 +295,10 @@
         "name": "Invalid item cost",
         "message": "It must be between R$ 0.00 and R$ 999,999.00"
     },
+    "UNKNOWN_COUPON": {
+        "name": "Unknown coupon",
+        "message": "Perhaps this coupon no longer exists."
+    },
     "INVALID_COUPON_NAME": {
         "name": "Invalid coupon name",
         "message": "Must consist only of letters and numbers"
