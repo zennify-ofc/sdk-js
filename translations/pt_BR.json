@@ -295,6 +295,47 @@
         "name": "O custo do item é inválido",
         "message": "Deve ser entre R$ 0.00 e R$ 999.999,00"
     },
+    
+    "INVALID_COUPON_NAME": {
+        "name": "Nome do cupom inválido",
+        "message": "Deve ser composto apenas de letras e números"
+    },
+    "INVALID_COUPON_TYPE": {
+        "name": "Tipo do cupom inválido",
+        "message": "Deve ser valor ou porcentagem"
+    },
+    "INVALID_COUPON_VALUE": {
+        "name": "Valor do cupom inválido",
+        "message": "Deve ser entre 0% e 100% pra porcentagem e R$ 0.00 e R$ 999.999 pra valor"
+    },
+    "INVALID_COUPON_AMOUNT": {
+        "name": "Quantidade de cupons inválida",
+        "message": "Deve ser um número entre 0 e 32768"
+    },
+    "INVALID_COUPON_MIN_VALUE": {
+        "name": "Valor mínimo do cupom inválido",
+        "message": "Deve ser entre R$ 0.00 e R$ 999.999,00"
+    },
+    "INVALID_COUPON_EXPIRATION": {
+        "name": "Expiração do cupom inválido",
+        "message": "Deve ser uma data futura ou 0 (Nunca expira)"
+    },
+    "INVALID_COUPON_MAX_USES_PER_USER": {
+        "name": "Uso máximo por cupom inválido",
+        "message": "Deve ser um número entre 0 e 32768"
+    },
+    "INVALID_COUPON_ONLY_FIRST_BUY": {
+        "name": "Configuração de primeira compra cupom inválida",
+        "message": "Deve ser um tipo booleano (verdadeiro ou falso)"
+    },
+    "YOU_REACHED_THE_COUPON_LIMIT": {
+        "name": "Você atingiu o limite de cupons nessa loja",
+        "message": "Tente apagar cupons que você não usa mais"
+    },
+    "COUPON_NAME_ALREADY_EXIST": {
+        "name": "Você já tem um cupom com esse nome",
+        "message": "Tente configurar um nome diferente"
+    },
     "UNKNOWN_FILE": {
         "name": "Imagem desconhecida",
         "message": "Talvez ela já tenha sido apagada"

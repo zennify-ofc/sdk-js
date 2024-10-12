@@ -295,6 +295,46 @@
         "name": "Invalid item cost",
         "message": "It must be between R$ 0.00 and R$ 999,999.00"
     },
+    "INVALID_COUPON_NAME": {
+        "name": "Invalid coupon name",
+        "message": "Must consist only of letters and numbers"
+    },
+    "INVALID_COUPON_TYPE": {
+        "name": "Invalid coupon type",
+        "message": "Must be either 'value' or 'percentage'"
+    },
+    "INVALID_COUPON_VALUE": {
+        "name": "Invalid coupon value",
+        "message": "Must be between 0% and 100% for percentage and R$ 0.00 and R$ 999,999 for value"
+    },
+    "INVALID_COUPON_AMOUNT": {
+        "name": "Invalid coupon amount",
+        "message": "Must be a number between 0 and 32,768"
+    },
+    "INVALID_COUPON_MIN_VALUE": {
+        "name": "Invalid minimum coupon value",
+        "message": "Must be between R$ 0.00 and R$ 999,999.00"
+    },
+    "INVALID_COUPON_EXPIRATION": {
+        "name": "Invalid coupon expiration",
+        "message": "Must be a future date or 0 (Never expires)"
+    },
+    "INVALID_COUPON_MAX_USES_PER_USER": {
+        "name": "Invalid maximum uses per coupon",
+        "message": "Must be a number between 0 and 32,768"
+    },
+    "INVALID_COUPON_ONLY_FIRST_BUY": {
+        "name": "Invalid first purchase coupon setting",
+        "message": "Must be a boolean type (true or false)"
+    },
+    "YOU_REACHED_THE_COUPON_LIMIT": {
+        "name": "You have reached the coupon limit for this store",
+        "message": "Try deleting coupons you no longer use"
+    },
+    "COUPON_NAME_ALREADY_EXIST": {
+        "name": "You already have a coupon with this name",
+        "message": "Try setting a different name"
+    },
     "UNKNOWN_FILE": {
         "name": "Unknown file",
         "message": "Perhaps it has already been deleted"
