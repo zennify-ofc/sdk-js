@@ -212,12 +212,12 @@
         "message": "Verifique o código do cupom."
     },
     "THIS_COUPON_HAS_EXPIRED": {
-        "name": "Cupom expirado",
-        "message": "Use um cupom válido."
+        "name": "O cupom inserido está expirado",
+        "message": "Tente usar outro cupom."
     },
     "THIS_COUPON_REACHED_THE_USE_LIMIT": {
         "name": "O cupom atingiu o limite de usos",
-        "message": "Tente novamente depois."
+        "message": "Tente usar um cupom diferente."
     },
     "SELECT_MORE_ITENS_TO_REACH_MINIMUM_COUPON_VALUE": {
         "name": "Adicione mais itens pra atingir o valor mínimo do cupom",
@@ -225,7 +225,7 @@
     },
     "THIS_COUPON_IS_VALID_ONLY_FOR_THE_FIRST_BUY": {
         "name": "Cupom válido apenas para a primeira compra",
-        "message": "Cupom válido apenas na primeira compra."
+        "message": "Tente usar um cupom diferente desse."
     },
     "UNKNOWN_STORE": {
         "name": "Loja desconhecida",

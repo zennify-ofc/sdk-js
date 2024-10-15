@@ -213,7 +213,7 @@
     },
     "THIS_COUPON_HAS_EXPIRED": {
         "name": "This coupon has expired",
-        "message": "Use a valid coupon."
+        "message": "Try using another coupon."
     },
     "THIS_COUPON_REACHED_THE_USE_LIMIT": {
         "name": "This coupon reached the use limit",
