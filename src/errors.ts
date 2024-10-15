@@ -148,6 +148,7 @@ export interface APIErrors {
     'YOU_REACHED_PANEL_LIMIT': {};
     'PANEL_NAME_ALREADY_EXIST': {};
     'YOU_REACHED_THE_PRODUCT_LIMIT_ON_PANEL': {};
+    'STORE_ALREADY_CONFIGURED': {};
 }
 
 type ExpectedAdditionalData = {

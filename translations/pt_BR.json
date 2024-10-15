@@ -215,6 +215,10 @@
         "name": "O cupom inserido está expirado",
         "message": "Tente usar outro cupom."
     },
+    "STORE_ALREADY_CONFIGURED": {
+        "name": "Essa loja já foi configurada",
+        "message": "Volte para a dashboard e acesse a loja normalmente"
+    },
     "THIS_COUPON_REACHED_THE_USE_LIMIT": {
         "name": "O cupom atingiu o limite de usos",
         "message": "Tente usar um cupom diferente."
