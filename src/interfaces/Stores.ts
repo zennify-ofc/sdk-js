@@ -15,7 +15,8 @@ export interface PartialStore {
     id: number,
     name: string,
     expires_at: string,
-    icon_id?: number | null
+    icon_id?: number | null,
+    pending_setup?: boolean | null
 }
 
 export interface FullStore {
@@ -28,6 +29,7 @@ export interface FullStore {
     banner_id: number | null,
     addons: Addons[],
     blocked_banks: Banks[],
+    pending_setup?: boolean | null,
     discord_channels: Record<
         string /** guild id */,
         Record<
