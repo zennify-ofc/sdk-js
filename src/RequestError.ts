@@ -30,27 +30,25 @@ export class ZennifyAPIRequestError extends Error {
             this.name = "Usuário inválido";
             this.message = "Por favor, se re-autentique"
         }
-
-        if (this.status === 503) {
+        else if (this.status === 503) {
             this.name = "API em atualização.";
             this.message = "Por favor, tente novamente em alguns minutos.";
         }
-
-        if (this.status === 429) {
+        else if (this.status === 429) {
             this.name = "Calma ai!";
             this.message = "Suas ações estão sendo limitadas!";
+        } else {
+
+            const error: { name: string, message: string } =
+                errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code] ||
+                errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE]["UNKNOWN_TRANSLATION"];
+
+            this.name = error.name
+                .replace(match_regex, (value) => replacer(body, value));
+
+            this.message = error.message
+                .replace(match_regex, (value) => replacer(body, value));
         }
-
-        const error: { name: string, message: string } =
-            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code] ||
-            errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE]["UNKNOWN_TRANSLATION"];
-
-        this.name = error.name
-            .replace(match_regex, (value) => replacer(body, value));
-
-        this.message = error.message
-            .replace(match_regex, (value) => replacer(body, value));
-
     }
 
 }
