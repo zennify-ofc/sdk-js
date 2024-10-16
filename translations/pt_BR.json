@@ -183,6 +183,14 @@
         "name": "Pedido não encontrado.",
         "message": "Verifique o ID enviado."
     },
+    "MP_ACCOUNT_OFFLINE": {
+        "name": "Não foi possível gerar um pedido",
+        "message": "Aparentemente essa conta do Mercado Pago está inoperante."
+    },
+    "MP_PIX_KEY_NOT_CONFIGURED": {
+        "name": "Chave PIX não configurada",
+        "message": "O vendedor deve configurar uma chave pix no Mercado Pago."
+    },
     "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
         "name": "Operação inválida para essa transação.",
         "message": "O estado atual não permite que a operação seja realizada."

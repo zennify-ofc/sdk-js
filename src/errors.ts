@@ -149,6 +149,8 @@ export interface APIErrors {
     'PANEL_NAME_ALREADY_EXIST': {};
     'YOU_REACHED_THE_PRODUCT_LIMIT_ON_PANEL': {};
     'STORE_ALREADY_CONFIGURED': {};
+    'MP_ACCOUNT_OFFLINE': {};
+    'MP_PIX_KEY_NOT_CONFIGURED': {}
 }
 
 type ExpectedAdditionalData = {

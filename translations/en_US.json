@@ -187,6 +187,14 @@
         "name": "Order not found.",
         "message": "Check if the ID is correct."
     },
+    "MP_ACCOUNT_OFFLINE": {
+        "name": "Unable to generate an order",
+        "message": "It appears that this Mercado Pago account is offline."
+    },
+    "MP_PIX_KEY_NOT_CONFIGURED": {
+        "name": "PIX key not configured",
+        "message": "The seller must configure a PIX key in Mercado Pago."
+    },
     "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
         "name": "Invalid operation for this transaction.",
         "message": "The current status doesn't allow this operation."
