@@ -195,6 +195,10 @@
         "name": "PIX key not configured",
         "message": "The seller must configure a PIX key in Mercado Pago."
     },
+    "MP_NOT_ALLOWED_TO_SELL": {
+        "name": "Not authorized by Mercado Pago to sell",
+        "message": "Please contact Mercado Pago support."
+    },
     "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
         "name": "Invalid operation for this transaction.",
         "message": "The current status doesn't allow this operation."

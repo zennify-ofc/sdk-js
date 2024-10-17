@@ -191,6 +191,10 @@
         "name": "Chave PIX não configurada",
         "message": "O vendedor deve configurar uma chave pix no Mercado Pago."
     },
+    "MP_NOT_ALLOWED_TO_SELL": {
+        "name": "Sem autorização do Mercado Pago para vender",
+        "message": "Entre em contato com o Mercado Pago."
+    },
     "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
         "name": "Operação inválida para essa transação.",
         "message": "O estado atual não permite que a operação seja realizada."

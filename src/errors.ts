@@ -151,6 +151,7 @@ export interface APIErrors {
     'STORE_ALREADY_CONFIGURED': {};
     'MP_ACCOUNT_OFFLINE': {};
     'MP_PIX_KEY_NOT_CONFIGURED': {}
+    'MP_NOT_ALLOWED_TO_SELL': {}
 }
 
 type ExpectedAdditionalData = {
