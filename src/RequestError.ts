@@ -26,18 +26,22 @@ export class ZennifyAPIRequestError extends Error {
         this.body = body;
         this.status = response.status;
 
-        if (this.status === 403) {
+        if (this.status === 401) {
             this.name = "Usuário inválido";
-            this.message = "Por favor, se re-autentique"
+            this.message = "Por favor, se re-autentique";
+            return;
         }
         else if (this.status === 503) {
             this.name = "API em atualização.";
             this.message = "Por favor, tente novamente em alguns minutos.";
+            return;
         }
         else if (this.status === 429) {
             this.name = "Calma ai!";
             this.message = "Suas ações estão sendo limitadas!";
-        } else {
+            return;
+        }
+        else if (body.code) {
 
             const error: { name: string, message: string } =
                 errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code] ||
@@ -48,6 +52,13 @@ export class ZennifyAPIRequestError extends Error {
 
             this.message = error.message
                 .replace(match_regex, (value) => replacer(body, value));
+
+            return;
+        }
+        else if (this.status === 401) {
+            this.name = "Sem permissões";
+            this.message = "Por favor, se re-autentique"
+            return;
         }
     }
 
