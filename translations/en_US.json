@@ -279,6 +279,10 @@
         "name": "Disable \"Require code grant\"",
         "message": "With it enabled, you won't be able to invite the bot."
     },
+    "ANOTHER_STORE_HAS_THIS_BOT": {
+        "name": "Another store has already configured this bot!",
+        "message": "Please configure a different bot."
+    },
     "UNKNOWN_DISCORD_CHANNEL": {
         "name": "Unknown Discord channel",
         "message": "Perhaps this channel no longer exists."

@@ -76,6 +76,10 @@ export interface APIErrors {
     'UNKNOWN_ORDER': {}
     'INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS': {}
     'INVALID_OPERATION_FOR_PAYMENT_ENTITY': {}
+    // MP errors
+    'MP_ACCOUNT_OFFLINE': {};
+    'MP_PIX_KEY_NOT_CONFIGURED': {}
+    'MP_NOT_ALLOWED_TO_SELL': {}
     /// bad preference configuration
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX': {};
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_BOLETO': {};
@@ -106,6 +110,7 @@ export interface APIErrors {
     'INVALID_DISCORD_BOT_TOKEN': {};
     'DISABLE_REQUIRE_CODE_GRANT': {};
     'UNKNOWN_DISCORD_CHANNEL': {};
+    'ANOTHER_STORE_HAS_THIS_BOT': {}
     // product errors
     'UNKNOWN_PRODUCT': {};
     'INVALID_PRODUCT_NAME': {};
@@ -149,9 +154,6 @@ export interface APIErrors {
     'PANEL_NAME_ALREADY_EXIST': {};
     'YOU_REACHED_THE_PRODUCT_LIMIT_ON_PANEL': {};
     'STORE_ALREADY_CONFIGURED': {};
-    'MP_ACCOUNT_OFFLINE': {};
-    'MP_PIX_KEY_NOT_CONFIGURED': {}
-    'MP_NOT_ALLOWED_TO_SELL': {}
 }
 
 type ExpectedAdditionalData = {
