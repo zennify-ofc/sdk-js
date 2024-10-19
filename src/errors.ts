@@ -17,6 +17,7 @@ export interface APIErrors {
     'EXPECTED_A_STRING': ExpectedAdditionalData;
     'EXPECTED_A_NUMBER': ExpectedAdditionalData;
     'EXPECTED_A_VALID_ID': ExpectedAdditionalData;
+    'EXPECTED_A_VALID_SNOWFLAKE_ID': {};
     'DUPLICATED_VALUES_ISNT_ALLOWED': {};
     // = oAuth errors
     'GRANT_CODE_MISSING_IN_QUERY': {};
@@ -111,6 +112,8 @@ export interface APIErrors {
     'DISABLE_REQUIRE_CODE_GRANT': {};
     'UNKNOWN_DISCORD_CHANNEL': {};
     'ANOTHER_STORE_HAS_THIS_BOT': {}
+    'UNKNOWN_APPLICATION': {}
+    'WAIT_APPLICATION_UPLOAD': {}
     // product errors
     'UNKNOWN_PRODUCT': {};
     'INVALID_PRODUCT_NAME': {};

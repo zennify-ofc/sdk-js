@@ -47,6 +47,10 @@
         "name": "Era esperado um ID válido",
         "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\". IDs devem ser inteiros entre 0 e 2.147.483.647"
     },
+    "EXPECTED_A_VALID_SNOWFLAKE_ID": {
+        "name": "Era esperado um ID válido",
+        "message": "Verifique se o ID é válido"
+    },
     "DUPLICATED_VALUES_ISNT_ALLOWED": {
         "name": "Valores duplicados não são permitidos",
         "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
@@ -282,6 +286,14 @@
     "ANOTHER_STORE_HAS_THIS_BOT": {
         "name": "Outra loja já configurou este bot!",
         "message": "Configure um bot diferente"
+    },
+    "UNKNOWN_APPLICATION": {
+        "name": "Aplicação não encontrada",
+        "message": "Entre em contato com o suporte."
+    },
+    "WAIT_APPLICATION_UPLOAD": {
+        "name": "Aguarde o envio da sua aplicação!",
+        "message": "Ela deve ser enviada em alguns minutos"
     },
     "UNKNOWN_DISCORD_CHANNEL": {
         "name": "Canal do Discord desconhecido",

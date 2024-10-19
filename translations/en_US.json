@@ -47,6 +47,10 @@
         "name": "Expected a valid ID",
         "message": "IDs must be integers between 0 and 2.147.483.647"
     },
+    "EXPECTED_A_VALID_SNOWFLAKE_ID": {
+        "name": "A valid ID was expected",
+        "message": "Please check if the ID is valid."
+    },
     "STORE_ALREADY_CONFIGURED": {
         "name": "This store is already configured",
         "message": "Go back to dashboard and access the store again"
@@ -282,6 +286,14 @@
     "ANOTHER_STORE_HAS_THIS_BOT": {
         "name": "Another store has already configured this bot!",
         "message": "Please configure a different bot."
+    },
+    "UNKNOWN_APPLICATION": {
+        "name": "Application not found",
+        "message": "Please contact support."
+    },
+    "WAIT_APPLICATION_UPLOAD": {
+        "name": "Please wait for your application to be uploaded!",
+        "message": "It should be uploaded in a few minutes."
     },
     "UNKNOWN_DISCORD_CHANNEL": {
         "name": "Unknown Discord channel",
