@@ -1,6 +1,6 @@
 {
     "UNKNOWN_ERROR": {
-        "name": "Um erro deconhecido ocorreu.",
+        "name": "Um erro desconhecido ocorreu.",
         "message": "Contate o suporte com o ID {id}"
     },
     "MISSING_PERMISSIONS": {
