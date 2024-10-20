@@ -15,9 +15,9 @@ type Body = Record<string, any> & {
 
 export class ZennifyAPIRequestError extends Error {
 
-    status: number = 0;
-    code: number = 0;
+    code: keyof APIErrors = "UNKNOWN_ERROR";
     body: Body
+    status: number = 0;
 
     constructor(response: Response, body: Body) {
 
@@ -25,6 +25,7 @@ export class ZennifyAPIRequestError extends Error {
 
         this.body = body;
         this.status = response.status;
+        this.code = body.code || 'UNKNOWN_ERROR'
 
         if (this.status === 401) {
             this.name = "Usuário inválido";
@@ -41,10 +42,10 @@ export class ZennifyAPIRequestError extends Error {
             this.message = "Suas ações estão sendo limitadas!";
             return;
         }
-        else if (body.code) {
+        else if (this.code) {
 
             const error: { name: string, message: string } =
-                errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][body.code] ||
+                errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE][this.code] ||
                 errors_translations[ZENNIFY_API_RESPONSE_LANGUAGE]["UNKNOWN_TRANSLATION"];
 
             this.name = error.name
