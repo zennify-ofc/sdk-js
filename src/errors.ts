@@ -47,6 +47,7 @@ export interface APIErrors {
     'THE_URL_IS_INACCESSIBLE_BY_THE_WEBHOOK_SERVER': {};
     'THE_URL_WOULD_NOT_HAVE_REDIRECTS': {};
     'THE_URL_HAS_TIMEOUT_5S': {};
+    'WEBHOOK_RECEIVED_INVALID_DATA': { status: number };
     /// payment errors
     'INVALID_PAYMENT_METHOD': {};
     // Order Errors

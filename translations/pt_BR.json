@@ -147,6 +147,10 @@
         "name": "A URL excedeu o timeout (5s)",
         "message": "É essencial que o servidor responda em menos de 5 segundps"
     },
+    "WEBHOOK_RECEIVED_INVALID_DATA": {
+        "name": "O Webhook recebeu dados inválidos (HTTP {status})",
+        "message": "Deve ser enviado 200 OK {\"source\":\"zennify\"}"
+    },
     "INVALID_PAYMENT_METHOD": {
         "name": "Método de pagamento inválido",
         "message": "Tente novamente com outro método."
