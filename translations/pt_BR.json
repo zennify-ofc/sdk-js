@@ -211,6 +211,22 @@
         "name": "Essa entidade de pagamento não suporta essa operação",
         "message": "Tente usando uma outra entidade de pagamento"
     },
+    "INVALID_STATUS_FOR_ORDER_UPDATE": {
+        "name": "Estado inválido fornecido",
+        "message": "Verifique a documentação."
+    },
+    "INVALID_REFUND_VALUE_EXCEEDS_ORDER_VALUE": {
+        "name": "O valor do reembolso excedeu o valor máximo",
+        "message": "O valor máximo é de R$ {max}"
+    },
+    "ORDER_TRANSACTION_ALREADY_REFUNDED": {
+        "name": "Esse pedido já foi reembolsado",
+        "message": "O pedido já foi reembolsado"
+    },
+    "FAILED_REFUND": {
+        "name": "Ocorreu uma falha ao reembolsar este pedido",
+        "message": "Entre em contato com o suporte."
+    },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "O vendedor não configurou o recebimento via Pix",
         "message": "Escolha outro método ou aguarde a configuração do vendedor."

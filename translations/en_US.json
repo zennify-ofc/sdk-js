@@ -215,6 +215,22 @@
         "name": "This payment entity doesn't support this operation",
         "message": "Try using another payment entity or check the request"
     },
+    "INVALID_STATUS_FOR_ORDER_UPDATE": {
+        "name": "Invalid status provided",
+        "message": "Check the documentation."
+    },
+    "INVALID_REFUND_VALUE_EXCEEDS_ORDER_VALUE": {
+        "name": "The refund amount exceeded the maximum value",
+        "message": "The maximum amount is ${max}"
+    },
+    "ORDER_TRANSACTION_ALREADY_REFUNDED": {
+        "name": "This order has already been refunded",
+        "message": "The order has already been refunded"
+    },
+    "FAILED_REFUND": {
+        "name": "Failed to refund this order",
+        "message": "Please contact support."
+    },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "This seller has not yet configured receipt via PIX",
         "message": "Choose another method or wait for seller configuration."
