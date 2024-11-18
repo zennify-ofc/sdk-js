@@ -191,7 +191,7 @@
         "name": "You inserted an invalid additional",
         "message": "Remove the additional \"{addon}\"."
     },
-    "UNKNOWN_ORDER": {
+    "UNKNOWN_TRANSACTION": {
         "name": "Order not found.",
         "message": "Check if the ID is correct."
     },
@@ -215,7 +215,7 @@
         "name": "This payment entity doesn't support this operation",
         "message": "Try using another payment entity or check the request"
     },
-    "INVALID_STATUS_FOR_ORDER_UPDATE": {
+    "INVALID_STATUS_FOR_TRANSACTION_UPDATE": {
         "name": "Invalid status provided",
         "message": "Check the documentation."
     },

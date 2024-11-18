@@ -187,7 +187,7 @@
         "name": "Adicional inválido",
         "message": "Remova o adicional \"{addon}\"."
     },
-    "UNKNOWN_ORDER": {
+    "UNKNOWN_TRANSACTION": {
         "name": "Pedido não encontrado.",
         "message": "Verifique o ID enviado."
     },
@@ -211,7 +211,7 @@
         "name": "Essa entidade de pagamento não suporta essa operação",
         "message": "Tente usando uma outra entidade de pagamento"
     },
-    "INVALID_STATUS_FOR_ORDER_UPDATE": {
+    "INVALID_STATUS_FOR_TRANSACTION_UPDATE": {
         "name": "Estado inválido fornecido",
         "message": "Verifique a documentação."
     },
