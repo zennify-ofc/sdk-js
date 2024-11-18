@@ -1,5 +1,6 @@
-export type FullTransaction = {
+export type BaseTransaction = {
     id: string,
+    created_at: string,
     entity: 'semiauto' | 'mercadopago',
     method: 'pix',
     managed: null,
@@ -12,7 +13,11 @@ export type FullTransaction = {
     refund_requested_by: null,
     pix_e2eid: null,
     pix_qrcode: null,
-    payer_bank: null,
+    payer_bank: null
+}
+
+export type SaleTransaction = BaseTransaction & {
+    type: 'sale',
     order: {
         id: string,
         created_at: string,
@@ -52,4 +57,6 @@ export type FullTransaction = {
             }
         ]
     }
-}
+};
+
+export type FullTransaction = BaseTransaction & SaleTransaction;
