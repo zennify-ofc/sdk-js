@@ -83,6 +83,7 @@ export interface APIErrors {
     'INVALID_REFUND_VALUE_EXCEEDS_ORDER_VALUE': {};
     'ORDER_TRANSACTION_ALREADY_REFUNDED': {};
     'FAILED_REFUND': {};
+    'INVALID_METADATA': { details: string };
     // MP errors
     'MP_ACCOUNT_OFFLINE': {};
     'MP_PIX_KEY_NOT_CONFIGURED': {};

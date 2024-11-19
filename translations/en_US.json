@@ -231,6 +231,10 @@
         "name": "Failed to refund this order",
         "message": "Please contact support."
     },
+    "INVALID_METADATA": {
+        "name": "Invalid metadata for update",
+        "message": "Must be a JSON array or JSON object with up to 1000 characters"
+    },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "This seller has not yet configured receipt via PIX",
         "message": "Choose another method or wait for seller configuration."

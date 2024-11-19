@@ -227,6 +227,10 @@
         "name": "Ocorreu uma falha ao reembolsar este pedido",
         "message": "Entre em contato com o suporte."
     },
+    "INVALID_METADATA": {
+        "name": "Metadados inválidos para atualização",
+        "message": "Precisa ser um array JSON ou objeto JSON com até 1000 caracteres"
+    },
     "THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX": {
         "name": "O vendedor não configurou o recebimento via Pix",
         "message": "Escolha outro método ou aguarde a configuração do vendedor."
