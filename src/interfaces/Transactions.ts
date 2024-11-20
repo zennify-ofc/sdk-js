@@ -23,6 +23,8 @@ export type SaleTransaction = BaseTransaction & {
         created_at: string,
         platform: 'discord',
         discord_guild_id: null,
+        discord_channel_id?: string | null,
+        discord_channel_message_id?: string | null,
         discount: number,
         subtotal: number,
         total_value: number,
