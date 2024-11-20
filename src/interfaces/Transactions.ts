@@ -3,17 +3,17 @@ export type BaseTransaction = {
     created_at: string,
     entity: 'semiauto' | 'mercadopago',
     method: 'pix',
-    managed: null,
+    managed?: boolean | null,
     status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis',
     value: number,
     base_value: number,
     refunded_value: number,
-    refund_reason: null,
-    refund_comment: null,
-    refund_requested_by: null,
-    pix_e2eid: null,
-    pix_qrcode: null,
-    payer_bank: null
+    refund_reason?: string | null,
+    refund_comment?: string | null,
+    refund_requested_by?: string | null,
+    pix_e2eid?: string | null,
+    pix_qrcode?: string | null,
+    payer_bank?: string | null
 }
 
 export type SaleTransaction = BaseTransaction & {
@@ -22,15 +22,15 @@ export type SaleTransaction = BaseTransaction & {
         id: string,
         created_at: string,
         platform: 'discord',
-        discord_guild_id: null,
+        discord_guild_id?: string | null,
         discord_channel_id?: string | null,
         discord_channel_message_id?: string | null,
         discount: number,
         subtotal: number,
         total_value: number,
-        rating: null,
-        rating_message: null,
-        metadata: null,
+        rating?: number | null,
+        rating_message?: number | null,
+        metadata?: any | null,
         payer: {
             id: number,
             username: string,
@@ -44,16 +44,16 @@ export type SaleTransaction = BaseTransaction & {
         store: {
             id: number,
             name: string,
-            icon_id: null,
-            banner_id: null
+            icon_id?: number | null,
+            banner_id?: number | null
         },
         products: [
             {
                 id: number,
                 name: string,
                 value: number,
-                icon_id: null,
-                banner_id: null,
+                icon_id?: number | null,
+                banner_id?: number | null
                 amount: number,
                 delivered: string[]
             }
