@@ -33,7 +33,7 @@ type SaleTransaction = {
         subtotal: number,
         total_value: number,
         rating?: number | null,
-        rating_message?: number | null,
+        rating_message?: string | null,
         payer: {
             id: number,
             username: string,
