@@ -1,4 +1,4 @@
-export type BaseTransaction = {
+export type BaseTransaction<TransactionMetadata extends any = any> = {
     id: string,
     created_at: string,
     entity: 'semiauto' | 'mercadopago',
@@ -13,24 +13,27 @@ export type BaseTransaction = {
     refund_requested_by?: string | null,
     pix_e2eid?: string | null,
     pix_qrcode?: string | null,
-    payer_bank?: string | null
+    payer_bank?: string | null,
+    metadata?: TransactionMetadata | null
+};
+
+type DiscordOrder = {
+    platform: 'discord',
+    discord_guild_id?: string | null,
+    discord_channel_id?: string | null,
+    discord_channel_message_id?: string | null
 }
 
 export type SaleTransaction = BaseTransaction & {
     type: 'sale',
-    order: {
+    order: DiscordOrder & {
         id: string,
         created_at: string,
-        platform: 'discord',
-        discord_guild_id?: string | null,
-        discord_channel_id?: string | null,
-        discord_channel_message_id?: string | null,
         discount: number,
         subtotal: number,
         total_value: number,
         rating?: number | null,
         rating_message?: number | null,
-        metadata?: any | null,
         payer: {
             id: number,
             username: string,
@@ -61,4 +64,4 @@ export type SaleTransaction = BaseTransaction & {
     }
 };
 
-export type FullTransaction = BaseTransaction & SaleTransaction;
+export type FullTransaction<TransactionMetadata extends any = any> = BaseTransaction<TransactionMetadata> & SaleTransaction;
