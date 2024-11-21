@@ -192,8 +192,8 @@
         "message": "Remove the additional \"{addon}\"."
     },
     "UNKNOWN_TRANSACTION": {
-        "name": "Order not found.",
-        "message": "Check if the ID is correct."
+        "name": "Transaction not found.",
+        "message": "It may not exist or may belong to another user."
     },
     "MP_ACCOUNT_OFFLINE": {
         "name": "Unable to generate an order",

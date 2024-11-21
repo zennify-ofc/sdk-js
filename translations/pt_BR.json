@@ -188,8 +188,8 @@
         "message": "Remova o adicional \"{addon}\"."
     },
     "UNKNOWN_TRANSACTION": {
-        "name": "Pedido não encontrado.",
-        "message": "Verifique o ID enviado."
+        "name": "Transação não encontrada.",
+        "message": "Talvez não exista ou pertença a outra pessoa."
     },
     "MP_ACCOUNT_OFFLINE": {
         "name": "Não foi possível gerar um pedido",
