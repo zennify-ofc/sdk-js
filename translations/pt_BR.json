@@ -283,6 +283,10 @@
         "name": "Nome de loja inválido",
         "message": "O nome deve ter até 50 caracteres"
     },
+    "YOU_HAVE_ALREADY_MIGRATED": {
+        "name": "Você já realizou a migração em outra loja",
+        "message": "Tente configurar novamente com a migração desabilitada."
+    },
     "UNKNOWN_AUTOROLE_RULE": {
         "name": "Regra de cargo automático desconhecida",
         "message": "Tente criar uma nova regra"

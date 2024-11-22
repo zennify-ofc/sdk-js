@@ -109,6 +109,7 @@ export interface APIErrors {
         received: string
     };
     'INVALID_STORE_NAME': {};
+    'YOU_HAVE_ALREADY_MIGRATED': {};
     /// AUTOROLE
     'UNKNOWN_AUTOROLE_RULE': {},
     'AUTOROLE_RULE_ALREADY_EXISTS': {};

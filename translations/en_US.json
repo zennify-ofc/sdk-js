@@ -283,6 +283,10 @@
         "name": "Invalid store name",
         "message": "The name must be up to 50 characters"
     },
+    "YOU_HAVE_ALREADY_MIGRATED": {
+        "name": "You have already migrated in another store",
+        "message": "Try setting up again with migration disabled."
+    },
     "UNKNOWN_AUTOROLE_RULE": {
         "name": "Unknown Discord autorole rule",
         "message": "Try to create a new rule"
