@@ -105,6 +105,7 @@ export interface APIErrors {
     'THIS_COUPON_IS_VALID_ONLY_FOR_THE_FIRST_BUY': {};
     // store errors
     'UNKNOWN_STORE': {};
+    'EXPIRED_STORE': {},
     'UNKNOWN_BANK': {
         received: string
     };

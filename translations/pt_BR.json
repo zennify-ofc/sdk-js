@@ -275,6 +275,10 @@
         "name": "Loja desconhecida",
         "message": "Talvez essa loja não exista mais."
     },
+    "EXPIRED_STORE": {
+        "name": "Esta loja expirou.",
+        "message": "Adquira uma nova loja e comece a vender sem complicações!"
+    },
     "UNKNOWN_BANK": {
         "name": "Banco não suportado",
         "message": "Ainda não suportamos o banco \"{received}\""
