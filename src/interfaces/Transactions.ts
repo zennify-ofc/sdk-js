@@ -65,3 +65,9 @@ type SaleTransaction = {
 };
 
 export type FullTransaction<TransactionMetadata = any> = BaseTransaction<TransactionMetadata> & SaleTransaction;
+export type PartialTransaction = {
+    id: string,
+    base_value: number,
+    created_at: string,
+    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis'
+}
