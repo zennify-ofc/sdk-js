@@ -4,7 +4,7 @@ export type BaseTransaction<TransactionMetadata = any> = {
     entity: 'semiauto' | 'mercadopago',
     method: 'pix',
     managed?: boolean | null,
-    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis',
+    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis' | 'refunded' | 'partial_refunded',
     value: number,
     base_value: number,
     refunded_value: number,
@@ -69,5 +69,5 @@ export type PartialTransaction = {
     id: string,
     base_value: number,
     created_at: string,
-    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis'
+    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis' | 'refunded' | 'partial_refunded'
 }
