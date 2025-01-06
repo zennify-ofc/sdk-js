@@ -195,6 +195,10 @@
         "name": "Transaction not found.",
         "message": "It may not exist or may belong to another user."
     },
+    "MP_INTERNAL_ERROR": {
+        "name": "Mercado Pago returned an unknown error, please try again or wait for them to fix it.",
+        "message": "Please note that this error is not a Zennify problem, but a Mercado Pago problem."
+    },
     "MP_ACCOUNT_OFFLINE": {
         "name": "Unable to generate an order",
         "message": "It appears that this Mercado Pago account is offline."

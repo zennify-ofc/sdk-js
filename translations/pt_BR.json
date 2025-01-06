@@ -191,6 +191,10 @@
         "name": "Transação não encontrada.",
         "message": "Talvez não exista ou pertença a outra pessoa."
     },
+    "MP_INTERNAL_ERROR": {
+        "name": "O Mercado Pago retornou um erro desconhecido, tente novamente ou aguarde a correção deles.",
+        "message": "Note que esse erro não é um problema do Zennify, mas sim do Mercado Pago."
+    },
     "MP_ACCOUNT_OFFLINE": {
         "name": "Não foi possível gerar um pedido",
         "message": "Aparentemente essa conta do Mercado Pago está inoperante."
