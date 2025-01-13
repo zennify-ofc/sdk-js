@@ -91,6 +91,10 @@
         "name": "Invalid Permissions",
         "message": "Contact support and/or check our documentation"
     },
+    "YOU_REACHED_TOKEN_LIMIT": {
+        "name": "You have reached the limit of 5 tokens!",
+        "message": "Try removing old tokens"
+    },
     "INVALID_PASSWORD": {
         "name": "Invalid password",
         "message": "Try again."

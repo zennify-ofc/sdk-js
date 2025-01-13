@@ -87,6 +87,10 @@
         "name": "Permissões inválidas",
         "message": "Contate o suporte e/ou verifique nossa documentação"
     },
+    "YOU_REACHED_TOKEN_LIMIT": {
+        "name": "Você atingiu o limite de 5 tokens!",
+        "message": "Tente remover tokens antigos"
+    },
     "INVALID_PASSWORD": {
         "name": "Senha inválida",
         "message": "Tente novamente."

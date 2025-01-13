@@ -29,7 +29,8 @@ export interface APIErrors {
     /// token errors
     'INVALID_TOKEN_NAME': {};
     'INVALID_TOKEN_EXPIRATION': {};
-    'INVALID_TOKEN_PERMISSIONS': { received: string };
+    'INVALID_TOKEN_PERMISSIONS': {};
+    'YOU_REACHED_TOKEN_LIMIT': {};
     /// password errors
     'INVALID_PASSWORD': {};
     'YOU_MUST_INSERT_THE_ACTUAL_PASSWORD': {};
