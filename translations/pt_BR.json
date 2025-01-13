@@ -75,6 +75,18 @@
         "name": "Usuário não encontrado",
         "message": "Tente novamente."
     },
+    "INVALID_TOKEN_NAME": {
+        "name": "Nome de token inválido",
+        "message": "Precisa ser uma string entre 1 e 50 caracteres"
+    },
+    "INVALID_TOKEN_EXPIRATION": {
+        "name": "Data de expiração do token inválida",
+        "message": "Deve ser uma data entre agora e 500 dias, ou 0 (Para sempre)"
+    },
+    "INVALID_TOKEN_PERMISSIONS": {
+        "name": "Permissões inválidas",
+        "message": "Contate o suporte e/ou verifique nossa documentação"
+    },
     "INVALID_PASSWORD": {
         "name": "Senha inválida",
         "message": "Tente novamente."

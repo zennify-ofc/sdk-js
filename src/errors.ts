@@ -26,6 +26,10 @@ export interface APIErrors {
     'PLEASE_REVERIFY': {};
     // = user errors
     'USER_NOT_FOUND': {};
+    /// token errors
+    'INVALID_TOKEN_NAME': {};
+    'INVALID_TOKEN_EXPIRATION': {};
+    'INVALID_TOKEN_PERMISSIONS': { received: string };
     /// password errors
     'INVALID_PASSWORD': {};
     'YOU_MUST_INSERT_THE_ACTUAL_PASSWORD': {};
