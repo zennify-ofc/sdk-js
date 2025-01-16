@@ -171,6 +171,10 @@
         "name": "Método de pagamento inválido",
         "message": "Tente novamente com outro método."
     },
+    "BANK_INTERNAL_ERROR": {
+        "name": "O banco retornou um erro desconhecido, tente novamente ou aguarde a correção deles.",
+        "message": "Note que esse erro não é um problema do Zennify, mas sim do banco."
+    },
     "YOU_NEED_TO_INSERT_AT_LEAST_1_ITEM": {
         "name": "Insira pelo menos 1 item",
         "message": "Adicione um item ao pedido."
@@ -207,9 +211,9 @@
         "name": "Transação não encontrada.",
         "message": "Talvez não exista ou pertença a outra pessoa."
     },
-    "MP_INTERNAL_ERROR": {
-        "name": "O Mercado Pago retornou um erro desconhecido, tente novamente ou aguarde a correção deles.",
-        "message": "Note que esse erro não é um problema do Zennify, mas sim do Mercado Pago."
+    "MP_RATE_LIMIT": {
+        "name": "O limite de ações foi atingido, tente novamente.",
+        "message": "Note que esse limite é imposto pelo Mercado Pago, não pelo Zennify."
     },
     "MP_ACCOUNT_OFFLINE": {
         "name": "Não foi possível gerar um pedido",

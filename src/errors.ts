@@ -55,6 +55,7 @@ export interface APIErrors {
     'WEBHOOK_RECEIVED_INVALID_DATA': { status: number };
     /// payment errors
     'INVALID_PAYMENT_METHOD': {};
+    'BANK_INTERNAL_ERROR': {};
     // Order Errors
     'YOU_NEED_TO_INSERT_AT_LEAST_1_ITEM': {};
     'ONE_PROVIDED_PRODUCT_IS_OUT_OF_STOCK': {
@@ -90,10 +91,10 @@ export interface APIErrors {
     'FAILED_REFUND': {};
     'INVALID_METADATA': { details: string };
     // MP errors
-    'MP_INTERNAL_ERROR': {};
     'MP_ACCOUNT_OFFLINE': {};
     'MP_PIX_KEY_NOT_CONFIGURED': {};
     'MP_NOT_ALLOWED_TO_SELL': {};
+    'MP_RATE_LIMIT': {};
     /// bad preference configuration
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX': {};
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_BOLETO': {};
@@ -112,9 +113,7 @@ export interface APIErrors {
     // store errors
     'UNKNOWN_STORE': {};
     'EXPIRED_STORE': {},
-    'UNKNOWN_BANK': {
-        received: string
-    };
+    'UNKNOWN_BANK': { received: string };
     'INVALID_STORE_NAME': {};
     'YOU_HAVE_ALREADY_MIGRATED': {};
     /// AUTOROLE

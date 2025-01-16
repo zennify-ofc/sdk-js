@@ -175,6 +175,10 @@
         "name": "Invalid payment method",
         "message": "Try again with another method."
     },
+    "BANK_INTERNAL_ERROR": {
+        "name": "The bank returned an unknown error, please try again or wait for them to resolve it.",
+        "message": "Note that this error is not a problem of Zennify, but rather of the bank."
+    },
     "YOU_NEED_TO_INSERT_AT_LEAST_1_ITEM": {
         "name": "You need to insert at least 1 item",
         "message": "Add an item to the order."
@@ -211,9 +215,9 @@
         "name": "Transaction not found.",
         "message": "It may not exist or may belong to another user."
     },
-    "MP_INTERNAL_ERROR": {
-        "name": "Mercado Pago returned an unknown error, please try again or wait for them to fix it.",
-        "message": "Please note that this error is not a Zennify problem, but a Mercado Pago problem."
+    "MP_RATE_LIMIT": {
+        "name": "Action limit reached, please try again.",
+        "message": "Note that this limit is imposed by Mercado Pago, not by Zennify."
     },
     "MP_ACCOUNT_OFFLINE": {
         "name": "Unable to generate an order",
