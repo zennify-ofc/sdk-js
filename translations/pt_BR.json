@@ -227,6 +227,30 @@
         "name": "Sem autorização do Mercado Pago para vender",
         "message": "Entre em contato com o Mercado Pago."
     },
+    "EFIBANK_INVALID_PIX_KEY": {
+        "name": "A chave pix aleatória configurada é inválida ou não existe.",
+        "message": "Tente gerar uma nova chave pix aleatória e configurar novamente."
+    },
+    "EFIBANK_BLOCKED_ACCOUNT": {
+        "name": "A conta efí associada está suspensa de vender.",
+        "message": "Tente entrar em contato com a equipe do Banco Efí."
+    },
+    "EFIBANK_INVALID_CREDENTIALS": {
+        "name": "As credenciais da Efí estão inválidas.",
+        "message": "Insira um client id, client secret e certificado válido."
+    },
+    "EFIBANK_RATE_LIMIT": {
+        "name": "O limite de ações foi atingido, tente novamente.",
+        "message": "Note que esse limite é imposto pelo Banco Efí, não pelo Zennify."
+    },
+    "EFIBANK_UNKNOWN_TRANSACTION": {
+        "name": "Não foi possível encontrar essa transação.",
+        "message": "Talvez ela não existe ou seja pertencente a outra conta."
+    },
+    "EFIBANK_INVALID_SCOPES": {
+        "name": "Os escopos da aplicação configurada são inválidos.",
+        "message": "Configure os escopos corretamente. Entre em contato com a equipe do Zennify caso tenha dúvidas."
+    },
     "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
         "name": "Operação inválida para essa transação.",
         "message": "O estado atual não permite que a operação seja realizada."

@@ -231,6 +231,30 @@
         "name": "Not authorized by Mercado Pago to sell",
         "message": "Please contact Mercado Pago support."
     },
+    "EFIBANK_INVALID_PIX_KEY": {
+        "name": "The configured random Pix key is invalid or does not exist.",
+        "message": "Try generating a new random Pix key and configure it via the dashboard."
+    },
+    "EFIBANK_BLOCKED_ACCOUNT": {
+        "name": "The associated efí account is suspended from selling.",
+        "message": "Try contacting the Banco Efí team."
+    },
+    "EFIBANK_INVALID_CREDENTIALS": {
+        "name": "Efí credentials are invalid.",
+        "message": "Enter a valid client id, client secret, and certificate."
+    },
+    "EFIBANK_RATE_LIMIT": {
+        "name": "Action limit reached, please try again.",
+        "message": "Note that this limit is imposed by Banco Efí, not by Zennify."
+    },
+    "EFIBANK_UNKNOWN_TRANSACTION": {
+        "name": "This transaction could not be found.",
+        "message": "Maybe it does not exist or belongs to another account."
+    },
+    "EFIBANK_INVALID_SCOPES": {
+        "name": "The configured application's scopes are invalid.",
+        "message": "Configure the scopes correctly. Contact the Zennify team if you have any questions."
+    },
     "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
         "name": "Invalid operation for this transaction.",
         "message": "The current status doesn't allow this operation."
