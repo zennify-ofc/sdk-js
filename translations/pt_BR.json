@@ -231,13 +231,29 @@
         "name": "A chave pix aleatória configurada é inválida ou não existe.",
         "message": "Tente gerar uma nova chave pix aleatória e configurar novamente."
     },
-    "EFIBANK_BLOCKED_ACCOUNT": {
-        "name": "A conta efí associada está suspensa de vender.",
-        "message": "Tente entrar em contato com a equipe do Banco Efí."
-    },
     "EFIBANK_INVALID_CREDENTIALS": {
         "name": "As credenciais da Efí estão inválidas.",
         "message": "Insira um client id, client secret e certificado válido."
+    },
+    "EFIBANK_INVALID_SCOPES": {
+        "name": "Os escopos da aplicação configurada são inválidos.",
+        "message": "Configure os escopos corretamente. Entre em contato com a equipe do Zennify caso tenha dúvidas."
+    },
+    "EFIBANK_INVALID_CERTIFICATE": {
+        "name": "O certificado configurado é inválido ou não existe.",
+        "message": "Lembre-se de usar o certificado de produção, não de homologação."
+    },
+    "EFIBANK_INVALID_CLIENT_ID": {
+        "name": "O Client ID configurado é inválido ou não existe.",
+        "message": "Lembre-se de usar o Client ID de produção, não de homologação."
+    },
+    "EFIBANK_INVALID_CLIENT_SECRET": {
+        "name": "O Client Secret configurado é inválido ou não existe.",
+        "message": "Lembre-se de usar o Client Secret de produção, não de homologação."
+    },
+    "EFIBANK_BLOCKED_ACCOUNT": {
+        "name": "A conta efí associada está suspensa de vender.",
+        "message": "Tente entrar em contato com a equipe do Banco Efí."
     },
     "EFIBANK_RATE_LIMIT": {
         "name": "O limite de ações foi atingido, tente novamente.",
@@ -246,10 +262,6 @@
     "EFIBANK_UNKNOWN_TRANSACTION": {
         "name": "Não foi possível encontrar essa transação.",
         "message": "Talvez ela não existe ou seja pertencente a outra conta."
-    },
-    "EFIBANK_INVALID_SCOPES": {
-        "name": "Os escopos da aplicação configurada são inválidos.",
-        "message": "Configure os escopos corretamente. Entre em contato com a equipe do Zennify caso tenha dúvidas."
     },
     "INVALID_OPERATION_FOR_CURRENT_TRANSACTION_STATUS": {
         "name": "Operação inválida para essa transação.",
