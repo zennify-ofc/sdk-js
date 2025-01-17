@@ -132,8 +132,8 @@
         "message": ""
     },
     "THE_PIX_KEY_INSERTED_ISNT_VALID": {
-        "name": "A chave pix inserida não é válida",
-        "message": "Aceitamos CPF, email, telefone e chave aletória"
+        "name": "A chave pix inserida não é válida, configure uma chave válida.",
+        "message": "Aceitamos CPF, email, telefone e chave aletória."
     },
     "INSERT_A_VALID_URL": {
         "name": "Insira uma URL válida",
@@ -210,6 +210,10 @@
     "UNKNOWN_TRANSACTION": {
         "name": "Transação não encontrada.",
         "message": "Talvez não exista ou pertença a outra pessoa."
+    },
+    "MP_INVALID_TOKEN": {
+        "name": "A chave de acesso do Mercado Pago é inválida.",
+        "message": "Tente se autenticar novamente via dashboard."
     },
     "MP_RATE_LIMIT": {
         "name": "O limite de ações foi atingido, tente novamente.",

@@ -215,6 +215,10 @@
         "name": "Transaction not found.",
         "message": "It may not exist or may belong to another user."
     },
+    "MP_INVALID_TOKEN": {
+        "name": "The Mercado Pago access token is invalid.",
+        "message": "Try re-authenticating via the dashboard."
+    },
     "MP_RATE_LIMIT": {
         "name": "Action limit reached, please try again.",
         "message": "Note that this limit is imposed by Mercado Pago, not by Zennify."

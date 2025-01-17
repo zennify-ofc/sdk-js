@@ -91,6 +91,7 @@ export interface APIErrors {
     'FAILED_REFUND': {};
     'INVALID_METADATA': { details: string };
     // MP errors
+    'MP_INVALID_TOKEN': {};
     'MP_ACCOUNT_OFFLINE': {};
     'MP_PIX_KEY_NOT_CONFIGURED': {};
     'MP_NOT_ALLOWED_TO_SELL': {};
