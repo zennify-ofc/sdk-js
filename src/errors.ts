@@ -121,6 +121,7 @@ export interface APIErrors {
         value: number
     };
     'THIS_COUPON_IS_VALID_ONLY_FOR_THE_FIRST_BUY': {};
+    'COUPON_EXCLUSIVE_FOR_SOME_PRODUCTS': { allowed: number[] };
     // store errors
     'UNKNOWN_STORE': {};
     'EXPIRED_STORE': {},
@@ -187,5 +188,6 @@ export interface APIErrors {
 type ExpectedAdditionalData = {
     field: string;
     received: any;
-    type: string
+    type: string,
+    max_length?: string
 }

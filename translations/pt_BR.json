@@ -335,6 +335,10 @@
         "name": "Cupom válido apenas para a primeira compra",
         "message": "Tente usar um cupom diferente desse."
     },
+    "COUPON_EXCLUSIVE_FOR_SOME_PRODUCTS": {
+        "name": "Cupom exclusivo para certos produtos",
+        "message": "Tente limpar o seu carrinho e tente novamente."
+    },
     "UNKNOWN_STORE": {
         "name": "Loja desconhecida",
         "message": "Talvez essa loja não exista mais."

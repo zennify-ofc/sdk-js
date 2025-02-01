@@ -335,6 +335,10 @@
         "name": "This coupon is valid only for the first purchase",
         "message": "Coupon valid only on the first purchase."
     },
+    "COUPON_EXCLUSIVE_FOR_SOME_PRODUCTS": {
+        "name": "Coupon exclusive for some products",
+        "message": "Clean your cart and try again"
+    },
     "UNKNOWN_STORE": {
         "name": "Unknown store",
         "message": "Perhaps this store no longer exists."
