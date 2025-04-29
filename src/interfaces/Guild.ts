@@ -1,13 +1,11 @@
 import { type ChannelType } from 'discord.js';
 
 export interface DiscordGuildChannel {
-    id: string,
     name: string,
     type: ChannelType
 }
 
 export interface DiscordGuildRole {
-    id: string,
     name: string,
     position: number,
     color: number
@@ -18,5 +16,6 @@ export interface DiscordGuild {
     name: string,
     icon_url: string,
     owner_id: string,
-    channels: DiscordGuildChannel[]
+    channels: Record<string, DiscordGuildChannel>,
+    roles: Record<string, DiscordGuildRole>
 }
