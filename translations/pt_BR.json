@@ -132,7 +132,7 @@
         "message": ""
     },
     "THE_PIX_KEY_INSERTED_ISNT_VALID": {
-        "name": "A chave pix inserida não é válida, configure uma chave válida.",
+        "name": "A chave pix inserida não é válida.",
         "message": "Aceitamos CPF, email, telefone e chave aletória."
     },
     "INSERT_A_VALID_URL": {
