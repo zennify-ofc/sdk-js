@@ -1,15 +1,6 @@
 import { DiscordGuild } from "./Guild";
 
 export type Addons = 'custom_bot' | 'divulgation' | 'antiraid' | 'managed_automod';
-export type Banks = 'Banco Inter S.A.'
-    | 'Nu Pagamentos S.A.'
-    | 'Picpay Serviços S.A.'
-    | 'Mercadopago.com Representações Ltda.'
-    | 'Caixa Econômica Federal'
-    | 'PagSeguro Internet S.A.'
-    | 'Banco do Brasil S.A.'
-    | 'Banco Bradesco S.A.'
-    | 'Banco Santander (Brasil) S.A.';
 
 export interface PartialStore {
     id: number,
@@ -29,7 +20,7 @@ export interface FullStore {
     icon_id: number | null,
     banner_id: number | null,
     addons: Addons[],
-    blocked_banks: Banks[],
+    blocked_banks: string[],
     pending_setup?: boolean | null,
     discord_channels: Record<
         string /** guild id */,
