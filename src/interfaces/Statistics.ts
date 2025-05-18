@@ -10,7 +10,7 @@ export type ProductStatistics = {
     users: number,
     value: number,
     rating: number,
-    customers: ProductStatisticsCustomer
+    customers: ProductStatisticsCustomer[]
 }
 
 export type Statistics = Record<string, Record<number, ProductStatistics>>
