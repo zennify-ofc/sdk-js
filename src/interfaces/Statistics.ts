@@ -1,7 +1,7 @@
 export type ProductStatisticsCustomer = {
     id: number,
     discord_user_id: string,
-    revenue: number,
+    value: number,
     sales: number
 };
 
