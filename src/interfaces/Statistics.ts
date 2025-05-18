@@ -10,4 +10,13 @@ export type StatisticsResponse = {
     last_update: string,
     created_at: string
     statistics: Statistics
-}
+};
+
+export type Ranking = {
+    id: number,
+    discord_user_id: string,
+    revenue: number,
+    sales: number
+};
+
+export type RankingResponse = Ranking[]
