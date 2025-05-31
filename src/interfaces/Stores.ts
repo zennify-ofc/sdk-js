@@ -6,8 +6,8 @@ export interface PartialStore {
     id: number,
     name: string,
     expires_at: string,
-    icon_id?: number | null,
-    banner_id?: number | null,
+    icon_id?: string | null,
+    banner_id?: string | null,
     pending_setup?: boolean | null
 }
 
