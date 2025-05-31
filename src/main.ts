@@ -31,6 +31,6 @@ export class ZennifySDK {
         // this.token = options?.token ?? null;
     }
 
-    media = { get_url: GetImageURL }
+    media = { get_url: GetImageURL.bind(this) }
 
 }
