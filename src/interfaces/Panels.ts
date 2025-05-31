@@ -9,7 +9,7 @@ export interface Panel {
     name: string,
     placeholder: string,
     description: string | null,
-    icon_id: number | null,
-    banner_id: number | null,
+    icon_id: string | null,
+    banner_id: string | null,
     products: PanelProduct[]
 }

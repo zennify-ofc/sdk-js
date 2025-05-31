@@ -2,8 +2,8 @@ export interface PartialProduct {
     id: number,
     name: string,
     value: number,
-    icon_id: number | null,
-    banner_id: number | null,
+    icon_id: string | null,
+    banner_id: string | null,
     stock_locked: boolean | null,
     stock_count: number
 }
@@ -14,8 +14,8 @@ export interface Product {
     created_at: string,
     store_id: number,
     owner_id: number,
-    icon_id?: null | number,
-    banner_id?: null | number,
+    icon_id?: null | string,
+    banner_id?: null | string,
     value: number,
     description: {
         short: null | string,
