@@ -6,7 +6,6 @@ interface ImageSources {
     general: string
 }
 
-const template = `https://cdn.zennify.app/media/{store_id}/{id}.png`
 const sources: Record<keyof ImageSources, ImageSources[keyof ImageSources]> = {
     'product_icon': `https://zennify.app/assets/images/emojis/caixa.png`,
     'general': `https://zennify.app/assets/images/icon.png`,
@@ -17,11 +16,8 @@ const sources: Record<keyof ImageSources, ImageSources[keyof ImageSources]> = {
 
 export function GetImageURL<Source extends keyof ImageSources>(
     source: Source,
-    store_id?: number | null,
-    id?: number | null
+    hash?: string | null
 ): ImageSources[Source] | string {
-    if (!store_id || !id) return sources[source] as ImageSources[Source];
-    else return template
-        .replace("{store_id}", store_id.toString())
-        .replace("{id}", id.toString());
+    if (!hash) return sources[source] as ImageSources[Source];
+    else return "https://cdn.zennify.app/media/" + hash
 }
