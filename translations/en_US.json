@@ -483,10 +483,6 @@
         "name": "You already have a coupon with this name",
         "message": "Try setting a different name"
     },
-    "UNKNOWN_FILE": {
-        "name": "Unknown file",
-        "message": "Perhaps it has already been deleted"
-    },
     "NO_FILES_FOUND": {
         "name": "No file uploaded",
         "message": "Upload a valid file."
@@ -495,29 +491,9 @@
         "name": "Invalid file type",
         "message": "Accepted types are PNG, WEBP, JPEG, and GIF"
     },
-    "INVALID_FILE_NAME": {
-        "name": "Invalid file name",
-        "message": "Maximum size is 50 characters"
-    },
     "INVALID_FILE_SIZE": {
         "name": "File too heavy",
         "message": "Maximum size is 5MB"
-    },
-    "YOU_REACHED_STORAGE_LIMIT": {
-        "name": "You reached the storage limit",
-        "message": "Try deleting unused images"
-    },
-    "YOU_REACHED_MEDIA_LIMIT": {
-        "name": "You reached the image limit",
-        "message": "Try deleting unused images"
-    },
-    "YOU_ALREADY_HAVE_THIS_MEDIA": {
-        "name": "You already have this image saved in Zennify",
-        "message": "We blocked the submission to prevent duplicate images"
-    },
-    "MEDIA_NAME_ALREADY_EXIST": {
-        "name": "You already have another image with this same name",
-        "message": "Try changing the name"
     },
     "UNKNOWN_PANEL": {
         "name": "Unknown panel",

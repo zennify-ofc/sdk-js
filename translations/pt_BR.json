@@ -483,10 +483,6 @@
         "name": "Você já tem um cupom com esse nome",
         "message": "Tente configurar um nome diferente"
     },
-    "UNKNOWN_FILE": {
-        "name": "Imagem desconhecida",
-        "message": "Talvez ela já tenha sido apagada"
-    },
     "NO_FILES_FOUND": {
         "name": "Nenhum arquivo enviado",
         "message": "Envie um arquivo válido."
@@ -495,29 +491,9 @@
         "name": "Tipo de arquivo inválido",
         "message": "Os tipos aceitos são PNG, WEBP, JPEG e GIF"
     },
-    "INVALID_FILE_NAME": {
-        "name": "Nome do arquivo inválido",
-        "message": "O tamanho máximo é de 50 caracteres"
-    },
     "INVALID_FILE_SIZE": {
         "name": "Arquivo pesado demais",
         "message": "O tamanho máximo é de 5MB"
-    },
-    "YOU_REACHED_STORAGE_LIMIT": {
-        "name": "Você atingiu o limite de armazenamento",
-        "message": "Tente apagar imagens que você não usa mais"
-    },
-    "YOU_REACHED_MEDIA_LIMIT": {
-        "name": "Você atingiu o limite de imagens",
-        "message": "Tente apagar imagens que você não usa mais"
-    },
-    "YOU_ALREADY_HAVE_THIS_MEDIA": {
-        "name": "Você já tem essa imagem salva no Zennify",
-        "message": "Bloqueamos o envio pra evitar imagens duplicadas"
-    },
-    "MEDIA_NAME_ALREADY_EXIST": {
-        "name": "Você já tem outra imagem com esse mesmo nome",
-        "message": "Tente alterar o nome"
     },
     "UNKNOWN_PANEL": {
         "name": "Painel desconhecido",

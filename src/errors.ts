@@ -165,15 +165,9 @@ export interface APIErrors {
     'YOU_REACHED_THE_COUPON_LIMIT': {},
     'COUPON_NAME_ALREADY_EXIST': {}
     // Media Errors
-    'UNKNOWN_FILE': {};
     'NO_FILES_FOUND': {};
     'INVALID_FILE_TYPE': {};
-    'INVALID_FILE_NAME': {};
     'INVALID_FILE_SIZE': {};
-    'YOU_REACHED_STORAGE_LIMIT': {};
-    'YOU_REACHED_MEDIA_LIMIT': {};
-    'YOU_ALREADY_HAVE_THIS_MEDIA': {};
-    'MEDIA_NAME_ALREADY_EXIST': {};
     // Discord Panels Errors
     'UNKNOWN_PANEL': {};
     'INVALID_PANEL_NAME': {};
