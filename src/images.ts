@@ -1,23 +1,17 @@
-interface ImageSources {
-    void: void,
-    null: null,
-    empty: string,
-    product_icon: string,
-    general: string
-}
-
-const sources: Record<keyof ImageSources, ImageSources[keyof ImageSources]> = {
+const fallbacks = {
     'product_icon': `https://zennify.app/assets/images/emojis/caixa.png`,
     'general': `https://zennify.app/assets/images/icon.png`,
     'void': void 0,
     'null': null,
     'empty': ""
-}
+} as const;
 
-export function GetImageURL<Source extends keyof ImageSources>(
-    source: Source,
+type Fallbacks = typeof fallbacks;
+
+export function GetImageURL<Fallback extends keyof Fallbacks>(
+    fallback: Fallback,
     hash?: string | null
-): ImageSources[Source] | string {
-    if (!hash) return sources[source] as ImageSources[Source];
+): Fallbacks[Fallback] | string {
+    if (!hash) return fallbacks[fallback];
     else return "https://cdn.zennify.app/media/" + hash
 }
