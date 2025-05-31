@@ -19,6 +19,7 @@ export interface FullStore {
     owner_id: number,
     icon_id: string | null,
     banner_id: string | null,
+    banner_discord_sale_message_id: string | null,
     background_ranking_id: string | null,
     addons: Addons[],
     blocked_banks: string[],
