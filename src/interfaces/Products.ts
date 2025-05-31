@@ -14,8 +14,8 @@ export interface Product {
     created_at: string,
     store_id: number,
     owner_id: number,
-    icon_id?: null | string,
-    banner_id?: null | string,
+    icon_id?: string | null,
+    banner_id?: string | null,
     value: number,
     description: {
         short: null | string,

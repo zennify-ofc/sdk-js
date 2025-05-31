@@ -47,16 +47,16 @@ type SaleTransaction = {
         store: {
             id: number,
             name: string,
-            icon_id?: number | null,
-            banner_id?: number | null
+            icon_id?: string | null,
+            banner_id?: string | null
         },
         products: [
             {
                 id: number,
                 name: string,
                 value: number,
-                icon_id?: number | null,
-                banner_id?: number | null
+                icon_id?: string | null,
+                banner_id?: string | null
                 amount: number,
                 delivered: string[]
             }
