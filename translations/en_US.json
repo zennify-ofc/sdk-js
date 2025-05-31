@@ -495,6 +495,22 @@
         "name": "File too heavy",
         "message": "Maximum size is 5MB"
     },
+    "MEDIA_INVALID_SET": {
+        "name": "Invalid setter sent for the image.",
+        "message": "Make sure to send a valid setter (set)."
+    },
+    "MEDIA_INVALID_SET_STORE": {
+        "name": "The store setter is not valid.",
+        "message": "Make sure to follow a valid schema."
+    },
+    "MEDIA_INVALID_SET_PRODUCTS": {
+        "name": "The product setter is not valid.",
+        "message": "Make sure to follow a valid schema."
+    },
+    "MEDIA_INVALID_SET_DISCORD_SALE_PANELS": {
+        "name": "The Discord sale panels setter is not valid.",
+        "message": "Make sure to follow a valid schema."
+    },
     "UNKNOWN_PANEL": {
         "name": "Unknown panel",
         "message": "Perhaps this panel no longer exists."

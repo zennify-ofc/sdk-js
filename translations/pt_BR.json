@@ -495,6 +495,22 @@
         "name": "Arquivo pesado demais",
         "message": "O tamanho máximo é de 5MB"
     },
+    "MEDIA_INVALID_SET": {
+        "name": "Setter inválido enviado para a imagem.",
+        "message": "Certifique-se de enviar um setter (set) válido."
+    },
+    "MEDIA_INVALID_SET_STORE": {
+        "name": "O setter de loja não é válido.",
+        "message": "Certifique-se de seguir um schema válido."
+    },
+    "MEDIA_INVALID_SET_PRODUCTS": {
+        "name": "O setter de produtos não é válido.",
+        "message": "Certifique-se de seguir um schema válido."
+    },
+    "MEDIA_INVALID_SET_DISCORD_SALE_PANELS": {
+        "name": "O setter de paineis de venda do Discord não é válido.",
+        "message": "Certifique-se de seguir um schema válido."
+    },
     "UNKNOWN_PANEL": {
         "name": "Painel desconhecido",
         "message": "Talvez esse painel não exista mais."

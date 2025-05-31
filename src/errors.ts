@@ -168,6 +168,10 @@ export interface APIErrors {
     'NO_FILES_FOUND': {};
     'INVALID_FILE_TYPE': {};
     'INVALID_FILE_SIZE': {};
+    'MEDIA_INVALID_SET': {};
+    'MEDIA_INVALID_SET_STORE': {};
+    'MEDIA_INVALID_SET_PRODUCTS': {};
+    'MEDIA_INVALID_SET_DISCORD_SALE_PANELS': {};
     // Discord Panels Errors
     'UNKNOWN_PANEL': {};
     'INVALID_PANEL_NAME': {};
