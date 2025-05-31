@@ -30,8 +30,9 @@ export class ZennifySDK {
         // this.language = options?.language ?? "en_US";
         // this.token = options?.token ?? null;
     }
+
     media = {
-        get_url: async (...options: Parameters<typeof GetImageURL>) => {
+        get_url: (...options: Parameters<typeof GetImageURL>) => {
             return GetImageURL(...options)?.replace("zennify.app", this.domain)
         }
     }
