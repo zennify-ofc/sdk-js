@@ -14,20 +14,22 @@ export * from './interfaces/Statistics';
 
 type SDKOptions = {
     domain?: string,
+    // language?: SupportedLanguages
     // token?: string
 }
 
 export class ZennifySDK {
 
-    private readonly domain: string;
-    // private readonly token: string | null = null;
+    protected readonly domain: string;
+    protected readonly token: string | null = null;
+    // protected readonly language: SupportedLanguages;
     // private readonly user_agent: string = "Zennify-sdk";
 
     constructor(options?: SDKOptions) {
         this.domain = options?.domain ?? "zennify.app";
+        // this.language = options?.language ?? "en_US";
         // this.token = options?.token ?? null;
     }
-
     media = {
         get_url: async (...options: Parameters<typeof GetImageURL>) => {
             return GetImageURL(...options)?.replace("zennify.app", this.domain)
