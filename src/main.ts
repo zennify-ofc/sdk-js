@@ -31,10 +31,6 @@ export class ZennifySDK {
         // this.token = options?.token ?? null;
     }
 
-    media = {
-        get_url: (...options: Parameters<typeof GetImageURL>) => {
-            return GetImageURL(...options)?.replace("zennify.app", this.domain)
-        }
-    }
+    media = { get_url: GetImageURL }
 
 }
