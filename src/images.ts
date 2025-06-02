@@ -17,8 +17,9 @@ const sources: Record<keyof ImageSources, ImageSources[keyof ImageSources]> = {
 export function GetImageURL<Source extends keyof ImageSources>(
     source: Source,
     hash?: string | null,
-    domain: string = "zennify.app"
+    domain: string = "zennify.app",
+    extension = ".webp"
 ): ImageSources[Source] | string {
     if (!hash) return sources[source] as ImageSources[Source];
-    else return `https://cdn.${domain}/media/${hash}`;
+    else return `https://cdn.${domain}/media/${hash}${extension}`;
 }
