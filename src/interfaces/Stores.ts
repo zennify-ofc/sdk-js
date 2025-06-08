@@ -32,9 +32,9 @@ export interface FullStore {
         >
     >,
     discord_bot: {
-        id: string,
-        app_id: string | null,
+        id: string
         token: string | null
+        cluster: string | null
     },
     discord_bot_guilds: Record<string, DiscordGuild>
 }
