@@ -22,8 +22,8 @@ type DiscordOrder = {
     discord_guild_id: string,
     discord_channel_id: string,
     discord_channel_message_id: string
-    discord_sale_channel_id?: string | null,
-    discord_sale_message_id?: string | null,
+    discord_sale_message?: `${string}-${string}-${string}` | null,
+    discord_feedback_message?: `${string}-${string}-${string}` | null,
 }
 
 type SaleTransaction = {
