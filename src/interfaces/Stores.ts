@@ -24,6 +24,8 @@ export interface FullStore {
     addons: Addons[],
     blocked_banks: string[],
     pending_setup?: boolean | null,
+    limit_product: number,
+    limit_discord_server: number,
     discord_channels: Record<
         string /** guild id */,
         Record<
