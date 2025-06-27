@@ -416,8 +416,8 @@
         "message": "Corrija o valor do produto."
     },
     "YOU_REACHED_THE_PRODUCT_LIMIT": {
-        "name": "Limite de 100 produtos atingido",
-        "message": "Tente remover os produtos que você não usa mais."
+        "name": "Limite de produtos atingido",
+        "message": "Remova os produtos que você não usa mais ou aumente o limite."
     },
     "PRODUCT_NAME_ALREADY_EXIST": {
         "name": "Já existe um produto com esse nome",
