@@ -11,6 +11,18 @@ export interface PartialStore {
     pending_setup?: boolean | null
 }
 
+export type StoreModeratorPermissions =
+    | 'MANAGE_DISCORD_CART'
+    | 'MANAGE_PRODUCTS'
+    | 'MANAGE_COUPONS';
+
+export type StoreModerator = {
+    username: string,
+    discord_user_id: string | null,
+    created_at: string,
+    permissions: StoreModeratorPermissions[]
+}
+
 export interface FullStore {
     id: number,
     name: string,
@@ -38,5 +50,6 @@ export interface FullStore {
         token: string | null
         cluster: string | null
     },
+    moderators: Record<string, StoreModerator>,
     discord_bot_guilds: Record<string, DiscordGuild>
 }
