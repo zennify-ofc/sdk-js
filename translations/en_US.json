@@ -359,6 +359,30 @@
         "name": "You have already migrated in another store",
         "message": "Try setting up again with migration disabled."
     },
+    "YOU_REACHED_MODERATOR_LIMIT": {
+        "name": "Moderator limit reached",
+        "message": "You have reached the maximum number of moderators in your store."
+    },
+    "INVALID_PERMISSIONS": {
+        "name": "Invalid permissions",
+        "message": "Send valid permissions in body.permissions."
+    },
+    "UNKNOWN_PERMISSION": {
+        "name": "Unknown permission",
+        "message": "The permission at index {{index}} is unknown or invalid."
+    },
+    "MAX_MODERATOR_REQUESTS_REACHED": {
+        "name": "Limit of 5 requests reached",
+        "message": "Try again in 15 minutes."
+    },
+    "INVALID_CODE": {
+        "name": "Invalid code provided",
+        "message": "The provided code is invalid or has expired."
+    },
+    "UNKNOWN_CODE": {
+        "name": "Unknown invite code",
+        "message": "The provided code was not identified in the system."
+    },
     "UNKNOWN_AUTOROLE_RULE": {
         "name": "Unknown Discord autorole rule",
         "message": "Try to create a new rule"

@@ -359,6 +359,30 @@
         "name": "Você já realizou a migração em outra loja",
         "message": "Tente configurar novamente com a migração desabilitada."
     },
+    "YOU_REACHED_MODERATOR_LIMIT": {
+        "name": "Limite de moderadores atingido",
+        "message": "Você atingiu o número máximo de moderadores na sua loja."
+    },
+    "INVALID_PERMISSIONS": {
+        "name": "Permissões inválidas",
+        "message": "Envie permissões válidas em body.permissions."
+    },
+    "UNKNOWN_PERMISSION": {
+        "name": "Permissão desconhecida",
+        "message": "A permissão no índice {{index}} é desconhecida ou inválida."
+    },
+    "MAX_MODERATOR_REQUESTS_REACHED": {
+        "name": "Limite de 5 solicitações atingido",
+        "message": "Tente novamente em 15 minutos."
+    },
+    "INVALID_CODE": {
+        "name": "Código inválido fornecido",
+        "message": "O código fornecido é inválido ou expirou."
+    },
+    "UNKNOWN_CODE": {
+        "name": "Código de convite desconhecido",
+        "message": "O código fornecido não foi identificado no sistema."
+    },
     "UNKNOWN_AUTOROLE_RULE": {
         "name": "Regra de cargo automático desconhecida",
         "message": "Tente criar uma nova regra"

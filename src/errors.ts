@@ -128,6 +128,13 @@ export interface APIErrors {
     'UNKNOWN_BANK': { received: string };
     'INVALID_STORE_NAME': {};
     'YOU_HAVE_ALREADY_MIGRATED': {};
+    /// moderators errors
+    'YOU_REACHED_MODERATOR_LIMIT': {};
+    'INVALID_PERMISSIONS': {};
+    'UNKNOWN_PERMISSION': { index: number };
+    'MAX_MODERATOR_REQUESTS_REACHED': {};
+    'INVALID_CODE': {};
+    'UNKNOWN_CODE': {};
     /// AUTOROLE
     'UNKNOWN_AUTOROLE_RULE': {},
     'AUTOROLE_RULE_ALREADY_EXISTS': {};
