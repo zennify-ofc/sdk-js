@@ -53,3 +53,16 @@ export interface FullStore {
     moderators: Record<string, StoreModerator>,
     discord_bot_guilds: Record<string, DiscordGuild>
 }
+
+export type StoreInvite = {
+    invite: {
+        permissions: StoreModeratorPermissions[],
+        expires: number
+    },
+    store: {
+        name: string,
+        created_at: string
+        icon_id?: string | null,
+        banner_id?: string | null,
+    }
+}
