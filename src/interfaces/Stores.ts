@@ -8,7 +8,8 @@ export interface PartialStore {
     expires_at: string,
     icon_id?: string | null,
     banner_id?: string | null,
-    pending_setup?: boolean | null
+    pending_setup?: boolean | null,
+    is_owner: boolean
 }
 
 export type StoreModeratorPermissions =
