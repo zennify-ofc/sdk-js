@@ -13,6 +13,7 @@ export interface PartialStore {
 
 export type StoreModeratorPermissions =
     | 'MANAGE_DISCORD_CART'
+    | 'MANAGE_DISCORD_PANELS'
     | 'MANAGE_PRODUCTS'
     | 'MANAGE_COUPONS';
 
