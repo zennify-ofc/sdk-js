@@ -383,6 +383,10 @@
         "name": "Código de convite desconhecido",
         "message": "O código fornecido não foi identificado no sistema."
     },
+    "UNKNOWN_MODERATOR": {
+        "name": "Moderador desconhecido",
+        "message": "O moderador fornecido não existe na sua loja."
+    },
     "UNKNOWN_AUTOROLE_RULE": {
         "name": "Regra de cargo automático desconhecida",
         "message": "Tente criar uma nova regra"

@@ -135,6 +135,7 @@ export interface APIErrors {
     'MAX_MODERATOR_REQUESTS_REACHED': {};
     'INVALID_CODE': {};
     'UNKNOWN_CODE': {};
+    'UNKNOWN_MODERATOR': {};
     /// AUTOROLE
     'UNKNOWN_AUTOROLE_RULE': {},
     'AUTOROLE_RULE_ALREADY_EXISTS': {};

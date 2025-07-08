@@ -383,6 +383,10 @@
         "name": "Unknown invite code",
         "message": "The provided code was not identified in the system."
     },
+    "UNKNOWN_MODERATOR": {
+        "name": "Unknown moderator",
+        "message": "The provided moderator doesn't exists on your store."
+    },
     "UNKNOWN_AUTOROLE_RULE": {
         "name": "Unknown Discord autorole rule",
         "message": "Try to create a new rule"
