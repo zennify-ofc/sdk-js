@@ -13,10 +13,13 @@ export interface PartialStore {
 }
 
 export type StoreModeratorPermissions =
-    | 'MANAGE_DISCORD_CART'
-    | 'MANAGE_DISCORD_PANELS'
-    | 'MANAGE_PRODUCTS'
-    | 'MANAGE_COUPONS';
+    | 'MANAGE_DISCORD_PANELS' // Gerenciar painéis do Discord
+    | 'MANAGE_PRODUCTS'       // Gerenciar produtos
+    | 'MANAGE_COUPONS'        // Gerenciar cupons
+    | 'MANAGE_STORE'          // Gerenciar a loja (Editar bot, nome, imagem, bancos bloqueados) e comandos /customize, /mod, /autorole, /temprole
+    | 'MANAGE_SALES'          // Gerenciar vendas (Aprovar, cancelar e reembolsar)
+    | 'VIEW_STATISTICS'       // Ver estatísticas (Acessar a home da dashboard, usar o comando /ranking e ver estatisticas de produtos)
+
 
 export type StoreModerator = {
     username: string,
