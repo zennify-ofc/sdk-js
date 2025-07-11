@@ -5,7 +5,7 @@ export type Addons = 'custom_bot' | 'divulgation' | 'antiraid' | 'managed_automo
 export interface PartialStore {
     id: number,
     name: string,
-    expires_at: string,
+    expires_at: number,
     icon_id?: string | null,
     banner_id?: string | null,
     pending_setup?: boolean | null,
@@ -24,15 +24,15 @@ export type StoreModeratorPermissions =
 export type StoreModerator = {
     username: string,
     discord_user_id: string | null,
-    created_at: string,
+    created_at: number,
     permissions: StoreModeratorPermissions[]
 }
 
 export interface FullStore {
     id: number,
     name: string,
-    created_at: string,
-    expires_at: string,
+    created_at: number,
+    expires_at: number,
     owner_id: number,
     icon_id: string | null,
     banner_id: string | null,
@@ -66,7 +66,7 @@ export type StoreInvite = {
     },
     store: {
         name: string,
-        created_at: string
+        created_at: number
         icon_id?: string | null,
         banner_id?: string | null,
     }

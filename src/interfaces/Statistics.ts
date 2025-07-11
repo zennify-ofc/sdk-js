@@ -15,7 +15,7 @@ export type ProductStatistics = {
 
 export type Statistics = Record<string, Record<number, ProductStatistics>>
 export type StatisticsResponse = {
-    last_update: string,
-    created_at: string
+    last_update: number,
+    created_at: number
     statistics: Statistics
 };

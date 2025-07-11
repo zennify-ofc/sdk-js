@@ -11,7 +11,7 @@ export interface PartialProduct {
 export interface Product {
     id: number,
     name: string,
-    created_at: string,
+    created_at: number,
     store_id: number,
     owner_id: number,
     icon_id?: string | null,

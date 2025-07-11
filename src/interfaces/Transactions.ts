@@ -1,6 +1,6 @@
 export type BaseTransaction<TransactionMetadata = any> = {
     id: string,
-    created_at: string,
+    created_at: number,
     entity: 'semiauto' | 'mercadopago',
     method: 'pix',
     managed?: boolean | null,
@@ -30,7 +30,7 @@ type SaleTransaction = {
     type: 'sale',
     order: DiscordOrder & {
         id: string,
-        created_at: string,
+        created_at: number,
         discount: number,
         subtotal: number,
         total_value: number,
@@ -70,6 +70,6 @@ export type FullTransaction<TransactionMetadata = any> = BaseTransaction<Transac
 export type PartialTransaction = {
     id: string,
     base_value: number,
-    created_at: string,
+    created_at: number,
     status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis' | 'refunded' | 'refunded_partial'
 }
