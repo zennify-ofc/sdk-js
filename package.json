@@ -14,15 +14,15 @@
   },
   "types": "./types/main.d.ts",
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "discord.js": "^14.15.3",
-    "typescript": "^5.5.3"
+    "@types/node": "^20.19.7",
+    "discord.js": "^14.21.0",
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "undici-types": "^5.26.5"
+    "undici-types": "^5.28.4"
   },
   "bugs": {
     "url": "https://github.com/zennify-ofc/sdk-js/issues"
