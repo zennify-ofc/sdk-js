@@ -75,6 +75,62 @@
         "name": "Usuário não encontrado",
         "message": "Tente novamente."
     },
+    "USER_LEGAL_DATA_ALREADY_EXISTS": {
+        "name": "Dados legais já existem",
+        "message": "Você já possui dados legais cadastrados."
+    },
+    "USER_LEGAL_RESPONSIBLE_INVALID": {
+        "name": "Responsável legal inválido",
+        "message": "Os dados do responsável legal são inválidos ou obrigatórios."
+    },
+    "USER_LEGAL_DOCUMENTS_REQUIRED": {
+        "name": "Documentos obrigatórios",
+        "message": "É necessário enviar os documentos pessoais."
+    },
+    "USER_LEGAL_DOCUMENT_INVALID": {
+        "name": "Documento inválido",
+        "message": "O documento informado não é válido."
+    },
+    "USER_LEGAL_NAME_INVALID": {
+        "name": "Nome inválido",
+        "message": "O nome informado não é válido."
+    },
+    "USER_LEGAL_BORN_INVALID": {
+        "name": "Data de nascimento inválida",
+        "message": "A data de nascimento informada não é válida."
+    },
+    "USER_LEGAL_PHONE_INVALID": {
+        "name": "Telefone inválido",
+        "message": "O telefone informado não é válido."
+    },
+    "USER_LEGAL_ADDRESS_INVALID": {
+        "name": "Endereço inválido",
+        "message": "O campo \"{prop}\" do endereço é inválido."
+    },
+    "USER_LEGAL_RESPONSIBLE_DOCUMENTS_REQUIRED": {
+        "name": "Documentos do responsável obrigatórios",
+        "message": "É necessário enviar os documentos do responsável legal."
+    },
+    "USER_LEGAL_RESPONSIBLE_DOCUMENT_INVALID": {
+        "name": "Documento do responsável inválido",
+        "message": "O documento do responsável legal não é válido."
+    },
+    "USER_LEGAL_RESPONSIBLE_NAME_INVALID": {
+        "name": "Nome do responsável inválido",
+        "message": "O nome do responsável legal não é válido."
+    },
+    "USER_LEGAL_RESPONSIBLE_BORN_INVALID": {
+        "name": "Data de nascimento do responsável inválida",
+        "message": "A data de nascimento do responsável legal não é válida."
+    },
+    "USER_LEGAL_RESPONSIBLE_PHONE_INVALID": {
+        "name": "Telefone do responsável inválido",
+        "message": "O telefone do responsável legal não é válido."
+    },
+    "USER_LEGAL_RESPONSIBLE_ADDRESS_INVALID": {
+        "name": "Endereço do responsável inválido",
+        "message": "O campo \"{prop}\" do endereço do responsável é inválido."
+    },
     "INVALID_TOKEN_NAME": {
         "name": "Nome de token inválido",
         "message": "Precisa ser uma string entre 1 e 50 caracteres"

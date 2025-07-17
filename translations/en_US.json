@@ -79,6 +79,62 @@
         "name": "User not found",
         "message": "Try again."
     },
+    "USER_LEGAL_DATA_ALREADY_EXISTS": {
+        "name": "Legal data already exists",
+        "message": "You already have legal data registered."
+    },
+    "USER_LEGAL_RESPONSIBLE_INVALID": {
+        "name": "Invalid legal guardian",
+        "message": "Legal guardian data is invalid or required."
+    },
+    "USER_LEGAL_DOCUMENTS_REQUIRED": {
+        "name": "Documents required",
+        "message": "Personal documents must be uploaded."
+    },
+    "USER_LEGAL_DOCUMENT_INVALID": {
+        "name": "Invalid document",
+        "message": "The provided document is not valid."
+    },
+    "USER_LEGAL_NAME_INVALID": {
+        "name": "Invalid name",
+        "message": "The provided name is not valid."
+    },
+    "USER_LEGAL_BORN_INVALID": {
+        "name": "Invalid birth date",
+        "message": "The provided birth date is not valid."
+    },
+    "USER_LEGAL_PHONE_INVALID": {
+        "name": "Invalid phone number",
+        "message": "The provided phone number is not valid."
+    },
+    "USER_LEGAL_ADDRESS_INVALID": {
+        "name": "Invalid address",
+        "message": "The address field \"{prop}\" is invalid."
+    },
+    "USER_LEGAL_RESPONSIBLE_DOCUMENTS_REQUIRED": {
+        "name": "Guardian documents required",
+        "message": "Legal guardian documents must be uploaded."
+    },
+    "USER_LEGAL_RESPONSIBLE_DOCUMENT_INVALID": {
+        "name": "Invalid guardian document",
+        "message": "The legal guardian document is not valid."
+    },
+    "USER_LEGAL_RESPONSIBLE_NAME_INVALID": {
+        "name": "Invalid guardian name",
+        "message": "The legal guardian name is not valid."
+    },
+    "USER_LEGAL_RESPONSIBLE_BORN_INVALID": {
+        "name": "Invalid guardian birth date",
+        "message": "The legal guardian birth date is not valid."
+    },
+    "USER_LEGAL_RESPONSIBLE_PHONE_INVALID": {
+        "name": "Invalid guardian phone number",
+        "message": "The legal guardian phone number is not valid."
+    },
+    "USER_LEGAL_RESPONSIBLE_ADDRESS_INVALID": {
+        "name": "Invalid guardian address",
+        "message": "The guardian address field \"{prop}\" is invalid."
+    },
     "INVALID_TOKEN_NAME": {
         "name": "Invalid Token Name",
         "message": "Must be a string between 1 and 50 characters"

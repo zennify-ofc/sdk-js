@@ -26,6 +26,23 @@ export interface APIErrors {
     'PLEASE_REVERIFY': {};
     // = user errors
     'USER_NOT_FOUND': {};
+    /// legal errors
+    'USER_LEGAL_DATA_ALREADY_EXISTS': {};
+    'USER_LEGAL_RESPONSIBLE_INVALID': {};
+
+    'USER_LEGAL_DOCUMENTS_REQUIRED': {};
+    'USER_LEGAL_DOCUMENT_INVALID': {};
+    'USER_LEGAL_NAME_INVALID': {};
+    'USER_LEGAL_BORN_INVALID': {};
+    'USER_LEGAL_PHONE_INVALID': {};
+    'USER_LEGAL_ADDRESS_INVALID': { prop: InvalidAddressProps };
+
+    'USER_LEGAL_RESPONSIBLE_DOCUMENTS_REQUIRED': {};
+    'USER_LEGAL_RESPONSIBLE_DOCUMENT_INVALID': {};
+    'USER_LEGAL_RESPONSIBLE_NAME_INVALID': {};
+    'USER_LEGAL_RESPONSIBLE_BORN_INVALID': {};
+    'USER_LEGAL_RESPONSIBLE_PHONE_INVALID': {};
+    'USER_LEGAL_RESPONSIBLE_ADDRESS_INVALID': { prop: InvalidAddressProps };
     /// token errors
     'INVALID_TOKEN_NAME': {};
     'INVALID_TOKEN_EXPIRATION': {};
@@ -191,6 +208,7 @@ export interface APIErrors {
     'STORE_ALREADY_CONFIGURED': {};
 }
 
+type InvalidAddressProps = "cep" | "state" | "city" | "neighborhood" | "line1" | "line2" | "number";
 type ExpectedAdditionalData = {
     field: string;
     received: any;
