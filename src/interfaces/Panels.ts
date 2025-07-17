@@ -1,7 +1,8 @@
 export interface PanelProduct {
     id: number,
     position: number,
-    emoji: string
+    emoji?: string | null,
+    label?: string | null
 }
 
 export interface Panel {
