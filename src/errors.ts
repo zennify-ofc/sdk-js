@@ -26,6 +26,7 @@ export interface APIErrors {
     'PLEASE_REVERIFY': {};
     // = user errors
     'USER_NOT_FOUND': {};
+    'USER_INVALID_NAME': {};
     /// legal errors
     'USER_LEGAL_DATA_ALREADY_EXISTS': {};
     'USER_LEGAL_RESPONSIBLE_INVALID': {};

@@ -79,6 +79,10 @@
         "name": "User not found",
         "message": "Try again."
     },
+    "USER_INVALID_NAME": {
+        "name": "Invalid username",
+        "message": "Must be between 3 to 32 characters, with alphanumeric characters."
+    },
     "USER_LEGAL_DATA_ALREADY_EXISTS": {
         "name": "Legal data already exists",
         "message": "You already have legal data registered."
