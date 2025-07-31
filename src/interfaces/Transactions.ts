@@ -1,7 +1,7 @@
 export type BaseTransaction<TransactionMetadata = any> = {
     id: string,
     created_at: number,
-    entity: 'semiauto' | 'mercadopago',
+    entity: 'semiauto' | 'mercadopago' | 'efi' | 'wallet-efi',
     method: 'pix',
     managed?: boolean | null,
     status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis' | 'refunded' | 'refunded_partial',
