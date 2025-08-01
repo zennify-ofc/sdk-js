@@ -79,6 +79,10 @@
         "name": "Nome de usuário inválido",
         "message": "Deve ter entre 3 a 32 caracteres, com caracteres alfanuméricos."
     },
+    "USER_LEGAL_DATA_REQUIRED": {
+        "name": "É necessário ter dados legais cadastrados.",
+        "message": "Os dados legais são obrigatórios nesse contexto."
+    },
     "USER_LEGAL_DATA_ALREADY_EXISTS": {
         "name": "Dados legais já existem",
         "message": "Você já possui dados legais cadastrados."
