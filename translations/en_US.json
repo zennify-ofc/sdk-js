@@ -75,6 +75,14 @@
         "name": "Please re-verify",
         "message": "An error occurred during authentication"
     },
+    "WITHDRAW_INSUFFICIENT_BALANCE": {
+        "name": "Insufficient balance for withdrawal",
+        "message": "You have {available} available for withdrawal."
+    },
+    "WITHDRAW_LIMIT_EXCEEDED": {
+        "name": "You've made too many withdrawals today",
+        "message": "You can only withdraw up to {limit} in the last 24h."
+    },
     "USER_NOT_FOUND": {
         "name": "User not found",
         "message": "Try again."

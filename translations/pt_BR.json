@@ -71,6 +71,14 @@
         "name": "Por favor, re-verifique",
         "message": "Um erro ocorreu durante a autenticação"
     },
+    "WITHDRAW_INSUFFICIENT_BALANCE": {
+        "name": "Saldo insuficiente para saque.",
+        "message": "Você tem {available} disponível para saque."
+    },
+    "WITHDRAW_LIMIT_EXCEEDED": {
+        "name": "Você já fez muitos saques hoje.",
+        "message": "Você só pode sacar até {limit} nas últimas 24h."
+    },
     "USER_NOT_FOUND": {
         "name": "Usuário não encontrado",
         "message": "Tente novamente."

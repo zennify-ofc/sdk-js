@@ -24,6 +24,9 @@ export interface APIErrors {
     'INVALID_SCOPE': {};
     'VERIFY_YOUR_EMAIL': {};
     'PLEASE_REVERIFY': {};
+    // Wallet errors
+    'WITHDRAW_INSUFFICIENT_BALANCE': { available: number };
+    'WITHDRAW_LIMIT_EXCEEDED': { limit: number };
     // = user errors
     'USER_NOT_FOUND': {};
     'USER_INVALID_NAME': {};
