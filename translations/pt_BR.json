@@ -79,6 +79,10 @@
         "name": "Você já fez muitos saques hoje.",
         "message": "Você só pode sacar até {limit} nas últimas 24h."
     },
+    "WALLET_SETUP_HAS_BLOCKED_PRODUCTS": {
+        "name": "Você tem produtos bloqueados/ilegais.",
+        "message": "Delete-os para poder usar a Wallet."
+    },
     "USER_NOT_FOUND": {
         "name": "Usuário não encontrado",
         "message": "Tente novamente."

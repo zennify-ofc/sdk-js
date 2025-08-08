@@ -83,6 +83,10 @@
         "name": "You've made too many withdrawals today",
         "message": "You can only withdraw up to {limit} in the last 24h."
     },
+    "WALLET_SETUP_HAS_BLOCKED_PRODUCTS": {
+        "name": "You have blocked/illegal products.",
+        "message": "Delete them to use the Wallet."
+    },
     "USER_NOT_FOUND": {
         "name": "User not found",
         "message": "Try again."

@@ -27,6 +27,7 @@ export interface APIErrors {
     // Wallet errors
     'WITHDRAW_INSUFFICIENT_BALANCE': { available: number };
     'WITHDRAW_LIMIT_EXCEEDED': { limit: number };
+    'WALLET_SETUP_HAS_BLOCKED_PRODUCTS': {};
     // = user errors
     'USER_NOT_FOUND': {};
     'USER_INVALID_NAME': {};
