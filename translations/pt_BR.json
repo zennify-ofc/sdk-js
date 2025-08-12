@@ -35,6 +35,10 @@
         "name": "Era esperado um objeto não vazio",
         "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
     },
+    "EXPECTED_A_BOOLEAN": {
+        "name": "Era esperado um booleano",
+        "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""
+    },
     "EXPECTED_A_STRING": {
         "name": "Era esperado uma string",
         "message": "Recebido \"{received}\" com o tipo {type}, Verifique o campo \"{field}\""

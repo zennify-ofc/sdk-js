@@ -14,6 +14,7 @@ export interface APIErrors {
     'EXPECTED_A_NUMBER_ARRAY': ExpectedAdditionalData;
     'EXPECTED_AN_OBJECT': ExpectedAdditionalData;
     'EXPECTED_A_NON_EMPTY_OBJECT': ExpectedAdditionalData;
+    'EXPECTED_A_BOOLEAN': ExpectedAdditionalData;
     'EXPECTED_A_STRING': ExpectedAdditionalData;
     'EXPECTED_A_NUMBER': ExpectedAdditionalData;
     'EXPECTED_A_VALID_ID': ExpectedAdditionalData;

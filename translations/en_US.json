@@ -35,6 +35,10 @@
         "name": "Expected a non-empty object",
         "message": "Received \"{received}\" with type {type}, Check \"{field}\" field"
     },
+    "EXPECTED_A_BOOLEAN": {
+        "name": "Expected a boolean",
+        "message": "Received \"{received}\" with type {type}, Check \"{field}\" field"
+    },
     "EXPECTED_A_STRING": {
         "name": "Expected a string",
         "message": "Received \"{received}\" with type {type}, Check \"{field}\" field"
