@@ -4,7 +4,7 @@ export type BaseTransaction<TransactionMetadata = any> = {
     entity: 'semiauto' | 'mercadopago' | 'efi' | 'wallet-efi',
     method: 'pix',
     managed?: boolean | null,
-    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis' | 'refunded' | 'refunded_partial',
+    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis' | 'refunded' | 'refunded_partial' | 'invalid-pix-key',
     value: number,
     base_value: number,
     refunded_value: number,
