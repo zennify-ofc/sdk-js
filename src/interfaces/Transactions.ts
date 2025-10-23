@@ -58,7 +58,10 @@ type SaleTransaction = {
                 name: string,
                 value: number,
                 icon_id?: string | null,
-                banner_id?: string | null
+                banner_id?: string | null,
+                discord_description?: string | null,
+                short_description?: string | null,
+                website_description?: string | null,
                 amount: number,
                 delivered: string[]
             }
