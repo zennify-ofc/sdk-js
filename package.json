@@ -14,9 +14,9 @@
   },
   "types": "./types/main.d.ts",
   "devDependencies": {
-    "@types/node": "^20.19.7",
-    "discord.js": "^14.21.0",
-    "typescript": "^5.8.3"
+    "@types/node": "^20.19.30",
+    "discord.js": "^14.25.1",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "build": "tsc"
