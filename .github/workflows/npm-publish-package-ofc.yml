@@ -8,14 +8,12 @@ on:
     paths:
       - "package.json"
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: write
-
 jobs:
   create-release:
     if: "${{ startsWith(github.event.head_commit.message, 'chore: new version') }}"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -37,13 +35,12 @@ jobs:
     if: "${{ startsWith(github.event.head_commit.message, 'chore: new version') }}"
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
