@@ -343,6 +343,10 @@
         "name": "O limite de ações foi atingido, tente novamente.",
         "message": "Note que esse limite é imposto pelo Banco Efí, não pelo Zennify."
     },
+    "PAGBANK_INVALID_TOKEN": {
+        "name": "O token do PagBank está inválido ou expirou.",
+        "message": "Acesse a dashboard e re-conecte para corrigir."
+    },
     "EFIBANK_UNKNOWN_TRANSACTION": {
         "name": "Não foi possível encontrar essa transação.",
         "message": "Talvez ela não existe ou seja pertencente a outra conta."
