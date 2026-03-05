@@ -130,8 +130,6 @@ export interface APIErrors {
     'EFIBANK_BLOCKED_ACCOUNT': {};
     'EFIBANK_UNKNOWN_TRANSACTION': {};
     'EFIBANK_RATE_LIMIT': {};
-    // Pagbank errors
-    'PAGBANK_INVALID_TOKEN': {};
     /// bad preference configuration
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_PIX': {};
     'THIS_SELLER_HAS_NOT_YET_CONFIGURED_RECEIPT_VIA_BOLETO': {};
