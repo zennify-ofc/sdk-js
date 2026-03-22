@@ -1,3 +1,4 @@
+export type TransactionStatus = 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'analysis' | 'refunded' | 'invalid-pix-key';
 export type BaseTransaction<TransactionMetadata = any> = {
     id: string,
     created_at: number,
@@ -5,7 +6,7 @@ export type BaseTransaction<TransactionMetadata = any> = {
     entity: 'semiauto' | 'mercadopago' | 'efi' | 'wallet-efi',
     method: 'pix',
     managed?: boolean | null,
-    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'analysis' | 'refunded' | 'refunded_partial' | 'invalid-pix-key',
+    status: TransactionStatus,
     value: number,
     base_value: number,
     refunded_value: number,
@@ -75,5 +76,5 @@ export type PartialTransaction = {
     id: string,
     base_value: number,
     created_at: number,
-    status: 'approved' | 'cancelled' | 'expired' | 'pending' | 'refused' | 'rejected' | 'analysis' | 'refunded' | 'refunded_partial'
+    status: TransactionStatus
 }
