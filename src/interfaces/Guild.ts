@@ -14,6 +14,7 @@ export interface DiscordGuildRole {
 export interface DiscordGuild {
     id: string,
     name: string,
+    members: number,
     icon_url: string,
     owner_id: string,
     channels: Record<string, DiscordGuildChannel>,
