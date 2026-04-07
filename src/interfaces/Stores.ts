@@ -3,8 +3,8 @@ export type Addons = 'custom_bot' | 'divulgation' | 'antiraid' | 'managed_automo
 export interface PartialStore {
     id: number,
     name: string,
+    created_at: number,
     expires_at: number,
-    created_at?: boolean | null,
     icon_id?: string | null,
     banner_id?: string | null,
     is_owner: boolean
