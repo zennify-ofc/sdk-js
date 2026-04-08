@@ -8,7 +8,7 @@ export interface PanelProduct {
 export interface Panel {
     id: number,
     name: string,
-    placeholder: string,
+    placeholder: string | null,
     description: string | null,
     icon_id: string | null,
     banner_id: string | null,
