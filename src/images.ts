@@ -8,7 +8,7 @@ interface ImageSources {
 
 const sources: Record<keyof ImageSources, ImageSources[keyof ImageSources]> = {
     'product_icon': `https://zennify.app/img/emojis/caixa.webp`,
-    'general': `https://zennify.app/favicon.png`,
+    'general': `https://zennify.app/img/icon.png`,
     'void': void 0,
     'null': null,
     'empty': ""
