@@ -1,7 +1,5 @@
 export * from './var';
-export * from './errors';
 export * from './utils';
-export * from './RequestError';
 export * from './images';
 
 export * from './interfaces/Media';
