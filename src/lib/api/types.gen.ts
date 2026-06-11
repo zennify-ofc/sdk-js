@@ -611,7 +611,7 @@ export type ListStoreProductsResponses = {
     banner_id: null | string;
     value: number;
     stock_locked: null | boolean;
-    stock_count: string;
+    stock_count: number;
   }>;
 };
 
