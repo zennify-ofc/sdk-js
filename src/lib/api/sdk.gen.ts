@@ -81,9 +81,6 @@ import type {
   GetStoreProductData,
   GetStoreProductErrors,
   GetStoreProductResponses,
-  GetStoreProductsData,
-  GetStoreProductsErrors,
-  GetStoreProductsResponses,
   GetStoreProductStockData,
   GetStoreProductStockErrors,
   GetStoreProductStockResponses,
@@ -106,6 +103,9 @@ import type {
   GetUserData,
   GetUserErrors,
   GetUserResponses,
+  ListStoreProductsData,
+  ListStoreProductsErrors,
+  ListStoreProductsResponses,
   ListTransactionsData,
   ListTransactionsErrors,
   ListTransactionsResponses,
@@ -384,12 +384,12 @@ export const updateStoreProduct = <ThrowOnError extends boolean = false>(
 /**
  * List products from a store.
  */
-export const getStoreProducts = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreProductsData, ThrowOnError>,
+export const listStoreProducts = <ThrowOnError extends boolean = false>(
+  options: Options<ListStoreProductsData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreProductsResponses,
-    GetStoreProductsErrors,
+    ListStoreProductsResponses,
+    ListStoreProductsErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],

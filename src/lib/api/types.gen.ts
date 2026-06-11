@@ -197,8 +197,26 @@ export type GetStoreDiscordPanelsResponses = {
   /**
    * Discord panels listed successfully.
    */
-  200: unknown;
+  200: Array<{
+    id: number;
+    name: string;
+    placeholder: null | string;
+    description: null | string;
+    created_at: number;
+    owner_id: number;
+    store_id: number;
+    icon_id?: null | string;
+    banner_id?: null | string;
+    products: Array<{
+      id: number;
+      emoji: null | string;
+      label: null | string;
+    }>;
+  }>;
 };
+
+export type GetStoreDiscordPanelsResponse =
+  GetStoreDiscordPanelsResponses[keyof GetStoreDiscordPanelsResponses];
 
 export type CreateStoreDiscordPanelData = {
   body?: {
@@ -458,8 +476,29 @@ export type GetStoreProductResponses = {
   /**
    * Product returned successfully.
    */
-  200: unknown;
+  200: {
+    id: number;
+    name: string;
+    value: number;
+    icon_id?: null | string;
+    banner_id?: null | string;
+    owner_id: number;
+    store_id: number;
+    created_at: number;
+    stock: {
+      size: number;
+      locked: boolean;
+    };
+    description: {
+      discord: string;
+      short: string;
+      website: string;
+    };
+  };
 };
+
+export type GetStoreProductResponse =
+  GetStoreProductResponses[keyof GetStoreProductResponses];
 
 export type UpdateStoreProductData = {
   body?: {
@@ -530,7 +569,7 @@ export type UpdateStoreProductResponses = {
 export type UpdateStoreProductResponse =
   UpdateStoreProductResponses[keyof UpdateStoreProductResponses];
 
-export type GetStoreProductsData = {
+export type ListStoreProductsData = {
   body?: never;
   path: {
     storeId: string;
@@ -539,7 +578,7 @@ export type GetStoreProductsData = {
   url: "/stores/{storeId}/products";
 };
 
-export type GetStoreProductsErrors = {
+export type ListStoreProductsErrors = {
   /**
    * User not authenticated.
    */
@@ -558,15 +597,26 @@ export type GetStoreProductsErrors = {
   404: DefaultError;
 };
 
-export type GetStoreProductsError =
-  GetStoreProductsErrors[keyof GetStoreProductsErrors];
+export type ListStoreProductsError =
+  ListStoreProductsErrors[keyof ListStoreProductsErrors];
 
-export type GetStoreProductsResponses = {
+export type ListStoreProductsResponses = {
   /**
    * Products listed successfully.
    */
-  200: unknown;
+  200: Array<{
+    id: number;
+    name: string;
+    icon_id: null | string;
+    banner_id: null | string;
+    value: number;
+    stock_locked: null | boolean;
+    stock_count: string;
+  }>;
 };
+
+export type ListStoreProductsResponse =
+  ListStoreProductsResponses[keyof ListStoreProductsResponses];
 
 export type CreateStoreProductData = {
   body?: {
@@ -1794,19 +1844,19 @@ export type CreateStoreRenewOrderResponse =
 export type DeleteStoreMediaData = {
   body?: {
     store?: Array<
-      "icon" | "banner" | "banner_sale_approved" | "background_ranking"
+      "banner" | "icon" | "background_ranking" | "banner_sale_approved"
     >;
     /**
      * Construct a type with a set of properties K of type T
      */
     products?: {
-      [key: string]: Array<"icon" | "banner">;
+      [key: string]: Array<"banner" | "icon">;
     };
     /**
      * Construct a type with a set of properties K of type T
      */
     discord_sale_panels?: {
-      [key: string]: Array<"icon" | "banner">;
+      [key: string]: Array<"banner" | "icon">;
     };
   };
   path: {
@@ -1861,19 +1911,19 @@ export type UploadStoreMediaData = {
     file: Blob | File;
     set: {
       store?: Array<
-        "icon" | "banner" | "banner_sale_approved" | "background_ranking"
+        "banner" | "icon" | "background_ranking" | "banner_sale_approved"
       >;
       /**
        * Construct a type with a set of properties K of type T
        */
       products?: {
-        [key: string]: Array<"icon" | "banner">;
+        [key: string]: Array<"banner" | "icon">;
       };
       /**
        * Construct a type with a set of properties K of type T
        */
       discord_sale_panels?: {
-        [key: string]: Array<"icon" | "banner">;
+        [key: string]: Array<"banner" | "icon">;
       };
     };
   };
@@ -2295,8 +2345,8 @@ export type GetStoreResponses = {
      */
     moderators: {
       [key: string]: {
-        username: string;
         discord_user_id: string;
+        username: string;
         permissions: Array<
           | "MANAGE_DISCORD_PANELS"
           | "MANAGE_PRODUCTS"
@@ -2517,8 +2567,26 @@ export type ListTransactionsResponses = {
   /**
    * Transactions listed successfully.
    */
-  200: unknown;
+  200: Array<{
+    id: string;
+    base_value: number;
+    value: number;
+    created_at: number;
+    status:
+      | "inactive"
+      | "invalid-pix-key"
+      | "pending"
+      | "approved"
+      | "cancelled"
+      | "expired"
+      | "refused"
+      | "refunded"
+      | "analysis";
+  }>;
 };
+
+export type ListTransactionsResponse =
+  ListTransactionsResponses[keyof ListTransactionsResponses];
 
 export type GetTransactionData = {
   body?: never;
@@ -2549,21 +2617,21 @@ export type GetTransactionResponses = {
    */
   200: {
     id: string;
+    created_at: number;
+    value: number;
     status:
-      | "approved"
-      | "cancelled"
-      | "refunded"
+      | "pending"
       | "inactive"
       | "invalid-pix-key"
-      | "pending"
+      | "approved"
+      | "cancelled"
       | "expired"
       | "refused"
+      | "refunded"
       | "analysis";
-    value: number;
     method: "pix" | "boleto";
-    created_at: number;
     expires_at: number;
-    type: "transfer" | "sale" | "deposit" | "withdraw";
+    type: "transfer" | "withdraw" | "sale" | "deposit";
     entity: "mercadopago" | "semiauto" | "efi" | "wallet-efi";
     managed?: null | boolean;
     base_value: number;
@@ -2590,15 +2658,15 @@ export type GetTransactionResponses = {
     metadata?: unknown;
     order: {
       id: string;
-      subtotal: number;
-      discount: number;
-      total_value: number;
       platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
       discord_guild_id?: null | string;
       discord_channel_id?: null | string;
       discord_channel_message_id?: null | string;
       discord_sale_message?: null | string;
       discord_feedback_message?: null | string;
+      subtotal: number;
+      discount: number;
+      total_value: number;
       rating?: null | number;
       rating_message?: null | string;
       /**
@@ -2606,8 +2674,8 @@ export type GetTransactionResponses = {
        */
       payer: {
         id: number;
-        username: string;
         discord_user_id: string;
+        username: string;
       };
       /**
        * From T, pick a set of properties whose keys are in the union K
@@ -2623,15 +2691,15 @@ export type GetTransactionResponses = {
        */
       seller: {
         id: number;
-        username: string;
         discord_user_id: string;
+        username: string;
       };
       products: Array<{
         id: number;
         name: string;
-        value: number;
         icon_id?: null | string;
         banner_id?: null | string;
+        value: number;
         short_description?: null | string;
         discord_description?: null | string;
         website_description?: null | string;
@@ -2643,10 +2711,10 @@ export type GetTransactionResponses = {
      * From T, pick a set of properties whose keys are in the union K
      */
     withdraw: {
-      fee: number;
       subtotal: number;
       discount: number;
       total_value: number;
+      fee: number;
       sended_pix_key: null | string;
     };
   };
