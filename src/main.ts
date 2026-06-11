@@ -1,6 +1,7 @@
 import {
     GetStoreDiscordPanelsResponse,
     GetStoreProductResponse,
+    GetStoreProductStockResponse,
     GetStoreResponse,
     GetStoresResponse,
     GetTransactionResponse,
@@ -29,6 +30,7 @@ export type StoreModeratorPermissions = StoreModerator["permissions"][number];
 // Produtos
 export type PartialProduct = ListStoreProductsResponse[number];
 export type Product = GetStoreProductResponse;
+export type ProductStock = GetStoreProductStockResponse[number];
 
 // Transações
 export type TransactionStatus = FullTransaction["status"];
