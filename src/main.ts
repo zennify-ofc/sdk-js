@@ -27,7 +27,7 @@ export type StoreModerator = FullStore["moderators"][number];
 export type StoreModeratorPermissions = StoreModerator["permissions"][number];
 
 // Produtos
-export type PartialProduct = ListStoreProductsResponse;
+export type PartialProduct = ListStoreProductsResponse[number];
 export type Product = GetStoreProductResponse;
 
 // Transações
