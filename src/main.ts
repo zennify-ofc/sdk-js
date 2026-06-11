@@ -1,5 +1,3 @@
-export * from './var';
-export * from './utils';
 export * from './images';
 
 export * from './interfaces/Media';
