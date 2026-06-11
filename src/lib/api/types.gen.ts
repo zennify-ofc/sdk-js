@@ -1844,19 +1844,19 @@ export type CreateStoreRenewOrderResponse =
 export type DeleteStoreMediaData = {
   body?: {
     store?: Array<
-      "banner" | "icon" | "background_ranking" | "banner_sale_approved"
+      "icon" | "banner" | "background_ranking" | "banner_sale_approved"
     >;
     /**
      * Construct a type with a set of properties K of type T
      */
     products?: {
-      [key: string]: Array<"banner" | "icon">;
+      [key: string]: Array<"icon" | "banner">;
     };
     /**
      * Construct a type with a set of properties K of type T
      */
     discord_sale_panels?: {
-      [key: string]: Array<"banner" | "icon">;
+      [key: string]: Array<"icon" | "banner">;
     };
   };
   path: {
@@ -1911,19 +1911,19 @@ export type UploadStoreMediaData = {
     file: Blob | File;
     set: {
       store?: Array<
-        "banner" | "icon" | "background_ranking" | "banner_sale_approved"
+        "icon" | "banner" | "background_ranking" | "banner_sale_approved"
       >;
       /**
        * Construct a type with a set of properties K of type T
        */
       products?: {
-        [key: string]: Array<"banner" | "icon">;
+        [key: string]: Array<"icon" | "banner">;
       };
       /**
        * Construct a type with a set of properties K of type T
        */
       discord_sale_panels?: {
-        [key: string]: Array<"banner" | "icon">;
+        [key: string]: Array<"icon" | "banner">;
       };
     };
   };
@@ -2345,8 +2345,8 @@ export type GetStoreResponses = {
      */
     moderators: {
       [key: string]: {
-        discord_user_id: string;
         username: string;
+        discord_user_id: string;
         permissions: Array<
           | "MANAGE_DISCORD_PANELS"
           | "MANAGE_PRODUCTS"
@@ -2570,6 +2570,7 @@ export type ListTransactionsResponses = {
   200: Array<{
     id: string;
     base_value: number;
+    type: "sale" | "transfer" | "withdraw" | "deposit";
     value: number;
     created_at: number;
     status:
@@ -2616,23 +2617,24 @@ export type GetTransactionResponses = {
    * Transaction returned successfully.
    */
   200: {
-    id: string;
-    created_at: number;
     value: number;
+    id: string;
     status:
+      | "approved"
       | "pending"
+      | "cancelled"
+      | "refunded"
       | "inactive"
       | "invalid-pix-key"
-      | "approved"
-      | "cancelled"
       | "expired"
       | "refused"
-      | "refunded"
       | "analysis";
     method: "pix" | "boleto";
+    created_at: number;
+    type: "sale" | "transfer" | "deposit" | "withdraw";
     expires_at: number;
-    type: "transfer" | "withdraw" | "sale" | "deposit";
     entity: "mercadopago" | "semiauto" | "efi" | "wallet-efi";
+    metadata?: unknown;
     managed?: null | boolean;
     base_value: number;
     refunded_value: number;
@@ -2655,7 +2657,6 @@ export type GetTransactionResponses = {
     pix_e2eid?: null | string;
     pix_qrcode?: null | string;
     payer_bank?: null | string;
-    metadata?: unknown;
     order: {
       id: string;
       platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
@@ -2674,15 +2675,15 @@ export type GetTransactionResponses = {
        */
       payer: {
         id: number;
-        discord_user_id: string;
         username: string;
+        discord_user_id: string;
       };
       /**
        * From T, pick a set of properties whose keys are in the union K
        */
       store: {
-        id: number;
         name: string;
+        id: number;
         icon_id?: null | string;
         banner_id?: null | string;
       };
@@ -2691,15 +2692,15 @@ export type GetTransactionResponses = {
        */
       seller: {
         id: number;
-        discord_user_id: string;
         username: string;
+        discord_user_id: string;
       };
       products: Array<{
-        id: number;
+        value: number;
         name: string;
+        id: number;
         icon_id?: null | string;
         banner_id?: null | string;
-        value: number;
         short_description?: null | string;
         discord_description?: null | string;
         website_description?: null | string;
@@ -2993,7 +2994,7 @@ export type GetUserResponses = {
       discord?: string;
     };
     legal: {
-      status?: "pending" | "approved" | "rejected";
+      status?: "approved" | "pending" | "rejected";
       type?: "cpf" | "cnpj";
       rejectedReason?: string;
     };
