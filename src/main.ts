@@ -16,9 +16,12 @@ export * from "./lib/api/index";
 
 export * from "./interfaces/Guild";
 
+// Utilidades
+type Body<T extends { body?: unknown }> = NonNullable<T["body"]>;
+
 // Usuários, media, tipos gerais
 export type ZennifyUser = GetUserResponse;
-export type MediaUpdatePayload = UploadStoreMediaData;
+export type MediaUpdatePayload = Body<UploadStoreMediaData>;
 
 // Stores
 export type PartialStore = GetStoresResponse[number];
