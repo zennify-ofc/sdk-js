@@ -1844,19 +1844,19 @@ export type CreateStoreRenewOrderResponse =
 export type DeleteStoreMediaData = {
   body?: {
     store?: Array<
-      "banner" | "icon" | "background_ranking" | "banner_sale_approved"
+      "icon" | "banner" | "background_ranking" | "banner_sale_approved"
     >;
     /**
      * Construct a type with a set of properties K of type T
      */
     products?: {
-      [key: string]: Array<"banner" | "icon">;
+      [key: string]: Array<"icon" | "banner">;
     };
     /**
      * Construct a type with a set of properties K of type T
      */
     catalogs?: {
-      [key: string]: Array<"banner" | "icon">;
+      [key: string]: Array<"icon" | "banner">;
     };
   };
   path: {
@@ -1911,19 +1911,19 @@ export type UploadStoreMediaData = {
     file: Blob | File;
     set: {
       store?: Array<
-        "banner" | "icon" | "background_ranking" | "banner_sale_approved"
+        "icon" | "banner" | "background_ranking" | "banner_sale_approved"
       >;
       /**
        * Construct a type with a set of properties K of type T
        */
       products?: {
-        [key: string]: Array<"banner" | "icon">;
+        [key: string]: Array<"icon" | "banner">;
       };
       /**
        * Construct a type with a set of properties K of type T
        */
       catalogs?: {
-        [key: string]: Array<"banner" | "icon">;
+        [key: string]: Array<"icon" | "banner">;
       };
     };
   };
@@ -2031,7 +2031,7 @@ export type EditStoreModeratorData = {
      * Permissions granted to the moderator.
      */
     permissions: Array<
-      | "MANAGE_DISCORD_PANELS"
+      | "MANAGE_CATALOGS"
       | "MANAGE_PRODUCTS"
       | "MANAGE_COUPONS"
       | "MANAGE_STORE"
@@ -2099,7 +2099,7 @@ export type AddModeratorToStoreData = {
      * Permissions granted to the invited moderator.
      */
     permissions: Array<
-      | "MANAGE_DISCORD_PANELS"
+      | "MANAGE_CATALOGS"
       | "MANAGE_PRODUCTS"
       | "MANAGE_COUPONS"
       | "MANAGE_STORE"
@@ -2348,7 +2348,7 @@ export type GetStoreResponses = {
         username: string;
         discord_user_id: string;
         permissions: Array<
-          | "MANAGE_DISCORD_PANELS"
+          | "MANAGE_CATALOGS"
           | "MANAGE_PRODUCTS"
           | "MANAGE_COUPONS"
           | "MANAGE_STORE"
@@ -2568,22 +2568,22 @@ export type ListTransactionsResponses = {
    * Transactions listed successfully.
    */
   200: Array<{
+    type: "transfer" | "sale" | "deposit" | "withdraw";
     id: string;
+    created_at: number;
     status:
-      | "pending"
       | "inactive"
       | "invalid-pix-key"
+      | "pending"
       | "approved"
       | "cancelled"
       | "expired"
       | "refused"
       | "refunded"
       | "analysis";
-    value: number;
-    type: "transfer" | "withdraw" | "sale" | "deposit";
-    created_at: number;
     user2?: null | number;
     base_value: number;
+    value: number;
   }>;
 };
 
@@ -2618,26 +2618,26 @@ export type GetTransactionResponses = {
    * Transaction returned successfully.
    */
   200: {
+    type: "transfer" | "sale" | "deposit" | "withdraw";
     id: string;
+    created_at: number;
+    expires_at: number;
     status:
-      | "pending"
       | "inactive"
       | "invalid-pix-key"
+      | "pending"
       | "approved"
       | "cancelled"
       | "expired"
       | "refused"
       | "refunded"
       | "analysis";
-    value: number;
-    type: "transfer" | "withdraw" | "sale" | "deposit";
-    created_at: number;
-    expires_at: number;
-    method: "pix" | "boleto";
     entity: "mercadopago" | "semiauto" | "efi" | "wallet-efi";
+    method: "pix" | "boleto";
     managed?: null | boolean;
     base_value: number;
     refunded_value: number;
+    value: number;
     refund_reason?:
       | null
       | "fraud"
@@ -2698,8 +2698,8 @@ export type GetTransactionResponses = {
       };
       products: Array<{
         id: number;
-        name: string;
         value: number;
+        name: string;
         icon_id?: null | string;
         banner_id?: null | string;
         short_description?: null | string;
