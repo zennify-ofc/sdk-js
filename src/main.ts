@@ -1,5 +1,5 @@
 import {
-    GetStoreDiscordPanelsResponse,
+    GetStoreCatalogsResponse,
     GetStoreProductResponse,
     GetStoreProductStockResponse,
     GetStoreResponse,
@@ -42,6 +42,6 @@ export type FullTransaction<T = never> = GetTransactionResponse & {
     metadata: T;
 };
 
-// Painéis
-export type Panel = GetStoreDiscordPanelsResponse[number];
-export type PanelProduct = Panel["products"][number];
+// Catálogos
+export type Catalog = GetStoreCatalogsResponse[number];
+export type CatalogProduct = Catalog["products"][number];

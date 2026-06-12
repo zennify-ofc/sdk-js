@@ -615,36 +615,36 @@
         "name": "The product setter is not valid.",
         "message": "Make sure to follow a valid schema."
     },
-    "MEDIA_INVALID_SET_DISCORD_SALE_PANELS": {
-        "name": "The Discord sale panels setter is not valid.",
+    "MEDIA_INVALID_SET_CATALOGS": {
+        "name": "The catalogs setter is not valid.",
         "message": "Make sure to follow a valid schema."
     },
-    "UNKNOWN_PANEL": {
-        "name": "Unknown panel",
-        "message": "Perhaps this panel no longer exists."
+    "UNKNOWN_CATALOG": {
+        "name": "Unknown catalog",
+        "message": "Perhaps this catalog no longer exists."
     },
-    "INVALID_PANEL_NAME": {
-        "name": "Invalid panel name",
-        "message": "Correct the panel name."
+    "INVALID_CATALOG_NAME": {
+        "name": "Invalid catalog name",
+        "message": "Correct the catalog name."
     },
-    "INVALID_PANEL_DESCRIPTION": {
-        "name": "Invalid panel description",
-        "message": "Correct the panel description."
+    "INVALID_CATALOG_DESCRIPTION": {
+        "name": "Invalid catalog description",
+        "message": "Correct the catalog description."
     },
-    "INVALID_PANEL_PLACEHOLDER": {
-        "name": "Invalid panel placeholder",
+    "INVALID_CATALOG_PLACEHOLDER": {
+        "name": "Invalid catalog placeholder",
         "message": "It must have up to 150 characters"
     },
-    "YOU_REACHED_PANEL_LIMIT": {
-        "name": "You reached the panel limit of 30",
-        "message": "Try removing panels you no longer use."
+    "YOU_REACHED_CATALOG_LIMIT": {
+        "name": "Catalog limit reached",
+        "message": "Try removing catalogs you no longer use."
     },
-    "PANEL_NAME_ALREADY_EXIST": {
-        "name": "You already have another panel with this name",
-        "message": "Try to change the name"
+    "CATALOG_NAME_ALREADY_EXIST": {
+        "name": "You already have another catalog with this name",
+        "message": "Try changing the catalog name"
     },
-    "YOU_REACHED_THE_PRODUCT_LIMIT_ON_PANEL": {
-        "name": "You've reached the products limit on the panel",
+    "YOU_REACHED_THE_PRODUCT_LIMIT_ON_CATALOG": {
+        "name": "You've reached the product limit on the catalog",
         "message": "Due to Discord limitations, only up to 25 products are allowed."
     }
 }

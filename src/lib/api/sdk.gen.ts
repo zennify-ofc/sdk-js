@@ -11,6 +11,9 @@ import type {
   AddModeratorToStoreData,
   AddModeratorToStoreErrors,
   AddModeratorToStoreResponses,
+  CreateStoreCatalogData,
+  CreateStoreCatalogErrors,
+  CreateStoreCatalogResponses,
   CreateStoreCouponData,
   CreateStoreCouponErrors,
   CreateStoreCouponResponses,
@@ -18,9 +21,6 @@ import type {
   CreateStoreDiscordEmojisData,
   CreateStoreDiscordEmojisErrors,
   CreateStoreDiscordEmojisResponses,
-  CreateStoreDiscordPanelData,
-  CreateStoreDiscordPanelErrors,
-  CreateStoreDiscordPanelResponses,
   CreateStoreEditOrderData,
   CreateStoreEditOrderErrors,
   CreateStoreEditOrderResponses,
@@ -32,12 +32,12 @@ import type {
   CreateStoreRenewOrderErrors,
   CreateStoreRenewOrderResponses,
   CreateStoreResponses,
+  DeleteStoreCatalogData,
+  DeleteStoreCatalogErrors,
+  DeleteStoreCatalogResponses,
   DeleteStoreCouponData,
   DeleteStoreCouponErrors,
   DeleteStoreCouponResponses,
-  DeleteStoreDiscordPanelData,
-  DeleteStoreDiscordPanelErrors,
-  DeleteStoreDiscordPanelResponses,
   DeleteStoreDiscordServerData,
   DeleteStoreDiscordServerErrors,
   DeleteStoreDiscordServerResponses,
@@ -61,6 +61,9 @@ import type {
   GetServiceDataResponses,
   GetServiceHealthData,
   GetServiceHealthResponses,
+  GetStoreCatalogsData,
+  GetStoreCatalogsErrors,
+  GetStoreCatalogsResponses,
   GetStoreCouponData,
   GetStoreCouponErrors,
   GetStoreCouponResponses,
@@ -71,9 +74,6 @@ import type {
   GetStoreDiscordBotData,
   GetStoreDiscordBotErrors,
   GetStoreDiscordBotResponses,
-  GetStoreDiscordPanelsData,
-  GetStoreDiscordPanelsErrors,
-  GetStoreDiscordPanelsResponses,
   GetStoreDiscordServersData,
   GetStoreDiscordServersErrors,
   GetStoreDiscordServersResponses,
@@ -109,9 +109,9 @@ import type {
   ListTransactionsData,
   ListTransactionsErrors,
   ListTransactionsResponses,
-  PostStoreDiscordPanelMessageData,
-  PostStoreDiscordPanelMessageErrors,
-  PostStoreDiscordPanelMessageResponses,
+  PostStoreCatalogMessageData,
+  PostStoreCatalogMessageErrors,
+  PostStoreCatalogMessageResponses,
   PostStoreProductDiscordMessageData,
   PostStoreProductDiscordMessageErrors,
   PostStoreProductDiscordMessageResponses,
@@ -130,6 +130,9 @@ import type {
   UpdatePixKeyData,
   UpdatePixKeyErrors,
   UpdatePixKeyResponses,
+  UpdateStoreCatalogData,
+  UpdateStoreCatalogErrors,
+  UpdateStoreCatalogResponses,
   UpdateStoreCouponData,
   UpdateStoreCouponErrors,
   UpdateStoreCouponResponses,
@@ -140,9 +143,6 @@ import type {
   UpdateStoreDiscordChannelsData,
   UpdateStoreDiscordChannelsErrors,
   UpdateStoreDiscordChannelsResponses,
-  UpdateStoreDiscordPanelData,
-  UpdateStoreDiscordPanelErrors,
-  UpdateStoreDiscordPanelResponses,
   UpdateStoreErrors,
   UpdateStoreProductData,
   UpdateStoreProductErrors,
@@ -212,100 +212,6 @@ export const getServiceApiSchema = <ThrowOnError extends boolean = false>(
     unknown,
     ThrowOnError
   >({ url: "/openapi.json", ...options });
-
-/**
- * Delete a store Discord sale panel.
- */
-export const deleteStoreDiscordPanel = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteStoreDiscordPanelData, ThrowOnError>,
-) =>
-  (options.client ?? client).delete<
-    DeleteStoreDiscordPanelResponses,
-    DeleteStoreDiscordPanelErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/discord_panels/{panelId}",
-    ...options,
-  });
-
-/**
- * Update a store Discord sale panel.
- */
-export const updateStoreDiscordPanel = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateStoreDiscordPanelData, ThrowOnError>,
-) =>
-  (options.client ?? client).patch<
-    UpdateStoreDiscordPanelResponses,
-    UpdateStoreDiscordPanelErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/discord_panels/{panelId}",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * List store Discord sale panels.
- */
-export const getStoreDiscordPanels = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreDiscordPanelsData, ThrowOnError>,
-) =>
-  (options.client ?? client).get<
-    GetStoreDiscordPanelsResponses,
-    GetStoreDiscordPanelsErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/discord_panels",
-    ...options,
-  });
-
-/**
- * Create a store Discord sale panel.
- */
-export const createStoreDiscordPanel = <ThrowOnError extends boolean = false>(
-  options: Options<CreateStoreDiscordPanelData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    CreateStoreDiscordPanelResponses,
-    CreateStoreDiscordPanelErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/discord_panels",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Ask the store Discord bot to post a panel message in a channel.
- */
-export const postStoreDiscordPanelMessage = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<PostStoreDiscordPanelMessageData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    PostStoreDiscordPanelMessageResponses,
-    PostStoreDiscordPanelMessageErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/discord_panels/{panelId}/discord_messages",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
 
 /**
  * Ask the store Discord bot to post a product message in a channel.
@@ -609,6 +515,98 @@ export const updateStoreDiscordBotToken = <
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/stores/{storeId}/app/discord/token",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a store product catalog.
+ */
+export const deleteStoreCatalog = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteStoreCatalogData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<
+    DeleteStoreCatalogResponses,
+    DeleteStoreCatalogErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/catalogs/{catalogId}",
+    ...options,
+  });
+
+/**
+ * Update a store product catalog.
+ */
+export const updateStoreCatalog = <ThrowOnError extends boolean = false>(
+  options: Options<UpdateStoreCatalogData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    UpdateStoreCatalogResponses,
+    UpdateStoreCatalogErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/catalogs/{catalogId}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List store product catalogs.
+ */
+export const getStoreCatalogs = <ThrowOnError extends boolean = false>(
+  options: Options<GetStoreCatalogsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetStoreCatalogsResponses,
+    GetStoreCatalogsErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/catalogs",
+    ...options,
+  });
+
+/**
+ * Create a store product catalog.
+ */
+export const createStoreCatalog = <ThrowOnError extends boolean = false>(
+  options: Options<CreateStoreCatalogData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    CreateStoreCatalogResponses,
+    CreateStoreCatalogErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/catalogs",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Ask the store Discord bot to post a catalog message in a channel.
+ */
+export const postStoreCatalogMessage = <ThrowOnError extends boolean = false>(
+  options: Options<PostStoreCatalogMessageData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    PostStoreCatalogMessageResponses,
+    PostStoreCatalogMessageErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/catalogs/{catalogId}/discord_messages",
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -1112,7 +1110,7 @@ export const setupEfi = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Update the user's semiauto Pix key.
+ * Create semiauto integration for user.
  */
 export const updatePixKey = <ThrowOnError extends boolean = false>(
   options?: Options<UpdatePixKeyData, ThrowOnError>,
@@ -1123,7 +1121,7 @@ export const updatePixKey = <ThrowOnError extends boolean = false>(
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/pix_key",
+    url: "/users/me/payments/semiauto",
     ...options,
     headers: {
       "Content-Type": "application/json",

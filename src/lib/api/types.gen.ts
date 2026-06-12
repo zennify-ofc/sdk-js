@@ -45,303 +45,6 @@ export type GetServiceApiSchemaResponses = {
   200: unknown;
 };
 
-export type DeleteStoreDiscordPanelData = {
-  body?: never;
-  path: {
-    storeId: string;
-    panelId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/discord_panels/{panelId}";
-};
-
-export type DeleteStoreDiscordPanelErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-};
-
-export type DeleteStoreDiscordPanelError =
-  DeleteStoreDiscordPanelErrors[keyof DeleteStoreDiscordPanelErrors];
-
-export type DeleteStoreDiscordPanelResponses = {
-  /**
-   * Discord panel deleted successfully.
-   */
-  204: void;
-};
-
-export type DeleteStoreDiscordPanelResponse =
-  DeleteStoreDiscordPanelResponses[keyof DeleteStoreDiscordPanelResponses];
-
-export type UpdateStoreDiscordPanelData = {
-  body?: {
-    /**
-     * Public name. Must be 3 to 50 valid characters.
-     */
-    name?: string;
-    placeholder?: null | string;
-    /**
-     * Discord panel description.
-     */
-    description?: string;
-    /**
-     * Products displayed in the panel.
-     */
-    products?: Array<{
-      /**
-       * Product id to show in the panel.
-       */
-      id: number;
-      emoji?: null | string;
-      label?: null | string;
-    }>;
-  };
-  path: {
-    storeId: string;
-    panelId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/discord_panels/{panelId}";
-};
-
-export type UpdateStoreDiscordPanelErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-};
-
-export type UpdateStoreDiscordPanelError =
-  UpdateStoreDiscordPanelErrors[keyof UpdateStoreDiscordPanelErrors];
-
-export type UpdateStoreDiscordPanelResponses = {
-  /**
-   * Discord panel updated successfully.
-   */
-  204: void;
-};
-
-export type UpdateStoreDiscordPanelResponse =
-  UpdateStoreDiscordPanelResponses[keyof UpdateStoreDiscordPanelResponses];
-
-export type GetStoreDiscordPanelsData = {
-  body?: never;
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/discord_panels";
-};
-
-export type GetStoreDiscordPanelsErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-};
-
-export type GetStoreDiscordPanelsError =
-  GetStoreDiscordPanelsErrors[keyof GetStoreDiscordPanelsErrors];
-
-export type GetStoreDiscordPanelsResponses = {
-  /**
-   * Discord panels listed successfully.
-   */
-  200: Array<{
-    id: number;
-    name: string;
-    placeholder: null | string;
-    description: null | string;
-    created_at: number;
-    owner_id: number;
-    store_id: number;
-    icon_id?: null | string;
-    banner_id?: null | string;
-    products: Array<{
-      id: number;
-      emoji: null | string;
-      label: null | string;
-    }>;
-  }>;
-};
-
-export type GetStoreDiscordPanelsResponse =
-  GetStoreDiscordPanelsResponses[keyof GetStoreDiscordPanelsResponses];
-
-export type CreateStoreDiscordPanelData = {
-  body?: {
-    /**
-     * Public name. Must be 3 to 50 valid characters.
-     */
-    name: string;
-    /**
-     * Discord panel description.
-     */
-    description?: string;
-    placeholder?: null | string;
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/discord_panels";
-};
-
-export type CreateStoreDiscordPanelErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-};
-
-export type CreateStoreDiscordPanelError =
-  CreateStoreDiscordPanelErrors[keyof CreateStoreDiscordPanelErrors];
-
-export type CreateStoreDiscordPanelResponses = {
-  /**
-   * Discord panel created successfully.
-   */
-  200: {
-    /**
-     * Discord panel ID.
-     */
-    id: number;
-  };
-};
-
-export type CreateStoreDiscordPanelResponse =
-  CreateStoreDiscordPanelResponses[keyof CreateStoreDiscordPanelResponses];
-
-export type PostStoreDiscordPanelMessageData = {
-  body?: {
-    /**
-     * Discord channel id where the panel message should be posted.
-     */
-    channel_id: string;
-  };
-  path: {
-    storeId: string;
-    panelId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/discord_panels/{panelId}/discord_messages";
-};
-
-export type PostStoreDiscordPanelMessageErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unknown channel.
-   */
-  422: DefaultError;
-};
-
-export type PostStoreDiscordPanelMessageError =
-  PostStoreDiscordPanelMessageErrors[keyof PostStoreDiscordPanelMessageErrors];
-
-export type PostStoreDiscordPanelMessageResponses = {
-  /**
-   * Discord panel message queued successfully.
-   */
-  202: unknown;
-};
-
 export type PostStoreProductDiscordMessageData = {
   body?: {
     /**
@@ -1402,6 +1105,303 @@ export type UpdateStoreDiscordBotTokenResponses = {
 export type UpdateStoreDiscordBotTokenResponse =
   UpdateStoreDiscordBotTokenResponses[keyof UpdateStoreDiscordBotTokenResponses];
 
+export type DeleteStoreCatalogData = {
+  body?: never;
+  path: {
+    storeId: string;
+    catalogId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/catalogs/{catalogId}";
+};
+
+export type DeleteStoreCatalogErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+};
+
+export type DeleteStoreCatalogError =
+  DeleteStoreCatalogErrors[keyof DeleteStoreCatalogErrors];
+
+export type DeleteStoreCatalogResponses = {
+  /**
+   * Catalog deleted successfully.
+   */
+  204: void;
+};
+
+export type DeleteStoreCatalogResponse =
+  DeleteStoreCatalogResponses[keyof DeleteStoreCatalogResponses];
+
+export type UpdateStoreCatalogData = {
+  body?: {
+    /**
+     * Public name. Must be 3 to 50 valid characters.
+     */
+    name?: string;
+    placeholder?: null | string;
+    /**
+     * Catalog description.
+     */
+    description?: string;
+    /**
+     * Products displayed in the catalog.
+     */
+    products?: Array<{
+      /**
+       * Product id to show in the catalog.
+       */
+      id: number;
+      emoji?: null | string;
+      label?: null | string;
+    }>;
+  };
+  path: {
+    storeId: string;
+    catalogId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/catalogs/{catalogId}";
+};
+
+export type UpdateStoreCatalogErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type UpdateStoreCatalogError =
+  UpdateStoreCatalogErrors[keyof UpdateStoreCatalogErrors];
+
+export type UpdateStoreCatalogResponses = {
+  /**
+   * Catalog updated successfully.
+   */
+  204: void;
+};
+
+export type UpdateStoreCatalogResponse =
+  UpdateStoreCatalogResponses[keyof UpdateStoreCatalogResponses];
+
+export type GetStoreCatalogsData = {
+  body?: never;
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/catalogs";
+};
+
+export type GetStoreCatalogsErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+};
+
+export type GetStoreCatalogsError =
+  GetStoreCatalogsErrors[keyof GetStoreCatalogsErrors];
+
+export type GetStoreCatalogsResponses = {
+  /**
+   * Catalogs listed successfully.
+   */
+  200: Array<{
+    id: number;
+    name: string;
+    placeholder: null | string;
+    description: null | string;
+    created_at: number;
+    owner_id: number;
+    store_id: number;
+    icon_id?: null | string;
+    banner_id?: null | string;
+    products: Array<{
+      id: number;
+      emoji: null | string;
+      label: null | string;
+    }>;
+  }>;
+};
+
+export type GetStoreCatalogsResponse =
+  GetStoreCatalogsResponses[keyof GetStoreCatalogsResponses];
+
+export type CreateStoreCatalogData = {
+  body?: {
+    /**
+     * Public name. Must be 3 to 50 valid characters.
+     */
+    name: string;
+    /**
+     * Catalog description.
+     */
+    description?: string;
+    placeholder?: null | string;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/catalogs";
+};
+
+export type CreateStoreCatalogErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type CreateStoreCatalogError =
+  CreateStoreCatalogErrors[keyof CreateStoreCatalogErrors];
+
+export type CreateStoreCatalogResponses = {
+  /**
+   * Catalog created successfully.
+   */
+  200: {
+    /**
+     * Catalog ID.
+     */
+    id: number;
+  };
+};
+
+export type CreateStoreCatalogResponse =
+  CreateStoreCatalogResponses[keyof CreateStoreCatalogResponses];
+
+export type PostStoreCatalogMessageData = {
+  body?: {
+    /**
+     * Discord channel id where the catalog message should be posted.
+     */
+    channel_id: string;
+  };
+  path: {
+    storeId: string;
+    catalogId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/catalogs/{catalogId}/discord_messages";
+};
+
+export type PostStoreCatalogMessageErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unknown channel.
+   */
+  422: DefaultError;
+};
+
+export type PostStoreCatalogMessageError =
+  PostStoreCatalogMessageErrors[keyof PostStoreCatalogMessageErrors];
+
+export type PostStoreCatalogMessageResponses = {
+  /**
+   * Catalog message queued successfully.
+   */
+  202: unknown;
+};
+
 export type DeleteStoreCouponData = {
   body?: never;
   path: {
@@ -1844,19 +1844,19 @@ export type CreateStoreRenewOrderResponse =
 export type DeleteStoreMediaData = {
   body?: {
     store?: Array<
-      "icon" | "banner" | "background_ranking" | "banner_sale_approved"
+      "banner" | "icon" | "background_ranking" | "banner_sale_approved"
     >;
     /**
      * Construct a type with a set of properties K of type T
      */
     products?: {
-      [key: string]: Array<"icon" | "banner">;
+      [key: string]: Array<"banner" | "icon">;
     };
     /**
      * Construct a type with a set of properties K of type T
      */
-    discord_sale_panels?: {
-      [key: string]: Array<"icon" | "banner">;
+    catalogs?: {
+      [key: string]: Array<"banner" | "icon">;
     };
   };
   path: {
@@ -1911,19 +1911,19 @@ export type UploadStoreMediaData = {
     file: Blob | File;
     set: {
       store?: Array<
-        "icon" | "banner" | "background_ranking" | "banner_sale_approved"
+        "banner" | "icon" | "background_ranking" | "banner_sale_approved"
       >;
       /**
        * Construct a type with a set of properties K of type T
        */
       products?: {
-        [key: string]: Array<"icon" | "banner">;
+        [key: string]: Array<"banner" | "icon">;
       };
       /**
        * Construct a type with a set of properties K of type T
        */
-      discord_sale_panels?: {
-        [key: string]: Array<"icon" | "banner">;
+      catalogs?: {
+        [key: string]: Array<"banner" | "icon">;
       };
     };
   };
@@ -2569,20 +2569,21 @@ export type ListTransactionsResponses = {
    */
   200: Array<{
     id: string;
-    base_value: number;
-    type: "sale" | "transfer" | "withdraw" | "deposit";
-    value: number;
-    created_at: number;
     status:
+      | "pending"
       | "inactive"
       | "invalid-pix-key"
-      | "pending"
       | "approved"
       | "cancelled"
       | "expired"
       | "refused"
       | "refunded"
       | "analysis";
+    value: number;
+    type: "transfer" | "withdraw" | "sale" | "deposit";
+    created_at: number;
+    user2?: null | number;
+    base_value: number;
   }>;
 };
 
@@ -2617,24 +2618,23 @@ export type GetTransactionResponses = {
    * Transaction returned successfully.
    */
   200: {
-    value: number;
     id: string;
     status:
-      | "approved"
       | "pending"
-      | "cancelled"
-      | "refunded"
       | "inactive"
       | "invalid-pix-key"
+      | "approved"
+      | "cancelled"
       | "expired"
       | "refused"
+      | "refunded"
       | "analysis";
-    method: "pix" | "boleto";
+    value: number;
+    type: "transfer" | "withdraw" | "sale" | "deposit";
     created_at: number;
-    type: "sale" | "transfer" | "deposit" | "withdraw";
     expires_at: number;
+    method: "pix" | "boleto";
     entity: "mercadopago" | "semiauto" | "efi" | "wallet-efi";
-    metadata?: unknown;
     managed?: null | boolean;
     base_value: number;
     refunded_value: number;
@@ -2657,6 +2657,7 @@ export type GetTransactionResponses = {
     pix_e2eid?: null | string;
     pix_qrcode?: null | string;
     payer_bank?: null | string;
+    metadata?: unknown;
     order: {
       id: string;
       platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
@@ -2682,8 +2683,8 @@ export type GetTransactionResponses = {
        * From T, pick a set of properties whose keys are in the union K
        */
       store: {
-        name: string;
         id: number;
+        name: string;
         icon_id?: null | string;
         banner_id?: null | string;
       };
@@ -2696,9 +2697,9 @@ export type GetTransactionResponses = {
         discord_user_id: string;
       };
       products: Array<{
-        value: number;
-        name: string;
         id: number;
+        name: string;
+        value: number;
         icon_id?: null | string;
         banner_id?: null | string;
         short_description?: null | string;
@@ -2994,7 +2995,7 @@ export type GetUserResponses = {
       discord?: string;
     };
     legal: {
-      status?: "approved" | "pending" | "rejected";
+      status?: "pending" | "approved" | "rejected";
       type?: "cpf" | "cnpj";
       rejectedReason?: string;
     };
@@ -3150,7 +3151,7 @@ export type UpdatePixKeyData = {
   };
   path?: never;
   query?: never;
-  url: "/users/me/pix_key";
+  url: "/users/me/payments/semiauto";
 };
 
 export type UpdatePixKeyErrors = {
@@ -3176,7 +3177,7 @@ export type UpdatePixKeyError = UpdatePixKeyErrors[keyof UpdatePixKeyErrors];
 
 export type UpdatePixKeyResponses = {
   /**
-   * Pix key updated or unchanged.
+   * Semiauto configured succesfully.
    */
   204: void;
 };
