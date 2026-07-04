@@ -45,7 +45,7 @@ export type GetServiceApiSchemaResponses = {
   200: unknown;
 };
 
-export type PostStoreProductDiscordMessageData = {
+export type SendProductDiscordMessageData = {
   body?: {
     /**
      * Discord channel id where the product message should be posted.
@@ -60,7 +60,7 @@ export type PostStoreProductDiscordMessageData = {
   url: "/stores/{storeId}/products/{productId}/discord_messages";
 };
 
-export type PostStoreProductDiscordMessageErrors = {
+export type SendProductDiscordMessageErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -91,17 +91,17 @@ export type PostStoreProductDiscordMessageErrors = {
   422: DefaultError;
 };
 
-export type PostStoreProductDiscordMessageError =
-  PostStoreProductDiscordMessageErrors[keyof PostStoreProductDiscordMessageErrors];
+export type SendProductDiscordMessageError =
+  SendProductDiscordMessageErrors[keyof SendProductDiscordMessageErrors];
 
-export type PostStoreProductDiscordMessageResponses = {
+export type SendProductDiscordMessageResponses = {
   /**
    * Discord product message queued successfully.
    */
   202: unknown;
 };
 
-export type DeleteStoreProductData = {
+export type DeleteProductData = {
   body?: never;
   path: {
     storeId: string;
@@ -111,7 +111,7 @@ export type DeleteStoreProductData = {
   url: "/stores/{storeId}/products/{productId}";
 };
 
-export type DeleteStoreProductErrors = {
+export type DeleteProductErrors = {
   /**
    * User not authenticated.
    */
@@ -130,20 +130,19 @@ export type DeleteStoreProductErrors = {
   404: DefaultError;
 };
 
-export type DeleteStoreProductError =
-  DeleteStoreProductErrors[keyof DeleteStoreProductErrors];
+export type DeleteProductError = DeleteProductErrors[keyof DeleteProductErrors];
 
-export type DeleteStoreProductResponses = {
+export type DeleteProductResponses = {
   /**
    * Product deleted successfully.
    */
   204: void;
 };
 
-export type DeleteStoreProductResponse =
-  DeleteStoreProductResponses[keyof DeleteStoreProductResponses];
+export type DeleteProductResponse =
+  DeleteProductResponses[keyof DeleteProductResponses];
 
-export type GetStoreProductData = {
+export type GetProductData = {
   body?: never;
   path: {
     storeId: string;
@@ -153,7 +152,7 @@ export type GetStoreProductData = {
   url: "/stores/{storeId}/products/{productId}";
 };
 
-export type GetStoreProductErrors = {
+export type GetProductErrors = {
   /**
    * User not authenticated.
    */
@@ -172,10 +171,9 @@ export type GetStoreProductErrors = {
   404: DefaultError;
 };
 
-export type GetStoreProductError =
-  GetStoreProductErrors[keyof GetStoreProductErrors];
+export type GetProductError = GetProductErrors[keyof GetProductErrors];
 
-export type GetStoreProductResponses = {
+export type GetProductResponses = {
   /**
    * Product returned successfully.
    */
@@ -200,10 +198,9 @@ export type GetStoreProductResponses = {
   };
 };
 
-export type GetStoreProductResponse =
-  GetStoreProductResponses[keyof GetStoreProductResponses];
+export type GetProductResponse = GetProductResponses[keyof GetProductResponses];
 
-export type UpdateStoreProductData = {
+export type EditProductData = {
   body?: {
     /**
      * Public name. Must be 3 to 50 valid characters.
@@ -228,7 +225,7 @@ export type UpdateStoreProductData = {
   url: "/stores/{storeId}/products/{productId}";
 };
 
-export type UpdateStoreProductErrors = {
+export type EditProductErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -259,20 +256,19 @@ export type UpdateStoreProductErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreProductError =
-  UpdateStoreProductErrors[keyof UpdateStoreProductErrors];
+export type EditProductError = EditProductErrors[keyof EditProductErrors];
 
-export type UpdateStoreProductResponses = {
+export type EditProductResponses = {
   /**
    * Product updated successfully.
    */
   204: void;
 };
 
-export type UpdateStoreProductResponse =
-  UpdateStoreProductResponses[keyof UpdateStoreProductResponses];
+export type EditProductResponse =
+  EditProductResponses[keyof EditProductResponses];
 
-export type ListStoreProductsData = {
+export type ListProductsData = {
   body?: never;
   path: {
     storeId: string;
@@ -281,7 +277,7 @@ export type ListStoreProductsData = {
   url: "/stores/{storeId}/products";
 };
 
-export type ListStoreProductsErrors = {
+export type ListProductsErrors = {
   /**
    * User not authenticated.
    */
@@ -300,10 +296,9 @@ export type ListStoreProductsErrors = {
   404: DefaultError;
 };
 
-export type ListStoreProductsError =
-  ListStoreProductsErrors[keyof ListStoreProductsErrors];
+export type ListProductsError = ListProductsErrors[keyof ListProductsErrors];
 
-export type ListStoreProductsResponses = {
+export type ListProductsResponses = {
   /**
    * Products listed successfully.
    */
@@ -318,10 +313,10 @@ export type ListStoreProductsResponses = {
   }>;
 };
 
-export type ListStoreProductsResponse =
-  ListStoreProductsResponses[keyof ListStoreProductsResponses];
+export type ListProductsResponse =
+  ListProductsResponses[keyof ListProductsResponses];
 
-export type CreateStoreProductData = {
+export type CreateProductData = {
   body?: {
     /**
      * Public name. Must be 3 to 50 valid characters.
@@ -339,7 +334,7 @@ export type CreateStoreProductData = {
   url: "/stores/{storeId}/products";
 };
 
-export type CreateStoreProductErrors = {
+export type CreateProductErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -370,10 +365,9 @@ export type CreateStoreProductErrors = {
   422: DefaultError;
 };
 
-export type CreateStoreProductError =
-  CreateStoreProductErrors[keyof CreateStoreProductErrors];
+export type CreateProductError = CreateProductErrors[keyof CreateProductErrors];
 
-export type CreateStoreProductResponses = {
+export type CreateProductResponses = {
   /**
    * Product created successfully.
    */
@@ -385,10 +379,10 @@ export type CreateStoreProductResponses = {
   };
 };
 
-export type CreateStoreProductResponse =
-  CreateStoreProductResponses[keyof CreateStoreProductResponses];
+export type CreateProductResponse =
+  CreateProductResponses[keyof CreateProductResponses];
 
-export type UpdateStoreProductStockItemData = {
+export type EditProductStockItemData = {
   body?: {
     /**
      * Private stock content delivered to the buyer.
@@ -408,7 +402,7 @@ export type UpdateStoreProductStockItemData = {
   url: "/stores/{storeId}/products/{productId}/stock/{stockId}";
 };
 
-export type UpdateStoreProductStockItemErrors = {
+export type EditProductStockItemErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -439,20 +433,20 @@ export type UpdateStoreProductStockItemErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreProductStockItemError =
-  UpdateStoreProductStockItemErrors[keyof UpdateStoreProductStockItemErrors];
+export type EditProductStockItemError =
+  EditProductStockItemErrors[keyof EditProductStockItemErrors];
 
-export type UpdateStoreProductStockItemResponses = {
+export type EditProductStockItemResponses = {
   /**
    * Stock item updated successfully.
    */
   204: void;
 };
 
-export type UpdateStoreProductStockItemResponse =
-  UpdateStoreProductStockItemResponses[keyof UpdateStoreProductStockItemResponses];
+export type EditProductStockItemResponse =
+  EditProductStockItemResponses[keyof EditProductStockItemResponses];
 
-export type GetStoreProductStockData = {
+export type GetProductStockData = {
   body?: never;
   path: {
     storeId: string;
@@ -462,7 +456,7 @@ export type GetStoreProductStockData = {
   url: "/stores/{storeId}/products/{productId}/stock";
 };
 
-export type GetStoreProductStockErrors = {
+export type GetProductStockErrors = {
   /**
    * User not authenticated.
    */
@@ -481,10 +475,10 @@ export type GetStoreProductStockErrors = {
   404: DefaultError;
 };
 
-export type GetStoreProductStockError =
-  GetStoreProductStockErrors[keyof GetStoreProductStockErrors];
+export type GetProductStockError =
+  GetProductStockErrors[keyof GetProductStockErrors];
 
-export type GetStoreProductStockResponses = {
+export type GetProductStockResponses = {
   /**
    * Stock items listed successfully.
    */
@@ -504,10 +498,10 @@ export type GetStoreProductStockResponses = {
   }>;
 };
 
-export type GetStoreProductStockResponse =
-  GetStoreProductStockResponses[keyof GetStoreProductStockResponses];
+export type GetProductStockResponse =
+  GetProductStockResponses[keyof GetProductStockResponses];
 
-export type UpdateStoreProductStockData = {
+export type EditProductStockData = {
   body?: {
     stock_locked?: boolean;
     add?: Array<{
@@ -531,7 +525,7 @@ export type UpdateStoreProductStockData = {
   url: "/stores/{storeId}/products/{productId}/stock";
 };
 
-export type UpdateStoreProductStockErrors = {
+export type EditProductStockErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -562,10 +556,10 @@ export type UpdateStoreProductStockErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreProductStockError =
-  UpdateStoreProductStockErrors[keyof UpdateStoreProductStockErrors];
+export type EditProductStockError =
+  EditProductStockErrors[keyof EditProductStockErrors];
 
-export type UpdateStoreProductStockResponses = {
+export type EditProductStockResponses = {
   /**
    * Product stock updated successfully.
    */
@@ -588,27 +582,8 @@ export type UpdateStoreProductStockResponses = {
   };
 };
 
-export type UpdateStoreProductStockResponse =
-  UpdateStoreProductStockResponses[keyof UpdateStoreProductStockResponses];
-
-export type GetApiReferenceData = {
-  body?: never;
-  path?: never;
-  query?: never;
-  url: "/reference";
-};
-
-export type GetApiReferenceResponses = {
-  /**
-   * Success, good work with our API :)
-   */
-  200:
-    | '\n<!doctype html>\n<html>\n    <head>\n        <title>Zennify API Reference</title>\n        <meta charset="utf-8" />\n        <meta name="viewport" content="width=device-width, initial-scale=1" />\n        <meta name="title" content="Zennify API" />\n        <meta name="description" content="Zennify API Documentation" />\n        <meta property="og:description" content="Zennify API Documentation" />\n        <meta property="og:title" content="Zennify API" />\n        <meta property="og:image" content="https://zennify.app/logo.png" />\n        <meta name="twitter:card" content="summary_large_image" />\n    </head>\n    <body>\n        <div id="app"></div>\n        <!-- Load the Script -->\n        <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>\n        <!-- Initialize the API Reference -->\n        <script>\n            Scalar.createApiReference("#app", {\n                // The URL of the OpenAPI/Swagger document\n                url: "https://api.zennify.app/openapi.json",\n                // Avoid CORS issues\n                proxyUrl: "",\n                showOperationId: true,\n                persistAuth: true,\n                telemetry: false,\n                theme: "deepSpace",\n            });\n        </script>\n    </body>\n</html>'
-    | '\n<!doctype html>\n<html>\n    <head>\n        <title>Zennify API Reference</title>\n        <meta charset="utf-8" />\n        <meta name="viewport" content="width=device-width, initial-scale=1" />\n        <meta name="title" content="Zennify API" />\n        <meta name="description" content="Zennify API Documentation" />\n        <meta property="og:description" content="Zennify API Documentation" />\n        <meta property="og:title" content="Zennify API" />\n        <meta property="og:image" content="https://zennify.app/logo.png" />\n        <meta name="twitter:card" content="summary_large_image" />\n    </head>\n    <body>\n        <div id="app"></div>\n        <!-- Load the Script -->\n        <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>\n        <!-- Initialize the API Reference -->\n        <script>\n            Scalar.createApiReference("#app", {\n                // The URL of the OpenAPI/Swagger document\n                url: "https://api.zennify.space/openapi.json",\n                // Avoid CORS issues\n                proxyUrl: "",\n                showOperationId: true,\n                persistAuth: true,\n                telemetry: false,\n                theme: "deepSpace",\n            });\n        </script>\n    </body>\n</html>';
-};
-
-export type GetApiReferenceResponse =
-  GetApiReferenceResponses[keyof GetApiReferenceResponses];
+export type EditProductStockResponse =
+  EditProductStockResponses[keyof EditProductStockResponses];
 
 export type GetServiceDataData = {
   body?: never;
@@ -702,7 +677,7 @@ export type GetServiceDataResponses = {
 export type GetServiceDataResponse =
   GetServiceDataResponses[keyof GetServiceDataResponses];
 
-export type UpdateStoreDiscordChannelsData = {
+export type EditDiscordAppChannelsData = {
   body?: {
     /**
      * Discord guild and channel binding.
@@ -752,7 +727,7 @@ export type UpdateStoreDiscordChannelsData = {
   url: "/stores/{storeId}/app/discord/channels";
 };
 
-export type UpdateStoreDiscordChannelsErrors = {
+export type EditDiscordAppChannelsErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -783,36 +758,29 @@ export type UpdateStoreDiscordChannelsErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreDiscordChannelsError =
-  UpdateStoreDiscordChannelsErrors[keyof UpdateStoreDiscordChannelsErrors];
+export type EditDiscordAppChannelsError =
+  EditDiscordAppChannelsErrors[keyof EditDiscordAppChannelsErrors];
 
-export type UpdateStoreDiscordChannelsResponses = {
+export type EditDiscordAppChannelsResponses = {
   /**
    * Discord channels updated successfully.
    */
   204: void;
 };
 
-export type UpdateStoreDiscordChannelsResponse =
-  UpdateStoreDiscordChannelsResponses[keyof UpdateStoreDiscordChannelsResponses];
+export type EditDiscordAppChannelsResponse =
+  EditDiscordAppChannelsResponses[keyof EditDiscordAppChannelsResponses];
 
-export type CreateStoreDiscordEmojisData = {
-  body?: {
-    emojis: Array<Blob | File>;
-  };
+export type GetDiscordAppEmojisData = {
+  body?: never;
   path: {
     storeId: string;
-    serverId: string;
   };
   query?: never;
-  url: "/stores/{storeId}/app/discord/{serverId}/emojis";
+  url: "/stores/{storeId}/app/discord/emojis";
 };
 
-export type CreateStoreDiscordEmojisErrors = {
-  /**
-   * Invalid Multipart payload.
-   */
-  400: DefaultError;
+export type GetDiscordAppEmojisErrors = {
   /**
    * User not authenticated.
    */
@@ -829,43 +797,25 @@ export type CreateStoreDiscordEmojisErrors = {
    * Unknown store.
    */
   404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Your actions are being limited.
-   */
-  429: DefaultError;
 };
 
-export type CreateStoreDiscordEmojisError =
-  CreateStoreDiscordEmojisErrors[keyof CreateStoreDiscordEmojisErrors];
+export type GetDiscordAppEmojisError =
+  GetDiscordAppEmojisErrors[keyof GetDiscordAppEmojisErrors];
 
-export type CreateStoreDiscordEmojisResponses = {
-  /**
-   * Discord emojis created successfully.
-   */
-  200: Array<{
-    /**
-     * Discord emoji id.
-     */
-    id: string;
-    /**
-     * Discord emoji name.
-     */
-    name: string;
-  }>;
+export type GetDiscordAppEmojisResponses = {
+  200: {
+    [key: string]: {
+      name: string;
+      guild?: string;
+      anim?: boolean;
+    };
+  };
 };
 
-export type CreateStoreDiscordEmojisResponse =
-  CreateStoreDiscordEmojisResponses[keyof CreateStoreDiscordEmojisResponses];
+export type GetDiscordAppEmojisResponse =
+  GetDiscordAppEmojisResponses[keyof GetDiscordAppEmojisResponses];
 
-export type GetStoreDiscordBotData = {
+export type GetDiscordAppInfoData = {
   body?: never;
   path: {
     storeId: string;
@@ -874,7 +824,7 @@ export type GetStoreDiscordBotData = {
   url: "/stores/{storeId}/app/discord";
 };
 
-export type GetStoreDiscordBotErrors = {
+export type GetDiscordAppInfoErrors = {
   /**
    * User not authenticated.
    */
@@ -893,12 +843,12 @@ export type GetStoreDiscordBotErrors = {
   404: DefaultError;
 };
 
-export type GetStoreDiscordBotError =
-  GetStoreDiscordBotErrors[keyof GetStoreDiscordBotErrors];
+export type GetDiscordAppInfoError =
+  GetDiscordAppInfoErrors[keyof GetDiscordAppInfoErrors];
 
-export type GetStoreDiscordBotResponses = {
+export type GetDiscordAppInfoResponses = {
   /**
-   * Discord bot status returned successfully.
+   * Discord app info returned successfully.
    */
   200:
     | {
@@ -944,28 +894,19 @@ export type GetStoreDiscordBotResponses = {
       };
 };
 
-export type GetStoreDiscordBotResponse =
-  GetStoreDiscordBotResponses[keyof GetStoreDiscordBotResponses];
+export type GetDiscordAppInfoResponse =
+  GetDiscordAppInfoResponses[keyof GetDiscordAppInfoResponses];
 
-export type DeleteStoreDiscordServerData = {
-  body?: {
-    /**
-     * Discord guild id.
-     */
-    id: string;
-  };
+export type GetDiscordAppRolesData = {
+  body?: never;
   path: {
     storeId: string;
   };
   query?: never;
-  url: "/stores/{storeId}/app/discord/servers";
+  url: "/stores/{storeId}/app/discord/roles";
 };
 
-export type DeleteStoreDiscordServerErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
+export type GetDiscordAppRolesErrors = {
   /**
    * User not authenticated.
    */
@@ -982,30 +923,40 @@ export type DeleteStoreDiscordServerErrors = {
    * Unknown store.
    */
   404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
 };
 
-export type DeleteStoreDiscordServerError =
-  DeleteStoreDiscordServerErrors[keyof DeleteStoreDiscordServerErrors];
+export type GetDiscordAppRolesError =
+  GetDiscordAppRolesErrors[keyof GetDiscordAppRolesErrors];
 
-export type DeleteStoreDiscordServerResponses = {
+export type GetDiscordAppRolesResponses = {
   /**
-   * Discord guild removed successfully.
+   * Sucessfull Response
    */
-  204: void;
+  200: {
+    [key: string]: {
+      id: string;
+      name: string;
+      owner_id: string;
+      members: number;
+      icon_url: null | string;
+      /**
+       * Construct a type with a set of properties K of type T
+       */
+      roles: {
+        [key: string]: {
+          name: string;
+          position: number;
+          color: number;
+        };
+      };
+    };
+  };
 };
 
-export type DeleteStoreDiscordServerResponse =
-  DeleteStoreDiscordServerResponses[keyof DeleteStoreDiscordServerResponses];
+export type GetDiscordAppRolesResponse =
+  GetDiscordAppRolesResponses[keyof GetDiscordAppRolesResponses];
 
-export type GetStoreDiscordServersData = {
+export type GetDiscordAppServersData = {
   body?: never;
   path: {
     storeId: string;
@@ -1014,7 +965,7 @@ export type GetStoreDiscordServersData = {
   url: "/stores/{storeId}/app/discord/servers";
 };
 
-export type GetStoreDiscordServersErrors = {
+export type GetDiscordAppServersErrors = {
   /**
    * User not authenticated.
    */
@@ -1033,17 +984,17 @@ export type GetStoreDiscordServersErrors = {
   404: DefaultError;
 };
 
-export type GetStoreDiscordServersError =
-  GetStoreDiscordServersErrors[keyof GetStoreDiscordServersErrors];
+export type GetDiscordAppServersError =
+  GetDiscordAppServersErrors[keyof GetDiscordAppServersErrors];
 
-export type GetStoreDiscordServersResponses = {
+export type GetDiscordAppServersResponses = {
   /**
    * Discord guilds listed successfully.
    */
   200: unknown;
 };
 
-export type UpdateStoreDiscordBotTokenData = {
+export type EditDiscordAppTokenData = {
   body?: {
     /**
      * Discord bot token.
@@ -1057,7 +1008,7 @@ export type UpdateStoreDiscordBotTokenData = {
   url: "/stores/{storeId}/app/discord/token";
 };
 
-export type UpdateStoreDiscordBotTokenErrors = {
+export type EditDiscordAppTokenErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -1092,20 +1043,20 @@ export type UpdateStoreDiscordBotTokenErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreDiscordBotTokenError =
-  UpdateStoreDiscordBotTokenErrors[keyof UpdateStoreDiscordBotTokenErrors];
+export type EditDiscordAppTokenError =
+  EditDiscordAppTokenErrors[keyof EditDiscordAppTokenErrors];
 
-export type UpdateStoreDiscordBotTokenResponses = {
+export type EditDiscordAppTokenResponses = {
   /**
    * Discord bot token updated successfully.
    */
   204: void;
 };
 
-export type UpdateStoreDiscordBotTokenResponse =
-  UpdateStoreDiscordBotTokenResponses[keyof UpdateStoreDiscordBotTokenResponses];
+export type EditDiscordAppTokenResponse =
+  EditDiscordAppTokenResponses[keyof EditDiscordAppTokenResponses];
 
-export type DeleteStoreCatalogData = {
+export type DeleteProductCatalogData = {
   body?: never;
   path: {
     storeId: string;
@@ -1115,7 +1066,7 @@ export type DeleteStoreCatalogData = {
   url: "/stores/{storeId}/catalogs/{catalogId}";
 };
 
-export type DeleteStoreCatalogErrors = {
+export type DeleteProductCatalogErrors = {
   /**
    * User not authenticated.
    */
@@ -1134,20 +1085,20 @@ export type DeleteStoreCatalogErrors = {
   404: DefaultError;
 };
 
-export type DeleteStoreCatalogError =
-  DeleteStoreCatalogErrors[keyof DeleteStoreCatalogErrors];
+export type DeleteProductCatalogError =
+  DeleteProductCatalogErrors[keyof DeleteProductCatalogErrors];
 
-export type DeleteStoreCatalogResponses = {
+export type DeleteProductCatalogResponses = {
   /**
    * Catalog deleted successfully.
    */
   204: void;
 };
 
-export type DeleteStoreCatalogResponse =
-  DeleteStoreCatalogResponses[keyof DeleteStoreCatalogResponses];
+export type DeleteProductCatalogResponse =
+  DeleteProductCatalogResponses[keyof DeleteProductCatalogResponses];
 
-export type UpdateStoreCatalogData = {
+export type EditProductCatalogData = {
   body?: {
     /**
      * Public name. Must be 3 to 50 valid characters.
@@ -1178,7 +1129,7 @@ export type UpdateStoreCatalogData = {
   url: "/stores/{storeId}/catalogs/{catalogId}";
 };
 
-export type UpdateStoreCatalogErrors = {
+export type EditProductCatalogErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -1209,20 +1160,20 @@ export type UpdateStoreCatalogErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreCatalogError =
-  UpdateStoreCatalogErrors[keyof UpdateStoreCatalogErrors];
+export type EditProductCatalogError =
+  EditProductCatalogErrors[keyof EditProductCatalogErrors];
 
-export type UpdateStoreCatalogResponses = {
+export type EditProductCatalogResponses = {
   /**
    * Catalog updated successfully.
    */
   204: void;
 };
 
-export type UpdateStoreCatalogResponse =
-  UpdateStoreCatalogResponses[keyof UpdateStoreCatalogResponses];
+export type EditProductCatalogResponse =
+  EditProductCatalogResponses[keyof EditProductCatalogResponses];
 
-export type GetStoreCatalogsData = {
+export type ListProductCatalogsData = {
   body?: never;
   path: {
     storeId: string;
@@ -1231,7 +1182,7 @@ export type GetStoreCatalogsData = {
   url: "/stores/{storeId}/catalogs";
 };
 
-export type GetStoreCatalogsErrors = {
+export type ListProductCatalogsErrors = {
   /**
    * User not authenticated.
    */
@@ -1250,10 +1201,10 @@ export type GetStoreCatalogsErrors = {
   404: DefaultError;
 };
 
-export type GetStoreCatalogsError =
-  GetStoreCatalogsErrors[keyof GetStoreCatalogsErrors];
+export type ListProductCatalogsError =
+  ListProductCatalogsErrors[keyof ListProductCatalogsErrors];
 
-export type GetStoreCatalogsResponses = {
+export type ListProductCatalogsResponses = {
   /**
    * Catalogs listed successfully.
    */
@@ -1275,10 +1226,10 @@ export type GetStoreCatalogsResponses = {
   }>;
 };
 
-export type GetStoreCatalogsResponse =
-  GetStoreCatalogsResponses[keyof GetStoreCatalogsResponses];
+export type ListProductCatalogsResponse =
+  ListProductCatalogsResponses[keyof ListProductCatalogsResponses];
 
-export type CreateStoreCatalogData = {
+export type CreateProductCatalogData = {
   body?: {
     /**
      * Public name. Must be 3 to 50 valid characters.
@@ -1297,7 +1248,7 @@ export type CreateStoreCatalogData = {
   url: "/stores/{storeId}/catalogs";
 };
 
-export type CreateStoreCatalogErrors = {
+export type CreateProductCatalogErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -1328,10 +1279,10 @@ export type CreateStoreCatalogErrors = {
   422: DefaultError;
 };
 
-export type CreateStoreCatalogError =
-  CreateStoreCatalogErrors[keyof CreateStoreCatalogErrors];
+export type CreateProductCatalogError =
+  CreateProductCatalogErrors[keyof CreateProductCatalogErrors];
 
-export type CreateStoreCatalogResponses = {
+export type CreateProductCatalogResponses = {
   /**
    * Catalog created successfully.
    */
@@ -1343,10 +1294,10 @@ export type CreateStoreCatalogResponses = {
   };
 };
 
-export type CreateStoreCatalogResponse =
-  CreateStoreCatalogResponses[keyof CreateStoreCatalogResponses];
+export type CreateProductCatalogResponse =
+  CreateProductCatalogResponses[keyof CreateProductCatalogResponses];
 
-export type PostStoreCatalogMessageData = {
+export type SendProductCatalogMessageData = {
   body?: {
     /**
      * Discord channel id where the catalog message should be posted.
@@ -1361,7 +1312,7 @@ export type PostStoreCatalogMessageData = {
   url: "/stores/{storeId}/catalogs/{catalogId}/discord_messages";
 };
 
-export type PostStoreCatalogMessageErrors = {
+export type SendProductCatalogMessageErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -1392,17 +1343,17 @@ export type PostStoreCatalogMessageErrors = {
   422: DefaultError;
 };
 
-export type PostStoreCatalogMessageError =
-  PostStoreCatalogMessageErrors[keyof PostStoreCatalogMessageErrors];
+export type SendProductCatalogMessageError =
+  SendProductCatalogMessageErrors[keyof SendProductCatalogMessageErrors];
 
-export type PostStoreCatalogMessageResponses = {
+export type SendProductCatalogMessageResponses = {
   /**
    * Catalog message queued successfully.
    */
   202: unknown;
 };
 
-export type DeleteStoreCouponData = {
+export type DeleteCouponData = {
   body?: never;
   path: {
     storeId: string;
@@ -1412,7 +1363,7 @@ export type DeleteStoreCouponData = {
   url: "/stores/{storeId}/coupons/{couponId}";
 };
 
-export type DeleteStoreCouponErrors = {
+export type DeleteCouponErrors = {
   /**
    * User not authenticated.
    */
@@ -1431,20 +1382,19 @@ export type DeleteStoreCouponErrors = {
   404: DefaultError;
 };
 
-export type DeleteStoreCouponError =
-  DeleteStoreCouponErrors[keyof DeleteStoreCouponErrors];
+export type DeleteCouponError = DeleteCouponErrors[keyof DeleteCouponErrors];
 
-export type DeleteStoreCouponResponses = {
+export type DeleteCouponResponses = {
   /**
    * Coupon deleted successfully.
    */
   204: void;
 };
 
-export type DeleteStoreCouponResponse =
-  DeleteStoreCouponResponses[keyof DeleteStoreCouponResponses];
+export type DeleteCouponResponse =
+  DeleteCouponResponses[keyof DeleteCouponResponses];
 
-export type GetStoreCouponData = {
+export type GetCouponData = {
   body?: never;
   path: {
     storeId: string;
@@ -1454,7 +1404,7 @@ export type GetStoreCouponData = {
   url: "/stores/{storeId}/coupons/{couponId}";
 };
 
-export type GetStoreCouponErrors = {
+export type GetCouponErrors = {
   /**
    * User not authenticated.
    */
@@ -1473,17 +1423,16 @@ export type GetStoreCouponErrors = {
   404: DefaultError;
 };
 
-export type GetStoreCouponError =
-  GetStoreCouponErrors[keyof GetStoreCouponErrors];
+export type GetCouponError = GetCouponErrors[keyof GetCouponErrors];
 
-export type GetStoreCouponResponses = {
+export type GetCouponResponses = {
   /**
    * Coupon returned successfully.
    */
   200: unknown;
 };
 
-export type UpdateStoreCouponData = {
+export type EditCouponData = {
   body?: {
     /**
      * Coupon code. Only letters and numbers are allowed.
@@ -1525,7 +1474,7 @@ export type UpdateStoreCouponData = {
   url: "/stores/{storeId}/coupons/{couponId}";
 };
 
-export type UpdateStoreCouponErrors = {
+export type EditCouponErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -1556,20 +1505,18 @@ export type UpdateStoreCouponErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreCouponError =
-  UpdateStoreCouponErrors[keyof UpdateStoreCouponErrors];
+export type EditCouponError = EditCouponErrors[keyof EditCouponErrors];
 
-export type UpdateStoreCouponResponses = {
+export type EditCouponResponses = {
   /**
    * Coupon updated successfully.
    */
   204: void;
 };
 
-export type UpdateStoreCouponResponse =
-  UpdateStoreCouponResponses[keyof UpdateStoreCouponResponses];
+export type EditCouponResponse = EditCouponResponses[keyof EditCouponResponses];
 
-export type GetStoreCouponsData = {
+export type ListCouponsData = {
   body?: never;
   path: {
     storeId: string;
@@ -1578,7 +1525,7 @@ export type GetStoreCouponsData = {
   url: "/stores/{storeId}/coupons";
 };
 
-export type GetStoreCouponsErrors = {
+export type ListCouponsErrors = {
   /**
    * User not authenticated.
    */
@@ -1597,23 +1544,22 @@ export type GetStoreCouponsErrors = {
   404: DefaultError;
 };
 
-export type GetStoreCouponsError =
-  GetStoreCouponsErrors[keyof GetStoreCouponsErrors];
+export type ListCouponsError = ListCouponsErrors[keyof ListCouponsErrors];
 
-export type GetStoreCouponsResponses = {
+export type ListCouponsResponses = {
   /**
    * Coupons listed successfully.
    */
   200: unknown;
 };
 
-export type CreateStoreCouponData = {
+export type CreateCouponData = {
   body?: {
     /**
      * Coupon code. Only letters and numbers are allowed.
      */
     name: string;
-    type: "value" | "percentage";
+    type: "percentage" | "value";
     /**
      * Coupon discount value. Percentage coupons accept 1 to 100; value coupons accept up to 999999.
      */
@@ -1643,7 +1589,7 @@ export type CreateStoreCouponData = {
   url: "/stores/{storeId}/coupons";
 };
 
-export type CreateStoreCouponErrors = {
+export type CreateCouponErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -1674,10 +1620,9 @@ export type CreateStoreCouponErrors = {
   422: DefaultError;
 };
 
-export type CreateStoreCouponError =
-  CreateStoreCouponErrors[keyof CreateStoreCouponErrors];
+export type CreateCouponError = CreateCouponErrors[keyof CreateCouponErrors];
 
-export type CreateStoreCouponResponses = {
+export type CreateCouponResponses = {
   /**
    * Coupon created successfully.
    */
@@ -1689,174 +1634,25 @@ export type CreateStoreCouponResponses = {
   };
 };
 
-export type CreateStoreCouponResponse =
-  CreateStoreCouponResponses[keyof CreateStoreCouponResponses];
+export type CreateCouponResponse =
+  CreateCouponResponses[keyof CreateCouponResponses];
 
-export type CreateStoreEditOrderData = {
-  body?: {
-    /**
-     * Store addons to add.
-     */
-    addons?: Array<
-      "custom_bot" | "divulgation" | "antiraid" | "managed_automod"
-    >;
-    /**
-     * Store limits to increase.
-     */
-    limits?: {
-      /**
-       * Discord server limit to set.
-       */
-      discord_server?: number;
-      /**
-       * Product limit to set.
-       */
-      product?: number;
-    };
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/financial/edit";
-};
-
-export type CreateStoreEditOrderErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Forbidden
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type CreateStoreEditOrderError =
-  CreateStoreEditOrderErrors[keyof CreateStoreEditOrderErrors];
-
-export type CreateStoreEditOrderResponses = {
-  /**
-   * Store edit order created successfully.
-   */
-  200: {
-    /**
-     * Payment transaction id.
-     */
-    id: string;
-  };
-};
-
-export type CreateStoreEditOrderResponse =
-  CreateStoreEditOrderResponses[keyof CreateStoreEditOrderResponses];
-
-export type CreateStoreRenewOrderData = {
-  body?: {
-    /**
-     * Number of months to renew the store.
-     */
-    months: number;
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/financial/renew";
-};
-
-export type CreateStoreRenewOrderErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Forbidden
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type CreateStoreRenewOrderError =
-  CreateStoreRenewOrderErrors[keyof CreateStoreRenewOrderErrors];
-
-export type CreateStoreRenewOrderResponses = {
-  /**
-   * Store renew order created successfully.
-   */
-  200: {
-    /**
-     * Payment transaction id.
-     */
-    id: string;
-  };
-};
-
-export type CreateStoreRenewOrderResponse =
-  CreateStoreRenewOrderResponses[keyof CreateStoreRenewOrderResponses];
-
-export type DeleteStoreMediaData = {
+export type DeleteMediaData = {
   body?: {
     store?: Array<
-      "icon" | "banner" | "background_ranking" | "banner_sale_approved"
+      "banner" | "icon" | "background_ranking" | "banner_sale_approved"
     >;
     /**
      * Construct a type with a set of properties K of type T
      */
     products?: {
-      [key: string]: Array<"icon" | "banner">;
+      [key: string]: Array<"banner" | "icon">;
     };
     /**
      * Construct a type with a set of properties K of type T
      */
     catalogs?: {
-      [key: string]: Array<"icon" | "banner">;
+      [key: string]: Array<"banner" | "icon">;
     };
   };
   path: {
@@ -1866,7 +1662,7 @@ export type DeleteStoreMediaData = {
   url: "/stores/{storeId}/media";
 };
 
-export type DeleteStoreMediaErrors = {
+export type DeleteMediaErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -1893,37 +1689,36 @@ export type DeleteStoreMediaErrors = {
   413: DefaultError;
 };
 
-export type DeleteStoreMediaError =
-  DeleteStoreMediaErrors[keyof DeleteStoreMediaErrors];
+export type DeleteMediaError = DeleteMediaErrors[keyof DeleteMediaErrors];
 
-export type DeleteStoreMediaResponses = {
+export type DeleteMediaResponses = {
   /**
    * Media detached successfully.
    */
   204: void;
 };
 
-export type DeleteStoreMediaResponse =
-  DeleteStoreMediaResponses[keyof DeleteStoreMediaResponses];
+export type DeleteMediaResponse =
+  DeleteMediaResponses[keyof DeleteMediaResponses];
 
 export type UploadStoreMediaData = {
   body?: {
     file: Blob | File;
     set: {
       store?: Array<
-        "icon" | "banner" | "background_ranking" | "banner_sale_approved"
+        "banner" | "icon" | "background_ranking" | "banner_sale_approved"
       >;
       /**
        * Construct a type with a set of properties K of type T
        */
       products?: {
-        [key: string]: Array<"icon" | "banner">;
+        [key: string]: Array<"banner" | "icon">;
       };
       /**
        * Construct a type with a set of properties K of type T
        */
       catalogs?: {
-        [key: string]: Array<"icon" | "banner">;
+        [key: string]: Array<"banner" | "icon">;
       };
     };
   };
@@ -1982,192 +1777,6 @@ export type UploadStoreMediaResponses = {
 
 export type UploadStoreMediaResponse =
   UploadStoreMediaResponses[keyof UploadStoreMediaResponses];
-
-export type RemoveStoreModeratorData = {
-  body?: never;
-  path: {
-    storeId: string;
-    modId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/moderators/{modId}";
-};
-
-export type RemoveStoreModeratorErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-};
-
-export type RemoveStoreModeratorError =
-  RemoveStoreModeratorErrors[keyof RemoveStoreModeratorErrors];
-
-export type RemoveStoreModeratorResponses = {
-  /**
-   * Moderator deleted successfully.
-   */
-  204: void;
-};
-
-export type RemoveStoreModeratorResponse =
-  RemoveStoreModeratorResponses[keyof RemoveStoreModeratorResponses];
-
-export type EditStoreModeratorData = {
-  body?: {
-    /**
-     * Permissions granted to the moderator.
-     */
-    permissions: Array<
-      | "MANAGE_CATALOGS"
-      | "MANAGE_PRODUCTS"
-      | "MANAGE_COUPONS"
-      | "MANAGE_STORE"
-      | "MANAGE_SALES"
-      | "VIEW_STATISTICS"
-      | "VIEW_DISCKETS"
-      | "MANAGE_DISCKETS"
-    >;
-  };
-  path: {
-    storeId: string;
-    modId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/moderators/{modId}";
-};
-
-export type EditStoreModeratorErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Invalid permissions.
-   */
-  422: DefaultError;
-};
-
-export type EditStoreModeratorError =
-  EditStoreModeratorErrors[keyof EditStoreModeratorErrors];
-
-export type EditStoreModeratorResponses = {
-  /**
-   * Moderator updated successfully.
-   */
-  204: void;
-};
-
-export type EditStoreModeratorResponse =
-  EditStoreModeratorResponses[keyof EditStoreModeratorResponses];
-
-export type AddModeratorToStoreData = {
-  body?: {
-    /**
-     * Permissions granted to the invited moderator.
-     */
-    permissions: Array<
-      | "MANAGE_CATALOGS"
-      | "MANAGE_PRODUCTS"
-      | "MANAGE_COUPONS"
-      | "MANAGE_STORE"
-      | "MANAGE_SALES"
-      | "VIEW_STATISTICS"
-      | "VIEW_DISCKETS"
-      | "MANAGE_DISCKETS"
-    >;
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/moderators";
-};
-
-export type AddModeratorToStoreErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-  /**
-   * Conflict
-   */
-  409: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Invalid permissions.
-   */
-  422: DefaultError;
-};
-
-export type AddModeratorToStoreError =
-  AddModeratorToStoreErrors[keyof AddModeratorToStoreErrors];
-
-export type AddModeratorToStoreResponses = {
-  /**
-   * Moderator invite created successfully.
-   */
-  200: {
-    /**
-     * Moderator invite code.
-     */
-    code: string;
-  };
-};
-
-export type AddModeratorToStoreResponse =
-  AddModeratorToStoreResponses[keyof AddModeratorToStoreResponses];
 
 export type GetStoreRankingCustomersData = {
   body?: never;
@@ -2229,6 +1838,89 @@ export type GetStoreRankingCustomersResponses = {
 export type GetStoreRankingCustomersResponse =
   GetStoreRankingCustomersResponses[keyof GetStoreRankingCustomersResponses];
 
+export type GetStoreStatsCouponsData = {
+  body?: never;
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/stats/coupons";
+};
+
+export type GetStoreStatsCouponsErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+};
+
+export type GetStoreStatsCouponsError =
+  GetStoreStatsCouponsErrors[keyof GetStoreStatsCouponsErrors];
+
+export type GetStoreStatsCouponsResponses = {
+  /**
+   * Store coupon statistics returned successfully.
+   */
+  200: {
+    total: {
+      value: number;
+      discount: number;
+      count: number;
+      users: number;
+      newUsers: number;
+      rating: null | number;
+    };
+    /**
+     * Construct a type with a set of properties K of type T
+     */
+    coupons: {
+      [key: string]: {
+        value: number;
+        discount: number;
+        count: number;
+        users: number;
+        newUsers: number;
+        rating: null | number;
+        products: Array<{
+          id: number;
+          value: number;
+          count: number;
+        }>;
+      };
+    };
+    /**
+     * Construct a type with a set of properties K of type T
+     */
+    history: {
+      [key: string]: {
+        [key: string]: {
+          value: number;
+          discount: number;
+          count: number;
+          users: number;
+          newUsers: number;
+          rating: null | number;
+        };
+      };
+    };
+  };
+};
+
+export type GetStoreStatsCouponsResponse =
+  GetStoreStatsCouponsResponses[keyof GetStoreStatsCouponsResponses];
+
 export type GetStoreStatsProductsData = {
   body?: never;
   path: {
@@ -2289,6 +1981,65 @@ export type GetStoreStatsProductsResponses = {
 
 export type GetStoreStatsProductsResponse =
   GetStoreStatsProductsResponses[keyof GetStoreStatsProductsResponses];
+
+export type GetStoreStatsSalesData = {
+  body?: never;
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/stats/sales";
+};
+
+export type GetStoreStatsSalesErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+};
+
+export type GetStoreStatsSalesError =
+  GetStoreStatsSalesErrors[keyof GetStoreStatsSalesErrors];
+
+export type GetStoreStatsSalesResponses = {
+  /**
+   * Store sales statistics returned successfully.
+   */
+  200: {
+    total: {
+      value: number;
+      count: number;
+      users: number;
+      rating: null | number;
+    };
+    /**
+     * Construct a type with a set of properties K of type T
+     */
+    history: {
+      [key: string]: {
+        value: number;
+        count: number;
+        users: number;
+        rating: null | number;
+      };
+    };
+  };
+};
+
+export type GetStoreStatsSalesResponse =
+  GetStoreStatsSalesResponses[keyof GetStoreStatsSalesResponses];
 
 export type GetStoreData = {
   body?: never;
@@ -2369,7 +2120,7 @@ export type GetStoreResponses = {
 
 export type GetStoreResponse = GetStoreResponses[keyof GetStoreResponses];
 
-export type UpdateStoreData = {
+export type EditStoreData = {
   body?: {
     /**
      * Public name. Must be 3 to 50 valid characters.
@@ -2384,7 +2135,7 @@ export type UpdateStoreData = {
   url: "/stores/{storeId}";
 };
 
-export type UpdateStoreErrors = {
+export type EditStoreErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -2415,35 +2166,34 @@ export type UpdateStoreErrors = {
   422: DefaultError;
 };
 
-export type UpdateStoreError = UpdateStoreErrors[keyof UpdateStoreErrors];
+export type EditStoreError = EditStoreErrors[keyof EditStoreErrors];
 
-export type UpdateStoreResponses = {
+export type EditStoreResponses = {
   /**
    * Store updated successfully.
    */
   204: void;
 };
 
-export type UpdateStoreResponse =
-  UpdateStoreResponses[keyof UpdateStoreResponses];
+export type EditStoreResponse = EditStoreResponses[keyof EditStoreResponses];
 
-export type GetStoresData = {
+export type ListStoresData = {
   body?: never;
   path?: never;
   query?: never;
   url: "/stores";
 };
 
-export type GetStoresErrors = {
+export type ListStoresErrors = {
   /**
    * User not authenticated.
    */
   401: DefaultError;
 };
 
-export type GetStoresError = GetStoresErrors[keyof GetStoresErrors];
+export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
 
-export type GetStoresResponses = {
+export type ListStoresResponses = {
   /**
    * Stores listed successfully.
    */
@@ -2458,64 +2208,7 @@ export type GetStoresResponses = {
   }>;
 };
 
-export type GetStoresResponse = GetStoresResponses[keyof GetStoresResponses];
-
-export type CreateStoreData = {
-  body?: {
-    /**
-     * Public name. Must be 3 to 50 valid characters.
-     */
-    name: string;
-  };
-  path?: never;
-  query?: never;
-  url: "/stores";
-};
-
-export type CreateStoreErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * PIX not configured.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type CreateStoreError = CreateStoreErrors[keyof CreateStoreErrors];
-
-export type CreateStoreResponses = {
-  /**
-   * Store checkout order created successfully.
-   */
-  200: {
-    id: string;
-  };
-};
-
-export type CreateStoreResponse =
-  CreateStoreResponses[keyof CreateStoreResponses];
+export type ListStoresResponse = ListStoresResponses[keyof ListStoresResponses];
 
 export type ListTransactionsData = {
   body?: never;
@@ -2568,8 +2261,10 @@ export type ListTransactionsResponses = {
    * Transactions listed successfully.
    */
   200: Array<{
-    type: "transfer" | "sale" | "deposit" | "withdraw";
     id: string;
+    base_value: number;
+    type: "sale" | "transfer" | "withdraw" | "deposit";
+    value: number;
     created_at: number;
     status:
       | "inactive"
@@ -2581,9 +2276,7 @@ export type ListTransactionsResponses = {
       | "refused"
       | "refunded"
       | "analysis";
-    user2?: null | number;
-    base_value: number;
-    value: number;
+    primaryUser: boolean;
   }>;
 };
 
@@ -2618,26 +2311,27 @@ export type GetTransactionResponses = {
    * Transaction returned successfully.
    */
   200: {
-    type: "transfer" | "sale" | "deposit" | "withdraw";
     id: string;
-    created_at: number;
-    expires_at: number;
     status:
+      | "approved"
+      | "cancelled"
+      | "refunded"
       | "inactive"
       | "invalid-pix-key"
       | "pending"
-      | "approved"
-      | "cancelled"
       | "expired"
       | "refused"
-      | "refunded"
       | "analysis";
-    entity: "mercadopago" | "semiauto" | "efi" | "wallet-efi";
+    value: number;
     method: "pix" | "boleto";
+    created_at: number;
+    expires_at: number;
+    type: "transfer" | "sale" | "deposit" | "withdraw";
+    entity: "mercadopago" | "semiauto" | "efi" | "wallet-efi";
     managed?: null | boolean;
     base_value: number;
     refunded_value: number;
-    value: number;
+    ref_code?: null | string;
     refund_reason?:
       | null
       | "fraud"
@@ -2660,15 +2354,16 @@ export type GetTransactionResponses = {
     metadata?: unknown;
     order: {
       id: string;
+      subtotal: number;
+      discount: number;
+      total_value: number;
       platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
+      coupon_id?: null | number;
       discord_guild_id?: null | string;
       discord_channel_id?: null | string;
       discord_channel_message_id?: null | string;
       discord_sale_message?: null | string;
       discord_feedback_message?: null | string;
-      subtotal: number;
-      discount: number;
-      total_value: number;
       rating?: null | number;
       rating_message?: null | string;
       /**
@@ -2698,8 +2393,8 @@ export type GetTransactionResponses = {
       };
       products: Array<{
         id: number;
-        value: number;
         name: string;
+        value: number;
         icon_id?: null | string;
         banner_id?: null | string;
         short_description?: null | string;
@@ -2713,10 +2408,10 @@ export type GetTransactionResponses = {
      * From T, pick a set of properties whose keys are in the union K
      */
     withdraw: {
+      fee: number;
       subtotal: number;
       discount: number;
       total_value: number;
-      fee: number;
       sended_pix_key: null | string;
     };
   };
@@ -2725,7 +2420,7 @@ export type GetTransactionResponses = {
 export type GetTransactionResponse =
   GetTransactionResponses[keyof GetTransactionResponses];
 
-export type UpdateTransactionData = {
+export type EditTransactionData = {
   body?: {
     status?: "approved" | "cancelled" | "refunded";
     /**
@@ -2766,7 +2461,7 @@ export type UpdateTransactionData = {
   url: "/transactions/{transactionId}";
 };
 
-export type UpdateTransactionErrors = {
+export type EditTransactionErrors = {
   /**
    * Bad Request
    */
@@ -2801,10 +2496,10 @@ export type UpdateTransactionErrors = {
   500: DefaultError;
 };
 
-export type UpdateTransactionError =
-  UpdateTransactionErrors[keyof UpdateTransactionErrors];
+export type EditTransactionError =
+  EditTransactionErrors[keyof EditTransactionErrors];
 
-export type UpdateTransactionResponses = {
+export type EditTransactionResponses = {
   /**
    * Transaction update completed successfully.
    */
@@ -2819,8 +2514,8 @@ export type UpdateTransactionResponses = {
   204: void;
 };
 
-export type UpdateTransactionResponse =
-  UpdateTransactionResponses[keyof UpdateTransactionResponses];
+export type EditTransactionResponse =
+  EditTransactionResponses[keyof EditTransactionResponses];
 
 export type GetUserByIdData = {
   body?: never;
@@ -2861,7 +2556,7 @@ export type GetUserByIdResponses = {
 export type GetUserByIdResponse =
   GetUserByIdResponses[keyof GetUserByIdResponses];
 
-export type UpdateUserAvatarData = {
+export type EditUserAvatarData = {
   body?: {
     file: Blob | File;
   };
@@ -2870,7 +2565,7 @@ export type UpdateUserAvatarData = {
   url: "/users/me/avatar";
 };
 
-export type UpdateUserAvatarErrors = {
+export type EditUserAvatarErrors = {
   /**
    * Invalid Multipart payload.
    */
@@ -2889,10 +2584,10 @@ export type UpdateUserAvatarErrors = {
   413: DefaultError;
 };
 
-export type UpdateUserAvatarError =
-  UpdateUserAvatarErrors[keyof UpdateUserAvatarErrors];
+export type EditUserAvatarError =
+  EditUserAvatarErrors[keyof EditUserAvatarErrors];
 
-export type UpdateUserAvatarResponses = {
+export type EditUserAvatarResponses = {
   /**
    * Avatar updated successfuly
    */
@@ -2904,8 +2599,8 @@ export type UpdateUserAvatarResponses = {
   };
 };
 
-export type UpdateUserAvatarResponse =
-  UpdateUserAvatarResponses[keyof UpdateUserAvatarResponses];
+export type EditUserAvatarResponse =
+  EditUserAvatarResponses[keyof EditUserAvatarResponses];
 
 export type GetUserData = {
   body?: never;
@@ -2964,6 +2659,9 @@ export type GetUserResponses = {
            * Configured Pix key.
            */
           pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
         };
         mercadopago: {
           id?: string;
@@ -2971,6 +2669,9 @@ export type GetUserResponses = {
            * Configured Pix key.
            */
           pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
         };
         semiauto: {
           id?: string;
@@ -2978,6 +2679,9 @@ export type GetUserResponses = {
            * Configured Pix key.
            */
           pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
         };
         "wallet-efi": {
           id?: string;
@@ -2985,6 +2689,9 @@ export type GetUserResponses = {
            * Configured Pix key.
            */
           pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
         };
       };
       preferences: {
@@ -3046,7 +2753,7 @@ export type EditUserResponses = {
 
 export type EditUserResponse = EditUserResponses[keyof EditUserResponses];
 
-export type UpdatePaymentMethodData = {
+export type EditUserPaymentMethodData = {
   body?: {
     pix: null | string;
   };
@@ -3055,7 +2762,7 @@ export type UpdatePaymentMethodData = {
   url: "/users/me/payment-method";
 };
 
-export type UpdatePaymentMethodErrors = {
+export type EditUserPaymentMethodErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -3074,18 +2781,18 @@ export type UpdatePaymentMethodErrors = {
   422: DefaultError;
 };
 
-export type UpdatePaymentMethodError =
-  UpdatePaymentMethodErrors[keyof UpdatePaymentMethodErrors];
+export type EditUserPaymentMethodError =
+  EditUserPaymentMethodErrors[keyof EditUserPaymentMethodErrors];
 
-export type UpdatePaymentMethodResponses = {
+export type EditUserPaymentMethodResponses = {
   /**
    * Payment method updated.
    */
   204: void;
 };
 
-export type UpdatePaymentMethodResponse =
-  UpdatePaymentMethodResponses[keyof UpdatePaymentMethodResponses];
+export type EditUserPaymentMethodResponse =
+  EditUserPaymentMethodResponses[keyof EditUserPaymentMethodResponses];
 
 export type SetupEfiData = {
   body?: {
@@ -3142,7 +2849,7 @@ export type SetupEfiResponses = {
 
 export type SetupEfiResponse = SetupEfiResponses[keyof SetupEfiResponses];
 
-export type UpdatePixKeyData = {
+export type SetupSemiautoData = {
   body?: {
     /**
      * Pix key.
@@ -3154,7 +2861,7 @@ export type UpdatePixKeyData = {
   url: "/users/me/payments/semiauto";
 };
 
-export type UpdatePixKeyErrors = {
+export type SetupSemiautoErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -3173,17 +2880,17 @@ export type UpdatePixKeyErrors = {
   422: DefaultError;
 };
 
-export type UpdatePixKeyError = UpdatePixKeyErrors[keyof UpdatePixKeyErrors];
+export type SetupSemiautoError = SetupSemiautoErrors[keyof SetupSemiautoErrors];
 
-export type UpdatePixKeyResponses = {
+export type SetupSemiautoResponses = {
   /**
    * Semiauto configured succesfully.
    */
   204: void;
 };
 
-export type UpdatePixKeyResponse =
-  UpdatePixKeyResponses[keyof UpdatePixKeyResponses];
+export type SetupSemiautoResponse =
+  SetupSemiautoResponses[keyof SetupSemiautoResponses];
 
 export type WalletBalanceData = {
   body?: never;
@@ -3206,6 +2913,10 @@ export type WalletBalanceResponses = {
    * Balance returned successfully.
    */
   200: {
+    /**
+     * Legacy balance under the old withdrawal-fee rules.
+     */
+    old: number;
     /**
      * Pending wallet balance.
      */
@@ -3277,54 +2988,3 @@ export type WalletWithdrawResponses = {
 
 export type WalletWithdrawResponse =
   WalletWithdrawResponses[keyof WalletWithdrawResponses];
-
-export type SetupWebhookData = {
-  body?: {
-    /**
-     * HTTPS URL.
-     */
-    url: string;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/webhook";
-};
-
-export type SetupWebhookErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * URL timeout exceeded.
-   */
-  408: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * URL inaccessible.
-   */
-  424: DefaultError;
-};
-
-export type SetupWebhookError = SetupWebhookErrors[keyof SetupWebhookErrors];
-
-export type SetupWebhookResponses = {
-  /**
-   * Webhook configured successfully.
-   */
-  204: void;
-};
-
-export type SetupWebhookResponse =
-  SetupWebhookResponses[keyof SetupWebhookResponses];

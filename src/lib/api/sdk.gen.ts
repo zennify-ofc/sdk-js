@@ -8,92 +8,105 @@ import {
 } from "./client";
 import { client } from "./client.gen";
 import type {
-  AddModeratorToStoreData,
-  AddModeratorToStoreErrors,
-  AddModeratorToStoreResponses,
-  CreateStoreCatalogData,
-  CreateStoreCatalogErrors,
-  CreateStoreCatalogResponses,
-  CreateStoreCouponData,
-  CreateStoreCouponErrors,
-  CreateStoreCouponResponses,
-  CreateStoreData,
-  CreateStoreDiscordEmojisData,
-  CreateStoreDiscordEmojisErrors,
-  CreateStoreDiscordEmojisResponses,
-  CreateStoreEditOrderData,
-  CreateStoreEditOrderErrors,
-  CreateStoreEditOrderResponses,
-  CreateStoreErrors,
-  CreateStoreProductData,
-  CreateStoreProductErrors,
-  CreateStoreProductResponses,
-  CreateStoreRenewOrderData,
-  CreateStoreRenewOrderErrors,
-  CreateStoreRenewOrderResponses,
-  CreateStoreResponses,
-  DeleteStoreCatalogData,
-  DeleteStoreCatalogErrors,
-  DeleteStoreCatalogResponses,
-  DeleteStoreCouponData,
-  DeleteStoreCouponErrors,
-  DeleteStoreCouponResponses,
-  DeleteStoreDiscordServerData,
-  DeleteStoreDiscordServerErrors,
-  DeleteStoreDiscordServerResponses,
-  DeleteStoreMediaData,
-  DeleteStoreMediaErrors,
-  DeleteStoreMediaResponses,
-  DeleteStoreProductData,
-  DeleteStoreProductErrors,
-  DeleteStoreProductResponses,
-  EditStoreModeratorData,
-  EditStoreModeratorErrors,
-  EditStoreModeratorResponses,
+  CreateCouponData,
+  CreateCouponErrors,
+  CreateCouponResponses,
+  CreateProductCatalogData,
+  CreateProductCatalogErrors,
+  CreateProductCatalogResponses,
+  CreateProductData,
+  CreateProductErrors,
+  CreateProductResponses,
+  DeleteCouponData,
+  DeleteCouponErrors,
+  DeleteCouponResponses,
+  DeleteMediaData,
+  DeleteMediaErrors,
+  DeleteMediaResponses,
+  DeleteProductCatalogData,
+  DeleteProductCatalogErrors,
+  DeleteProductCatalogResponses,
+  DeleteProductData,
+  DeleteProductErrors,
+  DeleteProductResponses,
+  EditCouponData,
+  EditCouponErrors,
+  EditCouponResponses,
+  EditDiscordAppChannelsData,
+  EditDiscordAppChannelsErrors,
+  EditDiscordAppChannelsResponses,
+  EditDiscordAppTokenData,
+  EditDiscordAppTokenErrors,
+  EditDiscordAppTokenResponses,
+  EditProductCatalogData,
+  EditProductCatalogErrors,
+  EditProductCatalogResponses,
+  EditProductData,
+  EditProductErrors,
+  EditProductResponses,
+  EditProductStockData,
+  EditProductStockErrors,
+  EditProductStockItemData,
+  EditProductStockItemErrors,
+  EditProductStockItemResponses,
+  EditProductStockResponses,
+  EditStoreData,
+  EditStoreErrors,
+  EditStoreResponses,
+  EditTransactionData,
+  EditTransactionErrors,
+  EditTransactionResponses,
+  EditUserAvatarData,
+  EditUserAvatarErrors,
+  EditUserAvatarResponses,
   EditUserData,
   EditUserErrors,
+  EditUserPaymentMethodData,
+  EditUserPaymentMethodErrors,
+  EditUserPaymentMethodResponses,
   EditUserResponses,
-  GetApiReferenceData,
-  GetApiReferenceResponses,
+  GetCouponData,
+  GetCouponErrors,
+  GetCouponResponses,
+  GetDiscordAppEmojisData,
+  GetDiscordAppEmojisErrors,
+  GetDiscordAppEmojisResponses,
+  GetDiscordAppInfoData,
+  GetDiscordAppInfoErrors,
+  GetDiscordAppInfoResponses,
+  GetDiscordAppRolesData,
+  GetDiscordAppRolesErrors,
+  GetDiscordAppRolesResponses,
+  GetDiscordAppServersData,
+  GetDiscordAppServersErrors,
+  GetDiscordAppServersResponses,
+  GetProductData,
+  GetProductErrors,
+  GetProductResponses,
+  GetProductStockData,
+  GetProductStockErrors,
+  GetProductStockResponses,
   GetServiceApiSchemaData,
   GetServiceApiSchemaResponses,
   GetServiceDataData,
   GetServiceDataResponses,
   GetServiceHealthData,
   GetServiceHealthResponses,
-  GetStoreCatalogsData,
-  GetStoreCatalogsErrors,
-  GetStoreCatalogsResponses,
-  GetStoreCouponData,
-  GetStoreCouponErrors,
-  GetStoreCouponResponses,
-  GetStoreCouponsData,
-  GetStoreCouponsErrors,
-  GetStoreCouponsResponses,
   GetStoreData,
-  GetStoreDiscordBotData,
-  GetStoreDiscordBotErrors,
-  GetStoreDiscordBotResponses,
-  GetStoreDiscordServersData,
-  GetStoreDiscordServersErrors,
-  GetStoreDiscordServersResponses,
   GetStoreErrors,
-  GetStoreProductData,
-  GetStoreProductErrors,
-  GetStoreProductResponses,
-  GetStoreProductStockData,
-  GetStoreProductStockErrors,
-  GetStoreProductStockResponses,
   GetStoreRankingCustomersData,
   GetStoreRankingCustomersErrors,
   GetStoreRankingCustomersResponses,
   GetStoreResponses,
-  GetStoresData,
-  GetStoresErrors,
-  GetStoresResponses,
+  GetStoreStatsCouponsData,
+  GetStoreStatsCouponsErrors,
+  GetStoreStatsCouponsResponses,
   GetStoreStatsProductsData,
   GetStoreStatsProductsErrors,
   GetStoreStatsProductsResponses,
+  GetStoreStatsSalesData,
+  GetStoreStatsSalesErrors,
+  GetStoreStatsSalesResponses,
   GetTransactionData,
   GetTransactionErrors,
   GetTransactionResponses,
@@ -103,63 +116,33 @@ import type {
   GetUserData,
   GetUserErrors,
   GetUserResponses,
-  ListStoreProductsData,
-  ListStoreProductsErrors,
-  ListStoreProductsResponses,
+  ListCouponsData,
+  ListCouponsErrors,
+  ListCouponsResponses,
+  ListProductCatalogsData,
+  ListProductCatalogsErrors,
+  ListProductCatalogsResponses,
+  ListProductsData,
+  ListProductsErrors,
+  ListProductsResponses,
+  ListStoresData,
+  ListStoresErrors,
+  ListStoresResponses,
   ListTransactionsData,
   ListTransactionsErrors,
   ListTransactionsResponses,
-  PostStoreCatalogMessageData,
-  PostStoreCatalogMessageErrors,
-  PostStoreCatalogMessageResponses,
-  PostStoreProductDiscordMessageData,
-  PostStoreProductDiscordMessageErrors,
-  PostStoreProductDiscordMessageResponses,
-  RemoveStoreModeratorData,
-  RemoveStoreModeratorErrors,
-  RemoveStoreModeratorResponses,
+  SendProductCatalogMessageData,
+  SendProductCatalogMessageErrors,
+  SendProductCatalogMessageResponses,
+  SendProductDiscordMessageData,
+  SendProductDiscordMessageErrors,
+  SendProductDiscordMessageResponses,
   SetupEfiData,
   SetupEfiErrors,
   SetupEfiResponses,
-  SetupWebhookData,
-  SetupWebhookErrors,
-  SetupWebhookResponses,
-  UpdatePaymentMethodData,
-  UpdatePaymentMethodErrors,
-  UpdatePaymentMethodResponses,
-  UpdatePixKeyData,
-  UpdatePixKeyErrors,
-  UpdatePixKeyResponses,
-  UpdateStoreCatalogData,
-  UpdateStoreCatalogErrors,
-  UpdateStoreCatalogResponses,
-  UpdateStoreCouponData,
-  UpdateStoreCouponErrors,
-  UpdateStoreCouponResponses,
-  UpdateStoreData,
-  UpdateStoreDiscordBotTokenData,
-  UpdateStoreDiscordBotTokenErrors,
-  UpdateStoreDiscordBotTokenResponses,
-  UpdateStoreDiscordChannelsData,
-  UpdateStoreDiscordChannelsErrors,
-  UpdateStoreDiscordChannelsResponses,
-  UpdateStoreErrors,
-  UpdateStoreProductData,
-  UpdateStoreProductErrors,
-  UpdateStoreProductResponses,
-  UpdateStoreProductStockData,
-  UpdateStoreProductStockErrors,
-  UpdateStoreProductStockItemData,
-  UpdateStoreProductStockItemErrors,
-  UpdateStoreProductStockItemResponses,
-  UpdateStoreProductStockResponses,
-  UpdateStoreResponses,
-  UpdateTransactionData,
-  UpdateTransactionErrors,
-  UpdateTransactionResponses,
-  UpdateUserAvatarData,
-  UpdateUserAvatarErrors,
-  UpdateUserAvatarResponses,
+  SetupSemiautoData,
+  SetupSemiautoErrors,
+  SetupSemiautoResponses,
   UploadStoreMediaData,
   UploadStoreMediaErrors,
   UploadStoreMediaResponses,
@@ -216,14 +199,12 @@ export const getServiceApiSchema = <ThrowOnError extends boolean = false>(
 /**
  * Ask the store Discord bot to post a product message in a channel.
  */
-export const postStoreProductDiscordMessage = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<PostStoreProductDiscordMessageData, ThrowOnError>,
+export const sendProductDiscordMessage = <ThrowOnError extends boolean = false>(
+  options: Options<SendProductDiscordMessageData, ThrowOnError>,
 ) =>
   (options.client ?? client).post<
-    PostStoreProductDiscordMessageResponses,
-    PostStoreProductDiscordMessageErrors,
+    SendProductDiscordMessageResponses,
+    SendProductDiscordMessageErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -238,12 +219,12 @@ export const postStoreProductDiscordMessage = <
 /**
  * Delete a store product.
  */
-export const deleteStoreProduct = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteStoreProductData, ThrowOnError>,
+export const deleteProduct = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteProductData, ThrowOnError>,
 ) =>
   (options.client ?? client).delete<
-    DeleteStoreProductResponses,
-    DeleteStoreProductErrors,
+    DeleteProductResponses,
+    DeleteProductErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -254,12 +235,12 @@ export const deleteStoreProduct = <ThrowOnError extends boolean = false>(
 /**
  * Access a store product.
  */
-export const getStoreProduct = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreProductData, ThrowOnError>,
+export const getProduct = <ThrowOnError extends boolean = false>(
+  options: Options<GetProductData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreProductResponses,
-    GetStoreProductErrors,
+    GetProductResponses,
+    GetProductErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -270,12 +251,12 @@ export const getStoreProduct = <ThrowOnError extends boolean = false>(
 /**
  * Update a store product.
  */
-export const updateStoreProduct = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateStoreProductData, ThrowOnError>,
+export const editProduct = <ThrowOnError extends boolean = false>(
+  options: Options<EditProductData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateStoreProductResponses,
-    UpdateStoreProductErrors,
+    EditProductResponses,
+    EditProductErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -290,12 +271,12 @@ export const updateStoreProduct = <ThrowOnError extends boolean = false>(
 /**
  * List products from a store.
  */
-export const listStoreProducts = <ThrowOnError extends boolean = false>(
-  options: Options<ListStoreProductsData, ThrowOnError>,
+export const listProducts = <ThrowOnError extends boolean = false>(
+  options: Options<ListProductsData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    ListStoreProductsResponses,
-    ListStoreProductsErrors,
+    ListProductsResponses,
+    ListProductsErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -306,12 +287,12 @@ export const listStoreProducts = <ThrowOnError extends boolean = false>(
 /**
  * Create a store product.
  */
-export const createStoreProduct = <ThrowOnError extends boolean = false>(
-  options: Options<CreateStoreProductData, ThrowOnError>,
+export const createProduct = <ThrowOnError extends boolean = false>(
+  options: Options<CreateProductData, ThrowOnError>,
 ) =>
   (options.client ?? client).post<
-    CreateStoreProductResponses,
-    CreateStoreProductErrors,
+    CreateProductResponses,
+    CreateProductErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -326,14 +307,12 @@ export const createStoreProduct = <ThrowOnError extends boolean = false>(
 /**
  * Update a product stock item.
  */
-export const updateStoreProductStockItem = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<UpdateStoreProductStockItemData, ThrowOnError>,
+export const editProductStockItem = <ThrowOnError extends boolean = false>(
+  options: Options<EditProductStockItemData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateStoreProductStockItemResponses,
-    UpdateStoreProductStockItemErrors,
+    EditProductStockItemResponses,
+    EditProductStockItemErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -348,12 +327,12 @@ export const updateStoreProductStockItem = <
 /**
  * List available stock items for a product.
  */
-export const getStoreProductStock = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreProductStockData, ThrowOnError>,
+export const getProductStock = <ThrowOnError extends boolean = false>(
+  options: Options<GetProductStockData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreProductStockResponses,
-    GetStoreProductStockErrors,
+    GetProductStockResponses,
+    GetProductStockErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -364,12 +343,12 @@ export const getStoreProductStock = <ThrowOnError extends boolean = false>(
 /**
  * Add or remove product stock items and update stock lock settings.
  */
-export const updateStoreProductStock = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateStoreProductStockData, ThrowOnError>,
+export const editProductStock = <ThrowOnError extends boolean = false>(
+  options: Options<EditProductStockData, ThrowOnError>,
 ) =>
   (options.client ?? client).put<
-    UpdateStoreProductStockResponses,
-    UpdateStoreProductStockErrors,
+    EditProductStockResponses,
+    EditProductStockErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -380,18 +359,6 @@ export const updateStoreProductStock = <ThrowOnError extends boolean = false>(
       ...options.headers,
     },
   });
-
-/**
- * Return current OpenAPI specification.
- */
-export const getApiReference = <ThrowOnError extends boolean = false>(
-  options?: Options<GetApiReferenceData, ThrowOnError>,
-) =>
-  (options?.client ?? client).get<
-    GetApiReferenceResponses,
-    unknown,
-    ThrowOnError
-  >({ url: "/reference", ...options });
 
 /**
  * Returns basic service data, focused on website functionality (such as home statistics), but is a public route.
@@ -408,14 +375,12 @@ export const getServiceData = <ThrowOnError extends boolean = false>(
 /**
  * Update store Discord channel bindings.
  */
-export const updateStoreDiscordChannels = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<UpdateStoreDiscordChannelsData, ThrowOnError>,
+export const editDiscordAppChannels = <ThrowOnError extends boolean = false>(
+  options: Options<EditDiscordAppChannelsData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateStoreDiscordChannelsResponses,
-    UpdateStoreDiscordChannelsErrors,
+    EditDiscordAppChannelsResponses,
+    EditDiscordAppChannelsErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -428,35 +393,30 @@ export const updateStoreDiscordChannels = <
   });
 
 /**
- * Create Discord emojis in a store bot guild.
+ * Get all cached store emojis
  */
-export const createStoreDiscordEmojis = <ThrowOnError extends boolean = false>(
-  options: Options<CreateStoreDiscordEmojisData, ThrowOnError>,
+export const getDiscordAppEmojis = <ThrowOnError extends boolean = false>(
+  options: Options<GetDiscordAppEmojisData, ThrowOnError>,
 ) =>
-  (options.client ?? client).post<
-    CreateStoreDiscordEmojisResponses,
-    CreateStoreDiscordEmojisErrors,
+  (options.client ?? client).get<
+    GetDiscordAppEmojisResponses,
+    GetDiscordAppEmojisErrors,
     ThrowOnError
   >({
-    ...formDataBodySerializer,
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/{serverId}/emojis",
+    url: "/stores/{storeId}/app/discord/emojis",
     ...options,
-    headers: {
-      "Content-Type": null,
-      ...options.headers,
-    },
   });
 
 /**
- * Get the configured Discord bot status for a store.
+ * Get the configured Discord app info & status for a store.
  */
-export const getStoreDiscordBot = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreDiscordBotData, ThrowOnError>,
+export const getDiscordAppInfo = <ThrowOnError extends boolean = false>(
+  options: Options<GetDiscordAppInfoData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreDiscordBotResponses,
-    GetStoreDiscordBotErrors,
+    GetDiscordAppInfoResponses,
+    GetDiscordAppInfoErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -465,34 +425,30 @@ export const getStoreDiscordBot = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Remove a store Discord bot from a guild.
+ * Get Discord App roles, by guilds.
  */
-export const deleteStoreDiscordServer = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteStoreDiscordServerData, ThrowOnError>,
+export const getDiscordAppRoles = <ThrowOnError extends boolean = false>(
+  options: Options<GetDiscordAppRolesData, ThrowOnError>,
 ) =>
-  (options.client ?? client).delete<
-    DeleteStoreDiscordServerResponses,
-    DeleteStoreDiscordServerErrors,
+  (options.client ?? client).get<
+    GetDiscordAppRolesResponses,
+    GetDiscordAppRolesErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/servers",
+    url: "/stores/{storeId}/app/discord/roles",
     ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
   });
 
 /**
- * List Discord guilds cached for a store bot.
+ * List Discord guilds cached for a store app.
  */
-export const getStoreDiscordServers = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreDiscordServersData, ThrowOnError>,
+export const getDiscordAppServers = <ThrowOnError extends boolean = false>(
+  options: Options<GetDiscordAppServersData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreDiscordServersResponses,
-    GetStoreDiscordServersErrors,
+    GetDiscordAppServersResponses,
+    GetDiscordAppServersErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -503,14 +459,12 @@ export const getStoreDiscordServers = <ThrowOnError extends boolean = false>(
 /**
  * Update a store Discord bot token.
  */
-export const updateStoreDiscordBotToken = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<UpdateStoreDiscordBotTokenData, ThrowOnError>,
+export const editDiscordAppToken = <ThrowOnError extends boolean = false>(
+  options: Options<EditDiscordAppTokenData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateStoreDiscordBotTokenResponses,
-    UpdateStoreDiscordBotTokenErrors,
+    EditDiscordAppTokenResponses,
+    EditDiscordAppTokenErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -525,12 +479,12 @@ export const updateStoreDiscordBotToken = <
 /**
  * Delete a store product catalog.
  */
-export const deleteStoreCatalog = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteStoreCatalogData, ThrowOnError>,
+export const deleteProductCatalog = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteProductCatalogData, ThrowOnError>,
 ) =>
   (options.client ?? client).delete<
-    DeleteStoreCatalogResponses,
-    DeleteStoreCatalogErrors,
+    DeleteProductCatalogResponses,
+    DeleteProductCatalogErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -541,12 +495,12 @@ export const deleteStoreCatalog = <ThrowOnError extends boolean = false>(
 /**
  * Update a store product catalog.
  */
-export const updateStoreCatalog = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateStoreCatalogData, ThrowOnError>,
+export const editProductCatalog = <ThrowOnError extends boolean = false>(
+  options: Options<EditProductCatalogData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateStoreCatalogResponses,
-    UpdateStoreCatalogErrors,
+    EditProductCatalogResponses,
+    EditProductCatalogErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -561,12 +515,12 @@ export const updateStoreCatalog = <ThrowOnError extends boolean = false>(
 /**
  * List store product catalogs.
  */
-export const getStoreCatalogs = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreCatalogsData, ThrowOnError>,
+export const listProductCatalogs = <ThrowOnError extends boolean = false>(
+  options: Options<ListProductCatalogsData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreCatalogsResponses,
-    GetStoreCatalogsErrors,
+    ListProductCatalogsResponses,
+    ListProductCatalogsErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -577,12 +531,12 @@ export const getStoreCatalogs = <ThrowOnError extends boolean = false>(
 /**
  * Create a store product catalog.
  */
-export const createStoreCatalog = <ThrowOnError extends boolean = false>(
-  options: Options<CreateStoreCatalogData, ThrowOnError>,
+export const createProductCatalog = <ThrowOnError extends boolean = false>(
+  options: Options<CreateProductCatalogData, ThrowOnError>,
 ) =>
   (options.client ?? client).post<
-    CreateStoreCatalogResponses,
-    CreateStoreCatalogErrors,
+    CreateProductCatalogResponses,
+    CreateProductCatalogErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -597,12 +551,12 @@ export const createStoreCatalog = <ThrowOnError extends boolean = false>(
 /**
  * Ask the store Discord bot to post a catalog message in a channel.
  */
-export const postStoreCatalogMessage = <ThrowOnError extends boolean = false>(
-  options: Options<PostStoreCatalogMessageData, ThrowOnError>,
+export const sendProductCatalogMessage = <ThrowOnError extends boolean = false>(
+  options: Options<SendProductCatalogMessageData, ThrowOnError>,
 ) =>
   (options.client ?? client).post<
-    PostStoreCatalogMessageResponses,
-    PostStoreCatalogMessageErrors,
+    SendProductCatalogMessageResponses,
+    SendProductCatalogMessageErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -617,12 +571,12 @@ export const postStoreCatalogMessage = <ThrowOnError extends boolean = false>(
 /**
  * Delete a store coupon.
  */
-export const deleteStoreCoupon = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteStoreCouponData, ThrowOnError>,
+export const deleteCoupon = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteCouponData, ThrowOnError>,
 ) =>
   (options.client ?? client).delete<
-    DeleteStoreCouponResponses,
-    DeleteStoreCouponErrors,
+    DeleteCouponResponses,
+    DeleteCouponErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -633,12 +587,12 @@ export const deleteStoreCoupon = <ThrowOnError extends boolean = false>(
 /**
  * Access a store coupon.
  */
-export const getStoreCoupon = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreCouponData, ThrowOnError>,
+export const getCoupon = <ThrowOnError extends boolean = false>(
+  options: Options<GetCouponData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreCouponResponses,
-    GetStoreCouponErrors,
+    GetCouponResponses,
+    GetCouponErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -649,12 +603,12 @@ export const getStoreCoupon = <ThrowOnError extends boolean = false>(
 /**
  * Update a store coupon.
  */
-export const updateStoreCoupon = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateStoreCouponData, ThrowOnError>,
+export const editCoupon = <ThrowOnError extends boolean = false>(
+  options: Options<EditCouponData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateStoreCouponResponses,
-    UpdateStoreCouponErrors,
+    EditCouponResponses,
+    EditCouponErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -669,12 +623,12 @@ export const updateStoreCoupon = <ThrowOnError extends boolean = false>(
 /**
  * List store coupons.
  */
-export const getStoreCoupons = <ThrowOnError extends boolean = false>(
-  options: Options<GetStoreCouponsData, ThrowOnError>,
+export const listCoupons = <ThrowOnError extends boolean = false>(
+  options: Options<ListCouponsData, ThrowOnError>,
 ) =>
   (options.client ?? client).get<
-    GetStoreCouponsResponses,
-    GetStoreCouponsErrors,
+    ListCouponsResponses,
+    ListCouponsErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -685,12 +639,12 @@ export const getStoreCoupons = <ThrowOnError extends boolean = false>(
 /**
  * Create a store coupon.
  */
-export const createStoreCoupon = <ThrowOnError extends boolean = false>(
-  options: Options<CreateStoreCouponData, ThrowOnError>,
+export const createCoupon = <ThrowOnError extends boolean = false>(
+  options: Options<CreateCouponData, ThrowOnError>,
 ) =>
   (options.client ?? client).post<
-    CreateStoreCouponResponses,
-    CreateStoreCouponErrors,
+    CreateCouponResponses,
+    CreateCouponErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -703,54 +657,14 @@ export const createStoreCoupon = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Create an order to edit store addons or limits.
- */
-export const createStoreEditOrder = <ThrowOnError extends boolean = false>(
-  options: Options<CreateStoreEditOrderData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    CreateStoreEditOrderResponses,
-    CreateStoreEditOrderErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/financial/edit",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Create an order to renew a store.
- */
-export const createStoreRenewOrder = <ThrowOnError extends boolean = false>(
-  options: Options<CreateStoreRenewOrderData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    CreateStoreRenewOrderResponses,
-    CreateStoreRenewOrderErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/financial/renew",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
  * Detach media from store entities.
  */
-export const deleteStoreMedia = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteStoreMediaData, ThrowOnError>,
+export const deleteMedia = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteMediaData, ThrowOnError>,
 ) =>
   (options.client ?? client).delete<
-    DeleteStoreMediaResponses,
-    DeleteStoreMediaErrors,
+    DeleteMediaResponses,
+    DeleteMediaErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -784,62 +698,6 @@ export const uploadStoreMedia = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Delete a store moderator.
- */
-export const removeStoreModerator = <ThrowOnError extends boolean = false>(
-  options: Options<RemoveStoreModeratorData, ThrowOnError>,
-) =>
-  (options.client ?? client).delete<
-    RemoveStoreModeratorResponses,
-    RemoveStoreModeratorErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/moderators/{modId}",
-    ...options,
-  });
-
-/**
- * Update a store moderator.
- */
-export const editStoreModerator = <ThrowOnError extends boolean = false>(
-  options: Options<EditStoreModeratorData, ThrowOnError>,
-) =>
-  (options.client ?? client).patch<
-    EditStoreModeratorResponses,
-    EditStoreModeratorErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/moderators/{modId}",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Create a store moderator invite.
- */
-export const addModeratorToStore = <ThrowOnError extends boolean = false>(
-  options: Options<AddModeratorToStoreData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    AddModeratorToStoreResponses,
-    AddModeratorToStoreErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/moderators",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
  * Access store customers ranking, updated in real time.
  */
 export const getStoreRankingCustomers = <ThrowOnError extends boolean = false>(
@@ -856,6 +714,22 @@ export const getStoreRankingCustomers = <ThrowOnError extends boolean = false>(
   });
 
 /**
+ * Access store coupon statistics (per-coupon totals + daily history), real-time updated.
+ */
+export const getStoreStatsCoupons = <ThrowOnError extends boolean = false>(
+  options: Options<GetStoreStatsCouponsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetStoreStatsCouponsResponses,
+    GetStoreStatsCouponsErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/stats/coupons",
+    ...options,
+  });
+
+/**
  * Access store product statistics, real-time updated.
  */
 export const getStoreStatsProducts = <ThrowOnError extends boolean = false>(
@@ -868,6 +742,22 @@ export const getStoreStatsProducts = <ThrowOnError extends boolean = false>(
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/stores/{storeId}/stats/products",
+    ...options,
+  });
+
+/**
+ * Access store sales statistics grouped by day, real-time updated.
+ */
+export const getStoreStatsSales = <ThrowOnError extends boolean = false>(
+  options: Options<GetStoreStatsSalesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetStoreStatsSalesResponses,
+    GetStoreStatsSalesErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/stats/sales",
     ...options,
   });
 
@@ -890,12 +780,12 @@ export const getStore = <ThrowOnError extends boolean = false>(
 /**
  * Update store settings.
  */
-export const updateStore = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateStoreData, ThrowOnError>,
+export const editStore = <ThrowOnError extends boolean = false>(
+  options: Options<EditStoreData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateStoreResponses,
-    UpdateStoreErrors,
+    EditStoreResponses,
+    EditStoreErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -910,37 +800,17 @@ export const updateStore = <ThrowOnError extends boolean = false>(
 /**
  * List stores owned or moderated by the current user.
  */
-export const getStores = <ThrowOnError extends boolean = false>(
-  options?: Options<GetStoresData, ThrowOnError>,
+export const listStores = <ThrowOnError extends boolean = false>(
+  options?: Options<ListStoresData, ThrowOnError>,
 ) =>
   (options?.client ?? client).get<
-    GetStoresResponses,
-    GetStoresErrors,
+    ListStoresResponses,
+    ListStoresErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/stores",
     ...options,
-  });
-
-/**
- * Create a checkout order for a new store.
- */
-export const createStore = <ThrowOnError extends boolean = false>(
-  options?: Options<CreateStoreData, ThrowOnError>,
-) =>
-  (options?.client ?? client).post<
-    CreateStoreResponses,
-    CreateStoreErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
   });
 
 /**
@@ -978,12 +848,12 @@ export const getTransaction = <ThrowOnError extends boolean = false>(
 /**
  * Update transaction status or metadata.
  */
-export const updateTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateTransactionData, ThrowOnError>,
+export const editTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<EditTransactionData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    UpdateTransactionResponses,
-    UpdateTransactionErrors,
+    EditTransactionResponses,
+    EditTransactionErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -1014,12 +884,12 @@ export const getUserById = <ThrowOnError extends boolean = false>(
 /**
  * Update users's avatar
  */
-export const updateUserAvatar = <ThrowOnError extends boolean = false>(
-  options?: Options<UpdateUserAvatarData, ThrowOnError>,
+export const editUserAvatar = <ThrowOnError extends boolean = false>(
+  options?: Options<EditUserAvatarData, ThrowOnError>,
 ) =>
   (options?.client ?? client).patch<
-    UpdateUserAvatarResponses,
-    UpdateUserAvatarErrors,
+    EditUserAvatarResponses,
+    EditUserAvatarErrors,
     ThrowOnError
   >({
     ...formDataBodySerializer,
@@ -1071,12 +941,12 @@ export const editUser = <ThrowOnError extends boolean = false>(
 /**
  * Update the user's preferred payment method.
  */
-export const updatePaymentMethod = <ThrowOnError extends boolean = false>(
-  options?: Options<UpdatePaymentMethodData, ThrowOnError>,
+export const editUserPaymentMethod = <ThrowOnError extends boolean = false>(
+  options?: Options<EditUserPaymentMethodData, ThrowOnError>,
 ) =>
   (options?.client ?? client).patch<
-    UpdatePaymentMethodResponses,
-    UpdatePaymentMethodErrors,
+    EditUserPaymentMethodResponses,
+    EditUserPaymentMethodErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -1112,12 +982,12 @@ export const setupEfi = <ThrowOnError extends boolean = false>(
 /**
  * Create semiauto integration for user.
  */
-export const updatePixKey = <ThrowOnError extends boolean = false>(
-  options?: Options<UpdatePixKeyData, ThrowOnError>,
+export const setupSemiauto = <ThrowOnError extends boolean = false>(
+  options?: Options<SetupSemiautoData, ThrowOnError>,
 ) =>
   (options?.client ?? client).patch<
-    UpdatePixKeyResponses,
-    UpdatePixKeyErrors,
+    SetupSemiautoResponses,
+    SetupSemiautoErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
@@ -1158,26 +1028,6 @@ export const walletWithdraw = <ThrowOnError extends boolean = false>(
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/users/me/wallet/withdraw",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  });
-
-/**
- * Setup an HTTP webhook for the user.
- */
-export const setupWebhook = <ThrowOnError extends boolean = false>(
-  options?: Options<SetupWebhookData, ThrowOnError>,
-) =>
-  (options?.client ?? client).patch<
-    SetupWebhookResponses,
-    SetupWebhookErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/webhook",
     ...options,
     headers: {
       "Content-Type": "application/json",

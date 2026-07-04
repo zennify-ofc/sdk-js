@@ -1,12 +1,12 @@
 import {
-    GetStoreCatalogsResponse,
-    GetStoreProductResponse,
-    GetStoreProductStockResponse,
+    ListProductCatalogsResponse,
+    GetProductResponse,
+    GetProductStockResponse,
     GetStoreResponse,
-    GetStoresResponse,
+    ListStoresResponse,
     GetTransactionResponse,
     GetUserResponse,
-    ListStoreProductsResponse,
+    ListProductsResponse,
     ListTransactionsResponse,
     UploadStoreMediaData,
 } from "./lib/api";
@@ -24,16 +24,16 @@ export type ZennifyUser = GetUserResponse;
 export type MediaUpdatePayload = Body<UploadStoreMediaData>;
 
 // Stores
-export type PartialStore = GetStoresResponse[number];
+export type PartialStore = ListStoresResponse[number];
 export type FullStore = GetStoreResponse;
 
 export type StoreModerator = FullStore["moderators"][number];
 export type StoreModeratorPermissions = StoreModerator["permissions"][number];
 
 // Produtos
-export type PartialProduct = ListStoreProductsResponse[number];
-export type Product = GetStoreProductResponse;
-export type ProductStock = GetStoreProductStockResponse[number];
+export type PartialProduct = ListProductsResponse[number];
+export type Product = GetProductResponse;
+export type ProductStock = GetProductStockResponse[number];
 
 // Transações
 export type TransactionStatus = FullTransaction["status"];
@@ -43,5 +43,5 @@ export type FullTransaction<T = never> = GetTransactionResponse & {
 };
 
 // Catálogos
-export type Catalog = GetStoreCatalogsResponse[number];
+export type Catalog = ListProductCatalogsResponse[number];
 export type CatalogProduct = Catalog["products"][number];
