@@ -45,6 +45,711 @@ export type GetServiceApiSchemaResponses = {
   200: unknown;
 };
 
+export type GetServiceDataData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/service";
+};
+
+export type GetServiceDataResponses = {
+  /**
+   * Success - Get service data
+   */
+  200: {
+    servers: Array<{
+      /**
+       * Discord server id.
+       */
+      id: string;
+      /**
+       * Discord server name.
+       */
+      name: string;
+      /**
+       * Discord server member count.
+       */
+      members: number;
+      /**
+       * Discord server icon URL.
+       */
+      icon_url: string;
+    }>;
+    random: Array<{
+      /**
+       * Discord server id.
+       */
+      id: string;
+      /**
+       * Discord server name.
+       */
+      name: string;
+      /**
+       * Discord server member count.
+       */
+      members: number;
+      /**
+       * Discord server icon URL.
+       */
+      icon_url: string;
+    }>;
+    pricing: {
+      /**
+       * Store plan price.
+       */
+      store: number;
+      /**
+       * Store renewal price.
+       */
+      renew: number;
+      limits: {
+        /**
+         * Discord server limit price.
+         */
+        discord_server: number;
+        /**
+         * Product limit price.
+         */
+        product: number;
+      };
+    };
+    statistics: {
+      /**
+       * Service revenue.
+       */
+      revenue: number;
+      /**
+       * Store count.
+       */
+      stores: number;
+      /**
+       * Sales count.
+       */
+      sales: number;
+      /**
+       * User count.
+       */
+      users: number;
+    };
+  };
+};
+
+export type GetServiceDataResponse =
+  GetServiceDataResponses[keyof GetServiceDataResponses];
+
+export type ListStoresData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/stores";
+};
+
+export type ListStoresErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+};
+
+export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
+
+export type ListStoresResponses = {
+  /**
+   * Stores listed successfully.
+   */
+  200: Array<{
+    id: number;
+    name: string;
+    created_at: number;
+    expires_at: number;
+    icon_id: null | string;
+    banner_id: null | string;
+    is_owner: boolean;
+  }>;
+};
+
+export type ListStoresResponse = ListStoresResponses[keyof ListStoresResponses];
+
+export type ListTransactionsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * Transaction id or Pix E2E id.
+     */
+    q?: string;
+    /**
+     * Maximum creation date.
+     */
+    before?: string;
+    /**
+     * Transaction status filter.
+     */
+    status?: string;
+    /**
+     * Transaction value filter.
+     */
+    value?: string;
+    /**
+     * Transaction type filter.
+     */
+    type?: string;
+    /**
+     * Maximum number of transactions.
+     */
+    limit?: string;
+    /**
+     * User id or Discord user id filter.
+     */
+    user?: string;
+  };
+  url: "/transactions";
+};
+
+export type ListTransactionsErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+};
+
+export type ListTransactionsError =
+  ListTransactionsErrors[keyof ListTransactionsErrors];
+
+export type ListTransactionsResponses = {
+  /**
+   * Transactions listed successfully.
+   */
+  200: Array<{
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "transfer" | "sale" | "deposit" | "withdraw";
+    id: string;
+    created_at: number;
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    base_value: number;
+    value: number;
+    primaryUser: boolean;
+  }>;
+};
+
+export type ListTransactionsResponse =
+  ListTransactionsResponses[keyof ListTransactionsResponses];
+
+export type GetUserByIdData = {
+  body?: never;
+  path: {
+    userId: string;
+  };
+  query?: never;
+  url: "/users/{userId}";
+};
+
+export type GetUserByIdErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * User not found.
+   */
+  404: DefaultError;
+};
+
+export type GetUserByIdError = GetUserByIdErrors[keyof GetUserByIdErrors];
+
+export type GetUserByIdResponses = {
+  /**
+   * User returned successfully.
+   */
+  200: {
+    /**
+     * User id.
+     */
+    id: number;
+    /**
+     * Public user name.
+     */
+    name: string;
+    avatar: null | string;
+    connections: {
+      discord: null | string;
+    };
+    /**
+     * User join timestamp.
+     */
+    joined_at: number;
+    verified: boolean;
+    is_admin: boolean;
+    stores: Array<{
+      /**
+       * Store id.
+       */
+      id: number;
+      /**
+       * Store name.
+       */
+      name: string;
+      icon_id: null | string;
+      banner_id: null | string;
+      /**
+       * Store creation timestamp.
+       */
+      created_at: number;
+      rating: null | number;
+      first_sale_at: null | number;
+    }>;
+  };
+};
+
+export type GetUserByIdResponse =
+  GetUserByIdResponses[keyof GetUserByIdResponses];
+
+export type EditUserAvatarData = {
+  body?: {
+    file: Blob | File;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/avatar";
+};
+
+export type EditUserAvatarErrors = {
+  /**
+   * Invalid Multipart payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * No file uploaded.
+   */
+  404: DefaultError;
+  /**
+   * Payload Too Large
+   */
+  413: DefaultError;
+};
+
+export type EditUserAvatarError =
+  EditUserAvatarErrors[keyof EditUserAvatarErrors];
+
+export type EditUserAvatarResponses = {
+  /**
+   * Avatar updated successfuly
+   */
+  200: {
+    /**
+     * Uploaded avatar hash.
+     */
+    hash: string;
+  };
+};
+
+export type EditUserAvatarResponse =
+  EditUserAvatarResponses[keyof EditUserAvatarResponses];
+
+export type GetUserData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/users/me";
+};
+
+export type GetUserErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+};
+
+export type GetUserError = GetUserErrors[keyof GetUserErrors];
+
+export type GetUserResponses = {
+  /**
+   * Successful response
+   */
+  200: {
+    /**
+     * User ID.
+     */
+    id: number;
+    /**
+     * Public user name.
+     */
+    name: string;
+    /**
+     * User email.
+     */
+    email?: string;
+    /**
+     * User avatar hash.
+     */
+    avatar?: string;
+    /**
+     * Configured webhook URL.
+     */
+    webhook?: string;
+    /**
+     * User timezone.
+     */
+    timezone?: string;
+    /**
+     * User creation timestamp.
+     */
+    joinedAt: number;
+    payment: {
+      entities: {
+        efi: {
+          id?: string;
+          /**
+           * Configured Pix key.
+           */
+          pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
+        };
+        mercadopago: {
+          id?: string;
+          /**
+           * Configured Pix key.
+           */
+          pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
+        };
+        semiauto: {
+          id?: string;
+          /**
+           * Configured Pix key.
+           */
+          pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
+        };
+        "wallet-efi": {
+          id?: string;
+          /**
+           * Configured Pix key.
+           */
+          pixKey?: string;
+          settings?: null | {
+            fee?: number;
+          };
+        };
+      };
+      preferences: {
+        pix: null | "mercadopago" | "efi" | "semiauto" | "wallet-efi";
+      };
+    };
+    connections: {
+      discord?: null | string;
+    };
+    legal: {
+      status?: null | "pending" | "approved" | "rejected";
+      type?: "cpf" | "cnpj";
+      rejectedReason?: string;
+    };
+  };
+};
+
+export type GetUserResponse = GetUserResponses[keyof GetUserResponses];
+
+export type EditUserData = {
+  body?: {
+    /**
+     * Public name. Must be 3 to 50 valid characters.
+     */
+    name: string;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me";
+};
+
+export type EditUserErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Invalid name.
+   */
+  422: DefaultError;
+};
+
+export type EditUserError = EditUserErrors[keyof EditUserErrors];
+
+export type EditUserResponses = {
+  /**
+   * User modified succesfully
+   */
+  204: void;
+};
+
+export type EditUserResponse = EditUserResponses[keyof EditUserResponses];
+
+export type EditUserPaymentMethodData = {
+  body?: {
+    pix: null | string;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/payment-method";
+};
+
+export type EditUserPaymentMethodErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Invalid payment method.
+   */
+  422: DefaultError;
+};
+
+export type EditUserPaymentMethodError =
+  EditUserPaymentMethodErrors[keyof EditUserPaymentMethodErrors];
+
+export type EditUserPaymentMethodResponses = {
+  /**
+   * Payment method updated.
+   */
+  204: void;
+};
+
+export type EditUserPaymentMethodResponse =
+  EditUserPaymentMethodResponses[keyof EditUserPaymentMethodResponses];
+
+export type SetupEfiData = {
+  body?: {
+    certificate: Blob | File;
+    pix_key: string;
+    client_id: string;
+    client_secret: string;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/payments/efi/setup";
+};
+
+export type SetupEfiErrors = {
+  /**
+   * Bad Request
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Forbidden
+   */
+  403: DefaultError;
+  /**
+   * Invalid certificate.
+   */
+  415: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Internal Server Error
+   */
+  500: DefaultError;
+};
+
+export type SetupEfiError = SetupEfiErrors[keyof SetupEfiErrors];
+
+export type SetupEfiResponses = {
+  /**
+   * Efí integration configured. Returns account ID
+   */
+  200: {
+    /**
+     * Efí account ID.
+     */
+    id: string;
+  };
+};
+
+export type SetupEfiResponse = SetupEfiResponses[keyof SetupEfiResponses];
+
+export type SetupSemiautoData = {
+  body?: {
+    /**
+     * Pix key.
+     */
+    pix_key: string;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/payments/semiauto";
+};
+
+export type SetupSemiautoErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type SetupSemiautoError = SetupSemiautoErrors[keyof SetupSemiautoErrors];
+
+export type SetupSemiautoResponses = {
+  /**
+   * Semiauto configured succesfully.
+   */
+  204: void;
+};
+
+export type SetupSemiautoResponse =
+  SetupSemiautoResponses[keyof SetupSemiautoResponses];
+
+export type WalletBalanceData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/users/me/wallet/balance";
+};
+
+export type WalletBalanceErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+};
+
+export type WalletBalanceError = WalletBalanceErrors[keyof WalletBalanceErrors];
+
+export type WalletBalanceResponses = {
+  /**
+   * Balance returned successfully.
+   */
+  200: {
+    /**
+     * Legacy balance under the old withdrawal-fee rules.
+     */
+    old: number;
+    /**
+     * Pending wallet balance.
+     */
+    pending: number;
+    /**
+     * Available wallet balance.
+     */
+    available: number;
+  };
+};
+
+export type WalletBalanceResponse =
+  WalletBalanceResponses[keyof WalletBalanceResponses];
+
+export type WalletWithdrawData = {
+  body?: {
+    /**
+     * Money value.
+     */
+    value: number;
+    automatic: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/wallet/withdraw";
+};
+
+export type WalletWithdrawErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Conflict
+   */
+  409: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Invalid parameter.
+   */
+  422: DefaultError;
+  /**
+   * Withdrawal limit exceeded.
+   */
+  429: DefaultError;
+};
+
+export type WalletWithdrawError =
+  WalletWithdrawErrors[keyof WalletWithdrawErrors];
+
+export type WalletWithdrawResponses = {
+  /**
+   * Withdraw requested succesfully.
+   */
+  200: {
+    /**
+     * Withdraw transaction ID.
+     */
+    id: string;
+  };
+};
+
+export type WalletWithdrawResponse =
+  WalletWithdrawResponses[keyof WalletWithdrawResponses];
+
 export type SendProductDiscordMessageData = {
   body?: {
     /**
@@ -181,8 +886,8 @@ export type GetProductResponses = {
     id: number;
     name: string;
     value: number;
-    icon_id?: null | string;
-    banner_id?: null | string;
+    icon_id: null | string;
+    banner_id: null | string;
     owner_id: number;
     store_id: number;
     created_at: number;
@@ -490,11 +1195,11 @@ export type GetProductStockResponses = {
     /**
      * Private stock content delivered to the buyer.
      */
-    content: string;
+    content?: string;
     /**
      * Internal cost for this stock item.
      */
-    cost: number;
+    cost?: number;
   }>;
 };
 
@@ -573,109 +1278,17 @@ export type EditProductStockResponses = {
       /**
        * Private stock content delivered to the buyer.
        */
-      content: string;
+      content?: string;
       /**
        * Internal cost for this stock item.
        */
-      cost: number;
+      cost?: number;
     }>;
   };
 };
 
 export type EditProductStockResponse =
   EditProductStockResponses[keyof EditProductStockResponses];
-
-export type GetServiceDataData = {
-  body?: never;
-  path?: never;
-  query?: never;
-  url: "/service";
-};
-
-export type GetServiceDataResponses = {
-  /**
-   * Success - Get service data
-   */
-  200: {
-    servers: Array<{
-      /**
-       * Discord server id.
-       */
-      id: string;
-      /**
-       * Discord server name.
-       */
-      name: string;
-      /**
-       * Discord server member count.
-       */
-      members: number;
-      /**
-       * Discord server icon URL.
-       */
-      icon_url: string;
-    }>;
-    random: Array<{
-      /**
-       * Discord server id.
-       */
-      id: string;
-      /**
-       * Discord server name.
-       */
-      name: string;
-      /**
-       * Discord server member count.
-       */
-      members: number;
-      /**
-       * Discord server icon URL.
-       */
-      icon_url: string;
-    }>;
-    pricing: {
-      /**
-       * Store plan price.
-       */
-      store: number;
-      /**
-       * Store renewal price.
-       */
-      renew: number;
-      limits: {
-        /**
-         * Discord server limit price.
-         */
-        discord_server: number;
-        /**
-         * Product limit price.
-         */
-        product: number;
-      };
-    };
-    statistics: {
-      /**
-       * Service revenue.
-       */
-      revenue: number;
-      /**
-       * Store count.
-       */
-      stores: number;
-      /**
-       * Sales count.
-       */
-      sales: number;
-      /**
-       * User count.
-       */
-      users: number;
-    };
-  };
-};
-
-export type GetServiceDataResponse =
-  GetServiceDataResponses[keyof GetServiceDataResponses];
 
 export type EditDiscordAppChannelsData = {
   body?: {
@@ -1216,8 +1829,8 @@ export type ListProductCatalogsResponses = {
     created_at: number;
     owner_id: number;
     store_id: number;
-    icon_id?: null | string;
-    banner_id?: null | string;
+    icon_id: null | string;
+    banner_id: null | string;
     products: Array<{
       id: number;
       emoji: null | string;
@@ -1559,7 +2172,7 @@ export type CreateCouponData = {
      * Coupon code. Only letters and numbers are allowed.
      */
     name: string;
-    type: "percentage" | "value";
+    type: "value" | "percentage";
     /**
      * Coupon discount value. Percentage coupons accept 1 to 100; value coupons accept up to 999999.
      */
@@ -1640,19 +2253,23 @@ export type CreateCouponResponse =
 export type DeleteMediaData = {
   body?: {
     store?: Array<
-      "banner" | "icon" | "background_ranking" | "banner_sale_approved"
+      | "icon"
+      | "banner"
+      | "background_ranking"
+      | "banner_sale_approved"
+      | "qrcode_image"
     >;
     /**
      * Construct a type with a set of properties K of type T
      */
     products?: {
-      [key: string]: Array<"banner" | "icon">;
+      [key: string]: Array<"icon" | "banner">;
     };
     /**
      * Construct a type with a set of properties K of type T
      */
     catalogs?: {
-      [key: string]: Array<"banner" | "icon">;
+      [key: string]: Array<"icon" | "banner">;
     };
   };
   path: {
@@ -1706,19 +2323,23 @@ export type UploadStoreMediaData = {
     file: Blob | File;
     set: {
       store?: Array<
-        "banner" | "icon" | "background_ranking" | "banner_sale_approved"
+        | "icon"
+        | "banner"
+        | "background_ranking"
+        | "banner_sale_approved"
+        | "qrcode_image"
       >;
       /**
        * Construct a type with a set of properties K of type T
        */
       products?: {
-        [key: string]: Array<"banner" | "icon">;
+        [key: string]: Array<"icon" | "banner">;
       };
       /**
        * Construct a type with a set of properties K of type T
        */
       catalogs?: {
-        [key: string]: Array<"banner" | "icon">;
+        [key: string]: Array<"icon" | "banner">;
       };
     };
   };
@@ -2081,14 +2702,13 @@ export type GetStoreResponses = {
     created_at: number;
     expires_at: number;
     owner_id: number;
-    icon_id?: null | string;
-    banner_id?: null | string;
-    background_ranking_id?: null | string;
-    banner_sale_approved_id?: null | string;
-    blocked_banks?: null | Array<string>;
-    addons: Array<
-      "custom_bot" | "divulgation" | "antiraid" | "managed_automod"
-    >;
+    icon_id: null | string;
+    banner_id: null | string;
+    background_ranking_id: null | string;
+    banner_sale_approved_id: null | string;
+    qrcode_image_id: null | string;
+    blocked_banks: null | Array<string>;
+    addons: null | Array<string>;
     limit_product: number;
     limit_discord_server: number;
     /**
@@ -2097,7 +2717,11 @@ export type GetStoreResponses = {
     moderators: {
       [key: string]: {
         username: string;
-        discord_user_id: string;
+        discord_user_id: null | string;
+        created_at: number;
+        /**
+         * Represents the enum public.permissions_moderators
+         */
         permissions: Array<
           | "MANAGE_CATALOGS"
           | "MANAGE_PRODUCTS"
@@ -2105,10 +2729,7 @@ export type GetStoreResponses = {
           | "MANAGE_STORE"
           | "MANAGE_SALES"
           | "VIEW_STATISTICS"
-          | "VIEW_DISCKETS"
-          | "MANAGE_DISCKETS"
         >;
-        created_at: number;
       };
     };
     discord_bot: {
@@ -2177,112 +2798,6 @@ export type EditStoreResponses = {
 
 export type EditStoreResponse = EditStoreResponses[keyof EditStoreResponses];
 
-export type ListStoresData = {
-  body?: never;
-  path?: never;
-  query?: never;
-  url: "/stores";
-};
-
-export type ListStoresErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-};
-
-export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
-
-export type ListStoresResponses = {
-  /**
-   * Stores listed successfully.
-   */
-  200: Array<{
-    id: number;
-    name: string;
-    created_at: number;
-    expires_at: number;
-    icon_id: null | string;
-    banner_id: null | string;
-    is_owner: boolean;
-  }>;
-};
-
-export type ListStoresResponse = ListStoresResponses[keyof ListStoresResponses];
-
-export type ListTransactionsData = {
-  body?: never;
-  path?: never;
-  query?: {
-    /**
-     * Transaction id or Pix E2E id.
-     */
-    q?: string;
-    /**
-     * Maximum creation date.
-     */
-    before?: string;
-    /**
-     * Transaction status filter.
-     */
-    status?: string;
-    /**
-     * Transaction value filter.
-     */
-    value?: string;
-    /**
-     * Transaction type filter.
-     */
-    type?: string;
-    /**
-     * Maximum number of transactions.
-     */
-    limit?: string;
-    /**
-     * User id or Discord user id filter.
-     */
-    user?: string;
-  };
-  url: "/transactions";
-};
-
-export type ListTransactionsErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-};
-
-export type ListTransactionsError =
-  ListTransactionsErrors[keyof ListTransactionsErrors];
-
-export type ListTransactionsResponses = {
-  /**
-   * Transactions listed successfully.
-   */
-  200: Array<{
-    id: string;
-    base_value: number;
-    type: "sale" | "transfer" | "withdraw" | "deposit";
-    value: number;
-    created_at: number;
-    status:
-      | "inactive"
-      | "invalid-pix-key"
-      | "pending"
-      | "approved"
-      | "cancelled"
-      | "expired"
-      | "refused"
-      | "refunded"
-      | "analysis";
-    primaryUser: boolean;
-  }>;
-};
-
-export type ListTransactionsResponse =
-  ListTransactionsResponses[keyof ListTransactionsResponses];
-
 export type GetTransactionData = {
   body?: never;
   path: {
@@ -2312,76 +2827,81 @@ export type GetTransactionResponses = {
    */
   200: {
     id: string;
+    /**
+     * Represents the enum public.transaction_status
+     */
     status:
       | "approved"
       | "cancelled"
       | "refunded"
-      | "inactive"
-      | "invalid-pix-key"
       | "pending"
       | "expired"
       | "refused"
-      | "analysis";
+      | "analysis"
+      | "invalid-pix-key";
     value: number;
+    /**
+     * Represents the enum public.payment_method
+     */
     method: "pix" | "boleto";
     created_at: number;
-    expires_at: number;
-    type: "transfer" | "sale" | "deposit" | "withdraw";
-    entity: "mercadopago" | "semiauto" | "efi" | "wallet-efi";
-    managed?: null | boolean;
+    expires_at: null | number;
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "sale" | "transfer" | "deposit" | "withdraw";
+    /**
+     * Represents the enum public.payment_entity
+     */
+    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
+    managed: null | boolean;
     base_value: number;
     refunded_value: number;
-    ref_code?: null | string;
-    refund_reason?:
+    refund_reason:
       | null
       | "fraud"
       | "pix_med"
-      | "by_admin"
       | "requested_with_zennify"
       | "requested_with_bank"
       | "stock_out"
       | "stock_low"
-      | "internal_reason"
+      | "by_admin"
       | "internal_error"
+      | "internal_reason"
       | "bank_blacklist"
       | "bank_rejected"
       | "coupon_out";
-    refund_comment?: null | string;
-    refund_requested_by?: null | number;
-    pix_e2eid?: null | string;
-    pix_qrcode?: null | string;
-    payer_bank?: null | string;
-    metadata?: unknown;
-    order: {
+    refund_comment: null | string;
+    refund_requested_by: null | number;
+    pix_e2eid: null | string;
+    pix_qrcode: null | string;
+    payer_bank: null | string;
+    metadata: unknown;
+    ref_code: null | string;
+    order: null | {
       id: string;
-      subtotal: number;
-      discount: number;
-      total_value: number;
+      /**
+       * Represents the enum public.platforms
+       */
       platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
-      coupon_id?: null | number;
-      discord_guild_id?: null | string;
-      discord_channel_id?: null | string;
-      discord_channel_message_id?: null | string;
-      discord_sale_message?: null | string;
-      discord_feedback_message?: null | string;
-      rating?: null | number;
-      rating_message?: null | string;
+      coupon_id: null | number;
+      discord_guild_id: null | string;
+      discord_channel_id: null | string;
+      discord_channel_message_id: null | string;
+      discord_sale_message: null | string;
+      discord_feedback_message: null | string;
+      discount: number;
+      subtotal: number;
+      total_value: number;
+      rating: null | number;
+      rating_message: null | string;
       /**
        * From T, pick a set of properties whose keys are in the union K
        */
       payer: {
         id: number;
         username: string;
-        discord_user_id: string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      store: {
-        id: number;
-        name: string;
-        icon_id?: null | string;
-        banner_id?: null | string;
+        discord_user_id: null | string;
       };
       /**
        * From T, pick a set of properties whose keys are in the union K
@@ -2389,29 +2909,35 @@ export type GetTransactionResponses = {
       seller: {
         id: number;
         username: string;
-        discord_user_id: string;
+        discord_user_id: null | string;
       };
-      products: Array<{
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      store: {
+        id: number;
+        name: string;
+        icon_id: null | string;
+        banner_id: null | string;
+      };
+      products: null | Array<{
         id: number;
         name: string;
         value: number;
-        icon_id?: null | string;
-        banner_id?: null | string;
-        short_description?: null | string;
-        discord_description?: null | string;
-        website_description?: null | string;
+        discord_description: null | string;
+        short_description: null | string;
+        website_description: null | string;
+        icon_id: null | string;
+        banner_id: null | string;
         amount: number;
         delivered: Array<string>;
       }>;
     };
-    /**
-     * From T, pick a set of properties whose keys are in the union K
-     */
-    withdraw: {
-      fee: number;
-      subtotal: number;
+    withdraw: null | {
       discount: number;
+      subtotal: number;
       total_value: number;
+      fee: number;
       sended_pix_key: null | string;
     };
   };
@@ -2516,475 +3042,3 @@ export type EditTransactionResponses = {
 
 export type EditTransactionResponse =
   EditTransactionResponses[keyof EditTransactionResponses];
-
-export type GetUserByIdData = {
-  body?: never;
-  path: {
-    userId: string;
-  };
-  query?: never;
-  url: "/users/{userId}";
-};
-
-export type GetUserByIdErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * User not found.
-   */
-  404: DefaultError;
-};
-
-export type GetUserByIdError = GetUserByIdErrors[keyof GetUserByIdErrors];
-
-export type GetUserByIdResponses = {
-  /**
-   * Successful response
-   */
-  200: {
-    id: number;
-    name: string;
-    avatar?: null | string;
-    connections: {
-      discord: string;
-    };
-  };
-};
-
-export type GetUserByIdResponse =
-  GetUserByIdResponses[keyof GetUserByIdResponses];
-
-export type EditUserAvatarData = {
-  body?: {
-    file: Blob | File;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/avatar";
-};
-
-export type EditUserAvatarErrors = {
-  /**
-   * Invalid Multipart payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * No file uploaded.
-   */
-  404: DefaultError;
-  /**
-   * Payload Too Large
-   */
-  413: DefaultError;
-};
-
-export type EditUserAvatarError =
-  EditUserAvatarErrors[keyof EditUserAvatarErrors];
-
-export type EditUserAvatarResponses = {
-  /**
-   * Avatar updated successfuly
-   */
-  200: {
-    /**
-     * Uploaded avatar hash.
-     */
-    hash: string;
-  };
-};
-
-export type EditUserAvatarResponse =
-  EditUserAvatarResponses[keyof EditUserAvatarResponses];
-
-export type GetUserData = {
-  body?: never;
-  path?: never;
-  query?: never;
-  url: "/users/me";
-};
-
-export type GetUserErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-};
-
-export type GetUserError = GetUserErrors[keyof GetUserErrors];
-
-export type GetUserResponses = {
-  /**
-   * Successful response
-   */
-  200: {
-    /**
-     * User ID.
-     */
-    id: number;
-    /**
-     * Public user name.
-     */
-    name: string;
-    /**
-     * User email.
-     */
-    email: string;
-    /**
-     * User avatar hash.
-     */
-    avatar?: string;
-    /**
-     * Configured webhook URL.
-     */
-    webhook?: string;
-    /**
-     * User timezone.
-     */
-    timezone?: string;
-    /**
-     * User creation timestamp.
-     */
-    joinedAt: number;
-    payment: {
-      entities: {
-        efi: {
-          id?: string;
-          /**
-           * Configured Pix key.
-           */
-          pixKey?: string;
-          settings?: null | {
-            fee?: number;
-          };
-        };
-        mercadopago: {
-          id?: string;
-          /**
-           * Configured Pix key.
-           */
-          pixKey?: string;
-          settings?: null | {
-            fee?: number;
-          };
-        };
-        semiauto: {
-          id?: string;
-          /**
-           * Configured Pix key.
-           */
-          pixKey?: string;
-          settings?: null | {
-            fee?: number;
-          };
-        };
-        "wallet-efi": {
-          id?: string;
-          /**
-           * Configured Pix key.
-           */
-          pixKey?: string;
-          settings?: null | {
-            fee?: number;
-          };
-        };
-      };
-      preferences: {
-        pix: null | "mercadopago" | "semiauto" | "efi" | "wallet-efi";
-      };
-    };
-    connections: {
-      discord?: string;
-    };
-    legal: {
-      status?: "pending" | "approved" | "rejected";
-      type?: "cpf" | "cnpj";
-      rejectedReason?: string;
-    };
-  };
-};
-
-export type GetUserResponse = GetUserResponses[keyof GetUserResponses];
-
-export type EditUserData = {
-  body?: {
-    /**
-     * Public name. Must be 3 to 50 valid characters.
-     */
-    name: string;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me";
-};
-
-export type EditUserErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Invalid name.
-   */
-  422: DefaultError;
-};
-
-export type EditUserError = EditUserErrors[keyof EditUserErrors];
-
-export type EditUserResponses = {
-  /**
-   * User modified succesfully
-   */
-  204: void;
-};
-
-export type EditUserResponse = EditUserResponses[keyof EditUserResponses];
-
-export type EditUserPaymentMethodData = {
-  body?: {
-    pix: null | string;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/payment-method";
-};
-
-export type EditUserPaymentMethodErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Invalid payment method.
-   */
-  422: DefaultError;
-};
-
-export type EditUserPaymentMethodError =
-  EditUserPaymentMethodErrors[keyof EditUserPaymentMethodErrors];
-
-export type EditUserPaymentMethodResponses = {
-  /**
-   * Payment method updated.
-   */
-  204: void;
-};
-
-export type EditUserPaymentMethodResponse =
-  EditUserPaymentMethodResponses[keyof EditUserPaymentMethodResponses];
-
-export type SetupEfiData = {
-  body?: {
-    certificate: Blob | File;
-    pix_key: string;
-    client_id: string;
-    client_secret: string;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/payments/efi/setup";
-};
-
-export type SetupEfiErrors = {
-  /**
-   * Bad Request
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Forbidden
-   */
-  403: DefaultError;
-  /**
-   * Invalid certificate.
-   */
-  415: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Internal Server Error
-   */
-  500: DefaultError;
-};
-
-export type SetupEfiError = SetupEfiErrors[keyof SetupEfiErrors];
-
-export type SetupEfiResponses = {
-  /**
-   * Efí integration configured. Returns account ID
-   */
-  200: {
-    /**
-     * Efí account ID.
-     */
-    id: string;
-  };
-};
-
-export type SetupEfiResponse = SetupEfiResponses[keyof SetupEfiResponses];
-
-export type SetupSemiautoData = {
-  body?: {
-    /**
-     * Pix key.
-     */
-    pix_key: string;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/payments/semiauto";
-};
-
-export type SetupSemiautoErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-};
-
-export type SetupSemiautoError = SetupSemiautoErrors[keyof SetupSemiautoErrors];
-
-export type SetupSemiautoResponses = {
-  /**
-   * Semiauto configured succesfully.
-   */
-  204: void;
-};
-
-export type SetupSemiautoResponse =
-  SetupSemiautoResponses[keyof SetupSemiautoResponses];
-
-export type WalletBalanceData = {
-  body?: never;
-  path?: never;
-  query?: never;
-  url: "/users/me/wallet/balance";
-};
-
-export type WalletBalanceErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-};
-
-export type WalletBalanceError = WalletBalanceErrors[keyof WalletBalanceErrors];
-
-export type WalletBalanceResponses = {
-  /**
-   * Balance returned successfully.
-   */
-  200: {
-    /**
-     * Legacy balance under the old withdrawal-fee rules.
-     */
-    old: number;
-    /**
-     * Pending wallet balance.
-     */
-    pending: number;
-    /**
-     * Available wallet balance.
-     */
-    available: number;
-  };
-};
-
-export type WalletBalanceResponse =
-  WalletBalanceResponses[keyof WalletBalanceResponses];
-
-export type WalletWithdrawData = {
-  body?: {
-    /**
-     * Money value.
-     */
-    value: number;
-    automatic: boolean;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/wallet/withdraw";
-};
-
-export type WalletWithdrawErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Conflict
-   */
-  409: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Invalid parameter.
-   */
-  422: DefaultError;
-  /**
-   * Withdrawal limit exceeded.
-   */
-  429: DefaultError;
-};
-
-export type WalletWithdrawError =
-  WalletWithdrawErrors[keyof WalletWithdrawErrors];
-
-export type WalletWithdrawResponses = {
-  /**
-   * Withdraw requested succesfully.
-   */
-  200: {
-    /**
-     * Withdraw transaction ID.
-     */
-    id: string;
-  };
-};
-
-export type WalletWithdrawResponse =
-  WalletWithdrawResponses[keyof WalletWithdrawResponses];
