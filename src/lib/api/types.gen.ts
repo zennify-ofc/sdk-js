@@ -309,7 +309,6 @@ export type GetUserByIdResponses = {
        */
       created_at: number;
       rating: null | number;
-      first_sale_at: null | number;
     }>;
   };
 };
@@ -1195,11 +1194,11 @@ export type GetProductStockResponses = {
     /**
      * Private stock content delivered to the buyer.
      */
-    content?: string;
+    content: string;
     /**
      * Internal cost for this stock item.
      */
-    cost?: number;
+    cost: number;
   }>;
 };
 
@@ -1278,11 +1277,11 @@ export type EditProductStockResponses = {
       /**
        * Private stock content delivered to the buyer.
        */
-      content?: string;
+      content: string;
       /**
        * Internal cost for this stock item.
        */
-      cost?: number;
+      cost: number;
     }>;
   };
 };
@@ -3042,3 +3041,365 @@ export type EditTransactionResponses = {
 
 export type EditTransactionResponse =
   EditTransactionResponses[keyof EditTransactionResponses];
+
+export type GetProductHistoryData = {
+  body?: never;
+  path: {
+    storeId: string;
+    productId: string;
+  };
+  query?: {
+    /**
+     * Delivery time cursor in ms; only records strictly before are returned.
+     */
+    before?: string;
+    /**
+     * Number of history entries (max 50, default 20).
+     */
+    limit?: string;
+    type?: "sale" | "deliver";
+    /**
+     * Filter by recipient user (users.core.id, discord_user_id or email).
+     */
+    to?: string;
+    /**
+     * Filter by moderator who ran /produtos entregar (users.core.id, discord_user_id or email). Ignored when type=sale.
+     */
+    by?: string;
+  };
+  url: "/stores/{storeId}/products/{productId}/history";
+};
+
+export type GetProductHistoryErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+};
+
+export type GetProductHistoryError =
+  GetProductHistoryErrors[keyof GetProductHistoryErrors];
+
+export type GetProductHistoryResponses = {
+  /**
+   * History entries returned in descending order by delivery time.
+   */
+  200: Array<
+    | {
+        /**
+         * Transaction id (transactions.core) or deliver id serialized as string.
+         */
+        id: string;
+        /**
+         * Delivery timestamp in ms.
+         */
+        at: number;
+        to: {
+          id: number;
+          username: string;
+          avatar: null | string;
+        };
+        items: Array<{
+          id: number;
+          content: string;
+          cost: null | number;
+          value: null | number;
+        }>;
+        type: "sale";
+        order: {
+          total_value: number;
+          /**
+           * How many stock rows the buyer paid for. items.length may be lower on partial delivery.
+           */
+          amount_expected: number;
+          /**
+           * Represents the enum public.transaction_status
+           */
+          status:
+            | "pending"
+            | "approved"
+            | "expired"
+            | "cancelled"
+            | "refused"
+            | "refunded"
+            | "analysis"
+            | "invalid-pix-key";
+          refunded_value: number;
+        };
+      }
+    | {
+        /**
+         * Transaction id (transactions.core) or deliver id serialized as string.
+         */
+        id: string;
+        /**
+         * Delivery timestamp in ms.
+         */
+        at: number;
+        to: {
+          id: number;
+          username: string;
+          avatar: null | string;
+        };
+        items: Array<{
+          id: number;
+          content: string;
+          cost: null | number;
+          value: null | number;
+        }>;
+        type: "deliver";
+        by: {
+          id: number;
+          username: string;
+          avatar: null | string;
+        };
+      }
+  >;
+};
+
+export type GetProductHistoryResponse =
+  GetProductHistoryResponses[keyof GetProductHistoryResponses];
+
+export type RefundTransactionData = {
+  body?: {
+    /**
+     * Refund amount. Omit to refund the remaining value.
+     */
+    value?: number;
+    /**
+     * Refund comment shown in the transaction history.
+     */
+    comment?: string;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}/refund";
+};
+
+export type RefundTransactionErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Refund not allowed.
+   */
+  403: DefaultError;
+  /**
+   * Transaction not found.
+   */
+  404: DefaultError;
+  /**
+   * Conflict
+   */
+  409: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Refund failed.
+   */
+  500: DefaultError;
+};
+
+export type RefundTransactionError =
+  RefundTransactionErrors[keyof RefundTransactionErrors];
+
+export type RefundTransactionResponses = {
+  /**
+   * Refund accepted.
+   */
+  202: unknown;
+};
+
+export type RateTransactionData = {
+  body?: {
+    /**
+     * Rating message.
+     */
+    message?: string;
+    /**
+     * Rating stars.
+     */
+    stars: number;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}/rating";
+};
+
+export type RateTransactionErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Transaction not found.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type RateTransactionError =
+  RateTransactionErrors[keyof RateTransactionErrors];
+
+export type RateTransactionResponses = {
+  /**
+   * Transaction rated successfully.
+   */
+  200: {
+    id: string;
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    value: number;
+    /**
+     * Represents the enum public.payment_method
+     */
+    method: "pix" | "boleto";
+    created_at: number;
+    expires_at: null | number;
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "sale" | "transfer" | "deposit" | "withdraw";
+    /**
+     * Represents the enum public.payment_entity
+     */
+    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
+    managed: null | boolean;
+    base_value: number;
+    refunded_value: number;
+    refund_reason:
+      | null
+      | "fraud"
+      | "pix_med"
+      | "requested_with_zennify"
+      | "requested_with_bank"
+      | "stock_out"
+      | "stock_low"
+      | "by_admin"
+      | "internal_error"
+      | "internal_reason"
+      | "bank_blacklist"
+      | "bank_rejected"
+      | "coupon_out";
+    refund_comment: null | string;
+    refund_requested_by: null | number;
+    pix_e2eid: null | string;
+    pix_qrcode: null | string;
+    payer_bank: null | string;
+    metadata: unknown;
+    ref_code: null | string;
+    order: null | {
+      id: string;
+      /**
+       * Represents the enum public.platforms
+       */
+      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
+      coupon_id: null | number;
+      discord_guild_id: null | string;
+      discord_channel_id: null | string;
+      discord_channel_message_id: null | string;
+      discord_sale_message: null | string;
+      discord_feedback_message: null | string;
+      discount: number;
+      subtotal: number;
+      total_value: number;
+      rating: null | number;
+      rating_message: null | string;
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      payer: {
+        id: number;
+        username: string;
+        discord_user_id: null | string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      seller: {
+        id: number;
+        username: string;
+        discord_user_id: null | string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      store: {
+        id: number;
+        name: string;
+        icon_id: null | string;
+        banner_id: null | string;
+      };
+      products: null | Array<{
+        id: number;
+        name: string;
+        value: number;
+        discord_description: null | string;
+        short_description: null | string;
+        website_description: null | string;
+        icon_id: null | string;
+        banner_id: null | string;
+        amount: number;
+        delivered: Array<string>;
+      }>;
+    };
+    withdraw: null | {
+      discount: number;
+      subtotal: number;
+      total_value: number;
+      fee: number;
+      sended_pix_key: null | string;
+    };
+  };
+};
+
+export type RateTransactionResponse =
+  RateTransactionResponses[keyof RateTransactionResponses];

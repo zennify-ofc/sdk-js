@@ -82,6 +82,9 @@ import type {
   GetDiscordAppServersResponses,
   GetProductData,
   GetProductErrors,
+  GetProductHistoryData,
+  GetProductHistoryErrors,
+  GetProductHistoryResponses,
   GetProductResponses,
   GetProductStockData,
   GetProductStockErrors,
@@ -131,6 +134,12 @@ import type {
   ListTransactionsData,
   ListTransactionsErrors,
   ListTransactionsResponses,
+  RateTransactionData,
+  RateTransactionErrors,
+  RateTransactionResponses,
+  RefundTransactionData,
+  RefundTransactionErrors,
+  RefundTransactionResponses,
   SendProductCatalogMessageData,
   SendProductCatalogMessageErrors,
   SendProductCatalogMessageResponses,
@@ -1028,6 +1037,62 @@ export const editTransaction = <ThrowOnError extends boolean = false>(
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/transactions/{transactionId}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List product delivery history (sales + manual deliveries) for auditing.
+ */
+export const getProductHistory = <ThrowOnError extends boolean = false>(
+  options: Options<GetProductHistoryData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetProductHistoryResponses,
+    GetProductHistoryErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/products/{productId}/history",
+    ...options,
+  });
+
+/**
+ * Refund a sale transaction, fully or partially.
+ */
+export const refundTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<RefundTransactionData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    RefundTransactionResponses,
+    RefundTransactionErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions/{transactionId}/refund",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Rate a sale transaction as its payer. Allowed until 90 days after purchase; a 5-star rating locks further edits.
+ */
+export const rateTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<RateTransactionData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    RateTransactionResponses,
+    RateTransactionErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions/{transactionId}/rating",
     ...options,
     headers: {
       "Content-Type": "application/json",
