@@ -2427,6 +2427,7 @@ export type GetUserResponses = {
           pixKey?: string;
           settings?: null | {
             fee?: number;
+            hoursToReceive?: number;
           };
         };
         mercadopago: {
@@ -2437,6 +2438,7 @@ export type GetUserResponses = {
           pixKey?: string;
           settings?: null | {
             fee?: number;
+            hoursToReceive?: number;
           };
         };
         semiauto: {
@@ -2447,6 +2449,7 @@ export type GetUserResponses = {
           pixKey?: string;
           settings?: null | {
             fee?: number;
+            hoursToReceive?: number;
           };
         };
         "wallet-efi": {
@@ -2457,6 +2460,7 @@ export type GetUserResponses = {
           pixKey?: string;
           settings?: null | {
             fee?: number;
+            hoursToReceive?: number;
           };
         };
       };
