@@ -2910,6 +2910,20 @@ export type RateTransactionResponses = {
         amount: number;
         delivered: Array<string>;
       }>;
+      discord_roles: null | Array<{
+        id: number;
+        user_id: number;
+        rule_id: null | number;
+        guild_id: string;
+        role_id: string;
+        role_name: null | string;
+        role_color_primary: null | number;
+        role_color_secondary: null | number;
+        remove_in: null | number;
+        should_add: boolean;
+        given: null | boolean;
+        discord_user_id: null | string;
+      }>;
     };
     withdraw: null | {
       discount: number;
@@ -3062,6 +3076,20 @@ export type GetTransactionResponses = {
         banner_id: null | string;
         amount: number;
         delivered: Array<string>;
+      }>;
+      discord_roles: null | Array<{
+        id: number;
+        user_id: number;
+        rule_id: null | number;
+        guild_id: string;
+        role_id: string;
+        role_name: null | string;
+        role_color_primary: null | number;
+        role_color_secondary: null | number;
+        remove_in: null | number;
+        should_add: boolean;
+        given: null | boolean;
+        discord_user_id: null | string;
       }>;
     };
     withdraw: null | {
@@ -3559,3 +3587,277 @@ export type GetCouponHistoryResponses = {
 
 export type GetCouponHistoryResponse =
   GetCouponHistoryResponses[keyof GetCouponHistoryResponses];
+
+export type EditDiscordAppAutoCrosspostData = {
+  body?: {
+    enabled?: boolean;
+    general?: boolean;
+    tips_enabled?: boolean;
+    channels_whitelist?: Array<string>;
+    channels_blacklist?: Array<string>;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/crosspost";
+};
+
+export type EditDiscordAppAutoCrosspostErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Invalid Discord channel.
+   */
+  422: DefaultError;
+};
+
+export type EditDiscordAppAutoCrosspostError =
+  EditDiscordAppAutoCrosspostErrors[keyof EditDiscordAppAutoCrosspostErrors];
+
+export type EditDiscordAppAutoCrosspostResponses = {
+  /**
+   * Auto crosspost configuration updated successfully.
+   */
+  204: void;
+};
+
+export type EditDiscordAppAutoCrosspostResponse =
+  EditDiscordAppAutoCrosspostResponses[keyof EditDiscordAppAutoCrosspostResponses];
+
+export type CreateDiscordAppAutoRoleData = {
+  body?: {
+    /**
+     * Rule name.
+     */
+    name: string;
+    /**
+     * Discord snowflake id.
+     */
+    role_id: string;
+    /**
+     * Represents the enum discord.auto_role_trigger
+     */
+    trigger:
+      | "buy"
+      | "rankingPosition"
+      | "rankingMoney"
+      | "rankingCount"
+      | "guildEnter";
+    only_products: Array<number>;
+    meta: null | number;
+    ttl: null | number;
+    only_discord: null | boolean;
+    /**
+     * Discord snowflake id.
+     */
+    guild_id: string;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/roles";
+};
+
+export type CreateDiscordAppAutoRoleErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Forbidden
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type CreateDiscordAppAutoRoleError =
+  CreateDiscordAppAutoRoleErrors[keyof CreateDiscordAppAutoRoleErrors];
+
+export type CreateDiscordAppAutoRoleResponses = {
+  /**
+   * Auto role rule created.
+   */
+  200: {
+    id: number;
+    name: string;
+    guild_id: string;
+    role_id: string;
+    /**
+     * Represents the enum discord.auto_role_trigger
+     */
+    trigger:
+      | "buy"
+      | "rankingPosition"
+      | "rankingMoney"
+      | "rankingCount"
+      | "guildEnter";
+    only_products: Array<number>;
+    meta: null | number;
+    ttl: null | number;
+    only_discord: null | boolean;
+  };
+};
+
+export type CreateDiscordAppAutoRoleResponse =
+  CreateDiscordAppAutoRoleResponses[keyof CreateDiscordAppAutoRoleResponses];
+
+export type DeleteDiscordAppAutoRoleData = {
+  body?: never;
+  path: {
+    storeId: string;
+    ruleId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}";
+};
+
+export type DeleteDiscordAppAutoRoleErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+};
+
+export type DeleteDiscordAppAutoRoleError =
+  DeleteDiscordAppAutoRoleErrors[keyof DeleteDiscordAppAutoRoleErrors];
+
+export type DeleteDiscordAppAutoRoleResponses = {
+  /**
+   * Auto role rule deleted.
+   */
+  204: void;
+};
+
+export type DeleteDiscordAppAutoRoleResponse =
+  DeleteDiscordAppAutoRoleResponses[keyof DeleteDiscordAppAutoRoleResponses];
+
+export type EditDiscordAppAutoRoleData = {
+  /**
+   * Make all properties in T optional
+   */
+  body?: {
+    /**
+     * Rule name.
+     */
+    name?: string;
+    /**
+     * Discord snowflake id.
+     */
+    role_id?: string;
+    trigger?:
+      | "buy"
+      | "rankingPosition"
+      | "rankingMoney"
+      | "rankingCount"
+      | "guildEnter";
+    only_products?: Array<number>;
+    meta?: null | number;
+    ttl?: null | number;
+    only_discord?: null | boolean;
+  };
+  path: {
+    storeId: string;
+    ruleId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}";
+};
+
+export type EditDiscordAppAutoRoleErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type EditDiscordAppAutoRoleError =
+  EditDiscordAppAutoRoleErrors[keyof EditDiscordAppAutoRoleErrors];
+
+export type EditDiscordAppAutoRoleResponses = {
+  /**
+   * Auto role rule updated.
+   */
+  204: void;
+};
+
+export type EditDiscordAppAutoRoleResponse =
+  EditDiscordAppAutoRoleResponses[keyof EditDiscordAppAutoRoleResponses];

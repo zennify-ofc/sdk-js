@@ -11,6 +11,9 @@ import type {
   CreateCouponData,
   CreateCouponErrors,
   CreateCouponResponses,
+  CreateDiscordAppAutoRoleData,
+  CreateDiscordAppAutoRoleErrors,
+  CreateDiscordAppAutoRoleResponses,
   CreateProductCatalogData,
   CreateProductCatalogErrors,
   CreateProductCatalogResponses,
@@ -20,6 +23,9 @@ import type {
   DeleteCouponData,
   DeleteCouponErrors,
   DeleteCouponResponses,
+  DeleteDiscordAppAutoRoleData,
+  DeleteDiscordAppAutoRoleErrors,
+  DeleteDiscordAppAutoRoleResponses,
   DeleteMediaData,
   DeleteMediaErrors,
   DeleteMediaResponses,
@@ -32,6 +38,12 @@ import type {
   EditCouponData,
   EditCouponErrors,
   EditCouponResponses,
+  EditDiscordAppAutoCrosspostData,
+  EditDiscordAppAutoCrosspostErrors,
+  EditDiscordAppAutoCrosspostResponses,
+  EditDiscordAppAutoRoleData,
+  EditDiscordAppAutoRoleErrors,
+  EditDiscordAppAutoRoleResponses,
   EditDiscordAppChannelsData,
   EditDiscordAppChannelsErrors,
   EditDiscordAppChannelsResponses,
@@ -1117,4 +1129,82 @@ export const getCouponHistory = <ThrowOnError extends boolean = false>(
     security: [{ scheme: "bearer", type: "http" }],
     url: "/stores/{storeId}/coupons/{couponId}/history",
     ...options,
+  });
+
+/**
+ * Update a store auto crosspost configuration.
+ */
+export const editDiscordAppAutoCrosspost = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<EditDiscordAppAutoCrosspostData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditDiscordAppAutoCrosspostResponses,
+    EditDiscordAppAutoCrosspostErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/crosspost",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Create a store auto role rule.
+ */
+export const createDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
+  options: Options<CreateDiscordAppAutoRoleData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    CreateDiscordAppAutoRoleResponses,
+    CreateDiscordAppAutoRoleErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/roles",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete (soft) a store auto role rule.
+ */
+export const deleteDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteDiscordAppAutoRoleData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<
+    DeleteDiscordAppAutoRoleResponses,
+    DeleteDiscordAppAutoRoleErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}",
+    ...options,
+  });
+
+/**
+ * Update a store auto role rule.
+ */
+export const editDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
+  options: Options<EditDiscordAppAutoRoleData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditDiscordAppAutoRoleResponses,
+    EditDiscordAppAutoRoleErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
   });
