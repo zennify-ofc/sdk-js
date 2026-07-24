@@ -11,6 +11,9 @@ import type {
   CreateCouponData,
   CreateCouponErrors,
   CreateCouponResponses,
+  CreateDiscordAppAutoReactData,
+  CreateDiscordAppAutoReactErrors,
+  CreateDiscordAppAutoReactResponses,
   CreateDiscordAppAutoRoleData,
   CreateDiscordAppAutoRoleErrors,
   CreateDiscordAppAutoRoleResponses,
@@ -23,6 +26,9 @@ import type {
   DeleteCouponData,
   DeleteCouponErrors,
   DeleteCouponResponses,
+  DeleteDiscordAppAutoReactData,
+  DeleteDiscordAppAutoReactErrors,
+  DeleteDiscordAppAutoReactResponses,
   DeleteDiscordAppAutoRoleData,
   DeleteDiscordAppAutoRoleErrors,
   DeleteDiscordAppAutoRoleResponses,
@@ -41,6 +47,9 @@ import type {
   EditDiscordAppAutoCrosspostData,
   EditDiscordAppAutoCrosspostErrors,
   EditDiscordAppAutoCrosspostResponses,
+  EditDiscordAppAutoReactData,
+  EditDiscordAppAutoReactErrors,
+  EditDiscordAppAutoReactResponses,
   EditDiscordAppAutoRoleData,
   EditDiscordAppAutoRoleErrors,
   EditDiscordAppAutoRoleResponses,
@@ -233,18 +242,18 @@ export const getServiceData = <ThrowOnError extends boolean = false>(
   >({ url: "/service", ...options });
 
 /**
- * List stores owned or moderated by the current user.
+ * List product delivery history (sales + manual deliveries) for auditing.
  */
-export const listStores = <ThrowOnError extends boolean = false>(
-  options?: Options<ListStoresData, ThrowOnError>,
+export const getProductHistory = <ThrowOnError extends boolean = false>(
+  options: Options<GetProductHistoryData, ThrowOnError>,
 ) =>
-  (options?.client ?? client).get<
-    ListStoresResponses,
-    ListStoresErrors,
+  (options.client ?? client).get<
+    GetProductHistoryResponses,
+    GetProductHistoryErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores",
+    url: "/stores/{storeId}/products/{productId}/history",
     ...options,
   });
 
@@ -393,7 +402,7 @@ export const getProductStock = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Add or remove product stock items and update stock lock settings.
+ * Add or remove product stock items and update stock lock/delivery settings.
  */
 export const editProductStock = <ThrowOnError extends boolean = false>(
   options: Options<EditProductStockData, ThrowOnError>,
@@ -405,6 +414,84 @@ export const editProductStock = <ThrowOnError extends boolean = false>(
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/stores/{storeId}/products/{productId}/stock",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Update a store auto crosspost configuration.
+ */
+export const editDiscordAppAutoCrosspost = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<EditDiscordAppAutoCrosspostData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditDiscordAppAutoCrosspostResponses,
+    EditDiscordAppAutoCrosspostErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/crosspost",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Create a store auto role rule.
+ */
+export const createDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
+  options: Options<CreateDiscordAppAutoRoleData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    CreateDiscordAppAutoRoleResponses,
+    CreateDiscordAppAutoRoleErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/roles",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete (soft) a store auto role rule.
+ */
+export const deleteDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteDiscordAppAutoRoleData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<
+    DeleteDiscordAppAutoRoleResponses,
+    DeleteDiscordAppAutoRoleErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}",
+    ...options,
+  });
+
+/**
+ * Update a store auto role rule.
+ */
+export const editDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
+  options: Options<EditDiscordAppAutoRoleData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditDiscordAppAutoRoleResponses,
+    EditDiscordAppAutoRoleErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}",
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -697,6 +784,22 @@ export const createCoupon = <ThrowOnError extends boolean = false>(
   });
 
 /**
+ * List transactions where this coupon was applied, for auditing.
+ */
+export const getCouponHistory = <ThrowOnError extends boolean = false>(
+  options: Options<GetCouponHistoryData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetCouponHistoryResponses,
+    GetCouponHistoryErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/coupons/{couponId}/history",
+    ...options,
+  });
+
+/**
  * Detach media from store entities.
  */
 export const deleteMedia = <ThrowOnError extends boolean = false>(
@@ -838,132 +941,19 @@ export const editStore = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * List product delivery history (sales + manual deliveries) for auditing.
+ * List stores owned or moderated by the current user.
  */
-export const getProductHistory = <ThrowOnError extends boolean = false>(
-  options: Options<GetProductHistoryData, ThrowOnError>,
-) =>
-  (options.client ?? client).get<
-    GetProductHistoryResponses,
-    GetProductHistoryErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/products/{productId}/history",
-    ...options,
-  });
-
-/**
- * Access current user data
- */
-export const getUser = <ThrowOnError extends boolean = false>(
-  options?: Options<GetUserData, ThrowOnError>,
+export const listStores = <ThrowOnError extends boolean = false>(
+  options?: Options<ListStoresData, ThrowOnError>,
 ) =>
   (options?.client ?? client).get<
-    GetUserResponses,
-    GetUserErrors,
+    ListStoresResponses,
+    ListStoresErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me",
+    url: "/stores",
     ...options,
-  });
-
-/**
- * Edit current user data
- */
-export const editUser = <ThrowOnError extends boolean = false>(
-  options?: Options<EditUserData, ThrowOnError>,
-) =>
-  (options?.client ?? client).patch<
-    EditUserResponses,
-    EditUserErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  });
-
-/**
- * Configures the user's Efí account with certificate, Pix key, and OAuth credentials.
- */
-export const setupEfi = <ThrowOnError extends boolean = false>(
-  options?: Options<SetupEfiData, ThrowOnError>,
-) =>
-  (options?.client ?? client).post<
-    SetupEfiResponses,
-    SetupEfiErrors,
-    ThrowOnError
-  >({
-    ...formDataBodySerializer,
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/payments/efi/setup",
-    ...options,
-    headers: {
-      "Content-Type": null,
-      ...options?.headers,
-    },
-  });
-
-/**
- * Returns the user's Zennify Wallet balance.
- */
-export const walletBalance = <ThrowOnError extends boolean = false>(
-  options?: Options<WalletBalanceData, ThrowOnError>,
-) =>
-  (options?.client ?? client).get<
-    WalletBalanceResponses,
-    WalletBalanceErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/wallet/balance",
-    ...options,
-  });
-
-/**
- * Requests a withdrawal from the user's Zennify Wallet.
- */
-export const walletWithdraw = <ThrowOnError extends boolean = false>(
-  options?: Options<WalletWithdrawData, ThrowOnError>,
-) =>
-  (options?.client ?? client).post<
-    WalletWithdrawResponses,
-    WalletWithdrawErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/wallet/withdraw",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  });
-
-/**
- * Refund a sale transaction, fully or partially.
- */
-export const refundTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<RefundTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    RefundTransactionResponses,
-    RefundTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}/refund",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
   });
 
 /**
@@ -979,42 +969,6 @@ export const rateTransaction = <ThrowOnError extends boolean = false>(
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/transactions/{transactionId}/rating",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Access a transaction by id or Pix E2E id.
- */
-export const getTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<GetTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).get<
-    GetTransactionResponses,
-    GetTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}",
-    ...options,
-  });
-
-/**
- * Update transaction status or metadata.
- */
-export const editTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<EditTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).patch<
-    EditTransactionResponses,
-    EditTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}",
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -1076,6 +1030,42 @@ export const editUserAvatar = <ThrowOnError extends boolean = false>(
   });
 
 /**
+ * Access current user data
+ */
+export const getUser = <ThrowOnError extends boolean = false>(
+  options?: Options<GetUserData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<
+    GetUserResponses,
+    GetUserErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me",
+    ...options,
+  });
+
+/**
+ * Edit current user data
+ */
+export const editUser = <ThrowOnError extends boolean = false>(
+  options?: Options<EditUserData, ThrowOnError>,
+) =>
+  (options?.client ?? client).patch<
+    EditUserResponses,
+    EditUserErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
+  });
+
+/**
  * Update the user's preferred payment method.
  */
 export const editUserPaymentMethod = <ThrowOnError extends boolean = false>(
@@ -1091,6 +1081,27 @@ export const editUserPaymentMethod = <ThrowOnError extends boolean = false>(
     ...options,
     headers: {
       "Content-Type": "application/json",
+      ...options?.headers,
+    },
+  });
+
+/**
+ * Configures the user's Efí account with certificate, Pix key, and OAuth credentials.
+ */
+export const setupEfi = <ThrowOnError extends boolean = false>(
+  options?: Options<SetupEfiData, ThrowOnError>,
+) =>
+  (options?.client ?? client).post<
+    SetupEfiResponses,
+    SetupEfiErrors,
+    ThrowOnError
+  >({
+    ...formDataBodySerializer,
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me/payments/efi/setup",
+    ...options,
+    headers: {
+      "Content-Type": null,
       ...options?.headers,
     },
   });
@@ -1116,56 +1127,54 @@ export const setupSemiauto = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * List transactions where this coupon was applied, for auditing.
+ * Returns the user's Zennify Wallet balance.
  */
-export const getCouponHistory = <ThrowOnError extends boolean = false>(
-  options: Options<GetCouponHistoryData, ThrowOnError>,
+export const walletBalance = <ThrowOnError extends boolean = false>(
+  options?: Options<WalletBalanceData, ThrowOnError>,
 ) =>
-  (options.client ?? client).get<
-    GetCouponHistoryResponses,
-    GetCouponHistoryErrors,
+  (options?.client ?? client).get<
+    WalletBalanceResponses,
+    WalletBalanceErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/coupons/{couponId}/history",
+    url: "/users/me/wallet/balance",
     ...options,
   });
 
 /**
- * Update a store auto crosspost configuration.
+ * Requests a withdrawal from the user's Zennify Wallet.
  */
-export const editDiscordAppAutoCrosspost = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<EditDiscordAppAutoCrosspostData, ThrowOnError>,
+export const walletWithdraw = <ThrowOnError extends boolean = false>(
+  options?: Options<WalletWithdrawData, ThrowOnError>,
 ) =>
-  (options.client ?? client).patch<
-    EditDiscordAppAutoCrosspostResponses,
-    EditDiscordAppAutoCrosspostErrors,
+  (options?.client ?? client).post<
+    WalletWithdrawResponses,
+    WalletWithdrawErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/auto/crosspost",
+    url: "/users/me/wallet/withdraw",
     ...options,
     headers: {
       "Content-Type": "application/json",
-      ...options.headers,
+      ...options?.headers,
     },
   });
 
 /**
- * Create a store auto role rule.
+ * Refund a sale transaction, fully or partially.
  */
-export const createDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
-  options: Options<CreateDiscordAppAutoRoleData, ThrowOnError>,
+export const refundTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<RefundTransactionData, ThrowOnError>,
 ) =>
   (options.client ?? client).post<
-    CreateDiscordAppAutoRoleResponses,
-    CreateDiscordAppAutoRoleErrors,
+    RefundTransactionResponses,
+    RefundTransactionErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/auto/roles",
+    url: "/transactions/{transactionId}/refund",
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -1174,34 +1183,94 @@ export const createDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Delete (soft) a store auto role rule.
+ * Access a transaction by id or Pix E2E id.
  */
-export const deleteDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteDiscordAppAutoRoleData, ThrowOnError>,
+export const getTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<GetTransactionData, ThrowOnError>,
 ) =>
-  (options.client ?? client).delete<
-    DeleteDiscordAppAutoRoleResponses,
-    DeleteDiscordAppAutoRoleErrors,
+  (options.client ?? client).get<
+    GetTransactionResponses,
+    GetTransactionErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}",
+    url: "/transactions/{transactionId}",
     ...options,
   });
 
 /**
- * Update a store auto role rule.
+ * Update transaction status or metadata.
  */
-export const editDiscordAppAutoRole = <ThrowOnError extends boolean = false>(
-  options: Options<EditDiscordAppAutoRoleData, ThrowOnError>,
+export const editTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<EditTransactionData, ThrowOnError>,
 ) =>
   (options.client ?? client).patch<
-    EditDiscordAppAutoRoleResponses,
-    EditDiscordAppAutoRoleErrors,
+    EditTransactionResponses,
+    EditTransactionErrors,
     ThrowOnError
   >({
     security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}",
+    url: "/transactions/{transactionId}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a store channel auto react configuration.
+ */
+export const deleteDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteDiscordAppAutoReactData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<
+    DeleteDiscordAppAutoReactResponses,
+    DeleteDiscordAppAutoReactErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/react",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Update an existing store channel auto react configuration.
+ */
+export const editDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
+  options: Options<EditDiscordAppAutoReactData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditDiscordAppAutoReactResponses,
+    EditDiscordAppAutoReactErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/react",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Create a store channel auto react configuration.
+ */
+export const createDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
+  options: Options<CreateDiscordAppAutoReactData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    CreateDiscordAppAutoReactResponses,
+    CreateDiscordAppAutoReactErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/react",
     ...options,
     headers: {
       "Content-Type": "application/json",

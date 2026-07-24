@@ -57,42 +57,38 @@ export type GetServiceDataResponses = {
    * Success - Get service data
    */
   200: {
-    servers: Array<{
-      /**
-       * Discord server id.
-       */
-      id: string;
-      /**
-       * Discord server name.
-       */
-      name: string;
-      /**
-       * Discord server member count.
-       */
-      members: number;
-      /**
-       * Discord server icon URL.
-       */
-      icon_url: string;
-    }>;
-    random: Array<{
-      /**
-       * Discord server id.
-       */
-      id: string;
-      /**
-       * Discord server name.
-       */
-      name: string;
-      /**
-       * Discord server member count.
-       */
-      members: number;
-      /**
-       * Discord server icon URL.
-       */
-      icon_url: string;
-    }>;
+    servers: {
+      top: Array<{
+        /**
+         * Discord server id.
+         */
+        id: string;
+        /**
+         * Discord server name.
+         */
+        name: string;
+        /**
+         * Discord server member count.
+         */
+        members: number;
+        icon_url: null | string;
+      }>;
+      random: Array<{
+        /**
+         * Discord server id.
+         */
+        id: string;
+        /**
+         * Discord server name.
+         */
+        name: string;
+        /**
+         * Discord server member count.
+         */
+        members: number;
+        icon_url: null | string;
+      }>;
+    };
     pricing: {
       /**
        * Store plan price.
@@ -137,42 +133,135 @@ export type GetServiceDataResponses = {
 export type GetServiceDataResponse =
   GetServiceDataResponses[keyof GetServiceDataResponses];
 
-export type ListStoresData = {
+export type GetProductHistoryData = {
   body?: never;
-  path?: never;
-  query?: never;
-  url: "/stores";
+  path: {
+    storeId: string;
+    productId: string;
+  };
+  query?: {
+    /**
+     * Delivery time cursor in ms; only records strictly before are returned.
+     */
+    before?: string;
+    /**
+     * Number of history entries (max 50, default 20).
+     */
+    limit?: string;
+    type?: "sale" | "deliver";
+    /**
+     * Filter by recipient user (users.core.id, discord_user_id or email).
+     */
+    to?: string;
+    /**
+     * Filter by moderator who ran /produtos entregar (users.core.id, discord_user_id or email). Ignored when type=sale.
+     */
+    by?: string;
+  };
+  url: "/stores/{storeId}/products/{productId}/history";
 };
 
-export type ListStoresErrors = {
+export type GetProductHistoryErrors = {
   /**
    * User not authenticated.
    */
   401: DefaultError;
   /**
-   * Too many requests.
+   * This store has expired.
    */
-  429: DefaultError;
-};
-
-export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
-
-export type ListStoresResponses = {
+  402: DefaultError;
   /**
-   * Stores listed successfully.
+   * Permission denied.
    */
-  200: Array<{
-    id: number;
-    name: string;
-    created_at: number;
-    expires_at: number;
-    icon_id: null | string;
-    banner_id: null | string;
-    is_owner: boolean;
-  }>;
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
 };
 
-export type ListStoresResponse = ListStoresResponses[keyof ListStoresResponses];
+export type GetProductHistoryError =
+  GetProductHistoryErrors[keyof GetProductHistoryErrors];
+
+export type GetProductHistoryResponses = {
+  /**
+   * History entries returned in descending order by delivery time.
+   */
+  200: Array<
+    | {
+        /**
+         * Transaction id (transactions.core) or deliver id serialized as string.
+         */
+        id: string;
+        /**
+         * Delivery timestamp in ms.
+         */
+        at: number;
+        to: {
+          id: number;
+          username: string;
+          avatar: null | string;
+        };
+        items: Array<{
+          id: number;
+          content: string;
+          cost: null | number;
+          value: null | number;
+        }>;
+        type: "sale";
+        order: {
+          total_value: number;
+          /**
+           * How many stock rows the buyer paid for. items.length may be lower on partial delivery.
+           */
+          amount_expected: number;
+          /**
+           * Represents the enum public.transaction_status
+           */
+          status:
+            | "pending"
+            | "approved"
+            | "cancelled"
+            | "refunded"
+            | "expired"
+            | "refused"
+            | "analysis"
+            | "invalid-pix-key";
+          refunded_value: number;
+        };
+      }
+    | {
+        /**
+         * Transaction id (transactions.core) or deliver id serialized as string.
+         */
+        id: string;
+        /**
+         * Delivery timestamp in ms.
+         */
+        at: number;
+        to: {
+          id: number;
+          username: string;
+          avatar: null | string;
+        };
+        items: Array<{
+          id: number;
+          content: string;
+          cost: null | number;
+          value: null | number;
+        }>;
+        type: "deliver";
+        by: {
+          id: number;
+          username: string;
+          avatar: null | string;
+        };
+      }
+  >;
+};
+
+export type GetProductHistoryResponse =
+  GetProductHistoryResponses[keyof GetProductHistoryResponses];
 
 export type SendProductDiscordMessageData = {
   body?: {
@@ -318,6 +407,10 @@ export type GetProductResponses = {
     stock: {
       size: number;
       locked: boolean;
+      /**
+       * Represents the enum products.stock_mode
+       */
+      mode: "random" | "sequential";
     };
     description: {
       discord: string;
@@ -645,6 +738,7 @@ export type EditProductStockData = {
       id?: number;
     }>;
     remove?: Array<number>;
+    stock_mode?: "random" | "sequential";
   };
   path: {
     storeId: string;
@@ -708,11 +802,286 @@ export type EditProductStockResponses = {
        */
       cost: number;
     }>;
+    stock_mode: "random" | "sequential";
   };
 };
 
 export type EditProductStockResponse =
   EditProductStockResponses[keyof EditProductStockResponses];
+
+export type EditDiscordAppAutoCrosspostData = {
+  body?: {
+    enabled?: boolean;
+    general?: boolean;
+    tips_enabled?: boolean;
+    channels_whitelist?: Array<string>;
+    channels_blacklist?: Array<string>;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/crosspost";
+};
+
+export type EditDiscordAppAutoCrosspostErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Invalid Discord channel.
+   */
+  422: DefaultError;
+};
+
+export type EditDiscordAppAutoCrosspostError =
+  EditDiscordAppAutoCrosspostErrors[keyof EditDiscordAppAutoCrosspostErrors];
+
+export type EditDiscordAppAutoCrosspostResponses = {
+  /**
+   * Auto crosspost configuration updated successfully.
+   */
+  204: void;
+};
+
+export type EditDiscordAppAutoCrosspostResponse =
+  EditDiscordAppAutoCrosspostResponses[keyof EditDiscordAppAutoCrosspostResponses];
+
+export type CreateDiscordAppAutoRoleData = {
+  body?: {
+    /**
+     * Rule name.
+     */
+    name: string;
+    /**
+     * Discord snowflake id.
+     */
+    role_id: string;
+    /**
+     * Represents the enum discord.auto_role_trigger
+     */
+    trigger:
+      | "buy"
+      | "rankingPosition"
+      | "rankingMoney"
+      | "rankingCount"
+      | "guildEnter";
+    only_products: Array<number>;
+    meta: null | number;
+    ttl: null | number;
+    only_discord: null | boolean;
+    /**
+     * Discord snowflake id.
+     */
+    guild_id: string;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/roles";
+};
+
+export type CreateDiscordAppAutoRoleErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Forbidden
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type CreateDiscordAppAutoRoleError =
+  CreateDiscordAppAutoRoleErrors[keyof CreateDiscordAppAutoRoleErrors];
+
+export type CreateDiscordAppAutoRoleResponses = {
+  /**
+   * Auto role rule created.
+   */
+  200: {
+    id: number;
+    name: string;
+    guild_id: string;
+    role_id: string;
+    /**
+     * Represents the enum discord.auto_role_trigger
+     */
+    trigger:
+      | "buy"
+      | "rankingPosition"
+      | "rankingMoney"
+      | "rankingCount"
+      | "guildEnter";
+    only_products: Array<number>;
+    meta: null | number;
+    ttl: null | number;
+    only_discord: null | boolean;
+  };
+};
+
+export type CreateDiscordAppAutoRoleResponse =
+  CreateDiscordAppAutoRoleResponses[keyof CreateDiscordAppAutoRoleResponses];
+
+export type DeleteDiscordAppAutoRoleData = {
+  body?: never;
+  path: {
+    storeId: string;
+    ruleId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}";
+};
+
+export type DeleteDiscordAppAutoRoleErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+};
+
+export type DeleteDiscordAppAutoRoleError =
+  DeleteDiscordAppAutoRoleErrors[keyof DeleteDiscordAppAutoRoleErrors];
+
+export type DeleteDiscordAppAutoRoleResponses = {
+  /**
+   * Auto role rule deleted.
+   */
+  204: void;
+};
+
+export type DeleteDiscordAppAutoRoleResponse =
+  DeleteDiscordAppAutoRoleResponses[keyof DeleteDiscordAppAutoRoleResponses];
+
+export type EditDiscordAppAutoRoleData = {
+  /**
+   * Make all properties in T optional
+   */
+  body?: {
+    /**
+     * Rule name.
+     */
+    name?: string;
+    /**
+     * Discord snowflake id.
+     */
+    role_id?: string;
+    trigger?:
+      | "buy"
+      | "rankingPosition"
+      | "rankingMoney"
+      | "rankingCount"
+      | "guildEnter";
+    only_products?: Array<number>;
+    meta?: null | number;
+    ttl?: null | number;
+    only_discord?: null | boolean;
+  };
+  path: {
+    storeId: string;
+    ruleId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}";
+};
+
+export type EditDiscordAppAutoRoleErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+};
+
+export type EditDiscordAppAutoRoleError =
+  EditDiscordAppAutoRoleErrors[keyof EditDiscordAppAutoRoleErrors];
+
+export type EditDiscordAppAutoRoleResponses = {
+  /**
+   * Auto role rule updated.
+   */
+  204: void;
+};
+
+export type EditDiscordAppAutoRoleResponse =
+  EditDiscordAppAutoRoleResponses[keyof EditDiscordAppAutoRoleResponses];
 
 export type EditDiscordAppChannelsData = {
   body?: {
@@ -1257,8 +1626,8 @@ export type ListProductCatalogsResponses = {
     banner_id: null | string;
     products: Array<{
       id: number;
-      emoji: null | string;
       label: null | string;
+      emoji: null | string;
     }>;
   }>;
 };
@@ -1673,6 +2042,96 @@ export type CreateCouponResponses = {
 
 export type CreateCouponResponse =
   CreateCouponResponses[keyof CreateCouponResponses];
+
+export type GetCouponHistoryData = {
+  body?: never;
+  path: {
+    storeId: string;
+    couponId: string;
+  };
+  query?: {
+    /**
+     * Sale time cursor in ms; only records strictly before are returned.
+     */
+    before?: string;
+    /**
+     * Number of history entries (max 50, default 20).
+     */
+    limit?: string;
+    /**
+     * Filter by payer (users.core.id, discord_user_id or email).
+     */
+    to?: string;
+  };
+  url: "/stores/{storeId}/coupons/{couponId}/history";
+};
+
+export type GetCouponHistoryErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+};
+
+export type GetCouponHistoryError =
+  GetCouponHistoryErrors[keyof GetCouponHistoryErrors];
+
+export type GetCouponHistoryResponses = {
+  /**
+   * History entries returned in descending order by sale time.
+   */
+  200: Array<{
+    /**
+     * Transaction id (transactions.core).
+     */
+    id: string;
+    /**
+     * Sale timestamp in ms.
+     */
+    at: number;
+    to: {
+      id: number;
+      username: string;
+      avatar: null | string;
+    };
+    order: {
+      subtotal: number;
+      /**
+       * Discount applied by this coupon on the order.
+       */
+      discount: number;
+      total_value: number;
+      /**
+       * Represents the enum public.transaction_status
+       */
+      status:
+        | "pending"
+        | "approved"
+        | "cancelled"
+        | "refunded"
+        | "expired"
+        | "refused"
+        | "analysis"
+        | "invalid-pix-key";
+      refunded_value: number;
+    };
+  }>;
+};
+
+export type GetCouponHistoryResponse =
+  GetCouponHistoryResponses[keyof GetCouponHistoryResponses];
 
 export type DeleteMediaData = {
   body?: {
@@ -2234,135 +2693,434 @@ export type EditStoreResponses = {
 
 export type EditStoreResponse = EditStoreResponses[keyof EditStoreResponses];
 
-export type GetProductHistoryData = {
+export type ListStoresData = {
   body?: never;
-  path: {
-    storeId: string;
-    productId: string;
-  };
-  query?: {
-    /**
-     * Delivery time cursor in ms; only records strictly before are returned.
-     */
-    before?: string;
-    /**
-     * Number of history entries (max 50, default 20).
-     */
-    limit?: string;
-    type?: "sale" | "deliver";
-    /**
-     * Filter by recipient user (users.core.id, discord_user_id or email).
-     */
-    to?: string;
-    /**
-     * Filter by moderator who ran /produtos entregar (users.core.id, discord_user_id or email). Ignored when type=sale.
-     */
-    by?: string;
-  };
-  url: "/stores/{storeId}/products/{productId}/history";
+  path?: never;
+  query?: never;
+  url: "/stores";
 };
 
-export type GetProductHistoryErrors = {
+export type ListStoresErrors = {
   /**
    * User not authenticated.
    */
   401: DefaultError;
   /**
-   * This store has expired.
+   * Too many requests.
    */
-  402: DefaultError;
+  429: DefaultError;
+};
+
+export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
+
+export type ListStoresResponses = {
   /**
-   * Permission denied.
+   * Stores listed successfully.
    */
-  403: DefaultError;
+  200: Array<{
+    id: number;
+    name: string;
+    created_at: number;
+    expires_at: number;
+    icon_id: null | string;
+    banner_id: null | string;
+    is_owner: boolean;
+  }>;
+};
+
+export type ListStoresResponse = ListStoresResponses[keyof ListStoresResponses];
+
+export type RateTransactionData = {
+  body?: {
+    /**
+     * Rating message.
+     */
+    message?: string;
+    /**
+     * Rating stars.
+     */
+    stars: number;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}/rating";
+};
+
+export type RateTransactionErrors = {
   /**
-   * Unknown store.
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Transaction not found.
    */
   404: DefaultError;
-};
-
-export type GetProductHistoryError =
-  GetProductHistoryErrors[keyof GetProductHistoryErrors];
-
-export type GetProductHistoryResponses = {
   /**
-   * History entries returned in descending order by delivery time.
+   * Payload too large.
    */
-  200: Array<
-    | {
-        /**
-         * Transaction id (transactions.core) or deliver id serialized as string.
-         */
-        id: string;
-        /**
-         * Delivery timestamp in ms.
-         */
-        at: number;
-        to: {
-          id: number;
-          username: string;
-          avatar: null | string;
-        };
-        items: Array<{
-          id: number;
-          content: string;
-          cost: null | number;
-          value: null | number;
-        }>;
-        type: "sale";
-        order: {
-          total_value: number;
-          /**
-           * How many stock rows the buyer paid for. items.length may be lower on partial delivery.
-           */
-          amount_expected: number;
-          /**
-           * Represents the enum public.transaction_status
-           */
-          status:
-            | "pending"
-            | "approved"
-            | "expired"
-            | "cancelled"
-            | "refused"
-            | "refunded"
-            | "analysis"
-            | "invalid-pix-key";
-          refunded_value: number;
-        };
-      }
-    | {
-        /**
-         * Transaction id (transactions.core) or deliver id serialized as string.
-         */
-        id: string;
-        /**
-         * Delivery timestamp in ms.
-         */
-        at: number;
-        to: {
-          id: number;
-          username: string;
-          avatar: null | string;
-        };
-        items: Array<{
-          id: number;
-          content: string;
-          cost: null | number;
-          value: null | number;
-        }>;
-        type: "deliver";
-        by: {
-          id: number;
-          username: string;
-          avatar: null | string;
-        };
-      }
-  >;
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
 };
 
-export type GetProductHistoryResponse =
-  GetProductHistoryResponses[keyof GetProductHistoryResponses];
+export type RateTransactionError =
+  RateTransactionErrors[keyof RateTransactionErrors];
+
+export type RateTransactionResponses = {
+  /**
+   * Transaction rated successfully.
+   */
+  200: {
+    id: string;
+    ref_code: null | string;
+    expires_at: null | number;
+    created_at: number;
+    value: number;
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    /**
+     * Represents the enum public.payment_method
+     */
+    method: "pix" | "boleto";
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "sale" | "transfer" | "deposit" | "withdraw";
+    /**
+     * Represents the enum public.payment_entity
+     */
+    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
+    base_value: number;
+    refunded_value: number;
+    refund_reason:
+      | null
+      | "fraud"
+      | "pix_med"
+      | "requested_with_zennify"
+      | "requested_with_bank"
+      | "stock_out"
+      | "stock_low"
+      | "by_admin"
+      | "internal_error"
+      | "internal_reason"
+      | "bank_blacklist"
+      | "bank_rejected"
+      | "coupon_out";
+    refund_comment: null | string;
+    refund_requested_by: null | number;
+    payer_bank: null | string;
+    metadata: unknown;
+    managed: null | boolean;
+    pix_e2eid: null | string;
+    pix_qrcode: null | string;
+    order: null | {
+      id: string;
+      total_value: number;
+      coupon_id: null | number;
+      /**
+       * Represents the enum public.platforms
+       */
+      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
+      discord_guild_id: null | string;
+      discord_channel_id: null | string;
+      discord_channel_message_id: null | string;
+      discord_sale_message: null | string;
+      discord_feedback_message: null | string;
+      discount: number;
+      subtotal: number;
+      rating: null | number;
+      rating_message: null | string;
+      coupon_name: null | string;
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      payer: {
+        id: number;
+        username: string;
+        discord_user_id: null | string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      seller: {
+        id: number;
+        username: string;
+        discord_user_id: null | string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      store: {
+        id: number;
+        name: string;
+        icon_id: null | string;
+        banner_id: null | string;
+      };
+      products: null | Array<{
+        id: number;
+        name: string;
+        value: number;
+        short_description: null | string;
+        discord_description: null | string;
+        website_description: null | string;
+        icon_id: null | string;
+        banner_id: null | string;
+        amount: number;
+        delivered: Array<string>;
+      }>;
+      discord_roles: null | Array<{
+        id: number;
+        user_id: number;
+        rule_id: null | number;
+        guild_id: string;
+        role_id: string;
+        role_name: null | string;
+        role_color_primary: null | number;
+        role_color_secondary: null | number;
+        remove_in: null | number;
+        should_add: boolean;
+        given: null | boolean;
+        discord_user_id: null | string;
+      }>;
+    };
+    withdraw: null | {
+      total_value: number;
+      sended_pix_key: null | string;
+      discount: number;
+      subtotal: number;
+      fee: number;
+    };
+  };
+};
+
+export type RateTransactionResponse =
+  RateTransactionResponses[keyof RateTransactionResponses];
+
+export type ListTransactionsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * Transaction id or Pix E2E id.
+     */
+    q?: string;
+    /**
+     * Maximum creation date.
+     */
+    before?: string;
+    /**
+     * Transaction status filter.
+     */
+    status?: string;
+    /**
+     * Transaction value filter.
+     */
+    value?: string;
+    /**
+     * Transaction type filter.
+     */
+    type?: string;
+    /**
+     * Maximum number of transactions.
+     */
+    limit?: string;
+    /**
+     * User id or Discord user id filter.
+     */
+    user?: string;
+  };
+  url: "/transactions";
+};
+
+export type ListTransactionsErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+};
+
+export type ListTransactionsError =
+  ListTransactionsErrors[keyof ListTransactionsErrors];
+
+export type ListTransactionsResponses = {
+  /**
+   * Transactions listed successfully.
+   */
+  200: Array<{
+    id: string;
+    created_at: number;
+    value: number;
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "sale" | "transfer" | "deposit" | "withdraw";
+    base_value: number;
+    primaryUser: boolean;
+  }>;
+};
+
+export type ListTransactionsResponse =
+  ListTransactionsResponses[keyof ListTransactionsResponses];
+
+export type GetUserByIdData = {
+  body?: never;
+  path: {
+    userId: string;
+  };
+  query?: never;
+  url: "/users/{userId}";
+};
+
+export type GetUserByIdErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * User not found.
+   */
+  404: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+};
+
+export type GetUserByIdError = GetUserByIdErrors[keyof GetUserByIdErrors];
+
+export type GetUserByIdResponses = {
+  /**
+   * User returned successfully.
+   */
+  200: {
+    /**
+     * User id.
+     */
+    id: number;
+    /**
+     * Public user name.
+     */
+    name: string;
+    avatar: null | string;
+    connections: {
+      discord: null | string;
+    };
+    /**
+     * User join timestamp.
+     */
+    joined_at: number;
+    verified: boolean;
+    is_admin: boolean;
+    stores: Array<{
+      /**
+       * Store id.
+       */
+      id: number;
+      /**
+       * Store name.
+       */
+      name: string;
+      icon_id: null | string;
+      banner_id: null | string;
+      /**
+       * Store creation timestamp.
+       */
+      created_at: number;
+      rating: null | number;
+    }>;
+  };
+};
+
+export type GetUserByIdResponse =
+  GetUserByIdResponses[keyof GetUserByIdResponses];
+
+export type EditUserAvatarData = {
+  body?: {
+    file: Blob | File;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/avatar";
+};
+
+export type EditUserAvatarErrors = {
+  /**
+   * Invalid Multipart payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * No file uploaded.
+   */
+  404: DefaultError;
+  /**
+   * Payload Too Large
+   */
+  413: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+};
+
+export type EditUserAvatarError =
+  EditUserAvatarErrors[keyof EditUserAvatarErrors];
+
+export type EditUserAvatarResponses = {
+  /**
+   * Avatar updated successfuly
+   */
+  200: {
+    /**
+     * Uploaded avatar hash.
+     */
+    hash: string;
+  };
+};
+
+export type EditUserAvatarResponse =
+  EditUserAvatarResponses[keyof EditUserAvatarResponses];
 
 export type GetUserData = {
   body?: never;
@@ -2465,14 +3223,14 @@ export type GetUserResponses = {
         };
       };
       preferences: {
-        pix: null | "efi" | "mercadopago" | "semiauto" | "wallet-efi";
+        pix: null | "mercadopago" | "efi" | "semiauto" | "wallet-efi";
       };
     };
     connections: {
       discord?: null | string;
     };
     legal: {
-      status?: null | "approved" | "rejected" | "pending";
+      status?: null | "pending" | "approved" | "rejected";
       type?: "cpf" | "cnpj";
       rejectedReason?: string;
     };
@@ -2522,6 +3280,51 @@ export type EditUserResponses = {
 };
 
 export type EditUserResponse = EditUserResponses[keyof EditUserResponses];
+
+export type EditUserPaymentMethodData = {
+  body?: {
+    pix: null | string;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/payment-method";
+};
+
+export type EditUserPaymentMethodErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Invalid payment method.
+   */
+  422: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+};
+
+export type EditUserPaymentMethodError =
+  EditUserPaymentMethodErrors[keyof EditUserPaymentMethodErrors];
+
+export type EditUserPaymentMethodResponses = {
+  /**
+   * Payment method updated.
+   */
+  204: void;
+};
+
+export type EditUserPaymentMethodResponse =
+  EditUserPaymentMethodResponses[keyof EditUserPaymentMethodResponses];
 
 export type SetupEfiData = {
   body?: {
@@ -2582,6 +3385,53 @@ export type SetupEfiResponses = {
 
 export type SetupEfiResponse = SetupEfiResponses[keyof SetupEfiResponses];
 
+export type SetupSemiautoData = {
+  body?: {
+    /**
+     * Pix key.
+     */
+    pix_key: string;
+  };
+  path?: never;
+  query?: never;
+  url: "/users/me/payments/semiauto";
+};
+
+export type SetupSemiautoErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+};
+
+export type SetupSemiautoError = SetupSemiautoErrors[keyof SetupSemiautoErrors];
+
+export type SetupSemiautoResponses = {
+  /**
+   * Semiauto configured succesfully.
+   */
+  204: void;
+};
+
+export type SetupSemiautoResponse =
+  SetupSemiautoResponses[keyof SetupSemiautoResponses];
+
 export type WalletBalanceData = {
   body?: never;
   path?: never;
@@ -2619,6 +3469,23 @@ export type WalletBalanceResponses = {
      * Available wallet balance.
      */
     available: number;
+    /**
+     * Balance held while a Pix dispute (MED) is under analysis.
+     */
+    analysis: number;
+    /**
+     * Hourly release schedule of the pending balance; sums to `pending`.
+     */
+    schedule: Array<{
+      /**
+       * Unix ms timestamp of the :00 boundary when this slice becomes available.
+       */
+      at: number;
+      /**
+       * Net BRL amount that leaves 'pending' at this boundary.
+       */
+      value: number;
+    }>;
   };
 };
 
@@ -2750,194 +3617,6 @@ export type RefundTransactionResponses = {
   202: unknown;
 };
 
-export type RateTransactionData = {
-  body?: {
-    /**
-     * Rating message.
-     */
-    message?: string;
-    /**
-     * Rating stars.
-     */
-    stars: number;
-  };
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}/rating";
-};
-
-export type RateTransactionErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Transaction not found.
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-};
-
-export type RateTransactionError =
-  RateTransactionErrors[keyof RateTransactionErrors];
-
-export type RateTransactionResponses = {
-  /**
-   * Transaction rated successfully.
-   */
-  200: {
-    /**
-     * Represents the enum public.payment_method
-     */
-    method: "pix" | "boleto";
-    id: string;
-    /**
-     * Represents the enum public.transaction_status
-     */
-    status:
-      | "pending"
-      | "approved"
-      | "expired"
-      | "cancelled"
-      | "refused"
-      | "refunded"
-      | "analysis"
-      | "invalid-pix-key";
-    value: number;
-    ref_code: null | string;
-    created_at: number;
-    expires_at: null | number;
-    /**
-     * Represents the enum public.transaction_type
-     */
-    type: "transfer" | "sale" | "deposit" | "withdraw";
-    /**
-     * Represents the enum public.payment_entity
-     */
-    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
-    managed: null | boolean;
-    base_value: number;
-    refunded_value: number;
-    refund_reason:
-      | null
-      | "fraud"
-      | "pix_med"
-      | "requested_with_zennify"
-      | "requested_with_bank"
-      | "stock_out"
-      | "stock_low"
-      | "by_admin"
-      | "internal_error"
-      | "internal_reason"
-      | "bank_blacklist"
-      | "bank_rejected"
-      | "coupon_out";
-    refund_comment: null | string;
-    refund_requested_by: null | number;
-    pix_e2eid: null | string;
-    pix_qrcode: null | string;
-    payer_bank: null | string;
-    metadata: unknown;
-    order: null | {
-      id: string;
-      /**
-       * Represents the enum public.platforms
-       */
-      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
-      coupon_id: null | number;
-      discord_guild_id: null | string;
-      discord_channel_id: null | string;
-      discord_channel_message_id: null | string;
-      discord_sale_message: null | string;
-      discord_feedback_message: null | string;
-      discount: number;
-      subtotal: number;
-      total_value: number;
-      rating: null | number;
-      rating_message: null | string;
-      coupon_name: null | string;
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      payer: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      seller: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      store: {
-        id: number;
-        name: string;
-        icon_id: null | string;
-        banner_id: null | string;
-      };
-      products: null | Array<{
-        id: number;
-        value: number;
-        name: string;
-        discord_description: null | string;
-        short_description: null | string;
-        website_description: null | string;
-        icon_id: null | string;
-        banner_id: null | string;
-        amount: number;
-        delivered: Array<string>;
-      }>;
-      discord_roles: null | Array<{
-        id: number;
-        user_id: number;
-        rule_id: null | number;
-        guild_id: string;
-        role_id: string;
-        role_name: null | string;
-        role_color_primary: null | number;
-        role_color_secondary: null | number;
-        remove_in: null | number;
-        should_add: boolean;
-        given: null | boolean;
-        discord_user_id: null | string;
-      }>;
-    };
-    withdraw: null | {
-      discount: number;
-      subtotal: number;
-      total_value: number;
-      fee: number;
-      sended_pix_key: null | string;
-    };
-  };
-};
-
-export type RateTransactionResponse =
-  RateTransactionResponses[keyof RateTransactionResponses];
-
 export type GetTransactionData = {
   body?: never;
   path: {
@@ -2970,31 +3649,30 @@ export type GetTransactionResponses = {
    * Transaction returned successfully.
    */
   200: {
-    /**
-     * Represents the enum public.payment_method
-     */
-    method: "pix" | "boleto";
     id: string;
     /**
      * Represents the enum public.transaction_status
      */
     status:
-      | "pending"
       | "approved"
-      | "expired"
       | "cancelled"
-      | "refused"
       | "refunded"
+      | "pending"
+      | "expired"
+      | "refused"
       | "analysis"
       | "invalid-pix-key";
     value: number;
-    ref_code: null | string;
+    /**
+     * Represents the enum public.payment_method
+     */
+    method: "pix" | "boleto";
     created_at: number;
     expires_at: null | number;
     /**
      * Represents the enum public.transaction_type
      */
-    type: "transfer" | "sale" | "deposit" | "withdraw";
+    type: "sale" | "transfer" | "deposit" | "withdraw";
     /**
      * Represents the enum public.payment_entity
      */
@@ -3022,6 +3700,7 @@ export type GetTransactionResponses = {
     pix_qrcode: null | string;
     payer_bank: null | string;
     metadata: unknown;
+    ref_code: null | string;
     order: null | {
       id: string;
       /**
@@ -3067,8 +3746,8 @@ export type GetTransactionResponses = {
       };
       products: null | Array<{
         id: number;
-        value: number;
         name: string;
+        value: number;
         discord_description: null | string;
         short_description: null | string;
         website_description: null | string;
@@ -3079,8 +3758,8 @@ export type GetTransactionResponses = {
       }>;
       discord_roles: null | Array<{
         id: number;
-        user_id: number;
         rule_id: null | number;
+        user_id: number;
         guild_id: string;
         role_id: string;
         role_name: null | string;
@@ -3107,7 +3786,7 @@ export type GetTransactionResponse =
 
 export type EditTransactionData = {
   body?: {
-    status?: "approved" | "cancelled" | "refunded";
+    status?: "approved" | "cancelled";
     /**
      * Refund amount.
      */
@@ -3164,10 +3843,6 @@ export type EditTransactionErrors = {
    */
   404: DefaultError;
   /**
-   * Order already refunded.
-   */
-  409: DefaultError;
-  /**
    * Payload too large.
    */
   413: DefaultError;
@@ -3202,220 +3877,25 @@ export type EditTransactionResponses = {
 export type EditTransactionResponse =
   EditTransactionResponses[keyof EditTransactionResponses];
 
-export type ListTransactionsData = {
-  body?: never;
-  path?: never;
-  query?: {
+export type DeleteDiscordAppAutoReactData = {
+  body?: {
     /**
-     * Transaction id or Pix E2E id.
+     * Discord snowflake id.
      */
-    q?: string;
+    guild_id: string;
     /**
-     * Maximum creation date.
+     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
      */
-    before?: string;
-    /**
-     * Transaction status filter.
-     */
-    status?: string;
-    /**
-     * Transaction value filter.
-     */
-    value?: string;
-    /**
-     * Transaction type filter.
-     */
-    type?: string;
-    /**
-     * Maximum number of transactions.
-     */
-    limit?: string;
-    /**
-     * User id or Discord user id filter.
-     */
-    user?: string;
+    channel_id: string;
   };
-  url: "/transactions";
-};
-
-export type ListTransactionsErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-};
-
-export type ListTransactionsError =
-  ListTransactionsErrors[keyof ListTransactionsErrors];
-
-export type ListTransactionsResponses = {
-  /**
-   * Transactions listed successfully.
-   */
-  200: Array<{
-    id: string;
-    /**
-     * Represents the enum public.transaction_status
-     */
-    status:
-      | "pending"
-      | "approved"
-      | "expired"
-      | "cancelled"
-      | "refused"
-      | "refunded"
-      | "analysis"
-      | "invalid-pix-key";
-    value: number;
-    created_at: number;
-    /**
-     * Represents the enum public.transaction_type
-     */
-    type: "transfer" | "sale" | "deposit" | "withdraw";
-    base_value: number;
-    primaryUser: boolean;
-  }>;
-};
-
-export type ListTransactionsResponse =
-  ListTransactionsResponses[keyof ListTransactionsResponses];
-
-export type GetUserByIdData = {
-  body?: never;
   path: {
-    userId: string;
+    storeId: string;
   };
   query?: never;
-  url: "/users/{userId}";
+  url: "/stores/{storeId}/app/discord/auto/react";
 };
 
-export type GetUserByIdErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * User not found.
-   */
-  404: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-};
-
-export type GetUserByIdError = GetUserByIdErrors[keyof GetUserByIdErrors];
-
-export type GetUserByIdResponses = {
-  /**
-   * User returned successfully.
-   */
-  200: {
-    /**
-     * User id.
-     */
-    id: number;
-    /**
-     * Public user name.
-     */
-    name: string;
-    avatar: null | string;
-    connections: {
-      discord: null | string;
-    };
-    /**
-     * User join timestamp.
-     */
-    joined_at: number;
-    verified: boolean;
-    is_admin: boolean;
-    stores: Array<{
-      /**
-       * Store id.
-       */
-      id: number;
-      /**
-       * Store name.
-       */
-      name: string;
-      icon_id: null | string;
-      banner_id: null | string;
-      /**
-       * Store creation timestamp.
-       */
-      created_at: number;
-      rating: null | number;
-    }>;
-  };
-};
-
-export type GetUserByIdResponse =
-  GetUserByIdResponses[keyof GetUserByIdResponses];
-
-export type EditUserAvatarData = {
-  body?: {
-    file: Blob | File;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/avatar";
-};
-
-export type EditUserAvatarErrors = {
-  /**
-   * Invalid Multipart payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * No file uploaded.
-   */
-  404: DefaultError;
-  /**
-   * Payload Too Large
-   */
-  413: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-};
-
-export type EditUserAvatarError =
-  EditUserAvatarErrors[keyof EditUserAvatarErrors];
-
-export type EditUserAvatarResponses = {
-  /**
-   * Avatar updated successfuly
-   */
-  200: {
-    /**
-     * Uploaded avatar hash.
-     */
-    hash: string;
-  };
-};
-
-export type EditUserAvatarResponse =
-  EditUserAvatarResponses[keyof EditUserAvatarResponses];
-
-export type EditUserPaymentMethodData = {
-  body?: {
-    pix: null | string;
-  };
-  path?: never;
-  query?: never;
-  url: "/users/me/payment-method";
-};
-
-export type EditUserPaymentMethodErrors = {
+export type DeleteDiscordAppAutoReactErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -3424,46 +3904,65 @@ export type EditUserPaymentMethodErrors = {
    * User not authenticated.
    */
   401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
   /**
    * Payload too large.
    */
   413: DefaultError;
   /**
-   * Invalid payment method.
+   * Invalid Discord id.
    */
   422: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
 };
 
-export type EditUserPaymentMethodError =
-  EditUserPaymentMethodErrors[keyof EditUserPaymentMethodErrors];
+export type DeleteDiscordAppAutoReactError =
+  DeleteDiscordAppAutoReactErrors[keyof DeleteDiscordAppAutoReactErrors];
 
-export type EditUserPaymentMethodResponses = {
+export type DeleteDiscordAppAutoReactResponses = {
   /**
-   * Payment method updated.
+   * Auto react configuration deleted.
    */
   204: void;
 };
 
-export type EditUserPaymentMethodResponse =
-  EditUserPaymentMethodResponses[keyof EditUserPaymentMethodResponses];
+export type DeleteDiscordAppAutoReactResponse =
+  DeleteDiscordAppAutoReactResponses[keyof DeleteDiscordAppAutoReactResponses];
 
-export type SetupSemiautoData = {
+export type EditDiscordAppAutoReactData = {
   body?: {
     /**
-     * Pix key.
+     * Discord snowflake id.
      */
-    pix_key: string;
+    guild_id: string;
+    /**
+     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
+     */
+    channel_id: string;
+    enabled?: boolean;
+    emojis?: Array<string>;
+    mode?: "random" | "all";
+    random_count?: number;
+    ignore_bots?: boolean;
   };
-  path?: never;
+  path: {
+    storeId: string;
+  };
   query?: never;
-  url: "/users/me/payments/semiauto";
+  url: "/stores/{storeId}/app/discord/auto/react";
 };
 
-export type SetupSemiautoErrors = {
+export type EditDiscordAppAutoReactErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -3472,6 +3971,18 @@ export type SetupSemiautoErrors = {
    * User not authenticated.
    */
   401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
   /**
    * Payload too large.
    */
@@ -3480,209 +3991,45 @@ export type SetupSemiautoErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
 };
 
-export type SetupSemiautoError = SetupSemiautoErrors[keyof SetupSemiautoErrors];
+export type EditDiscordAppAutoReactError =
+  EditDiscordAppAutoReactErrors[keyof EditDiscordAppAutoReactErrors];
 
-export type SetupSemiautoResponses = {
+export type EditDiscordAppAutoReactResponses = {
   /**
-   * Semiauto configured succesfully.
+   * Auto react configuration updated.
    */
   204: void;
 };
 
-export type SetupSemiautoResponse =
-  SetupSemiautoResponses[keyof SetupSemiautoResponses];
+export type EditDiscordAppAutoReactResponse =
+  EditDiscordAppAutoReactResponses[keyof EditDiscordAppAutoReactResponses];
 
-export type GetCouponHistoryData = {
-  body?: never;
-  path: {
-    storeId: string;
-    couponId: string;
-  };
-  query?: {
-    /**
-     * Sale time cursor in ms; only records strictly before are returned.
-     */
-    before?: string;
-    /**
-     * Number of history entries (max 50, default 20).
-     */
-    limit?: string;
-    /**
-     * Filter by payer (users.core.id, discord_user_id or email).
-     */
-    to?: string;
-  };
-  url: "/stores/{storeId}/coupons/{couponId}/history";
-};
-
-export type GetCouponHistoryErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-};
-
-export type GetCouponHistoryError =
-  GetCouponHistoryErrors[keyof GetCouponHistoryErrors];
-
-export type GetCouponHistoryResponses = {
-  /**
-   * History entries returned in descending order by sale time.
-   */
-  200: Array<{
-    /**
-     * Transaction id (transactions.core).
-     */
-    id: string;
-    /**
-     * Sale timestamp in ms.
-     */
-    at: number;
-    to: {
-      id: number;
-      username: string;
-      avatar: null | string;
-    };
-    order: {
-      subtotal: number;
-      /**
-       * Discount applied by this coupon on the order.
-       */
-      discount: number;
-      total_value: number;
-      /**
-       * Represents the enum public.transaction_status
-       */
-      status:
-        | "pending"
-        | "approved"
-        | "expired"
-        | "cancelled"
-        | "refused"
-        | "refunded"
-        | "analysis"
-        | "invalid-pix-key";
-      refunded_value: number;
-    };
-  }>;
-};
-
-export type GetCouponHistoryResponse =
-  GetCouponHistoryResponses[keyof GetCouponHistoryResponses];
-
-export type EditDiscordAppAutoCrosspostData = {
+export type CreateDiscordAppAutoReactData = {
   body?: {
-    enabled?: boolean;
-    general?: boolean;
-    tips_enabled?: boolean;
-    channels_whitelist?: Array<string>;
-    channels_blacklist?: Array<string>;
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/app/discord/auto/crosspost";
-};
-
-export type EditDiscordAppAutoCrosspostErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Invalid Discord channel.
-   */
-  422: DefaultError;
-};
-
-export type EditDiscordAppAutoCrosspostError =
-  EditDiscordAppAutoCrosspostErrors[keyof EditDiscordAppAutoCrosspostErrors];
-
-export type EditDiscordAppAutoCrosspostResponses = {
-  /**
-   * Auto crosspost configuration updated successfully.
-   */
-  204: void;
-};
-
-export type EditDiscordAppAutoCrosspostResponse =
-  EditDiscordAppAutoCrosspostResponses[keyof EditDiscordAppAutoCrosspostResponses];
-
-export type CreateDiscordAppAutoRoleData = {
-  body?: {
-    /**
-     * Rule name.
-     */
-    name: string;
-    /**
-     * Discord snowflake id.
-     */
-    role_id: string;
-    /**
-     * Represents the enum discord.auto_role_trigger
-     */
-    trigger:
-      | "buy"
-      | "rankingPosition"
-      | "rankingMoney"
-      | "rankingCount"
-      | "guildEnter";
-    only_products: Array<number>;
-    meta: null | number;
-    ttl: null | number;
-    only_discord: null | boolean;
     /**
      * Discord snowflake id.
      */
     guild_id: string;
+    /**
+     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
+     */
+    channel_id: string;
+    enabled?: boolean;
+    emojis?: Array<string>;
+    mode?: "random" | "all";
+    random_count?: number;
+    ignore_bots?: boolean;
   };
   path: {
     storeId: string;
   };
   query?: never;
-  url: "/stores/{storeId}/app/discord/auto/roles";
+  url: "/stores/{storeId}/app/discord/auto/react";
 };
 
-export type CreateDiscordAppAutoRoleErrors = {
+export type CreateDiscordAppAutoReactErrors = {
   /**
    * Invalid JSON payload.
    */
@@ -3704,141 +4051,9 @@ export type CreateDiscordAppAutoRoleErrors = {
    */
   404: DefaultError;
   /**
-   * Payload too large.
+   * Auto react already configured.
    */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-};
-
-export type CreateDiscordAppAutoRoleError =
-  CreateDiscordAppAutoRoleErrors[keyof CreateDiscordAppAutoRoleErrors];
-
-export type CreateDiscordAppAutoRoleResponses = {
-  /**
-   * Auto role rule created.
-   */
-  200: {
-    id: number;
-    name: string;
-    guild_id: string;
-    role_id: string;
-    /**
-     * Represents the enum discord.auto_role_trigger
-     */
-    trigger:
-      | "buy"
-      | "rankingPosition"
-      | "rankingMoney"
-      | "rankingCount"
-      | "guildEnter";
-    only_products: Array<number>;
-    meta: null | number;
-    ttl: null | number;
-    only_discord: null | boolean;
-  };
-};
-
-export type CreateDiscordAppAutoRoleResponse =
-  CreateDiscordAppAutoRoleResponses[keyof CreateDiscordAppAutoRoleResponses];
-
-export type DeleteDiscordAppAutoRoleData = {
-  body?: never;
-  path: {
-    storeId: string;
-    ruleId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}";
-};
-
-export type DeleteDiscordAppAutoRoleErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-};
-
-export type DeleteDiscordAppAutoRoleError =
-  DeleteDiscordAppAutoRoleErrors[keyof DeleteDiscordAppAutoRoleErrors];
-
-export type DeleteDiscordAppAutoRoleResponses = {
-  /**
-   * Auto role rule deleted.
-   */
-  204: void;
-};
-
-export type DeleteDiscordAppAutoRoleResponse =
-  DeleteDiscordAppAutoRoleResponses[keyof DeleteDiscordAppAutoRoleResponses];
-
-export type EditDiscordAppAutoRoleData = {
-  /**
-   * Make all properties in T optional
-   */
-  body?: {
-    /**
-     * Rule name.
-     */
-    name?: string;
-    /**
-     * Discord snowflake id.
-     */
-    role_id?: string;
-    trigger?:
-      | "buy"
-      | "rankingPosition"
-      | "rankingMoney"
-      | "rankingCount"
-      | "guildEnter";
-    only_products?: Array<number>;
-    meta?: null | number;
-    ttl?: null | number;
-    only_discord?: null | boolean;
-  };
-  path: {
-    storeId: string;
-    ruleId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/app/discord/auto/roles/{ruleId}";
-};
-
-export type EditDiscordAppAutoRoleErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
+  409: DefaultError;
   /**
    * Payload too large.
    */
@@ -3849,15 +4064,15 @@ export type EditDiscordAppAutoRoleErrors = {
   422: DefaultError;
 };
 
-export type EditDiscordAppAutoRoleError =
-  EditDiscordAppAutoRoleErrors[keyof EditDiscordAppAutoRoleErrors];
+export type CreateDiscordAppAutoReactError =
+  CreateDiscordAppAutoReactErrors[keyof CreateDiscordAppAutoReactErrors];
 
-export type EditDiscordAppAutoRoleResponses = {
+export type CreateDiscordAppAutoReactResponses = {
   /**
-   * Auto role rule updated.
+   * Auto react configuration created.
    */
   204: void;
 };
 
-export type EditDiscordAppAutoRoleResponse =
-  EditDiscordAppAutoRoleResponses[keyof EditDiscordAppAutoRoleResponses];
+export type CreateDiscordAppAutoReactResponse =
+  CreateDiscordAppAutoReactResponses[keyof CreateDiscordAppAutoReactResponses];
