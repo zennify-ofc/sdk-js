@@ -133,6 +133,74 @@ export type GetServiceDataResponses = {
 export type GetServiceDataResponse =
   GetServiceDataResponses[keyof GetServiceDataResponses];
 
+export type GetUserByIdData = {
+  body?: never;
+  path: {
+    userId: string;
+  };
+  query?: never;
+  url: "/users/{userId}";
+};
+
+export type GetUserByIdErrors = {
+  /**
+   * User not found.
+   */
+  404: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+};
+
+export type GetUserByIdError = GetUserByIdErrors[keyof GetUserByIdErrors];
+
+export type GetUserByIdResponses = {
+  /**
+   * User returned successfully.
+   */
+  200: {
+    /**
+     * User id.
+     */
+    id: number;
+    /**
+     * Public user name.
+     */
+    name: string;
+    avatar: null | string;
+    connections: {
+      discord: null | string;
+    };
+    /**
+     * User join timestamp.
+     */
+    joined_at: number;
+    verified: boolean;
+    is_admin: boolean;
+    stores: Array<{
+      /**
+       * Store id.
+       */
+      id: number;
+      /**
+       * Store name.
+       */
+      name: string;
+      icon_id: null | string;
+      banner_id: null | string;
+      /**
+       * Store creation timestamp.
+       */
+      created_at: number;
+      rating: null | number;
+    }>;
+  };
+};
+
+export type GetUserByIdResponse =
+  GetUserByIdResponses[keyof GetUserByIdResponses];
+
 export type GetProductHistoryData = {
   body?: never;
   path: {
@@ -178,6 +246,10 @@ export type GetProductHistoryErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetProductHistoryError =
@@ -221,10 +293,10 @@ export type GetProductHistoryResponses = {
           status:
             | "pending"
             | "approved"
-            | "cancelled"
-            | "refunded"
             | "expired"
+            | "cancelled"
             | "refused"
+            | "refunded"
             | "analysis"
             | "invalid-pix-key";
           refunded_value: number;
@@ -307,6 +379,10 @@ export type SendProductDiscordMessageErrors = {
    * Unknown channel.
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type SendProductDiscordMessageError =
@@ -346,6 +422,10 @@ export type DeleteProductErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type DeleteProductError = DeleteProductErrors[keyof DeleteProductErrors];
@@ -387,6 +467,10 @@ export type GetProductErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetProductError = GetProductErrors[keyof GetProductErrors];
@@ -417,6 +501,7 @@ export type GetProductResponses = {
       short: string;
       website: string;
     };
+    instructions: string;
   };
 };
 
@@ -476,6 +561,10 @@ export type EditProductErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditProductError = EditProductErrors[keyof EditProductErrors];
@@ -516,6 +605,10 @@ export type ListProductsErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type ListProductsError = ListProductsErrors[keyof ListProductsErrors];
@@ -585,6 +678,10 @@ export type CreateProductErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type CreateProductError = CreateProductErrors[keyof CreateProductErrors];
@@ -653,6 +750,10 @@ export type EditProductStockItemErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditProductStockItemError =
@@ -695,6 +796,10 @@ export type GetProductStockErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetProductStockError =
@@ -726,6 +831,7 @@ export type GetProductStockResponse =
 export type EditProductStockData = {
   body?: {
     stock_locked?: boolean;
+    stock_mode?: "random" | "sequential";
     add?: Array<{
       /**
        * Private stock content delivered to the buyer.
@@ -738,7 +844,10 @@ export type EditProductStockData = {
       id?: number;
     }>;
     remove?: Array<number>;
-    stock_mode?: "random" | "sequential";
+    /**
+     * How to use the delivered stock. Sent to the buyer with the delivery. Empty string clears it.
+     */
+    instructions?: string;
   };
   path: {
     storeId: string;
@@ -777,6 +886,10 @@ export type EditProductStockErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditProductStockError =
@@ -788,6 +901,7 @@ export type EditProductStockResponses = {
    */
   200: {
     stock_locked: boolean;
+    stock_mode: "random" | "sequential";
     stock: Array<{
       /**
        * Stock item ID.
@@ -802,7 +916,10 @@ export type EditProductStockResponses = {
        */
       cost: number;
     }>;
-    stock_mode: "random" | "sequential";
+    /**
+     * How to use the delivered stock. Empty when the product has none.
+     */
+    instructions: string;
   };
 };
 
@@ -853,6 +970,10 @@ export type EditDiscordAppAutoCrosspostErrors = {
    * Invalid Discord channel.
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditDiscordAppAutoCrosspostError =
@@ -867,6 +988,218 @@ export type EditDiscordAppAutoCrosspostResponses = {
 
 export type EditDiscordAppAutoCrosspostResponse =
   EditDiscordAppAutoCrosspostResponses[keyof EditDiscordAppAutoCrosspostResponses];
+
+export type DeleteDiscordAppAutoReactData = {
+  body?: {
+    /**
+     * Discord snowflake id.
+     */
+    guild_id: string;
+    /**
+     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
+     */
+    channel_id: string;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/react";
+};
+
+export type DeleteDiscordAppAutoReactErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Invalid Discord id.
+   */
+  422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type DeleteDiscordAppAutoReactError =
+  DeleteDiscordAppAutoReactErrors[keyof DeleteDiscordAppAutoReactErrors];
+
+export type DeleteDiscordAppAutoReactResponses = {
+  /**
+   * Auto react configuration deleted.
+   */
+  204: void;
+};
+
+export type DeleteDiscordAppAutoReactResponse =
+  DeleteDiscordAppAutoReactResponses[keyof DeleteDiscordAppAutoReactResponses];
+
+export type EditDiscordAppAutoReactData = {
+  body?: {
+    /**
+     * Discord snowflake id.
+     */
+    guild_id: string;
+    /**
+     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
+     */
+    channel_id: string;
+    enabled?: boolean;
+    emojis?: Array<string>;
+    mode?: "random" | "all";
+    random_count?: number;
+    ignore_bots?: boolean;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/react";
+};
+
+export type EditDiscordAppAutoReactErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type EditDiscordAppAutoReactError =
+  EditDiscordAppAutoReactErrors[keyof EditDiscordAppAutoReactErrors];
+
+export type EditDiscordAppAutoReactResponses = {
+  /**
+   * Auto react configuration updated.
+   */
+  204: void;
+};
+
+export type EditDiscordAppAutoReactResponse =
+  EditDiscordAppAutoReactResponses[keyof EditDiscordAppAutoReactResponses];
+
+export type CreateDiscordAppAutoReactData = {
+  body?: {
+    /**
+     * Discord snowflake id.
+     */
+    guild_id: string;
+    /**
+     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
+     */
+    channel_id: string;
+    enabled?: boolean;
+    emojis?: Array<string>;
+    mode?: "random" | "all";
+    random_count?: number;
+    ignore_bots?: boolean;
+  };
+  path: {
+    storeId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/app/discord/auto/react";
+};
+
+export type CreateDiscordAppAutoReactErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Forbidden
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Auto react already configured.
+   */
+  409: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type CreateDiscordAppAutoReactError =
+  CreateDiscordAppAutoReactErrors[keyof CreateDiscordAppAutoReactErrors];
+
+export type CreateDiscordAppAutoReactResponses = {
+  /**
+   * Auto react configuration created.
+   */
+  204: void;
+};
+
+export type CreateDiscordAppAutoReactResponse =
+  CreateDiscordAppAutoReactResponses[keyof CreateDiscordAppAutoReactResponses];
 
 export type CreateDiscordAppAutoRoleData = {
   body?: {
@@ -932,6 +1265,10 @@ export type CreateDiscordAppAutoRoleErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type CreateDiscordAppAutoRoleError =
@@ -992,6 +1329,10 @@ export type DeleteDiscordAppAutoRoleErrors = {
    * Not Found
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type DeleteDiscordAppAutoRoleError =
@@ -1068,6 +1409,10 @@ export type EditDiscordAppAutoRoleErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditDiscordAppAutoRoleError =
@@ -1162,6 +1507,10 @@ export type EditDiscordAppChannelsErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditDiscordAppChannelsError =
@@ -1203,6 +1552,10 @@ export type GetDiscordAppEmojisErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetDiscordAppEmojisError =
@@ -1247,6 +1600,10 @@ export type GetDiscordAppInfoErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetDiscordAppInfoError =
@@ -1329,6 +1686,10 @@ export type GetDiscordAppRolesErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetDiscordAppRolesError =
@@ -1340,8 +1701,8 @@ export type GetDiscordAppRolesResponses = {
    */
   200: {
     [key: string]: {
-      id: string;
       name: string;
+      id: string;
       owner_id: string;
       members: number;
       icon_url: null | string;
@@ -1388,6 +1749,10 @@ export type GetDiscordAppServersErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetDiscordAppServersError =
@@ -1447,6 +1812,10 @@ export type EditDiscordAppTokenErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditDiscordAppTokenError =
@@ -1489,6 +1858,10 @@ export type DeleteProductCatalogErrors = {
    * Not Found
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type DeleteProductCatalogError =
@@ -1562,6 +1935,10 @@ export type EditProductCatalogErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditProductCatalogError =
@@ -1603,6 +1980,10 @@ export type ListProductCatalogsErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type ListProductCatalogsError =
@@ -1682,6 +2063,10 @@ export type CreateProductCatalogErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type CreateProductCatalogError =
@@ -1746,6 +2131,10 @@ export type SendProductCatalogMessageErrors = {
    * Unknown channel.
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type SendProductCatalogMessageError =
@@ -1785,6 +2174,10 @@ export type DeleteCouponErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type DeleteCouponError = DeleteCouponErrors[keyof DeleteCouponErrors];
@@ -1826,6 +2219,10 @@ export type GetCouponErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetCouponError = GetCouponErrors[keyof GetCouponErrors];
@@ -1908,6 +2305,10 @@ export type EditCouponErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditCouponError = EditCouponErrors[keyof EditCouponErrors];
@@ -1947,6 +2348,10 @@ export type ListCouponsErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type ListCouponsError = ListCouponsErrors[keyof ListCouponsErrors];
@@ -2023,6 +2428,10 @@ export type CreateCouponErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type CreateCouponError = CreateCouponErrors[keyof CreateCouponErrors];
@@ -2082,6 +2491,10 @@ export type GetCouponHistoryErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetCouponHistoryError =
@@ -2118,10 +2531,10 @@ export type GetCouponHistoryResponses = {
       status:
         | "pending"
         | "approved"
-        | "cancelled"
-        | "refunded"
         | "expired"
+        | "cancelled"
         | "refused"
+        | "refunded"
         | "analysis"
         | "invalid-pix-key";
       refunded_value: number;
@@ -2186,6 +2599,10 @@ export type DeleteMediaErrors = {
    * Payload too large.
    */
   413: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type DeleteMediaError = DeleteMediaErrors[keyof DeleteMediaErrors];
@@ -2265,6 +2682,10 @@ export type UploadStoreMediaErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type UploadStoreMediaError =
@@ -2320,6 +2741,10 @@ export type GetStoreRankingCustomersErrors = {
    * Invalid ranking days.
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetStoreRankingCustomersError =
@@ -2371,6 +2796,10 @@ export type GetStoreStatsCouponsErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetStoreStatsCouponsError =
@@ -2454,6 +2883,10 @@ export type GetStoreStatsProductsErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetStoreStatsProductsError =
@@ -2515,6 +2948,10 @@ export type GetStoreStatsSalesErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetStoreStatsSalesError =
@@ -2578,6 +3015,10 @@ export type GetStoreErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetStoreError = GetStoreErrors[keyof GetStoreErrors];
@@ -2606,8 +3047,8 @@ export type GetStoreResponses = {
      */
     moderators: {
       [key: string]: {
-        username: string;
         discord_user_id: null | string;
+        username: string;
         created_at: number;
         /**
          * Represents the enum public.permissions_moderators
@@ -2679,6 +3120,10 @@ export type EditStoreErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditStoreError = EditStoreErrors[keyof EditStoreErrors];
@@ -2708,6 +3153,10 @@ export type ListStoresErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
@@ -2772,6 +3221,10 @@ export type RateTransactionErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type RateTransactionError =
@@ -2783,10 +3236,6 @@ export type RateTransactionResponses = {
    */
   200: {
     id: string;
-    ref_code: null | string;
-    expires_at: null | number;
-    created_at: number;
-    value: number;
     /**
      * Represents the enum public.transaction_status
      */
@@ -2799,14 +3248,18 @@ export type RateTransactionResponses = {
       | "refunded"
       | "analysis"
       | "invalid-pix-key";
+    value: number;
+    ref_code: null | string;
+    expires_at: null | number;
     /**
      * Represents the enum public.payment_method
      */
     method: "pix" | "boleto";
+    created_at: number;
     /**
      * Represents the enum public.transaction_type
      */
-    type: "sale" | "transfer" | "deposit" | "withdraw";
+    type: "transfer" | "sale" | "deposit" | "withdraw";
     /**
      * Represents the enum public.payment_entity
      */
@@ -2845,12 +3298,12 @@ export type RateTransactionResponses = {
       discord_guild_id: null | string;
       discord_channel_id: null | string;
       discord_channel_message_id: null | string;
-      discord_sale_message: null | string;
-      discord_feedback_message: null | string;
-      discount: number;
       subtotal: number;
+      discount: number;
       rating: null | number;
       rating_message: null | string;
+      discord_sale_message: null | string;
+      discord_feedback_message: null | string;
       coupon_name: null | string;
       /**
        * From T, pick a set of properties whose keys are in the union K
@@ -2872,29 +3325,30 @@ export type RateTransactionResponses = {
        * From T, pick a set of properties whose keys are in the union K
        */
       store: {
-        id: number;
         name: string;
+        id: number;
         icon_id: null | string;
         banner_id: null | string;
       };
       products: null | Array<{
-        id: number;
-        name: string;
         value: number;
+        name: string;
+        id: number;
         short_description: null | string;
         discord_description: null | string;
         website_description: null | string;
         icon_id: null | string;
         banner_id: null | string;
+        instructions: null | string;
         amount: number;
         delivered: Array<string>;
       }>;
       discord_roles: null | Array<{
         id: number;
-        user_id: number;
-        rule_id: null | number;
         guild_id: string;
         role_id: string;
+        user_id: number;
+        rule_id: null | number;
         role_name: null | string;
         role_color_primary: null | number;
         role_color_secondary: null | number;
@@ -2907,15 +3361,347 @@ export type RateTransactionResponses = {
     withdraw: null | {
       total_value: number;
       sended_pix_key: null | string;
-      discount: number;
-      subtotal: number;
       fee: number;
+      subtotal: number;
+      discount: number;
     };
   };
 };
 
 export type RateTransactionResponse =
   RateTransactionResponses[keyof RateTransactionResponses];
+
+export type RefundTransactionData = {
+  body?: {
+    /**
+     * Refund amount. Omit to refund the remaining value.
+     */
+    value?: number;
+    /**
+     * Refund comment shown in the transaction history.
+     */
+    comment?: string;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}/refund";
+};
+
+export type RefundTransactionErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Refund not allowed.
+   */
+  403: DefaultError;
+  /**
+   * Transaction not found.
+   */
+  404: DefaultError;
+  /**
+   * Conflict
+   */
+  409: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+  /**
+   * Internal Server Error
+   */
+  500: DefaultError;
+};
+
+export type RefundTransactionError =
+  RefundTransactionErrors[keyof RefundTransactionErrors];
+
+export type RefundTransactionResponses = {
+  /**
+   * Refund accepted.
+   */
+  202: unknown;
+};
+
+export type GetTransactionData = {
+  body?: never;
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}";
+};
+
+export type GetTransactionErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Transaction not found.
+   */
+  404: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type GetTransactionError =
+  GetTransactionErrors[keyof GetTransactionErrors];
+
+export type GetTransactionResponses = {
+  /**
+   * Transaction returned successfully.
+   */
+  200: {
+    id: string;
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    value: number;
+    ref_code: null | string;
+    expires_at: null | number;
+    /**
+     * Represents the enum public.payment_method
+     */
+    method: "pix" | "boleto";
+    created_at: number;
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "transfer" | "sale" | "deposit" | "withdraw";
+    /**
+     * Represents the enum public.payment_entity
+     */
+    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
+    base_value: number;
+    refunded_value: number;
+    refund_reason:
+      | null
+      | "fraud"
+      | "pix_med"
+      | "requested_with_zennify"
+      | "requested_with_bank"
+      | "stock_out"
+      | "stock_low"
+      | "by_admin"
+      | "internal_error"
+      | "internal_reason"
+      | "bank_blacklist"
+      | "bank_rejected"
+      | "coupon_out";
+    refund_comment: null | string;
+    refund_requested_by: null | number;
+    payer_bank: null | string;
+    metadata: unknown;
+    managed: null | boolean;
+    pix_e2eid: null | string;
+    pix_qrcode: null | string;
+    order: null | {
+      id: string;
+      total_value: number;
+      coupon_id: null | number;
+      /**
+       * Represents the enum public.platforms
+       */
+      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
+      discord_guild_id: null | string;
+      discord_channel_id: null | string;
+      discord_channel_message_id: null | string;
+      subtotal: number;
+      discount: number;
+      rating: null | number;
+      rating_message: null | string;
+      discord_sale_message: null | string;
+      discord_feedback_message: null | string;
+      coupon_name: null | string;
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      payer: {
+        id: number;
+        username: string;
+        discord_user_id: null | string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      seller: {
+        id: number;
+        username: string;
+        discord_user_id: null | string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      store: {
+        name: string;
+        id: number;
+        icon_id: null | string;
+        banner_id: null | string;
+      };
+      products: null | Array<{
+        value: number;
+        name: string;
+        id: number;
+        short_description: null | string;
+        discord_description: null | string;
+        website_description: null | string;
+        icon_id: null | string;
+        banner_id: null | string;
+        instructions: null | string;
+        amount: number;
+        delivered: Array<string>;
+      }>;
+      discord_roles: null | Array<{
+        id: number;
+        guild_id: string;
+        role_id: string;
+        user_id: number;
+        rule_id: null | number;
+        role_name: null | string;
+        role_color_primary: null | number;
+        role_color_secondary: null | number;
+        remove_in: null | number;
+        should_add: boolean;
+        given: null | boolean;
+        discord_user_id: null | string;
+      }>;
+    };
+    withdraw: null | {
+      total_value: number;
+      sended_pix_key: null | string;
+      fee: number;
+      subtotal: number;
+      discount: number;
+    };
+  };
+};
+
+export type GetTransactionResponse =
+  GetTransactionResponses[keyof GetTransactionResponses];
+
+export type EditTransactionData = {
+  body?: {
+    status?: "approved" | "cancelled";
+    /**
+     * Refund amount.
+     */
+    refund_value?: number;
+    /**
+     * Refund comment.
+     */
+    refund_comment?: string;
+    metadata?: {
+      /**
+       * Compile-time marker property for typia transformer.
+       *
+       * This phantom property carries tag metadata in the type system. It is never
+       * assigned at runtime - it exists only for the transformer to read during
+       * compilation.
+       */
+      "typia.tag"?: {
+        target: "string" | "number" | "bigint" | "boolean" | "object" | "array";
+        kind: "jsonPlugin";
+        schema: {
+          description: "Transaction metadata.";
+          examples: [
+            {
+              key: "value";
+            },
+          ];
+        };
+      };
+    };
+    [key: string]: unknown;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}";
+};
+
+export type EditTransactionErrors = {
+  /**
+   * Bad Request
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Internal Server Error
+   */
+  500: DefaultError;
+};
+
+export type EditTransactionError =
+  EditTransactionErrors[keyof EditTransactionErrors];
+
+export type EditTransactionResponses = {
+  /**
+   * Transaction update completed successfully.
+   */
+  200: unknown;
+  /**
+   * Transaction update accepted.
+   */
+  202: unknown;
+  /**
+   * No transaction update was requested.
+   */
+  204: void;
+};
+
+export type EditTransactionResponse =
+  EditTransactionResponses[keyof EditTransactionResponses];
 
 export type ListTransactionsData = {
   body?: never;
@@ -2962,6 +3748,10 @@ export type ListTransactionsErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type ListTransactionsError =
@@ -2972,6 +3762,10 @@ export type ListTransactionsResponses = {
    * Transactions listed successfully.
    */
   200: Array<{
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "transfer" | "sale" | "deposit" | "withdraw";
     id: string;
     created_at: number;
     value: number;
@@ -2987,10 +3781,6 @@ export type ListTransactionsResponses = {
       | "refunded"
       | "analysis"
       | "invalid-pix-key";
-    /**
-     * Represents the enum public.transaction_type
-     */
-    type: "sale" | "transfer" | "deposit" | "withdraw";
     base_value: number;
     primaryUser: boolean;
   }>;
@@ -2998,74 +3788,6 @@ export type ListTransactionsResponses = {
 
 export type ListTransactionsResponse =
   ListTransactionsResponses[keyof ListTransactionsResponses];
-
-export type GetUserByIdData = {
-  body?: never;
-  path: {
-    userId: string;
-  };
-  query?: never;
-  url: "/users/{userId}";
-};
-
-export type GetUserByIdErrors = {
-  /**
-   * User not found.
-   */
-  404: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-};
-
-export type GetUserByIdError = GetUserByIdErrors[keyof GetUserByIdErrors];
-
-export type GetUserByIdResponses = {
-  /**
-   * User returned successfully.
-   */
-  200: {
-    /**
-     * User id.
-     */
-    id: number;
-    /**
-     * Public user name.
-     */
-    name: string;
-    avatar: null | string;
-    connections: {
-      discord: null | string;
-    };
-    /**
-     * User join timestamp.
-     */
-    joined_at: number;
-    verified: boolean;
-    is_admin: boolean;
-    stores: Array<{
-      /**
-       * Store id.
-       */
-      id: number;
-      /**
-       * Store name.
-       */
-      name: string;
-      icon_id: null | string;
-      banner_id: null | string;
-      /**
-       * Store creation timestamp.
-       */
-      created_at: number;
-      rating: null | number;
-    }>;
-  };
-};
-
-export type GetUserByIdResponse =
-  GetUserByIdResponses[keyof GetUserByIdResponses];
 
 export type EditUserAvatarData = {
   body?: {
@@ -3097,6 +3819,10 @@ export type EditUserAvatarErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditUserAvatarError =
@@ -3133,6 +3859,10 @@ export type GetUserErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type GetUserError = GetUserErrors[keyof GetUserErrors];
@@ -3263,6 +3993,10 @@ export type EditUserErrors = {
    * Invalid name.
    */
   422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditUserError = EditUserErrors[keyof EditUserErrors];
@@ -3306,6 +4040,10 @@ export type EditUserPaymentMethodErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type EditUserPaymentMethodError =
@@ -3413,6 +4151,10 @@ export type SetupSemiautoErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type SetupSemiautoError = SetupSemiautoErrors[keyof SetupSemiautoErrors];
@@ -3443,6 +4185,10 @@ export type WalletBalanceErrors = {
    * Too many requests.
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type WalletBalanceError = WalletBalanceErrors[keyof WalletBalanceErrors];
@@ -3525,6 +4271,10 @@ export type WalletWithdrawErrors = {
    * Too Many Requests
    */
   429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
 };
 
 export type WalletWithdrawError =
@@ -3544,530 +4294,3 @@ export type WalletWithdrawResponses = {
 
 export type WalletWithdrawResponse =
   WalletWithdrawResponses[keyof WalletWithdrawResponses];
-
-export type RefundTransactionData = {
-  body?: {
-    /**
-     * Refund amount. Omit to refund the remaining value.
-     */
-    value?: number;
-    /**
-     * Refund comment shown in the transaction history.
-     */
-    comment?: string;
-  };
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}/refund";
-};
-
-export type RefundTransactionErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Refund not allowed.
-   */
-  403: DefaultError;
-  /**
-   * Transaction not found.
-   */
-  404: DefaultError;
-  /**
-   * Conflict
-   */
-  409: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-  /**
-   * Refund failed.
-   */
-  500: DefaultError;
-};
-
-export type RefundTransactionError =
-  RefundTransactionErrors[keyof RefundTransactionErrors];
-
-export type RefundTransactionResponses = {
-  /**
-   * Refund accepted.
-   */
-  202: unknown;
-};
-
-export type GetTransactionData = {
-  body?: never;
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}";
-};
-
-export type GetTransactionErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Transaction not found.
-   */
-  404: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-};
-
-export type GetTransactionError =
-  GetTransactionErrors[keyof GetTransactionErrors];
-
-export type GetTransactionResponses = {
-  /**
-   * Transaction returned successfully.
-   */
-  200: {
-    id: string;
-    /**
-     * Represents the enum public.transaction_status
-     */
-    status:
-      | "approved"
-      | "cancelled"
-      | "refunded"
-      | "pending"
-      | "expired"
-      | "refused"
-      | "analysis"
-      | "invalid-pix-key";
-    value: number;
-    /**
-     * Represents the enum public.payment_method
-     */
-    method: "pix" | "boleto";
-    created_at: number;
-    expires_at: null | number;
-    /**
-     * Represents the enum public.transaction_type
-     */
-    type: "sale" | "transfer" | "deposit" | "withdraw";
-    /**
-     * Represents the enum public.payment_entity
-     */
-    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
-    managed: null | boolean;
-    base_value: number;
-    refunded_value: number;
-    refund_reason:
-      | null
-      | "fraud"
-      | "pix_med"
-      | "requested_with_zennify"
-      | "requested_with_bank"
-      | "stock_out"
-      | "stock_low"
-      | "by_admin"
-      | "internal_error"
-      | "internal_reason"
-      | "bank_blacklist"
-      | "bank_rejected"
-      | "coupon_out";
-    refund_comment: null | string;
-    refund_requested_by: null | number;
-    pix_e2eid: null | string;
-    pix_qrcode: null | string;
-    payer_bank: null | string;
-    metadata: unknown;
-    ref_code: null | string;
-    order: null | {
-      id: string;
-      /**
-       * Represents the enum public.platforms
-       */
-      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
-      coupon_id: null | number;
-      discord_guild_id: null | string;
-      discord_channel_id: null | string;
-      discord_channel_message_id: null | string;
-      discord_sale_message: null | string;
-      discord_feedback_message: null | string;
-      discount: number;
-      subtotal: number;
-      total_value: number;
-      rating: null | number;
-      rating_message: null | string;
-      coupon_name: null | string;
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      payer: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      seller: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      store: {
-        id: number;
-        name: string;
-        icon_id: null | string;
-        banner_id: null | string;
-      };
-      products: null | Array<{
-        id: number;
-        name: string;
-        value: number;
-        discord_description: null | string;
-        short_description: null | string;
-        website_description: null | string;
-        icon_id: null | string;
-        banner_id: null | string;
-        amount: number;
-        delivered: Array<string>;
-      }>;
-      discord_roles: null | Array<{
-        id: number;
-        rule_id: null | number;
-        user_id: number;
-        guild_id: string;
-        role_id: string;
-        role_name: null | string;
-        role_color_primary: null | number;
-        role_color_secondary: null | number;
-        remove_in: null | number;
-        should_add: boolean;
-        given: null | boolean;
-        discord_user_id: null | string;
-      }>;
-    };
-    withdraw: null | {
-      discount: number;
-      subtotal: number;
-      total_value: number;
-      fee: number;
-      sended_pix_key: null | string;
-    };
-  };
-};
-
-export type GetTransactionResponse =
-  GetTransactionResponses[keyof GetTransactionResponses];
-
-export type EditTransactionData = {
-  body?: {
-    status?: "approved" | "cancelled";
-    /**
-     * Refund amount.
-     */
-    refund_value?: number;
-    /**
-     * Refund comment.
-     */
-    refund_comment?: string;
-    metadata?: {
-      /**
-       * Compile-time marker property for typia transformer.
-       *
-       * This phantom property carries tag metadata in the type system. It is never
-       * assigned at runtime - it exists only for the transformer to read during
-       * compilation.
-       */
-      "typia.tag"?: {
-        target: "string" | "number" | "bigint" | "boolean" | "object" | "array";
-        kind: "jsonPlugin";
-        schema: {
-          description: "Transaction metadata.";
-          examples: [
-            {
-              key: "value";
-            },
-          ];
-        };
-      };
-    };
-    [key: string]: unknown;
-  };
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}";
-};
-
-export type EditTransactionErrors = {
-  /**
-   * Bad Request
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Internal Server Error
-   */
-  500: DefaultError;
-};
-
-export type EditTransactionError =
-  EditTransactionErrors[keyof EditTransactionErrors];
-
-export type EditTransactionResponses = {
-  /**
-   * Transaction update completed successfully.
-   */
-  200: unknown;
-  /**
-   * Transaction update accepted.
-   */
-  202: unknown;
-  /**
-   * No transaction update was requested.
-   */
-  204: void;
-};
-
-export type EditTransactionResponse =
-  EditTransactionResponses[keyof EditTransactionResponses];
-
-export type DeleteDiscordAppAutoReactData = {
-  body?: {
-    /**
-     * Discord snowflake id.
-     */
-    guild_id: string;
-    /**
-     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
-     */
-    channel_id: string;
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/app/discord/auto/react";
-};
-
-export type DeleteDiscordAppAutoReactErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Invalid Discord id.
-   */
-  422: DefaultError;
-};
-
-export type DeleteDiscordAppAutoReactError =
-  DeleteDiscordAppAutoReactErrors[keyof DeleteDiscordAppAutoReactErrors];
-
-export type DeleteDiscordAppAutoReactResponses = {
-  /**
-   * Auto react configuration deleted.
-   */
-  204: void;
-};
-
-export type DeleteDiscordAppAutoReactResponse =
-  DeleteDiscordAppAutoReactResponses[keyof DeleteDiscordAppAutoReactResponses];
-
-export type EditDiscordAppAutoReactData = {
-  body?: {
-    /**
-     * Discord snowflake id.
-     */
-    guild_id: string;
-    /**
-     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
-     */
-    channel_id: string;
-    enabled?: boolean;
-    emojis?: Array<string>;
-    mode?: "random" | "all";
-    random_count?: number;
-    ignore_bots?: boolean;
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/app/discord/auto/react";
-};
-
-export type EditDiscordAppAutoReactErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-};
-
-export type EditDiscordAppAutoReactError =
-  EditDiscordAppAutoReactErrors[keyof EditDiscordAppAutoReactErrors];
-
-export type EditDiscordAppAutoReactResponses = {
-  /**
-   * Auto react configuration updated.
-   */
-  204: void;
-};
-
-export type EditDiscordAppAutoReactResponse =
-  EditDiscordAppAutoReactResponses[keyof EditDiscordAppAutoReactResponses];
-
-export type CreateDiscordAppAutoReactData = {
-  body?: {
-    /**
-     * Discord snowflake id.
-     */
-    guild_id: string;
-    /**
-     * Discord snowflake id, or the '@feedback' sentinel for the store feedback channel.
-     */
-    channel_id: string;
-    enabled?: boolean;
-    emojis?: Array<string>;
-    mode?: "random" | "all";
-    random_count?: number;
-    ignore_bots?: boolean;
-  };
-  path: {
-    storeId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/app/discord/auto/react";
-};
-
-export type CreateDiscordAppAutoReactErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Forbidden
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-  /**
-   * Auto react already configured.
-   */
-  409: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-};
-
-export type CreateDiscordAppAutoReactError =
-  CreateDiscordAppAutoReactErrors[keyof CreateDiscordAppAutoReactErrors];
-
-export type CreateDiscordAppAutoReactResponses = {
-  /**
-   * Auto react configuration created.
-   */
-  204: void;
-};
-
-export type CreateDiscordAppAutoReactResponse =
-  CreateDiscordAppAutoReactResponses[keyof CreateDiscordAppAutoReactResponses];

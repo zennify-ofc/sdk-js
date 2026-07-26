@@ -242,6 +242,18 @@ export const getServiceData = <ThrowOnError extends boolean = false>(
   >({ url: "/service", ...options });
 
 /**
+ * Access public data of a user by id.
+ */
+export const getUserById = <ThrowOnError extends boolean = false>(
+  options: Options<GetUserByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetUserByIdResponses,
+    GetUserByIdErrors,
+    ThrowOnError
+  >({ url: "/users/{userId}", ...options });
+
+/**
  * List product delivery history (sales + manual deliveries) for auditing.
  */
 export const getProductHistory = <ThrowOnError extends boolean = false>(
@@ -402,7 +414,7 @@ export const getProductStock = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Add or remove product stock items and update stock lock/delivery settings.
+ * Add or remove product stock items and update stock lock/delivery settings and instructions.
  */
 export const editProductStock = <ThrowOnError extends boolean = false>(
   options: Options<EditProductStockData, ThrowOnError>,
@@ -436,6 +448,66 @@ export const editDiscordAppAutoCrosspost = <
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/stores/{storeId}/app/discord/auto/crosspost",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a store channel auto react configuration.
+ */
+export const deleteDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteDiscordAppAutoReactData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<
+    DeleteDiscordAppAutoReactResponses,
+    DeleteDiscordAppAutoReactErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/react",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Update an existing store channel auto react configuration.
+ */
+export const editDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
+  options: Options<EditDiscordAppAutoReactData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditDiscordAppAutoReactResponses,
+    EditDiscordAppAutoReactErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/react",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Create a store channel auto react configuration.
+ */
+export const createDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
+  options: Options<CreateDiscordAppAutoReactData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    CreateDiscordAppAutoReactResponses,
+    CreateDiscordAppAutoReactErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/app/discord/auto/react",
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -977,6 +1049,62 @@ export const rateTransaction = <ThrowOnError extends boolean = false>(
   });
 
 /**
+ * Refund a sale transaction, fully or partially.
+ */
+export const refundTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<RefundTransactionData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    RefundTransactionResponses,
+    RefundTransactionErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions/{transactionId}/refund",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Access a transaction by id or Pix E2E id.
+ */
+export const getTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<GetTransactionData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetTransactionResponses,
+    GetTransactionErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions/{transactionId}",
+    ...options,
+  });
+
+/**
+ * Update transaction status or metadata.
+ */
+export const editTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<EditTransactionData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditTransactionResponses,
+    EditTransactionErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions/{transactionId}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
  * List transactions for the authenticated user.
  */
 export const listTransactions = <ThrowOnError extends boolean = false>(
@@ -991,18 +1119,6 @@ export const listTransactions = <ThrowOnError extends boolean = false>(
     url: "/transactions",
     ...options,
   });
-
-/**
- * Access public data of a user by id.
- */
-export const getUserById = <ThrowOnError extends boolean = false>(
-  options: Options<GetUserByIdData, ThrowOnError>,
-) =>
-  (options.client ?? client).get<
-    GetUserByIdResponses,
-    GetUserByIdErrors,
-    ThrowOnError
-  >({ url: "/users/{userId}", ...options });
 
 /**
  * Update users's avatar
@@ -1155,121 +1271,5 @@ export const walletWithdraw = <ThrowOnError extends boolean = false>(
     headers: {
       "Content-Type": "application/json",
       ...options?.headers,
-    },
-  });
-
-/**
- * Refund a sale transaction, fully or partially.
- */
-export const refundTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<RefundTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    RefundTransactionResponses,
-    RefundTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}/refund",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Access a transaction by id or Pix E2E id.
- */
-export const getTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<GetTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).get<
-    GetTransactionResponses,
-    GetTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}",
-    ...options,
-  });
-
-/**
- * Update transaction status or metadata.
- */
-export const editTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<EditTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).patch<
-    EditTransactionResponses,
-    EditTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Delete a store channel auto react configuration.
- */
-export const deleteDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteDiscordAppAutoReactData, ThrowOnError>,
-) =>
-  (options.client ?? client).delete<
-    DeleteDiscordAppAutoReactResponses,
-    DeleteDiscordAppAutoReactErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/auto/react",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Update an existing store channel auto react configuration.
- */
-export const editDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
-  options: Options<EditDiscordAppAutoReactData, ThrowOnError>,
-) =>
-  (options.client ?? client).patch<
-    EditDiscordAppAutoReactResponses,
-    EditDiscordAppAutoReactErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/auto/react",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Create a store channel auto react configuration.
- */
-export const createDiscordAppAutoReact = <ThrowOnError extends boolean = false>(
-  options: Options<CreateDiscordAppAutoReactData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    CreateDiscordAppAutoReactResponses,
-    CreateDiscordAppAutoReactErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/app/discord/auto/react",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
     },
   });
