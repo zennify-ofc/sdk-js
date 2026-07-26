@@ -414,7 +414,7 @@ export const getProductStock = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Add or remove product stock items and update stock lock/delivery settings and instructions.
+ * Add or remove product stock items and update stock lock/delivery settings.
  */
 export const editProductStock = <ThrowOnError extends boolean = false>(
   options: Options<EditProductStockData, ThrowOnError>,

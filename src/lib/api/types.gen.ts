@@ -523,6 +523,10 @@ export type EditProductData = {
        */
       discord?: string;
     };
+    /**
+     * How to use the delivered stock. Sent to the buyer with the delivery. Empty string clears it.
+     */
+    instructions?: string;
   };
   path: {
     storeId: string;
@@ -844,10 +848,6 @@ export type EditProductStockData = {
       id?: number;
     }>;
     remove?: Array<number>;
-    /**
-     * How to use the delivered stock. Sent to the buyer with the delivery. Empty string clears it.
-     */
-    instructions?: string;
   };
   path: {
     storeId: string;
@@ -916,10 +916,6 @@ export type EditProductStockResponses = {
        */
       cost: number;
     }>;
-    /**
-     * How to use the delivered stock. Empty when the product has none.
-     */
-    instructions: string;
   };
 };
 
