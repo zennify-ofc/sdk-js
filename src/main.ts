@@ -44,4 +44,5 @@ export type FullTransaction<T = never> = GetTransactionResponse & {
 
 // Catálogos
 export type Catalog = ListProductCatalogsResponse[number];
-export type CatalogProduct = Catalog["products"][number];
+/** Item de um catálogo: aponta para um produto OU para outro catálogo aninhado. */
+export type CatalogItem = Catalog["items"][number];

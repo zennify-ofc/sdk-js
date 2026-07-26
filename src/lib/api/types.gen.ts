@@ -1516,13 +1516,11 @@ export type EditProductCatalogData = {
      */
     description?: string;
     /**
-     * Products displayed in the catalog.
+     * Items displayed in the catalog.
      */
-    products?: Array<{
-      /**
-       * Product id to show in the catalog.
-       */
-      id: number;
+    items?: Array<{
+      product_id?: null | number;
+      catalog_id?: null | number;
       emoji?: null | string;
       label?: null | string;
     }>;
@@ -1624,10 +1622,11 @@ export type ListProductCatalogsResponses = {
     store_id: number;
     icon_id: null | string;
     banner_id: null | string;
-    products: Array<{
-      id: number;
-      label: null | string;
+    items: Array<{
+      product_id: null | number;
+      catalog_id: null | number;
       emoji: null | string;
+      label: null | string;
     }>;
   }>;
 };
@@ -3010,10 +3009,6 @@ export type GetUserByIdData = {
 };
 
 export type GetUserByIdErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
   /**
    * User not found.
    */

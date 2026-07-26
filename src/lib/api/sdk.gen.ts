@@ -1002,11 +1002,7 @@ export const getUserById = <ThrowOnError extends boolean = false>(
     GetUserByIdResponses,
     GetUserByIdErrors,
     ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/{userId}",
-    ...options,
-  });
+  >({ url: "/users/{userId}", ...options });
 
 /**
  * Update users's avatar
