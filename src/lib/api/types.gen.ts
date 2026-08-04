@@ -739,7 +739,7 @@ export type EditProductStockItemErrors = {
    */
   402: DefaultError;
   /**
-   * Permission denied.
+   * Forbidden
    */
   403: DefaultError;
   /**
@@ -800,6 +800,10 @@ export type GetProductStockErrors = {
    * Unknown store.
    */
   404: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
   /**
    * Unknown error.
    */
@@ -871,7 +875,7 @@ export type EditProductStockErrors = {
    */
   402: DefaultError;
   /**
-   * Permission denied.
+   * Forbidden
    */
   403: DefaultError;
   /**
@@ -886,6 +890,10 @@ export type EditProductStockErrors = {
    * Unprocessable Entity
    */
   422: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
   /**
    * Unknown error.
    */
@@ -902,20 +910,11 @@ export type EditProductStockResponses = {
   200: {
     stock_locked: boolean;
     stock_mode: "random" | "sequential";
-    stock: Array<{
       /**
-       * Stock item ID.
+     * Available stock items after the change.
        */
-      id: number;
-      /**
-       * Private stock content delivered to the buyer.
-       */
-      content: string;
-      /**
-       * Internal cost for this stock item.
-       */
-      cost: number;
-    }>;
+    stock_count: number;
+    added_ids: Array<number>;
   };
 };
 
