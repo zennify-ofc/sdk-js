@@ -3155,9 +3155,13 @@ export type EditCouponData = {
      */
     products?: Array<number>;
     /**
-     * Discord role ids allowed for this coupon.
+     * Discord role ids allowed to use this coupon. Empty allows any customer not blocked.
      */
-    discord_roles?: Array<string>;
+    discord_roles_allowed?: Array<string>;
+    /**
+     * Discord role ids blocked from using this coupon. Blocked wins over allowed.
+     */
+    discord_roles_blocked?: Array<string>;
   };
   path: {
     storeId: string;
