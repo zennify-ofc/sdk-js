@@ -1200,10 +1200,6 @@ export type CreateDiscordAppAutoReactResponse =
 export type CreateDiscordAppAutoRoleData = {
   body?: {
     /**
-     * Rule name.
-     */
-    name: string;
-    /**
      * Discord snowflake id.
      */
     role_id: string;
@@ -1276,7 +1272,6 @@ export type CreateDiscordAppAutoRoleResponses = {
    */
   200: {
     id: number;
-    name: string;
     guild_id: string;
     role_id: string;
     /**
@@ -1292,6 +1287,7 @@ export type CreateDiscordAppAutoRoleResponses = {
     meta: null | number;
     ttl: null | number;
     only_discord: null | boolean;
+    legacy: boolean;
   };
 };
 
@@ -1349,10 +1345,6 @@ export type EditDiscordAppAutoRoleData = {
    * Make all properties in T optional
    */
   body?: {
-    /**
-     * Rule name.
-     */
-    name?: string;
     /**
      * Discord snowflake id.
      */
