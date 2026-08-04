@@ -254,6 +254,232 @@ export const getUserById = <ThrowOnError extends boolean = false>(
   >({ url: "/users/{userId}", ...options });
 
 /**
+ * Update users's avatar
+ */
+export const editUserAvatar = <ThrowOnError extends boolean = false>(
+  options?: Options<EditUserAvatarData, ThrowOnError>,
+) =>
+  (options?.client ?? client).patch<
+    EditUserAvatarResponses,
+    EditUserAvatarErrors,
+    ThrowOnError
+  >({
+    ...formDataBodySerializer,
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me/avatar",
+    ...options,
+    headers: {
+      "Content-Type": null,
+      ...options?.headers,
+    },
+  });
+
+/**
+ * Access current user data
+ */
+export const getUser = <ThrowOnError extends boolean = false>(
+  options?: Options<GetUserData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<
+    GetUserResponses,
+    GetUserErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me",
+    ...options,
+  });
+
+/**
+ * Edit current user data
+ */
+export const editUser = <ThrowOnError extends boolean = false>(
+  options?: Options<EditUserData, ThrowOnError>,
+) =>
+  (options?.client ?? client).patch<
+    EditUserResponses,
+    EditUserErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
+  });
+
+/**
+ * Update the user's preferred payment method.
+ */
+export const editUserPaymentMethod = <ThrowOnError extends boolean = false>(
+  options?: Options<EditUserPaymentMethodData, ThrowOnError>,
+) =>
+  (options?.client ?? client).patch<
+    EditUserPaymentMethodResponses,
+    EditUserPaymentMethodErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me/payment-method",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
+  });
+
+/**
+ * Configures the user's Efí account with certificate, Pix key, and OAuth credentials.
+ */
+export const setupEfi = <ThrowOnError extends boolean = false>(
+  options?: Options<SetupEfiData, ThrowOnError>,
+) =>
+  (options?.client ?? client).post<
+    SetupEfiResponses,
+    SetupEfiErrors,
+    ThrowOnError
+  >({
+    ...formDataBodySerializer,
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me/payments/efi/setup",
+    ...options,
+    headers: {
+      "Content-Type": null,
+      ...options?.headers,
+    },
+  });
+
+/**
+ * Create semiauto integration for user.
+ */
+export const setupSemiauto = <ThrowOnError extends boolean = false>(
+  options?: Options<SetupSemiautoData, ThrowOnError>,
+) =>
+  (options?.client ?? client).patch<
+    SetupSemiautoResponses,
+    SetupSemiautoErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me/payments/semiauto",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
+  });
+
+/**
+ * Returns the user's Zennify Wallet balance.
+ */
+export const walletBalance = <ThrowOnError extends boolean = false>(
+  options?: Options<WalletBalanceData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<
+    WalletBalanceResponses,
+    WalletBalanceErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me/wallet/balance",
+    ...options,
+  });
+
+/**
+ * List stores owned or moderated by the current user.
+ */
+export const listStores = <ThrowOnError extends boolean = false>(
+  options?: Options<ListStoresData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<
+    ListStoresResponses,
+    ListStoresErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores",
+    ...options,
+  });
+
+/**
+ * Rate a sale transaction as its payer. Allowed until 90 days after purchase; a 5-star rating locks further edits.
+ */
+export const rateTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<RateTransactionData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    RateTransactionResponses,
+    RateTransactionErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions/{transactionId}/rating",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Refund a sale transaction, fully or partially.
+ */
+export const refundTransaction = <ThrowOnError extends boolean = false>(
+  options: Options<RefundTransactionData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<
+    RefundTransactionResponses,
+    RefundTransactionErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions/{transactionId}/refund",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List transactions for the authenticated user.
+ */
+export const listTransactions = <ThrowOnError extends boolean = false>(
+  options?: Options<ListTransactionsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<
+    ListTransactionsResponses,
+    ListTransactionsErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/transactions",
+    ...options,
+  });
+
+/**
+ * Requests a withdrawal from the user's Zennify Wallet.
+ */
+export const walletWithdraw = <ThrowOnError extends boolean = false>(
+  options?: Options<WalletWithdrawData, ThrowOnError>,
+) =>
+  (options?.client ?? client).post<
+    WalletWithdrawResponses,
+    WalletWithdrawErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/users/me/wallet/withdraw",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
+  });
+
+/**
  * List product delivery history (sales + manual deliveries) for auditing.
  */
 export const getProductHistory = <ThrowOnError extends boolean = false>(
@@ -282,6 +508,58 @@ export const sendProductDiscordMessage = <ThrowOnError extends boolean = false>(
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/stores/{storeId}/products/{productId}/discord_messages",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a store product.
+ */
+export const deleteProduct = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteProductData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<
+    DeleteProductResponses,
+    DeleteProductErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/products/{productId}",
+    ...options,
+  });
+
+/**
+ * Access a store product.
+ */
+export const getProduct = <ThrowOnError extends boolean = false>(
+  options: Options<GetProductData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetProductResponses,
+    GetProductErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/products/{productId}",
+    ...options,
+  });
+
+/**
+ * Update a store product.
+ */
+export const editProduct = <ThrowOnError extends boolean = false>(
+  options: Options<EditProductData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<
+    EditProductResponses,
+    EditProductErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/stores/{storeId}/products/{productId}",
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -961,196 +1239,6 @@ export const editStore = <ThrowOnError extends boolean = false>(
   });
 
 /**
- * Update users's avatar
- */
-export const editUserAvatar = <ThrowOnError extends boolean = false>(
-  options?: Options<EditUserAvatarData, ThrowOnError>,
-) =>
-  (options?.client ?? client).patch<
-    EditUserAvatarResponses,
-    EditUserAvatarErrors,
-    ThrowOnError
-  >({
-    ...formDataBodySerializer,
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/avatar",
-    ...options,
-    headers: {
-      "Content-Type": null,
-      ...options?.headers,
-    },
-  });
-
-/**
- * Access current user data
- */
-export const getUser = <ThrowOnError extends boolean = false>(
-  options?: Options<GetUserData, ThrowOnError>,
-) =>
-  (options?.client ?? client).get<
-    GetUserResponses,
-    GetUserErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me",
-    ...options,
-  });
-
-/**
- * Edit current user data
- */
-export const editUser = <ThrowOnError extends boolean = false>(
-  options?: Options<EditUserData, ThrowOnError>,
-) =>
-  (options?.client ?? client).patch<
-    EditUserResponses,
-    EditUserErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  });
-
-/**
- * Update the user's preferred payment method.
- */
-export const editUserPaymentMethod = <ThrowOnError extends boolean = false>(
-  options?: Options<EditUserPaymentMethodData, ThrowOnError>,
-) =>
-  (options?.client ?? client).patch<
-    EditUserPaymentMethodResponses,
-    EditUserPaymentMethodErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/payment-method",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  });
-
-/**
- * Configures the user's Efí account with certificate, Pix key, and OAuth credentials.
- */
-export const setupEfi = <ThrowOnError extends boolean = false>(
-  options?: Options<SetupEfiData, ThrowOnError>,
-) =>
-  (options?.client ?? client).post<
-    SetupEfiResponses,
-    SetupEfiErrors,
-    ThrowOnError
-  >({
-    ...formDataBodySerializer,
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/payments/efi/setup",
-    ...options,
-    headers: {
-      "Content-Type": null,
-      ...options?.headers,
-    },
-  });
-
-/**
- * Create semiauto integration for user.
- */
-export const setupSemiauto = <ThrowOnError extends boolean = false>(
-  options?: Options<SetupSemiautoData, ThrowOnError>,
-) =>
-  (options?.client ?? client).patch<
-    SetupSemiautoResponses,
-    SetupSemiautoErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/payments/semiauto",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  });
-
-/**
- * Returns the user's Zennify Wallet balance.
- */
-export const walletBalance = <ThrowOnError extends boolean = false>(
-  options?: Options<WalletBalanceData, ThrowOnError>,
-) =>
-  (options?.client ?? client).get<
-    WalletBalanceResponses,
-    WalletBalanceErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/wallet/balance",
-    ...options,
-  });
-
-/**
- * List stores owned or moderated by the current user.
- */
-export const listStores = <ThrowOnError extends boolean = false>(
-  options?: Options<ListStoresData, ThrowOnError>,
-) =>
-  (options?.client ?? client).get<
-    ListStoresResponses,
-    ListStoresErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores",
-    ...options,
-  });
-
-/**
- * Rate a sale transaction as its payer. Allowed until 90 days after purchase; a 5-star rating locks further edits.
- */
-export const rateTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<RateTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).patch<
-    RateTransactionResponses,
-    RateTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}/rating",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Refund a sale transaction, fully or partially.
- */
-export const refundTransaction = <ThrowOnError extends boolean = false>(
-  options: Options<RefundTransactionData, ThrowOnError>,
-) =>
-  (options.client ?? client).post<
-    RefundTransactionResponses,
-    RefundTransactionErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions/{transactionId}/refund",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
  * Access a transaction by id or Pix E2E id.
  */
 export const getTransaction = <ThrowOnError extends boolean = false>(
@@ -1179,94 +1267,6 @@ export const editTransaction = <ThrowOnError extends boolean = false>(
   >({
     security: [{ scheme: "bearer", type: "http" }],
     url: "/transactions/{transactionId}",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * List transactions for the authenticated user.
- */
-export const listTransactions = <ThrowOnError extends boolean = false>(
-  options?: Options<ListTransactionsData, ThrowOnError>,
-) =>
-  (options?.client ?? client).get<
-    ListTransactionsResponses,
-    ListTransactionsErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/transactions",
-    ...options,
-  });
-
-/**
- * Requests a withdrawal from the user's Zennify Wallet.
- */
-export const walletWithdraw = <ThrowOnError extends boolean = false>(
-  options?: Options<WalletWithdrawData, ThrowOnError>,
-) =>
-  (options?.client ?? client).post<
-    WalletWithdrawResponses,
-    WalletWithdrawErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/users/me/wallet/withdraw",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options?.headers,
-    },
-  });
-
-/**
- * Delete a store product.
- */
-export const deleteProduct = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteProductData, ThrowOnError>,
-) =>
-  (options.client ?? client).delete<
-    DeleteProductResponses,
-    DeleteProductErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/products/{productId}",
-    ...options,
-  });
-
-/**
- * Access a store product.
- */
-export const getProduct = <ThrowOnError extends boolean = false>(
-  options: Options<GetProductData, ThrowOnError>,
-) =>
-  (options.client ?? client).get<
-    GetProductResponses,
-    GetProductErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/products/{productId}",
-    ...options,
-  });
-
-/**
- * Update a store product.
- */
-export const editProduct = <ThrowOnError extends boolean = false>(
-  options: Options<EditProductData, ThrowOnError>,
-) =>
-  (options.client ?? client).patch<
-    EditProductResponses,
-    EditProductErrors,
-    ThrowOnError
-  >({
-    security: [{ scheme: "bearer", type: "http" }],
-    url: "/stores/{storeId}/products/{productId}",
     ...options,
     headers: {
       "Content-Type": "application/json",
