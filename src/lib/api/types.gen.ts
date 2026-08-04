@@ -395,194 +395,6 @@ export type SendProductDiscordMessageResponses = {
   202: unknown;
 };
 
-export type DeleteProductData = {
-  body?: never;
-  path: {
-    storeId: string;
-    productId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/products/{productId}";
-};
-
-export type DeleteProductErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type DeleteProductError = DeleteProductErrors[keyof DeleteProductErrors];
-
-export type DeleteProductResponses = {
-  /**
-   * Product deleted successfully.
-   */
-  204: void;
-};
-
-export type DeleteProductResponse =
-  DeleteProductResponses[keyof DeleteProductResponses];
-
-export type GetProductData = {
-  body?: never;
-  path: {
-    storeId: string;
-    productId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/products/{productId}";
-};
-
-export type GetProductErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type GetProductError = GetProductErrors[keyof GetProductErrors];
-
-export type GetProductResponses = {
-  /**
-   * Product returned successfully.
-   */
-  200: {
-    id: number;
-    name: string;
-    value: number;
-    icon_id: null | string;
-    banner_id: null | string;
-    owner_id: number;
-    store_id: number;
-    created_at: number;
-    stock: {
-      size: number;
-      locked: boolean;
-      /**
-       * Represents the enum products.stock_mode
-       */
-      mode: "random" | "sequential";
-    };
-    description: {
-      discord: string;
-      short: string;
-      website: string;
-    };
-    instructions: string;
-  };
-};
-
-export type GetProductResponse = GetProductResponses[keyof GetProductResponses];
-
-export type EditProductData = {
-  body?: {
-    /**
-     * Public name. Must be 3 to 50 valid characters.
-     */
-    name?: string;
-    /**
-     * Product price in BRL.
-     */
-    value?: number;
-    description?: {
-      /**
-       * Product description used in Discord messages.
-       */
-      discord?: string;
-    };
-    /**
-     * How to use the delivered stock. Sent to the buyer with the delivery. Empty string clears it.
-     */
-    instructions?: string;
-  };
-  path: {
-    storeId: string;
-    productId: string;
-  };
-  query?: never;
-  url: "/stores/{storeId}/products/{productId}";
-};
-
-export type EditProductErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * This store has expired.
-   */
-  402: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Unknown store.
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type EditProductError = EditProductErrors[keyof EditProductErrors];
-
-export type EditProductResponses = {
-  /**
-   * Product updated successfully.
-   */
-  204: void;
-};
-
-export type EditProductResponse =
-  EditProductResponses[keyof EditProductResponses];
-
 export type ListProductsData = {
   body?: never;
   path: {
@@ -910,9 +722,9 @@ export type EditProductStockResponses = {
   200: {
     stock_locked: boolean;
     stock_mode: "random" | "sequential";
-      /**
+    /**
      * Available stock items after the change.
-       */
+     */
     stock_count: number;
     added_ids: Array<number>;
   };
@@ -1884,6 +1696,7 @@ export type EditProductCatalogData = {
       emoji?: null | string;
       label?: null | string;
     }>;
+    color?: null | number;
   };
   path: {
     storeId: string;
@@ -1996,6 +1809,7 @@ export type ListProductCatalogsResponses = {
       emoji: null | string;
       label: null | string;
     }>;
+    color: null | number;
   }>;
 };
 
@@ -3124,658 +2938,6 @@ export type EditStoreResponses = {
 
 export type EditStoreResponse = EditStoreResponses[keyof EditStoreResponses];
 
-export type ListStoresData = {
-  body?: never;
-  path?: never;
-  query?: never;
-  url: "/stores";
-};
-
-export type ListStoresErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
-
-export type ListStoresResponses = {
-  /**
-   * Stores listed successfully.
-   */
-  200: Array<{
-    id: number;
-    name: string;
-    created_at: number;
-    expires_at: number;
-    icon_id: null | string;
-    banner_id: null | string;
-    is_owner: boolean;
-  }>;
-};
-
-export type ListStoresResponse = ListStoresResponses[keyof ListStoresResponses];
-
-export type RateTransactionData = {
-  body?: {
-    /**
-     * Rating message.
-     */
-    message?: string;
-    /**
-     * Rating stars.
-     */
-    stars: number;
-  };
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}/rating";
-};
-
-export type RateTransactionErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Transaction not found.
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type RateTransactionError =
-  RateTransactionErrors[keyof RateTransactionErrors];
-
-export type RateTransactionResponses = {
-  /**
-   * Transaction rated successfully.
-   */
-  200: {
-    id: string;
-    /**
-     * Represents the enum public.transaction_status
-     */
-    status:
-      | "pending"
-      | "approved"
-      | "expired"
-      | "cancelled"
-      | "refused"
-      | "refunded"
-      | "analysis"
-      | "invalid-pix-key";
-    value: number;
-    ref_code: null | string;
-    expires_at: null | number;
-    /**
-     * Represents the enum public.payment_method
-     */
-    method: "pix" | "boleto";
-    created_at: number;
-    /**
-     * Represents the enum public.transaction_type
-     */
-    type: "transfer" | "sale" | "deposit" | "withdraw";
-    /**
-     * Represents the enum public.payment_entity
-     */
-    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
-    base_value: number;
-    refunded_value: number;
-    refund_reason:
-      | null
-      | "fraud"
-      | "pix_med"
-      | "requested_with_zennify"
-      | "requested_with_bank"
-      | "stock_out"
-      | "stock_low"
-      | "by_admin"
-      | "internal_error"
-      | "internal_reason"
-      | "bank_blacklist"
-      | "bank_rejected"
-      | "coupon_out";
-    refund_comment: null | string;
-    refund_requested_by: null | number;
-    payer_bank: null | string;
-    metadata: unknown;
-    managed: null | boolean;
-    pix_e2eid: null | string;
-    pix_qrcode: null | string;
-    order: null | {
-      id: string;
-      total_value: number;
-      coupon_id: null | number;
-      /**
-       * Represents the enum public.platforms
-       */
-      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
-      discord_guild_id: null | string;
-      discord_channel_id: null | string;
-      discord_channel_message_id: null | string;
-      subtotal: number;
-      discount: number;
-      rating: null | number;
-      rating_message: null | string;
-      discord_sale_message: null | string;
-      discord_feedback_message: null | string;
-      coupon_name: null | string;
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      payer: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      seller: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      store: {
-        name: string;
-        id: number;
-        icon_id: null | string;
-        banner_id: null | string;
-      };
-      products: null | Array<{
-        value: number;
-        name: string;
-        id: number;
-        short_description: null | string;
-        discord_description: null | string;
-        website_description: null | string;
-        icon_id: null | string;
-        banner_id: null | string;
-        instructions: null | string;
-        amount: number;
-        delivered: Array<string>;
-      }>;
-      discord_roles: null | Array<{
-        id: number;
-        guild_id: string;
-        role_id: string;
-        user_id: number;
-        rule_id: null | number;
-        role_name: null | string;
-        role_color_primary: null | number;
-        role_color_secondary: null | number;
-        remove_in: null | number;
-        should_add: boolean;
-        given: null | boolean;
-        discord_user_id: null | string;
-      }>;
-    };
-    withdraw: null | {
-      total_value: number;
-      sended_pix_key: null | string;
-      fee: number;
-      subtotal: number;
-      discount: number;
-    };
-  };
-};
-
-export type RateTransactionResponse =
-  RateTransactionResponses[keyof RateTransactionResponses];
-
-export type RefundTransactionData = {
-  body?: {
-    /**
-     * Refund amount. Omit to refund the remaining value.
-     */
-    value?: number;
-    /**
-     * Refund comment shown in the transaction history.
-     */
-    comment?: string;
-  };
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}/refund";
-};
-
-export type RefundTransactionErrors = {
-  /**
-   * Invalid JSON payload.
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Refund not allowed.
-   */
-  403: DefaultError;
-  /**
-   * Transaction not found.
-   */
-  404: DefaultError;
-  /**
-   * Conflict
-   */
-  409: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-  /**
-   * Internal Server Error
-   */
-  500: DefaultError;
-};
-
-export type RefundTransactionError =
-  RefundTransactionErrors[keyof RefundTransactionErrors];
-
-export type RefundTransactionResponses = {
-  /**
-   * Refund accepted.
-   */
-  202: unknown;
-};
-
-export type GetTransactionData = {
-  body?: never;
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}";
-};
-
-export type GetTransactionErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Transaction not found.
-   */
-  404: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type GetTransactionError =
-  GetTransactionErrors[keyof GetTransactionErrors];
-
-export type GetTransactionResponses = {
-  /**
-   * Transaction returned successfully.
-   */
-  200: {
-    id: string;
-    /**
-     * Represents the enum public.transaction_status
-     */
-    status:
-      | "pending"
-      | "approved"
-      | "expired"
-      | "cancelled"
-      | "refused"
-      | "refunded"
-      | "analysis"
-      | "invalid-pix-key";
-    value: number;
-    ref_code: null | string;
-    expires_at: null | number;
-    /**
-     * Represents the enum public.payment_method
-     */
-    method: "pix" | "boleto";
-    created_at: number;
-    /**
-     * Represents the enum public.transaction_type
-     */
-    type: "transfer" | "sale" | "deposit" | "withdraw";
-    /**
-     * Represents the enum public.payment_entity
-     */
-    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
-    base_value: number;
-    refunded_value: number;
-    refund_reason:
-      | null
-      | "fraud"
-      | "pix_med"
-      | "requested_with_zennify"
-      | "requested_with_bank"
-      | "stock_out"
-      | "stock_low"
-      | "by_admin"
-      | "internal_error"
-      | "internal_reason"
-      | "bank_blacklist"
-      | "bank_rejected"
-      | "coupon_out";
-    refund_comment: null | string;
-    refund_requested_by: null | number;
-    payer_bank: null | string;
-    metadata: unknown;
-    managed: null | boolean;
-    pix_e2eid: null | string;
-    pix_qrcode: null | string;
-    order: null | {
-      id: string;
-      total_value: number;
-      coupon_id: null | number;
-      /**
-       * Represents the enum public.platforms
-       */
-      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
-      discord_guild_id: null | string;
-      discord_channel_id: null | string;
-      discord_channel_message_id: null | string;
-      subtotal: number;
-      discount: number;
-      rating: null | number;
-      rating_message: null | string;
-      discord_sale_message: null | string;
-      discord_feedback_message: null | string;
-      coupon_name: null | string;
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      payer: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      seller: {
-        id: number;
-        username: string;
-        discord_user_id: null | string;
-      };
-      /**
-       * From T, pick a set of properties whose keys are in the union K
-       */
-      store: {
-        name: string;
-        id: number;
-        icon_id: null | string;
-        banner_id: null | string;
-      };
-      products: null | Array<{
-        value: number;
-        name: string;
-        id: number;
-        short_description: null | string;
-        discord_description: null | string;
-        website_description: null | string;
-        icon_id: null | string;
-        banner_id: null | string;
-        instructions: null | string;
-        amount: number;
-        delivered: Array<string>;
-      }>;
-      discord_roles: null | Array<{
-        id: number;
-        guild_id: string;
-        role_id: string;
-        user_id: number;
-        rule_id: null | number;
-        role_name: null | string;
-        role_color_primary: null | number;
-        role_color_secondary: null | number;
-        remove_in: null | number;
-        should_add: boolean;
-        given: null | boolean;
-        discord_user_id: null | string;
-      }>;
-    };
-    withdraw: null | {
-      total_value: number;
-      sended_pix_key: null | string;
-      fee: number;
-      subtotal: number;
-      discount: number;
-    };
-  };
-};
-
-export type GetTransactionResponse =
-  GetTransactionResponses[keyof GetTransactionResponses];
-
-export type EditTransactionData = {
-  body?: {
-    status?: "approved" | "cancelled";
-    /**
-     * Refund amount.
-     */
-    refund_value?: number;
-    /**
-     * Refund comment.
-     */
-    refund_comment?: string;
-    metadata?: {
-      /**
-       * Compile-time marker property for typia transformer.
-       *
-       * This phantom property carries tag metadata in the type system. It is never
-       * assigned at runtime - it exists only for the transformer to read during
-       * compilation.
-       */
-      "typia.tag"?: {
-        target: "string" | "number" | "bigint" | "boolean" | "object" | "array";
-        kind: "jsonPlugin";
-        schema: {
-          description: "Transaction metadata.";
-          examples: [
-            {
-              key: "value";
-            },
-          ];
-        };
-      };
-    };
-    [key: string]: unknown;
-  };
-  path: {
-    transactionId: string;
-  };
-  query?: never;
-  url: "/transactions/{transactionId}";
-};
-
-export type EditTransactionErrors = {
-  /**
-   * Bad Request
-   */
-  400: DefaultError;
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Permission denied.
-   */
-  403: DefaultError;
-  /**
-   * Not Found
-   */
-  404: DefaultError;
-  /**
-   * Payload too large.
-   */
-  413: DefaultError;
-  /**
-   * Unprocessable Entity
-   */
-  422: DefaultError;
-  /**
-   * Internal Server Error
-   */
-  500: DefaultError;
-};
-
-export type EditTransactionError =
-  EditTransactionErrors[keyof EditTransactionErrors];
-
-export type EditTransactionResponses = {
-  /**
-   * Transaction update completed successfully.
-   */
-  200: unknown;
-  /**
-   * Transaction update accepted.
-   */
-  202: unknown;
-  /**
-   * No transaction update was requested.
-   */
-  204: void;
-};
-
-export type EditTransactionResponse =
-  EditTransactionResponses[keyof EditTransactionResponses];
-
-export type ListTransactionsData = {
-  body?: never;
-  path?: never;
-  query?: {
-    /**
-     * Transaction id or Pix E2E id.
-     */
-    q?: string;
-    /**
-     * Maximum creation date.
-     */
-    before?: string;
-    /**
-     * Transaction status filter.
-     */
-    status?: string;
-    /**
-     * Transaction value filter.
-     */
-    value?: string;
-    /**
-     * Transaction type filter.
-     */
-    type?: string;
-    /**
-     * Maximum number of transactions.
-     */
-    limit?: string;
-    /**
-     * User id or Discord user id filter.
-     */
-    user?: string;
-  };
-  url: "/transactions";
-};
-
-export type ListTransactionsErrors = {
-  /**
-   * User not authenticated.
-   */
-  401: DefaultError;
-  /**
-   * Too many requests.
-   */
-  429: DefaultError;
-  /**
-   * Unknown error.
-   */
-  500: DefaultError;
-};
-
-export type ListTransactionsError =
-  ListTransactionsErrors[keyof ListTransactionsErrors];
-
-export type ListTransactionsResponses = {
-  /**
-   * Transactions listed successfully.
-   */
-  200: Array<{
-    /**
-     * Represents the enum public.transaction_type
-     */
-    type: "transfer" | "sale" | "deposit" | "withdraw";
-    id: string;
-    created_at: number;
-    value: number;
-    /**
-     * Represents the enum public.transaction_status
-     */
-    status:
-      | "pending"
-      | "approved"
-      | "expired"
-      | "cancelled"
-      | "refused"
-      | "refunded"
-      | "analysis"
-      | "invalid-pix-key";
-    base_value: number;
-    primaryUser: boolean;
-  }>;
-};
-
-export type ListTransactionsResponse =
-  ListTransactionsResponses[keyof ListTransactionsResponses];
-
 export type EditUserAvatarData = {
   body?: {
     file: Blob | File;
@@ -4220,6 +3382,658 @@ export type WalletBalanceResponses = {
 export type WalletBalanceResponse =
   WalletBalanceResponses[keyof WalletBalanceResponses];
 
+export type ListStoresData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/stores";
+};
+
+export type ListStoresErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type ListStoresError = ListStoresErrors[keyof ListStoresErrors];
+
+export type ListStoresResponses = {
+  /**
+   * Stores listed successfully.
+   */
+  200: Array<{
+    id: number;
+    name: string;
+    created_at: number;
+    expires_at: number;
+    icon_id: null | string;
+    banner_id: null | string;
+    is_owner: boolean;
+  }>;
+};
+
+export type ListStoresResponse = ListStoresResponses[keyof ListStoresResponses];
+
+export type RateTransactionData = {
+  body?: {
+    /**
+     * Rating message.
+     */
+    message?: string;
+    /**
+     * Rating stars.
+     */
+    stars: number;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}/rating";
+};
+
+export type RateTransactionErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Transaction not found.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type RateTransactionError =
+  RateTransactionErrors[keyof RateTransactionErrors];
+
+export type RateTransactionResponses = {
+  /**
+   * Transaction rated successfully.
+   */
+  200: {
+    id: string;
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "sale" | "transfer" | "deposit" | "withdraw";
+    /**
+     * Represents the enum public.payment_entity
+     */
+    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
+    /**
+     * Represents the enum public.payment_method
+     */
+    method: "pix" | "boleto";
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    base_value: number;
+    value: number;
+    refunded_value: number;
+    refund_reason:
+      | null
+      | "fraud"
+      | "pix_med"
+      | "requested_with_zennify"
+      | "requested_with_bank"
+      | "stock_out"
+      | "stock_low"
+      | "by_admin"
+      | "internal_error"
+      | "internal_reason"
+      | "bank_blacklist"
+      | "bank_rejected"
+      | "coupon_out";
+    refund_comment: null | string;
+    refund_requested_by: null | number;
+    payer_bank: null | string;
+    ref_code: null | string;
+    expires_at: null | number;
+    created_at: number;
+    managed: null | boolean;
+    pix_e2eid: null | string;
+    pix_qrcode: null | string;
+    metadata: unknown;
+    order: null | {
+      id: string;
+      total_value: number;
+      coupon_id: null | number;
+      subtotal: number;
+      discount: number;
+      /**
+       * Represents the enum public.platforms
+       */
+      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
+      discord_guild_id: null | string;
+      discord_channel_id: null | string;
+      discord_channel_message_id: null | string;
+      discord_sale_message: null | string;
+      discord_feedback_message: null | string;
+      rating: null | number;
+      rating_message: null | string;
+      coupon_name: null | string;
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      payer: {
+        id: number;
+        discord_user_id: null | string;
+        username: string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      seller: {
+        id: number;
+        discord_user_id: null | string;
+        username: string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      store: {
+        id: number;
+        name: string;
+        icon_id: null | string;
+        banner_id: null | string;
+      };
+      products: null | Array<{
+        id: number;
+        value: number;
+        name: string;
+        icon_id: null | string;
+        banner_id: null | string;
+        short_description: null | string;
+        discord_description: null | string;
+        website_description: null | string;
+        instructions: null | string;
+        amount: number;
+        delivered: Array<string>;
+      }>;
+      discord_roles: null | Array<{
+        id: number;
+        user_id: number;
+        guild_id: string;
+        role_id: string;
+        rule_id: null | number;
+        role_name: null | string;
+        role_color_primary: null | number;
+        role_color_secondary: null | number;
+        remove_in: null | number;
+        should_add: boolean;
+        given: null | boolean;
+        discord_user_id: null | string;
+      }>;
+    };
+    withdraw: null | {
+      total_value: number;
+      sended_pix_key: null | string;
+      fee: number;
+      subtotal: number;
+      discount: number;
+    };
+  };
+};
+
+export type RateTransactionResponse =
+  RateTransactionResponses[keyof RateTransactionResponses];
+
+export type RefundTransactionData = {
+  body?: {
+    /**
+     * Refund amount. Omit to refund the remaining value.
+     */
+    value?: number;
+    /**
+     * Refund comment shown in the transaction history.
+     */
+    comment?: string;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}/refund";
+};
+
+export type RefundTransactionErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Refund not allowed.
+   */
+  403: DefaultError;
+  /**
+   * Transaction not found.
+   */
+  404: DefaultError;
+  /**
+   * Conflict
+   */
+  409: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+  /**
+   * Internal Server Error
+   */
+  500: DefaultError;
+};
+
+export type RefundTransactionError =
+  RefundTransactionErrors[keyof RefundTransactionErrors];
+
+export type RefundTransactionResponses = {
+  /**
+   * Refund accepted.
+   */
+  202: unknown;
+};
+
+export type GetTransactionData = {
+  body?: never;
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}";
+};
+
+export type GetTransactionErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Transaction not found.
+   */
+  404: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type GetTransactionError =
+  GetTransactionErrors[keyof GetTransactionErrors];
+
+export type GetTransactionResponses = {
+  /**
+   * Transaction returned successfully.
+   */
+  200: {
+    id: string;
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "sale" | "transfer" | "deposit" | "withdraw";
+    /**
+     * Represents the enum public.payment_entity
+     */
+    entity: "mercadopago" | "efi" | "semiauto" | "wallet-efi";
+    /**
+     * Represents the enum public.payment_method
+     */
+    method: "pix" | "boleto";
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    base_value: number;
+    value: number;
+    refunded_value: number;
+    refund_reason:
+      | null
+      | "fraud"
+      | "pix_med"
+      | "requested_with_zennify"
+      | "requested_with_bank"
+      | "stock_out"
+      | "stock_low"
+      | "by_admin"
+      | "internal_error"
+      | "internal_reason"
+      | "bank_blacklist"
+      | "bank_rejected"
+      | "coupon_out";
+    refund_comment: null | string;
+    refund_requested_by: null | number;
+    payer_bank: null | string;
+    ref_code: null | string;
+    expires_at: null | number;
+    created_at: number;
+    managed: null | boolean;
+    pix_e2eid: null | string;
+    pix_qrcode: null | string;
+    metadata: unknown;
+    order: null | {
+      id: string;
+      total_value: number;
+      coupon_id: null | number;
+      subtotal: number;
+      discount: number;
+      /**
+       * Represents the enum public.platforms
+       */
+      platform: "discord" | "website" | "marketplace" | "whatsapp" | "telegram";
+      discord_guild_id: null | string;
+      discord_channel_id: null | string;
+      discord_channel_message_id: null | string;
+      discord_sale_message: null | string;
+      discord_feedback_message: null | string;
+      rating: null | number;
+      rating_message: null | string;
+      coupon_name: null | string;
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      payer: {
+        id: number;
+        discord_user_id: null | string;
+        username: string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      seller: {
+        id: number;
+        discord_user_id: null | string;
+        username: string;
+      };
+      /**
+       * From T, pick a set of properties whose keys are in the union K
+       */
+      store: {
+        id: number;
+        name: string;
+        icon_id: null | string;
+        banner_id: null | string;
+      };
+      products: null | Array<{
+        id: number;
+        value: number;
+        name: string;
+        icon_id: null | string;
+        banner_id: null | string;
+        short_description: null | string;
+        discord_description: null | string;
+        website_description: null | string;
+        instructions: null | string;
+        amount: number;
+        delivered: Array<string>;
+      }>;
+      discord_roles: null | Array<{
+        id: number;
+        user_id: number;
+        guild_id: string;
+        role_id: string;
+        rule_id: null | number;
+        role_name: null | string;
+        role_color_primary: null | number;
+        role_color_secondary: null | number;
+        remove_in: null | number;
+        should_add: boolean;
+        given: null | boolean;
+        discord_user_id: null | string;
+      }>;
+    };
+    withdraw: null | {
+      total_value: number;
+      sended_pix_key: null | string;
+      fee: number;
+      subtotal: number;
+      discount: number;
+    };
+  };
+};
+
+export type GetTransactionResponse =
+  GetTransactionResponses[keyof GetTransactionResponses];
+
+export type EditTransactionData = {
+  body?: {
+    status?: "approved" | "cancelled";
+    /**
+     * Refund amount.
+     */
+    refund_value?: number;
+    /**
+     * Refund comment.
+     */
+    refund_comment?: string;
+    metadata?: {
+      /**
+       * Compile-time marker property for typia transformer.
+       *
+       * This phantom property carries tag metadata in the type system. It is never
+       * assigned at runtime - it exists only for the transformer to read during
+       * compilation.
+       */
+      "typia.tag"?: {
+        target: "string" | "number" | "bigint" | "boolean" | "object" | "array";
+        kind: "jsonPlugin";
+        schema: {
+          description: "Transaction metadata.";
+          examples: [
+            {
+              key: "value";
+            },
+          ];
+        };
+      };
+    };
+    [key: string]: unknown;
+  };
+  path: {
+    transactionId: string;
+  };
+  query?: never;
+  url: "/transactions/{transactionId}";
+};
+
+export type EditTransactionErrors = {
+  /**
+   * Bad Request
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Not Found
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Internal Server Error
+   */
+  500: DefaultError;
+};
+
+export type EditTransactionError =
+  EditTransactionErrors[keyof EditTransactionErrors];
+
+export type EditTransactionResponses = {
+  /**
+   * Transaction update completed successfully.
+   */
+  200: unknown;
+  /**
+   * Transaction update accepted.
+   */
+  202: unknown;
+  /**
+   * No transaction update was requested.
+   */
+  204: void;
+};
+
+export type EditTransactionResponse =
+  EditTransactionResponses[keyof EditTransactionResponses];
+
+export type ListTransactionsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * Transaction id or Pix E2E id.
+     */
+    q?: string;
+    /**
+     * Maximum creation date.
+     */
+    before?: string;
+    /**
+     * Transaction status filter.
+     */
+    status?: string;
+    /**
+     * Transaction value filter.
+     */
+    value?: string;
+    /**
+     * Transaction type filter.
+     */
+    type?: string;
+    /**
+     * Maximum number of transactions.
+     */
+    limit?: string;
+    /**
+     * User id or Discord user id filter.
+     */
+    user?: string;
+  };
+  url: "/transactions";
+};
+
+export type ListTransactionsErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * Too many requests.
+   */
+  429: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type ListTransactionsError =
+  ListTransactionsErrors[keyof ListTransactionsErrors];
+
+export type ListTransactionsResponses = {
+  /**
+   * Transactions listed successfully.
+   */
+  200: Array<{
+    id: string;
+    /**
+     * Represents the enum public.transaction_type
+     */
+    type: "sale" | "transfer" | "deposit" | "withdraw";
+    /**
+     * Represents the enum public.transaction_status
+     */
+    status:
+      | "pending"
+      | "approved"
+      | "expired"
+      | "cancelled"
+      | "refused"
+      | "refunded"
+      | "analysis"
+      | "invalid-pix-key";
+    base_value: number;
+    value: number;
+    created_at: number;
+    primaryUser: boolean;
+  }>;
+};
+
+export type ListTransactionsResponse =
+  ListTransactionsResponses[keyof ListTransactionsResponses];
+
 export type WalletWithdrawData = {
   body?: {
     /**
@@ -4281,3 +4095,199 @@ export type WalletWithdrawResponses = {
 
 export type WalletWithdrawResponse =
   WalletWithdrawResponses[keyof WalletWithdrawResponses];
+
+export type DeleteProductData = {
+  body?: never;
+  path: {
+    storeId: string;
+    productId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/products/{productId}";
+};
+
+export type DeleteProductErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type DeleteProductError = DeleteProductErrors[keyof DeleteProductErrors];
+
+export type DeleteProductResponses = {
+  /**
+   * Product deleted successfully.
+   */
+  204: void;
+};
+
+export type DeleteProductResponse =
+  DeleteProductResponses[keyof DeleteProductResponses];
+
+export type GetProductData = {
+  body?: never;
+  path: {
+    storeId: string;
+    productId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/products/{productId}";
+};
+
+export type GetProductErrors = {
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type GetProductError = GetProductErrors[keyof GetProductErrors];
+
+export type GetProductResponses = {
+  /**
+   * Product returned successfully.
+   */
+  200: {
+    id: number;
+    name: string;
+    value: number;
+    icon_id: null | string;
+    banner_id: null | string;
+    owner_id: number;
+    store_id: number;
+    created_at: number;
+    stock: {
+      size: number;
+      locked: boolean;
+      /**
+       * Represents the enum products.stock_mode
+       */
+      mode: "random" | "sequential";
+      limit: number;
+    };
+    description: {
+      discord: string;
+      short: string;
+      website: string;
+    };
+    instructions: string;
+    required_roles: Array<string>;
+    color: null | number;
+  };
+};
+
+export type GetProductResponse = GetProductResponses[keyof GetProductResponses];
+
+export type EditProductData = {
+  body?: {
+    /**
+     * Public name. Must be 3 to 50 valid characters.
+     */
+    name?: string;
+    /**
+     * Product price in BRL.
+     */
+    value?: number;
+    description?: {
+      /**
+       * Product description used in Discord messages.
+       */
+      discord?: string;
+    };
+    /**
+     * How to use the delivered stock. Sent to the buyer with the delivery. Empty string clears it.
+     */
+    instructions?: string;
+    /**
+     * Discord role ids required to buy this product. The buyer needs at least one of them, and up to 25 are accepted. An empty list lets anyone buy.
+     */
+    required_roles?: Array<string>;
+    color?: null | number;
+  };
+  path: {
+    storeId: string;
+    productId: string;
+  };
+  query?: never;
+  url: "/stores/{storeId}/products/{productId}";
+};
+
+export type EditProductErrors = {
+  /**
+   * Invalid JSON payload.
+   */
+  400: DefaultError;
+  /**
+   * User not authenticated.
+   */
+  401: DefaultError;
+  /**
+   * This store has expired.
+   */
+  402: DefaultError;
+  /**
+   * Permission denied.
+   */
+  403: DefaultError;
+  /**
+   * Unknown store.
+   */
+  404: DefaultError;
+  /**
+   * Payload too large.
+   */
+  413: DefaultError;
+  /**
+   * Unprocessable Entity
+   */
+  422: DefaultError;
+  /**
+   * Unknown error.
+   */
+  500: DefaultError;
+};
+
+export type EditProductError = EditProductErrors[keyof EditProductErrors];
+
+export type EditProductResponses = {
+  /**
+   * Product updated successfully.
+   */
+  204: void;
+};
+
+export type EditProductResponse =
+  EditProductResponses[keyof EditProductResponses];
