@@ -2868,6 +2868,7 @@ export type GetStoreResponses = {
       id: string;
       cluster: string;
     };
+    color: number;
   };
 };
 
@@ -2880,6 +2881,10 @@ export type EditStoreData = {
      */
     name?: string;
     blocked_banks?: Array<string>;
+    /**
+     * Highlight color as a decimal integer, like Discord's accent_color.
+     */
+    color?: number;
   };
   path: {
     storeId: string;
