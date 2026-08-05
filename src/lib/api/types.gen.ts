@@ -1397,8 +1397,9 @@ export type GetProductResponses = {
       website: string;
     };
     instructions: string;
-    required_roles: Array<string>;
     color: null | number;
+    discord_roles_allowed: Array<string>;
+    discord_roles_blocked: Array<string>;
   };
 };
 
@@ -1424,11 +1425,15 @@ export type EditProductData = {
      * How to use the delivered stock. Sent to the buyer with the delivery. Empty string clears it.
      */
     instructions?: string;
-    /**
-     * Discord role ids required to buy this product. The buyer needs at least one of them, and up to 25 are accepted. An empty list lets anyone buy.
-     */
-    required_roles?: Array<string>;
     color?: null | number;
+    /**
+     * Discord role ids allowed to buy this product. The buyer needs at least one of them, and up to 25 are accepted. An empty list lets anyone buy.
+     */
+    discord_roles_allowed?: Array<string>;
+    /**
+     * Discord role ids blocked from buying this product. Blocked wins over allowed, and up to 25 are accepted. An empty list blocks nobody.
+     */
+    discord_roles_blocked?: Array<string>;
   };
   path: {
     storeId: string;
