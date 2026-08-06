@@ -3968,6 +3968,10 @@ export type GetStoreResponses = {
       id: string;
       cluster: string;
     };
+    products_discord_roles_allowed: null | Array<string>;
+    products_discord_roles_blocked: null | Array<string>;
+    coupons_discord_roles_allowed: null | Array<string>;
+    coupons_discord_roles_blocked: null | Array<string>;
   };
 };
 
@@ -3984,6 +3988,22 @@ export type EditStoreData = {
      * Highlight color as a decimal integer, like Discord's accent_color.
      */
     color?: number;
+    /**
+     * Discord role ids allowed to buy any product of this store. Merged with the filter of each product, and up to 25 are accepted. An empty list lets anyone buy.
+     */
+    products_discord_roles_allowed?: Array<string>;
+    /**
+     * Discord role ids blocked from buying any product of this store. Blocked wins over allowed, and up to 25 are accepted. An empty list blocks nobody.
+     */
+    products_discord_roles_blocked?: Array<string>;
+    /**
+     * Discord role ids allowed to use any coupon of this store. Merged with the filter of each coupon, and up to 20 are accepted. An empty list lets anyone use.
+     */
+    coupons_discord_roles_allowed?: Array<string>;
+    /**
+     * Discord role ids blocked from using any coupon of this store. Blocked wins over allowed, and up to 20 are accepted. An empty list blocks nobody.
+     */
+    coupons_discord_roles_blocked?: Array<string>;
   };
   path: {
     storeId: string;
