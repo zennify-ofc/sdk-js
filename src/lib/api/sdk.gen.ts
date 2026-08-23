@@ -267,6 +267,22 @@ export const getServiceApiSchema = <ThrowOnError extends boolean = false>(
     });
 
 /**
+ * Mint a short-lived token that opens the current draft on the storefront's own preview route.
+ */
+export const createStoreWebsitePreviewToken = <ThrowOnError extends boolean = false>(
+    options: Options<CreateStoreWebsitePreviewTokenData, ThrowOnError>,
+) =>
+    (options.client ?? client).post<
+        CreateStoreWebsitePreviewTokenResponses,
+        CreateStoreWebsitePreviewTokenErrors,
+        ThrowOnError
+    >({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/preview",
+        ...options,
+    });
+
+/**
  * List product delivery history (sales + manual deliveries) for auditing.
  */
 export const getProductHistory = <ThrowOnError extends boolean = false>(
@@ -881,6 +897,80 @@ export const editStore = <ThrowOnError extends boolean = false>(options: Options
     });
 
 /**
+ * List stores owned or moderated by the current user.
+ */
+export const listStores = <ThrowOnError extends boolean = false>(options?: Options<ListStoresData, ThrowOnError>) =>
+    (options?.client ?? client).get<ListStoresResponses, ListStoresErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores",
+        ...options,
+    });
+
+/**
+ * Start an assistant generation for the website editor. Returns a job id to poll.
+ */
+export const askStoreWebsiteAssistant = <ThrowOnError extends boolean = false>(
+    options: Options<AskStoreWebsiteAssistantData, ThrowOnError>,
+) =>
+    (options.client ?? client).post<AskStoreWebsiteAssistantResponses, AskStoreWebsiteAssistantErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/assistant",
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+    });
+
+/**
+ * Request cancellation of a running assistant generation.
+ */
+export const cancelStoreWebsiteAssistant = <ThrowOnError extends boolean = false>(
+    options: Options<CancelStoreWebsiteAssistantData, ThrowOnError>,
+) =>
+    (options.client ?? client).delete<
+        CancelStoreWebsiteAssistantResponses,
+        CancelStoreWebsiteAssistantErrors,
+        ThrowOnError
+    >({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/assistant/{jobId}",
+        ...options,
+    });
+
+/**
+ * Poll an assistant generation job.
+ */
+export const getStoreWebsiteAssistant = <ThrowOnError extends boolean = false>(
+    options: Options<GetStoreWebsiteAssistantData, ThrowOnError>,
+) =>
+    (options.client ?? client).get<GetStoreWebsiteAssistantResponses, GetStoreWebsiteAssistantErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/assistant/{jobId}",
+        ...options,
+    });
+
+/**
+ * Report what the editor actually applied from a generation. Sent again when the seller reverts.
+ */
+export const reportStoreWebsiteAssistantApply = <ThrowOnError extends boolean = false>(
+    options: Options<ReportStoreWebsiteAssistantApplyData, ThrowOnError>,
+) =>
+    (options.client ?? client).patch<
+        ReportStoreWebsiteAssistantApplyResponses,
+        ReportStoreWebsiteAssistantApplyErrors,
+        ThrowOnError
+    >({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/assistant/messages/{messageId}",
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+    });
+
+/**
  * Access the website draft of a store. Falls back to the default storefront when there is none.
  */
 export const getStoreWebsiteDraft = <ThrowOnError extends boolean = false>(
@@ -921,6 +1011,90 @@ export const publishStoreWebsite = <ThrowOnError extends boolean = false>(
     });
 
 /**
+ * Access the website settings of a store.
+ */
+export const getStoreWebsite = <ThrowOnError extends boolean = false>(
+    options: Options<GetStoreWebsiteData, ThrowOnError>,
+) =>
+    (options.client ?? client).get<GetStoreWebsiteResponses, GetStoreWebsiteErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website",
+        ...options,
+    });
+
+/**
+ * Update the website state of a store.
+ */
+export const editStoreWebsite = <ThrowOnError extends boolean = false>(
+    options: Options<EditStoreWebsiteData, ThrowOnError>,
+) =>
+    (options.client ?? client).patch<EditStoreWebsiteResponses, EditStoreWebsiteErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website",
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+    });
+
+/**
+ * Create the website of a store, or change its subdomain.
+ */
+export const createStoreWebsite = <ThrowOnError extends boolean = false>(
+    options: Options<CreateStoreWebsiteData, ThrowOnError>,
+) =>
+    (options.client ?? client).put<CreateStoreWebsiteResponses, CreateStoreWebsiteErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website",
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+    });
+
+/**
+ * Disconnect the custom domain from the store website.
+ */
+export const removeStoreWebsiteDomain = <ThrowOnError extends boolean = false>(
+    options: Options<RemoveStoreWebsiteDomainData, ThrowOnError>,
+) =>
+    (options.client ?? client).delete<RemoveStoreWebsiteDomainResponses, RemoveStoreWebsiteDomainErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/domain",
+        ...options,
+    });
+
+/**
+ * Connect a custom domain to the store website.
+ */
+export const setStoreWebsiteDomain = <ThrowOnError extends boolean = false>(
+    options: Options<SetStoreWebsiteDomainData, ThrowOnError>,
+) =>
+    (options.client ?? client).put<SetStoreWebsiteDomainResponses, SetStoreWebsiteDomainErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/domain",
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+    });
+
+/**
+ * Run the DNS verification of the custom domain and return the refreshed website state.
+ */
+export const checkStoreWebsiteDomain = <ThrowOnError extends boolean = false>(
+    options: Options<CheckStoreWebsiteDomainData, ThrowOnError>,
+) =>
+    (options.client ?? client).post<CheckStoreWebsiteDomainResponses, CheckStoreWebsiteDomainErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/stores/{storeId}/website/domain/check",
+        ...options,
+    });
+
+/**
  * Rate a sale transaction as its payer. Allowed until 90 days after purchase; a 5-star rating locks further edits.
  */
 export const rateTransaction = <ThrowOnError extends boolean = false>(
@@ -929,6 +1103,50 @@ export const rateTransaction = <ThrowOnError extends boolean = false>(
     (options.client ?? client).patch<RateTransactionResponses, RateTransactionErrors, ThrowOnError>({
         security: [{ scheme: "bearer", type: "http" }],
         url: "/transactions/{transactionId}/rating",
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+    });
+
+/**
+ * Refund a sale transaction, fully or partially.
+ */
+export const refundTransaction = <ThrowOnError extends boolean = false>(
+    options: Options<RefundTransactionData, ThrowOnError>,
+) =>
+    (options.client ?? client).post<RefundTransactionResponses, RefundTransactionErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/transactions/{transactionId}/refund",
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
+    });
+
+/**
+ * Access a transaction by id or Pix E2E id.
+ */
+export const getTransaction = <ThrowOnError extends boolean = false>(
+    options: Options<GetTransactionData, ThrowOnError>,
+) =>
+    (options.client ?? client).get<GetTransactionResponses, GetTransactionErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/transactions/{transactionId}",
+        ...options,
+    });
+
+/**
+ * Update transaction status or metadata.
+ */
+export const editTransaction = <ThrowOnError extends boolean = false>(
+    options: Options<EditTransactionData, ThrowOnError>,
+) =>
+    (options.client ?? client).patch<EditTransactionResponses, EditTransactionErrors, ThrowOnError>({
+        security: [{ scheme: "bearer", type: "http" }],
+        url: "/transactions/{transactionId}",
         ...options,
         headers: {
             "Content-Type": "application/json",
@@ -1071,222 +1289,4 @@ export const walletWithdraw = <ThrowOnError extends boolean = false>(
             "Content-Type": "application/json",
             ...options?.headers,
         },
-    });
-
-/**
- * Start an assistant generation for the website editor. Returns a job id to poll.
- */
-export const askStoreWebsiteAssistant = <ThrowOnError extends boolean = false>(
-    options: Options<AskStoreWebsiteAssistantData, ThrowOnError>,
-) =>
-    (options.client ?? client).post<AskStoreWebsiteAssistantResponses, AskStoreWebsiteAssistantErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/assistant",
-        ...options,
-        headers: {
-            "Content-Type": "application/json",
-            ...options.headers,
-        },
-    });
-
-/**
- * Request cancellation of a running assistant generation.
- */
-export const cancelStoreWebsiteAssistant = <ThrowOnError extends boolean = false>(
-    options: Options<CancelStoreWebsiteAssistantData, ThrowOnError>,
-) =>
-    (options.client ?? client).delete<
-        CancelStoreWebsiteAssistantResponses,
-        CancelStoreWebsiteAssistantErrors,
-        ThrowOnError
-    >({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/assistant/{jobId}",
-        ...options,
-    });
-
-/**
- * Poll an assistant generation job.
- */
-export const getStoreWebsiteAssistant = <ThrowOnError extends boolean = false>(
-    options: Options<GetStoreWebsiteAssistantData, ThrowOnError>,
-) =>
-    (options.client ?? client).get<GetStoreWebsiteAssistantResponses, GetStoreWebsiteAssistantErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/assistant/{jobId}",
-        ...options,
-    });
-
-/**
- * Report what the editor actually applied from a generation. Sent again when the seller reverts.
- */
-export const reportStoreWebsiteAssistantApply = <ThrowOnError extends boolean = false>(
-    options: Options<ReportStoreWebsiteAssistantApplyData, ThrowOnError>,
-) =>
-    (options.client ?? client).patch<
-        ReportStoreWebsiteAssistantApplyResponses,
-        ReportStoreWebsiteAssistantApplyErrors,
-        ThrowOnError
-    >({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/assistant/messages/{messageId}",
-        ...options,
-        headers: {
-            "Content-Type": "application/json",
-            ...options.headers,
-        },
-    });
-
-/**
- * List stores owned or moderated by the current user.
- */
-export const listStores = <ThrowOnError extends boolean = false>(options?: Options<ListStoresData, ThrowOnError>) =>
-    (options?.client ?? client).get<ListStoresResponses, ListStoresErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores",
-        ...options,
-    });
-
-/**
- * Refund a sale transaction, fully or partially.
- */
-export const refundTransaction = <ThrowOnError extends boolean = false>(
-    options: Options<RefundTransactionData, ThrowOnError>,
-) =>
-    (options.client ?? client).post<RefundTransactionResponses, RefundTransactionErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/transactions/{transactionId}/refund",
-        ...options,
-        headers: {
-            "Content-Type": "application/json",
-            ...options.headers,
-        },
-    });
-
-/**
- * Access a transaction by id or Pix E2E id.
- */
-export const getTransaction = <ThrowOnError extends boolean = false>(
-    options: Options<GetTransactionData, ThrowOnError>,
-) =>
-    (options.client ?? client).get<GetTransactionResponses, GetTransactionErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/transactions/{transactionId}",
-        ...options,
-    });
-
-/**
- * Update transaction status or metadata.
- */
-export const editTransaction = <ThrowOnError extends boolean = false>(
-    options: Options<EditTransactionData, ThrowOnError>,
-) =>
-    (options.client ?? client).patch<EditTransactionResponses, EditTransactionErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/transactions/{transactionId}",
-        ...options,
-        headers: {
-            "Content-Type": "application/json",
-            ...options.headers,
-        },
-    });
-
-/**
- * Mint a short-lived token that opens the current draft on the storefront's own preview route.
- */
-export const createStoreWebsitePreviewToken = <ThrowOnError extends boolean = false>(
-    options: Options<CreateStoreWebsitePreviewTokenData, ThrowOnError>,
-) =>
-    (options.client ?? client).post<
-        CreateStoreWebsitePreviewTokenResponses,
-        CreateStoreWebsitePreviewTokenErrors,
-        ThrowOnError
-    >({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/preview",
-        ...options,
-    });
-
-/**
- * Access the website settings of a store.
- */
-export const getStoreWebsite = <ThrowOnError extends boolean = false>(
-    options: Options<GetStoreWebsiteData, ThrowOnError>,
-) =>
-    (options.client ?? client).get<GetStoreWebsiteResponses, GetStoreWebsiteErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website",
-        ...options,
-    });
-
-/**
- * Update the website state of a store.
- */
-export const editStoreWebsite = <ThrowOnError extends boolean = false>(
-    options: Options<EditStoreWebsiteData, ThrowOnError>,
-) =>
-    (options.client ?? client).patch<EditStoreWebsiteResponses, EditStoreWebsiteErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website",
-        ...options,
-        headers: {
-            "Content-Type": "application/json",
-            ...options.headers,
-        },
-    });
-
-/**
- * Create the website of a store, or change its subdomain.
- */
-export const createStoreWebsite = <ThrowOnError extends boolean = false>(
-    options: Options<CreateStoreWebsiteData, ThrowOnError>,
-) =>
-    (options.client ?? client).put<CreateStoreWebsiteResponses, CreateStoreWebsiteErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website",
-        ...options,
-        headers: {
-            "Content-Type": "application/json",
-            ...options.headers,
-        },
-    });
-
-/**
- * Disconnect the custom domain from the store website.
- */
-export const removeStoreWebsiteDomain = <ThrowOnError extends boolean = false>(
-    options: Options<RemoveStoreWebsiteDomainData, ThrowOnError>,
-) =>
-    (options.client ?? client).delete<RemoveStoreWebsiteDomainResponses, RemoveStoreWebsiteDomainErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/domain",
-        ...options,
-    });
-
-/**
- * Connect a custom domain to the store website.
- */
-export const setStoreWebsiteDomain = <ThrowOnError extends boolean = false>(
-    options: Options<SetStoreWebsiteDomainData, ThrowOnError>,
-) =>
-    (options.client ?? client).put<SetStoreWebsiteDomainResponses, SetStoreWebsiteDomainErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/domain",
-        ...options,
-        headers: {
-            "Content-Type": "application/json",
-            ...options.headers,
-        },
-    });
-
-/**
- * Run the DNS verification of the custom domain and return the refreshed website state.
- */
-export const checkStoreWebsiteDomain = <ThrowOnError extends boolean = false>(
-    options: Options<CheckStoreWebsiteDomainData, ThrowOnError>,
-) =>
-    (options.client ?? client).post<CheckStoreWebsiteDomainResponses, CheckStoreWebsiteDomainErrors, ThrowOnError>({
-        security: [{ scheme: "bearer", type: "http" }],
-        url: "/stores/{storeId}/website/domain/check",
-        ...options,
     });
